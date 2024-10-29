@@ -1,4 +1,4 @@
-package com.rovenskyi.radio_lux_fm_streamer
+package com.rovenskyi.radio_lux_fm_lviv_streamer
 
 import androidx.test.platform.app.InstrumentationRegistry
 import androidx.test.ext.junit.runners.AndroidJUnit4
@@ -19,6 +19,6 @@ class ExampleInstrumentedTest {
     fun useAppContext() {
         // Context of the app under test.
         val appContext = InstrumentationRegistry.getInstrumentation().targetContext
-        assertEquals("com.rovenskyi.radio_lux_fm_streamer", appContext.packageName)
+        assertEquals("com.rovenskyi.radio_lux_fm_lviv_streamer", appContext.packageName)
     }
 }

@@ -1,4 +1,4 @@
-package com.rovenskyi.radio_lux_fm_streamer.ui
+package com.rovenskyi.radio_lux_fm_lviv_streamer.ui
 
 import androidx.compose.foundation.layout.*
 import androidx.compose.material3.*

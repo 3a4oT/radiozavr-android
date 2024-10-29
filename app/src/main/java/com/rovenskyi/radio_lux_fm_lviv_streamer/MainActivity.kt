@@ -1,4 +1,4 @@
-package com.rovenskyi.radio_lux_fm_streamer
+package com.rovenskyi.radio_lux_fm_lviv_streamer
 
 import android.os.Bundle
 import androidx.activity.compose.setContent
@@ -7,21 +7,21 @@ import androidx.activity.viewModels
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material3.Surface
 import androidx.compose.ui.Modifier
-import com.rovenskyi.radio_lux_fm_streamer.ui.RadioScreen
-import com.rovenskyi.radio_lux_fm_streamer.ui.theme.LuxFMRadioStreamingTheme
-import com.rovenskyi.radio_lux_fm_streamer.viewmodel.RadioViewModel
+import com.rovenskyi.radio_lux_fm_lviv_streamer.ui.RadioPlayerScreen
+import com.rovenskyi.radio_lux_fm_lviv_streamer.ui.theme.RadioLuxFmLvivStreamerTheme
+import com.rovenskyi.radio_lux_fm_lviv_streamer.viewmodel.RadioPlayerViewModel
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
-    private val radioViewModel: RadioViewModel by viewModels()
+    private val radioPlayerViewModel: RadioPlayerViewModel by viewModels()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
-            LuxFMRadioStreamingTheme {
+            RadioLuxFmLvivStreamerTheme {
                 Surface(modifier = Modifier.fillMaxSize()) {
-                    RadioScreen(viewModel = radioViewModel)
+                    RadioPlayerScreen(viewModel = radioPlayerViewModel)
                 }
             }
         }

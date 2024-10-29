@@ -6,11 +6,11 @@ plugins {
 }
 
 android {
-    namespace = "com.rovenskyi.radio_lux_fm_streamer"
+    namespace = "com.rovenskyi.radio_lux_fm_lviv_streamer"
     compileSdk = 34
 
     defaultConfig {
-        applicationId = "com.rovenskyi.radio_lux_fm_streamer"
+        applicationId = "com.rovenskyi.radio_lux_fm_lviv_streamer"
         minSdk = 28
         targetSdk = 34
         versionCode = 1
@@ -60,6 +60,7 @@ dependencies {
 
     // For media playback using ExoPlayer
     implementation(libs.androidx.media3.exoplayer)
+    implementation(libs.androidx.media3.exoplayer.hls)
     implementation(libs.androidx.ui.tooling.preview)
     implementation(libs.androidx.navigation.compose)
     implementation(libs.kotlinx.coroutines.core)

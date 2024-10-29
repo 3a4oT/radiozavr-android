@@ -1,11 +1,11 @@
-package com.rovenskyi.radio_lux_fm_streamer.ui.theme
+package com.rovenskyi.radio_lux_fm_lviv_streamer.ui.theme
 
 import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.material3.*
 import androidx.compose.runtime.Composable
 
 @Composable
-fun LuxFMRadioStreamingTheme(
+fun RadioLuxFmLvivStreamerTheme(
     darkTheme: Boolean = isSystemInDarkTheme(),
     content: @Composable () -> Unit
 ) {

@@ -1,4 +1,4 @@
-package com.rovenskyi.radio_lux_fm_streamer
+package com.rovenskyi.radio_lux_fm_lviv_streamer
 
 import org.junit.Test
 

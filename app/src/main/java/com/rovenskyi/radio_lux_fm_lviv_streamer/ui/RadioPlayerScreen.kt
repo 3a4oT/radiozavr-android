@@ -1,4 +1,4 @@
-package com.rovenskyi.radio_lux_fm_streamer.ui
+package com.rovenskyi.radio_lux_fm_lviv_streamer.ui
 
 import androidx.compose.foundation.layout.*
 import androidx.compose.material3.*
@@ -6,10 +6,10 @@ import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.rovenskyi.radio_lux_fm_streamer.viewmodel.RadioViewModel
+import com.rovenskyi.radio_lux_fm_lviv_streamer.viewmodel.RadioPlayerViewModel
 
 @Composable
-fun RadioScreen(viewModel: RadioViewModel) {
+fun RadioPlayerScreen(viewModel: RadioPlayerViewModel) {
     val isPlaying by viewModel.isPlaying.collectAsState()
     val networkError by viewModel.networkError.collectAsState()
 

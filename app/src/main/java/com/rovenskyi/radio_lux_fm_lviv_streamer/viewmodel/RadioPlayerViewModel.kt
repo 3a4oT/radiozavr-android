@@ -1,4 +1,4 @@
-package com.rovenskyi.radio_lux_fm_streamer.viewmodel
+package com.rovenskyi.radio_lux_fm_lviv_streamer.viewmodel
 
 import androidx.media3.common.MediaItem
 import androidx.media3.exoplayer.ExoPlayer
@@ -14,7 +14,7 @@ import java.io.IOException
 import javax.inject.Inject
 
 @HiltViewModel
-class RadioViewModel @Inject constructor(application: Application) : AndroidViewModel(application) {
+class RadioPlayerViewModel @Inject constructor(application: Application) : AndroidViewModel(application) {
 
     private val _isPlaying = MutableStateFlow(false)
     val isPlaying: StateFlow<Boolean> get() = _isPlaying
@@ -24,7 +24,7 @@ class RadioViewModel @Inject constructor(application: Application) : AndroidView
 
 private val exoPlayer: ExoPlayer = ExoPlayer.Builder(application)
     .build().apply {
-        // network_security_config.xml tuned to permit cleat text traffic
+        // network_security_config.xml tuned to permit clear text traffic
         val luxFmStreamUri = "http://streamvideo.luxnet.ua/luxlviv/luxlviv.stream/chunklist.m3u8"
         val mediaItem = MediaItem.fromUri(luxFmStreamUri)
         setMediaItem(mediaItem)

@@ -68,7 +68,7 @@ class RadioPlayerViewModel @Inject constructor(
     }
 
     private fun stopRadioService() {
-        appContext.startService(RadioService.createStopIntent(appContext))
+        startRadioService(RadioService.ACTION_PAUSE)
     }
 
     fun handleNetworkError(message: String?) {

@@ -103,8 +103,6 @@ class RadioService : MediaSessionService(), Player.Listener {
         const val ACTION_PLAY = "com.rovenskyi.radio_lux_fm_lviv_streamer.service.action.PLAY"
         const val ACTION_PAUSE = "com.rovenskyi.radio_lux_fm_lviv_streamer.service.action.PAUSE"
         const val ACTION_STOP = "com.rovenskyi.radio_lux_fm_lviv_streamer.service.action.STOP"
-        const val ACTION_NETWORK_ERROR = "com.rovenskyi.radio_lux_fm_lviv_streamer.service.action.NETWORK_ERROR"
-        const val EXTRA_ERROR_MSG = "com.rovenskyi.radio_lux_fm_lviv_streamer.service.extra.ERROR_MSG"
 
         fun createPlayIntent(context: Context): Intent {
             return Intent(context, RadioService::class.java).apply {

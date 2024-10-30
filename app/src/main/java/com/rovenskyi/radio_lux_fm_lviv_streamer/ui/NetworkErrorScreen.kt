@@ -9,7 +9,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 
 @Composable
-fun NetworkErrorScreen(onRetry: () -> Unit) {
+fun NetworkErrorScreen(errorMessage: String?, onRetry: () -> Unit) {
     Column(
         modifier = Modifier
             .fillMaxSize()
@@ -18,6 +18,10 @@ fun NetworkErrorScreen(onRetry: () -> Unit) {
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
         Text("No network connection", fontSize = 20.sp)
+        errorMessage?.let {
+            Spacer(modifier = Modifier.height(8.dp))
+            Text(it, fontSize = 16.sp)
+        }
         Spacer(modifier = Modifier.height(16.dp))
         Button(onClick = onRetry) {
             Text("Retry")

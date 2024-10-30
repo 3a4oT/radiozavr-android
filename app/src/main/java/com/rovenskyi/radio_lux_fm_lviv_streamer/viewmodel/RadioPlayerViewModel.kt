@@ -1,20 +1,24 @@
 package com.rovenskyi.radio_lux_fm_lviv_streamer.viewmodel
 
-import androidx.media3.common.MediaItem
-import androidx.media3.exoplayer.ExoPlayer
-
 import android.app.Application
 import androidx.lifecycle.AndroidViewModel
+import androidx.lifecycle.LiveData
 import androidx.lifecycle.viewModelScope
+import com.rovenskyi.radio_lux_fm_lviv_streamer.service.CheckNetworkService
+import com.rovenskyi.radio_lux_fm_lviv_streamer.service.NetworkErrorReceiver
+import com.rovenskyi.radio_lux_fm_lviv_streamer.service.RadioService
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.launch
-import java.io.IOException
 import javax.inject.Inject
 
 @HiltViewModel
-class RadioPlayerViewModel @Inject constructor(application: Application) : AndroidViewModel(application) {
+class RadioPlayerViewModel @Inject constructor(
+    application: Application,
+    private val checkNetworkService: CheckNetworkService,
+    private val networkErrorReceiver: NetworkErrorReceiver
+) : AndroidViewModel(application) {
 
     private val _isPlaying = MutableStateFlow(false)
     val isPlaying: StateFlow<Boolean> get() = _isPlaying
@@ -22,27 +26,25 @@ class RadioPlayerViewModel @Inject constructor(application: Application) : Andro
     private val _networkError = MutableStateFlow(false)
     val networkError: StateFlow<Boolean> get() = _networkError
 
-private val exoPlayer: ExoPlayer = ExoPlayer.Builder(application)
-    .build().apply {
-        // network_security_config.xml tuned to permit clear text traffic
-        val luxFmStreamUri = "http://streamvideo.luxnet.ua/luxlviv/luxlviv.stream/chunklist.m3u8"
-        val mediaItem = MediaItem.fromUri(luxFmStreamUri)
-        setMediaItem(mediaItem)
-        prepare()
-    }
+    private val _errorMessage = MutableStateFlow<String?>(null)
+    val errorMessage: StateFlow<String?> get() = _errorMessage
+
+    val networkErrorLiveData: LiveData<String?> get() = networkErrorReceiver.networkErrorLiveData
+
+    private val appContext = application.applicationContext
 
     fun togglePlayStop() {
         if (_isPlaying.value) {
-            exoPlayer.pause()
+            stopRadioService()
             _isPlaying.value = false
         } else {
             viewModelScope.launch {
                 try {
-                    exoPlayer.prepare()
-                    exoPlayer.play()
+                    checkNetworkService.checkNetworkConnection()
+                    startRadioService(RadioService.ACTION_PLAY)
                     _isPlaying.value = true
                     _networkError.value = false
-                } catch (e: IOException) {
+                } catch (e: Exception) {
                     _networkError.value = true
                 }
             }
@@ -50,12 +52,27 @@ private val exoPlayer: ExoPlayer = ExoPlayer.Builder(application)
     }
 
     fun retry() {
+        networkErrorReceiver.clearErrorMessage()
         _networkError.value = false
         togglePlayStop()
     }
 
-    override fun onCleared() {
-        super.onCleared()
-        exoPlayer.release()
+    private fun startRadioService(action: String) {
+        val intent = when (action) {
+            RadioService.ACTION_PLAY -> RadioService.createPlayIntent(appContext)
+            RadioService.ACTION_PAUSE -> RadioService.createPauseIntent(appContext)
+            RadioService.ACTION_STOP -> RadioService.createStopIntent(appContext)
+            else -> return
+        }
+        appContext.startService(intent)
+    }
+
+    private fun stopRadioService() {
+        appContext.startService(RadioService.createStopIntent(appContext))
+    }
+
+    fun handleNetworkError(message: String?) {
+        _errorMessage.value = message
+        _networkError.value = true
     }
 }

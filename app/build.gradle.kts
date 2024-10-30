@@ -68,6 +68,8 @@ dependencies {
 
     // Dependency injection
     implementation(libs.hilt.android)
+    implementation(libs.androidx.media3.session)
+    implementation(libs.androidx.runtime.livedata)
     kapt(libs.hilt.android.compiler)
 
     debugImplementation(libs.androidx.ui.tooling)

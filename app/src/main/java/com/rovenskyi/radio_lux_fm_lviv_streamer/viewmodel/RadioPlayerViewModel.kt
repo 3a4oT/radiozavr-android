@@ -5,7 +5,7 @@ import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.viewModelScope
 import com.rovenskyi.radio_lux_fm_lviv_streamer.service.CheckNetworkService
-import com.rovenskyi.radio_lux_fm_lviv_streamer.service.NetworkErrorReceiver
+import com.rovenskyi.radio_lux_fm_lviv_streamer.service.PlayerEventReceiver
 import com.rovenskyi.radio_lux_fm_lviv_streamer.service.RadioService
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -17,19 +17,21 @@ import javax.inject.Inject
 class RadioPlayerViewModel @Inject constructor(
     application: Application,
     private val checkNetworkService: CheckNetworkService,
-    private val networkErrorReceiver: NetworkErrorReceiver
+    private val playerEventReceiver: PlayerEventReceiver
 ) : AndroidViewModel(application) {
 
     private val _isPlaying = MutableStateFlow(false)
     val isPlaying: StateFlow<Boolean> get() = _isPlaying
 
-    private val _networkError = MutableStateFlow(false)
-    val networkError: StateFlow<Boolean> get() = _networkError
+    private val _playerError = MutableStateFlow(false)
+    val playerError: StateFlow<Boolean> get() = _playerError
 
-    private val _errorMessage = MutableStateFlow<String?>(null)
-    val errorMessage: StateFlow<String?> get() = _errorMessage
+    private val _playerErrorMessage = MutableStateFlow<String?>(null)
+    val playerErrorMessage: StateFlow<String?> get() = _playerErrorMessage
 
-    val networkErrorLiveData: LiveData<String?> get() = networkErrorReceiver.networkErrorLiveData
+    val playerErrorLiveData: LiveData<String?> get() = playerEventReceiver.playerErrorLiveData
+    val playerIsLoadingLiveData: LiveData<Boolean> get() = playerEventReceiver.playerIsLoadingLiveData
+    val networkStatusLiveData: LiveData<Boolean> get() = checkNetworkService.networkStatusLiveData
 
     private val appContext = application.applicationContext
 
@@ -43,17 +45,17 @@ class RadioPlayerViewModel @Inject constructor(
                     checkNetworkService.checkNetworkConnection()
                     startRadioService(RadioService.ACTION_PLAY)
                     _isPlaying.value = true
-                    _networkError.value = false
+                    _playerError.value = false
                 } catch (e: Exception) {
-                    _networkError.value = true
+                    _playerError.value = true
                 }
             }
         }
     }
 
     fun retry() {
-        networkErrorReceiver.clearErrorMessage()
-        _networkError.value = false
+        playerEventReceiver.clearPlayerErrorMessage()
+        _playerError.value = false
         togglePlayStop()
     }
 
@@ -68,11 +70,11 @@ class RadioPlayerViewModel @Inject constructor(
     }
 
     private fun stopRadioService() {
-        startRadioService(RadioService.ACTION_PAUSE)
+        startRadioService(RadioService.ACTION_STOP)
     }
 
-    fun handleNetworkError(message: String?) {
-        _errorMessage.value = message
-        _networkError.value = true
+    fun handlePlayerError(message: String?) {
+        _playerErrorMessage.value = message
+        _playerError.value = true
     }
 }

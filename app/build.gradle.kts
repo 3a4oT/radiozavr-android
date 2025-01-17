@@ -7,14 +7,14 @@ plugins {
 
 android {
     namespace = "com.rovenskyi.radio_lux_fm_lviv_streamer"
-    compileSdk = 34
+    compileSdk = 35
 
     defaultConfig {
         applicationId = "com.rovenskyi.radio_lux_fm_lviv_streamer"
-        minSdk = 28
-        targetSdk = 34
+        minSdk = 26
+        targetSdk = 35
         versionCode = 1
-        versionName = "1.0"
+        versionName = "0.0.1"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
@@ -29,11 +29,11 @@ android {
         }
     }
     compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_11
-        targetCompatibility = JavaVersion.VERSION_11
+        sourceCompatibility = JavaVersion.VERSION_17
+        targetCompatibility = JavaVersion.VERSION_17
     }
     kotlinOptions {
-        jvmTarget = "11"
+        jvmTarget = "17"
     }
 
     buildFeatures {
@@ -55,6 +55,7 @@ dependencies {
     implementation(libs.androidx.appcompat)
     implementation(libs.material3)
     implementation(libs.androidx.lifecycle.runtime.ktx)
+    implementation(libs.androidx.lifecycle.runtime.compose)
     implementation(libs.androidx.activity.compose)
     implementation(libs.androidx.ui)
 
@@ -72,8 +73,10 @@ dependencies {
     implementation(libs.androidx.runtime.livedata)
     kapt(libs.hilt.android.compiler)
 
+    // Debug
     debugImplementation(libs.androidx.ui.tooling)
 
+    // Test
     testImplementation(libs.junit)
 
     androidTestImplementation(libs.androidx.junit)

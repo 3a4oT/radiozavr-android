@@ -4,3 +4,7 @@
 
 
 ![screenStreamerLuXFM](https://github.com/user-attachments/assets/2160adfd-120e-4726-b77c-6c649efe2f93)
+
+
+
+⚙️👨🏻‍🔧 [Налаштування підпису аплікації](/signing/README.MD)

@@ -1,3 +1,8 @@
 <resources>
-    <string name="app_name">radio-lux-fm-streamer</string>
+    <string name="app_name">Radio Lux FM Lviv</string>
+    <string name="play_button">Stream Radio Lux FM Lviv</string>
+    <string name="stop_button">Stop</string>
+    <string name="network_error">No network connection</string>
+    <string name="player_error">Ohh no! Ohh no! Something went wrong while trying to stream Radio Lux FM Lviv</string>
+    <string name="retry_button">Retry</string>
 </resources>

@@ -19,6 +19,12 @@ jobs:
         distribution: 'temurin'
         java-version: '17'
 
+    - name: Set up Android SDK
+      uses: android-actions/setup-android@v3
+      
+    - name: Add build-tools to PATH
+      run: echo "$ANDROID_HOME/build-tools/35.0.0" >> $GITHUB_PATH
+
     - name: Decode and save keystore
       env:
         BASE64_KEYSTORE: ${{ secrets.BASE64_KEYSTORE }}
@@ -32,7 +38,7 @@ jobs:
       env:
         KEYSTORE_PASSWORD: ${{ secrets.KEYSTORE_PASSWORD }}
         KEY_PASSWORD: ${{ secrets.KEY_PASSWORD }}
-        KEY_ALIAS: ${{ secrets.KEY_ALIAS}}
+        KEY_ALIAS: ${{ secrets.KEY_ALIAS }}
       run: |
         jarsigner -verbose -sigalg SHA256withRSA -digestalg SHA-256 -keystore my-release-key.jks app/build/outputs/apk/release/app-release-unsigned.apk $KEY_ALIAS -storepass $KEYSTORE_PASSWORD -keypass $KEY_PASSWORD
         jarsigner -verbose -sigalg SHA256withRSA -digestalg SHA-256 -keystore my-release-key.jks app/build/outputs/bundle/release/app-release.aab $KEY_ALIAS -storepass $KEYSTORE_PASSWORD -keypass $KEY_PASSWORD

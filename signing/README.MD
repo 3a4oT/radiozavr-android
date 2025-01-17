@@ -14,7 +14,6 @@ cat release-key.jks | base64 > keystore.jks.base64
 
 ### В налаштуваннях репозиторію визначити такі змінні:
 
- - KEYSTORE_BASE64 -> вміст файлу `keystore.jks.base64`
+ - BASE64_KEYSTORE -> вміст файлу `keystore.jks.base64`
  - KEYSTORE_PASSWORD -> пароль задається при створенні ключа
  - KEY_PASSWORD -> пароль задається при створенні ключа
- - KEY_ALIAS -> `release-key-alias`

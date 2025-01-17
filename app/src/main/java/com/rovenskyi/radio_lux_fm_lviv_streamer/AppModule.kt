@@ -1,6 +1,7 @@
 package com.rovenskyi.radio_lux_fm_lviv_streamer
 import android.content.Context
 import com.rovenskyi.radio_lux_fm_lviv_streamer.service.CheckNetworkService
+import com.rovenskyi.radio_lux_fm_lviv_streamer.service.ProjectConfig
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -16,5 +17,11 @@ object AppModule {
     @Singleton
     fun provideCheckNetworkService(@ApplicationContext context: Context): CheckNetworkService {
         return CheckNetworkService(context)
+    }
+
+    @Provides
+    @Singleton
+    fun provideProjectConfig(): ProjectConfig {
+        return ProjectConfig()
     }
 }

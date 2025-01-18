@@ -6,7 +6,7 @@ on:
       - '*'
 
 env:
-  VERSIONED_NAME: radio-lux-fm-lviv-streamer-${{ github.ref }}
+  VERSIONED_NAME: radio-lux-fm-lviv-streamer-${{ github.ref_name }}
 
 jobs:
   build:
@@ -63,4 +63,4 @@ jobs:
       - name: Create Release and upload APK and AAB
         run: |
           echo "${{ secrets.GITHUB_TOKEN }}" | gh auth login --with-token
-          gh release create ${{ github.ref }} app/build/outputs/apk/release/${{ env.VERSIONED_NAME }}-aligned.apk app/build/outputs/bundle/release/${{ env.VERSIONED_NAME }}.aab --title "Release ${{ github.ref }}" --notes "Автоматичний реліз додатку AndroidTV для прослуховування через мережу інтренет Радіо Люкс ФМ Львів 104.7"
+          gh release create ${{ github.ref }} app/build/outputs/apk/release/${{ env.VERSIONED_NAME }}-aligned.apk app/build/outputs/bundle/release/${{ env.VERSIONED_NAME }}.aab --title "Release ${{ github.ref_name }}" --notes "Автоматичний реліз додатку AndroidTV для прослуховування через мережу інтренет Радіо Люкс ФМ Львів 104.7"

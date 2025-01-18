@@ -1,10 +1,13 @@
 package com.rovenskyi.radio_lux_fm_lviv_streamer.service
 
+import android.Manifest
 import android.app.Notification
 import android.app.PendingIntent
 import android.content.Context
 import android.content.Intent
+import android.content.pm.PackageManager
 import androidx.annotation.OptIn
+import androidx.core.app.ActivityCompat
 import androidx.core.app.NotificationChannelCompat
 import androidx.core.app.NotificationCompat
 import androidx.core.app.NotificationManagerCompat
@@ -18,6 +21,7 @@ import androidx.media3.exoplayer.upstream.DefaultAllocator
 import androidx.media3.session.MediaSession
 import androidx.media3.session.MediaSessionService
 import com.rovenskyi.radio_lux_fm_lviv_streamer.MainActivity
+import com.rovenskyi.radio_lux_fm_lviv_streamer.R
 import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
 
@@ -62,7 +66,7 @@ class RadioService : MediaSessionService(), Player.Listener {
         mediaSession = MediaSession.Builder(this, exoPlayer).build()
 
         createNotificationChannel()
-        startForeground(NOTIFICATION_ID, buildNotification())
+        startForeground(NOTIFICATION_ID, buildNotification(false))
     }
 
     override fun onStartCommand(intent: Intent?, flags: Int, startId: Int): Int {
@@ -70,12 +74,15 @@ class RadioService : MediaSessionService(), Player.Listener {
         when (intent?.action) {
             ACTION_PLAY -> {
                 exoPlayer.play()
+                updateNotification(isPlaying = true)
             }
             ACTION_PAUSE -> {
                 exoPlayer.pause()
+                updateNotification(isPlaying = false)
             }
             ACTION_STOP -> {
                 exoPlayer.stop()
+                updateNotification(isPlaying = false)
                 stopForeground(STOP_FOREGROUND_REMOVE)
                 stopSelf()
             }
@@ -115,22 +122,50 @@ class RadioService : MediaSessionService(), Player.Listener {
 
     private fun createNotificationChannel() {
         val channel = NotificationChannelCompat.Builder(CHANNEL_ID, NotificationManagerCompat.IMPORTANCE_LOW)
-            .setName("Radio Playback")
-            .setDescription("Notification for radio playback control")
+            .setName("Радіо Люкс FM Львів")
+            .setDescription("104.7 FM Львів")
             .build()
         NotificationManagerCompat.from(this).createNotificationChannel(channel)
     }
 
-    private fun buildNotification(): Notification {
+    private fun buildNotification(isPlaying: Boolean): Notification {
+
+        val playPauseAction = if (isPlaying) {
+            NotificationCompat.Action(
+                android.R.drawable.ic_media_pause,
+                getString(R.string.notitification_action_pause),
+                PendingIntent.getService(this, 0, createPauseIntent(this), PendingIntent.FLAG_IMMUTABLE)
+            )
+        } else {
+            NotificationCompat.Action(
+                android.R.drawable.ic_media_play,
+                getString(R.string.notitification_action_play),
+                PendingIntent.getService(this, 0, createPlayIntent(this), PendingIntent.FLAG_IMMUTABLE)
+            )
+        }
+
         val intent = Intent(this, MainActivity::class.java)
         val pendingIntent: PendingIntent = PendingIntent.getActivity(this, 0, intent, PendingIntent.FLAG_IMMUTABLE)
 
         return NotificationCompat.Builder(this, CHANNEL_ID)
-            .setContentTitle("Radio Stream")
-            .setContentText("Playing Radio")
-            .setSmallIcon(android.R.drawable.ic_media_play)
+            .setContentTitle(getString(R.string.notitification_content_title))
+            .setContentText(getString(R.string.notitification_content_description))
+            .setSmallIcon(R.drawable.logo_lux)
             .setContentIntent(pendingIntent)
+            .addAction(playPauseAction)
             .build()
+    }
+
+    private fun updateNotification(isPlaying: Boolean) {
+        val notification = buildNotification(isPlaying)
+        if (ActivityCompat.checkSelfPermission(
+                this,
+                Manifest.permission.POST_NOTIFICATIONS
+            ) != PackageManager.PERMISSION_GRANTED
+        ) {
+            return
+        }
+        NotificationManagerCompat.from(this).notify(NOTIFICATION_ID, notification)
     }
 
     companion object {

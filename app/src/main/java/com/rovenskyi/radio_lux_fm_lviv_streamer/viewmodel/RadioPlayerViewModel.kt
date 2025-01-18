@@ -3,6 +3,7 @@ package com.rovenskyi.radio_lux_fm_lviv_streamer.viewmodel
 import android.app.Application
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
+import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.viewModelScope
 import com.rovenskyi.radio_lux_fm_lviv_streamer.service.CheckNetworkService
 import com.rovenskyi.radio_lux_fm_lviv_streamer.service.PlayerEventReceiver
@@ -17,10 +18,11 @@ import javax.inject.Inject
 class RadioPlayerViewModel @Inject constructor(
     application: Application,
     private val checkNetworkService: CheckNetworkService,
-    private val playerEventReceiver: PlayerEventReceiver
+    private val playerEventReceiver: PlayerEventReceiver,
+    private val savedStateHandle: SavedStateHandle
 ) : AndroidViewModel(application) {
-
-    private val _isPlaying = MutableStateFlow(false)
+    private val kIsPlaying: String = "isPlaying"
+    private val _isPlaying = MutableStateFlow(savedStateHandle.get<Boolean>(kIsPlaying) ?: false)
     val isPlaying: StateFlow<Boolean> get() = _isPlaying
 
     private val _playerError = MutableStateFlow(false)
@@ -34,6 +36,12 @@ class RadioPlayerViewModel @Inject constructor(
     val networkStatusLiveData: LiveData<Boolean> get() = checkNetworkService.networkStatusLiveData
 
     private val appContext = application.applicationContext
+
+    init {
+        if (!savedStateHandle.contains(kIsPlaying)) {
+            savedStateHandle[kIsPlaying] = false
+        }
+    }
 
     fun togglePlayStop() {
         if (_isPlaying.value) {
@@ -51,6 +59,11 @@ class RadioPlayerViewModel @Inject constructor(
                 }
             }
         }
+        saveIsPlayingState(_isPlaying.value)
+    }
+
+    private fun saveIsPlayingState(isPlaying: Boolean) {
+        savedStateHandle[kIsPlaying] = isPlaying
     }
 
     fun retry() {

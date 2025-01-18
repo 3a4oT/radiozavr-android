@@ -1,9 +1,9 @@
 ## Слухай Радіо Люкс ФМ Львів на своєму Android TV
 
- 📺 Дуже простий додаток який запускає інтернетстрім **Радіо Люкс ФМ Львів 104.7 FM** на вашому AndroidTV.
+ 📺 Дуже простий додаток який запускає інтернет стрім **Радіо Люкс ФМ Львів 104.7 FM** на вашому AndroidTV. Має динамічне тло та годинник. Може використовуватись як демо режим для телевізора.
 
 
-![screenStreamerLuXFM](https://github.com/user-attachments/assets/2160adfd-120e-4726-b77c-6c649efe2f93)
+![screenStreamerLuXFM](/playstore/tv-demo-radio-streamer.png)
 
 
 

@@ -5,4 +5,12 @@
     <string name="network_error">Немає підключення до мережі</string>
     <string name="player_error">От халепа! Щось пішло  не так під час відтворення Радіо Люкс ФМ Львів</string>
     <string name="retry_button">Повторити</string>
+    <string name="notitification_content_title">Радіо Люкс FM Львів</string>
+    <string name="notitification_content_description">104.7 FM Львів</string>
+    <string name="notitification_action_play">"Слухати Радіо Люкс FM Львів"</string>
+    <string name="notitification_action_pause">"Зупинити прослуховування"</string>
+    <string name="permission_denied_title">Доступ заборонено</string>
+    <string name="permission_denied_message">Дозвіл на сповіщення необхідний для показу сповіщень. Будь ласка, увімкніть його в налаштуваннях додатку.</string>
+    <string name="open_settings">Відкрити налаштування</string>
+    <string name="cancel">Скасувати</string>
 </resources>

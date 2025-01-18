@@ -52,7 +52,7 @@ fun RelaxingBackground(modifier: Modifier = Modifier) {
                 color1 = random1
                 color2 = random2
             }
-            delay(15000L) // Change colors every 15 seconds
+            delay(60000L) // Change colors every 60 seconds
         }
     }
 

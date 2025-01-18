@@ -8,7 +8,6 @@ import androidx.compose.runtime.*
 import androidx.compose.runtime.livedata.observeAsState
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.platform.LocalConfiguration
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
@@ -29,13 +28,11 @@ fun RadioPlayerScreen(viewModel: RadioPlayerViewModel = viewModel()) {
     val playerErrorMessage = viewModel.playerErrorLiveData.observeAsState()
     val networkStatus by viewModel.networkStatusLiveData.observeAsState(initial = true)
 
+    val currentIsPlaying by rememberUpdatedState(newValue = isPlaying)
+
     playerErrorMessage.value?.let {
         viewModel.handlePlayerError(it)
     }
-
-    val configuration = LocalConfiguration.current
-    val screenWidth = configuration.screenWidthDp.dp
-    val screenHeight = configuration.screenHeightDp.dp
 
     Box(modifier = Modifier.fillMaxSize()) {
         RelaxingBackground()
@@ -69,14 +66,14 @@ fun RadioPlayerScreen(viewModel: RadioPlayerViewModel = viewModel()) {
                             viewModel.togglePlayStop()
                         },
                         modifier = Modifier
-                            .width(if (screenWidth > 600.dp) 400.dp else 150.dp)
-                            .height(if (screenHeight > 600.dp) 80.dp else 60.dp)
+                            .width(60.dp)
+                            .height(60.dp)
                     ) {
                         Image(
                             modifier = Modifier
                                 .width(40.dp)
                                 .height(40.dp),
-                            painter = painterResource(id = if (isPlaying) R.drawable.ic_stop else R.drawable.ic_play),
+                            painter = painterResource(id = if (currentIsPlaying) R.drawable.ic_stop else R.drawable.ic_play),
                             contentDescription = null
                         )
                     }

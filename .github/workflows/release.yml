@@ -5,6 +5,9 @@ on:
     tags:
       - '*'
 
+env:
+  VERSIONED_NAME: radio-lux-fm-lviv-streamer-${{ github.ref }}
+
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -37,17 +40,22 @@ jobs:
       - name: Build APK and AAB
         run: ./gradlew assembleRelease bundleRelease
 
+      - name: Rename APK and AAB
+        run: |
+          mv app/build/outputs/apk/release/app-release-unsigned.apk app/build/outputs/apk/release/${{ env.VERSIONED_NAME }}.apk
+          mv app/build/outputs/bundle/release/app-release.aab app/build/outputs/bundle/release/${{ env.VERSIONED_NAME }}.aab
+
       - name: Sign APK and AAB
         env:
           KEYSTORE_PASSWORD: ${{ secrets.KEYSTORE_PASSWORD }}
           KEY_PASSWORD: ${{ secrets.KEY_PASSWORD }}
           KEY_ALIAS: ${{ secrets.KEY_ALIAS }}
         run: |
-          apksigner sign --ks my-release-key.jks --ks-key-alias $KEY_ALIAS --ks-pass pass:$KEYSTORE_PASSWORD --key-pass pass:$KEY_PASSWORD --v2-signing-enabled true app/build/outputs/apk/release/app-release-unsigned.apk
-          jarsigner -verbose -sigalg SHA256withRSA -digestalg SHA-256 -keystore my-release-key.jks app/build/outputs/bundle/release/app-release.aab $KEY_ALIAS -storepass $KEYSTORE_PASSWORD -keypass $KEY_PASSWORD
+          apksigner sign --ks my-release-key.jks --ks-key-alias $KEY_ALIAS --ks-pass pass:$KEYSTORE_PASSWORD --key-pass pass:$KEY_PASSWORD --v2-signing-enabled true app/build/outputs/apk/release/${{ env.VERSIONED_NAME }}.apk
+          jarsigner -verbose -sigalg SHA256withRSA -digestalg SHA-256 -keystore my-release-key.jks app/build/outputs/bundle/release/${{ env.VERSIONED_NAME }}.aab $KEY_ALIAS -storepass $KEYSTORE_PASSWORD -keypass $KEY_PASSWORD
 
       - name: Align APK
-        run: zipalign -v 4 app/build/outputs/apk/release/app-release-unsigned.apk app/build/outputs/apk/release/app-release.apk
+        run: zipalign -v 4 app/build/outputs/apk/release/${{ env.VERSIONED_NAME }}.apk app/build/outputs/apk/release/${{ env.VERSIONED_NAME }}-aligned.apk
 
       - name: Install GitHub CLI
         run: sudo apt-get install gh
@@ -55,4 +63,4 @@ jobs:
       - name: Create Release and upload APK and AAB
         run: |
           echo "${{ secrets.GITHUB_TOKEN }}" | gh auth login --with-token
-          gh release create ${{ github.ref }} app/build/outputs/apk/release/app-release.apk app/build/outputs/bundle/release/app-release.aab --title "Release ${{ github.ref }}" --notes "Автоматичний реліз додатку AndroidTV для прослуховування через мережу інтренет Радіо Люкс ФМ Львів 104.7"
+          gh release create ${{ github.ref }} app/build/outputs/apk/release/${{ env.VERSIONED_NAME }}-aligned.apk app/build/outputs/bundle/release/${{ env.VERSIONED_NAME }}.aab --title "Release ${{ github.ref }}" --notes "Автоматичний реліз додатку AndroidTV для прослуховування через мережу інтренет Радіо Люкс ФМ Львів 104.7"

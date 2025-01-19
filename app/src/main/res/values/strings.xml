@@ -5,4 +5,12 @@
     <string name="network_error">No network connection</string>
     <string name="player_error">Ohh no! Ohh no! Something went wrong while trying to stream Radio Lux FM Lviv</string>
     <string name="retry_button">Retry</string>
+    <string name="notitification_content_title">Radio Lux FM Lviv</string>
+    <string name="notitification_content_description">104.7 FM Lviv</string>
+    <string name="notitification_action_play">"Start streaming"</string>
+    <string name="notitification_action_pause">"Pause streaming"</string>
+    <string name="permission_denied_title">Permission Denied</string>
+    <string name="permission_denied_message">Notification permission is required to show notifications. Please enable it in the app settings.</string>
+    <string name="open_settings">Open Settings</string>
+    <string name="cancel">Cancel</string>
 </resources>

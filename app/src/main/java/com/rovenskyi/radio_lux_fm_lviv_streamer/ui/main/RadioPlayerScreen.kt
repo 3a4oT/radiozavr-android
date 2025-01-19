@@ -8,6 +8,8 @@ import androidx.compose.runtime.*
 import androidx.compose.runtime.livedata.observeAsState
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.focus.FocusRequester
+import androidx.compose.ui.focus.focusRequester
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
@@ -61,6 +63,10 @@ fun RadioPlayerScreen(viewModel: RadioPlayerViewModel = viewModel()) {
                         contentDescription = null
                     )
                     Spacer(modifier = Modifier.height(20.dp))
+                    val focusRequester = remember { FocusRequester() }
+                    LaunchedEffect(Unit) {
+                        focusRequester.requestFocus()
+                    }
                     Button(
                         onClick = {
                             viewModel.togglePlayStop()
@@ -68,6 +74,7 @@ fun RadioPlayerScreen(viewModel: RadioPlayerViewModel = viewModel()) {
                         modifier = Modifier
                             .width(60.dp)
                             .height(60.dp)
+                            .focusRequester(focusRequester)
                     ) {
                         Image(
                             modifier = Modifier

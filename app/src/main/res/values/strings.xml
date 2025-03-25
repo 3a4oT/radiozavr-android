@@ -5,7 +5,7 @@
     <string name="network_error">No network connection</string>
     <string name="player_error">Ohh no! Ohh no! Something went wrong while trying to stream Radio Lux FM Lviv</string>
     <string name="retry_button">Retry</string>
-    <string name="notitification_content_title">Radio Lux FM Lviv</string>
+    <string name="notitification_content_title">Radio Lux FM Lviv 104.7</string>
     <string name="notitification_content_description">104.7 FM Lviv</string>
     <string name="notitification_action_play">"Start streaming"</string>
     <string name="notitification_action_pause">"Pause streaming"</string>

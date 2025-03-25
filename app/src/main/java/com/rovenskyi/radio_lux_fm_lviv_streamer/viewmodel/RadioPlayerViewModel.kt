@@ -2,14 +2,10 @@ package com.rovenskyi.radio_lux_fm_lviv_streamer.viewmodel
 
 import android.app.Application
 import androidx.lifecycle.AndroidViewModel
-import androidx.lifecycle.LiveData
 import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.viewModelScope
-import com.rovenskyi.radio_lux_fm_lviv_streamer.service.CheckNetworkService
-import com.rovenskyi.radio_lux_fm_lviv_streamer.service.PlayerEventReceiver
-import com.rovenskyi.radio_lux_fm_lviv_streamer.service.RadioService
+import com.rovenskyi.radio_lux_fm_lviv_streamer.repository.RadioRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
-import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.launch
 import javax.inject.Inject
@@ -17,77 +13,43 @@ import javax.inject.Inject
 @HiltViewModel
 class RadioPlayerViewModel @Inject constructor(
     application: Application,
-    private val checkNetworkService: CheckNetworkService,
-    private val playerEventReceiver: PlayerEventReceiver,
+    private val radioRepository: RadioRepository,
     private val savedStateHandle: SavedStateHandle
 ) : AndroidViewModel(application) {
-    private val kIsPlaying: String = "isPlaying"
-    private val _isPlaying = MutableStateFlow(savedStateHandle.get<Boolean>(kIsPlaying) ?: false)
-    val isPlaying: StateFlow<Boolean> get() = _isPlaying
+    val isPlaying: StateFlow<Boolean> get() = radioRepository.isPlaying
+    val playerError: StateFlow<Boolean> get() = radioRepository.playerError
+    val playerErrorMessage: StateFlow<String?> get() = radioRepository.playerErrorMessage
 
-    private val _playerError = MutableStateFlow(false)
-    val playerError: StateFlow<Boolean> get() = _playerError
-
-    private val _playerErrorMessage = MutableStateFlow<String?>(null)
-    val playerErrorMessage: StateFlow<String?> get() = _playerErrorMessage
-
-    val playerErrorLiveData: LiveData<String?> get() = playerEventReceiver.playerErrorLiveData
-    val playerIsLoadingLiveData: LiveData<Boolean> get() = playerEventReceiver.playerIsLoadingLiveData
-    val networkStatusLiveData: LiveData<Boolean> get() = checkNetworkService.networkStatusLiveData
-
-    private val appContext = application.applicationContext
+    val playerErrorLiveData = radioRepository.playerErrorLiveData
+    val playerIsLoadingLiveData = radioRepository.playerIsLoadingLiveData
+    val networkStatusLiveData = radioRepository.networkStatusLiveData
 
     init {
-        if (!savedStateHandle.contains(kIsPlaying)) {
-            savedStateHandle[kIsPlaying] = false
+        if (!savedStateHandle.contains("isPlaying")) {
+            savedStateHandle["isPlaying"] = false
         }
     }
 
     fun togglePlayStop() {
-        if (_isPlaying.value) {
-            stopRadioService()
-            _isPlaying.value = false
-        } else {
-            viewModelScope.launch {
-                try {
-                    checkNetworkService.checkNetworkConnection()
-                    startRadioService(RadioService.ACTION_PLAY)
-                    _isPlaying.value = true
-                    _playerError.value = false
-                } catch (e: Exception) {
-                    _playerError.value = true
-                }
-            }
+        viewModelScope.launch {
+            radioRepository.togglePlayStop()
+            saveIsPlayingState(radioRepository.isPlaying.value)
         }
-        saveIsPlayingState(_isPlaying.value)
     }
 
     private fun saveIsPlayingState(isPlaying: Boolean) {
-        savedStateHandle[kIsPlaying] = isPlaying
+        savedStateHandle["isPlaying"] = isPlaying
     }
 
     fun retry() {
-        playerEventReceiver.clearPlayerErrorMessage()
-        _playerError.value = false
-        togglePlayStop()
+        radioRepository.retry()
     }
 
-    private fun startRadioService(action: String) {
-        val intent = when (action) {
-            RadioService.ACTION_PLAY -> RadioService.createPlayIntent(appContext)
-            RadioService.ACTION_PAUSE -> RadioService.createPauseIntent(appContext)
-            RadioService.ACTION_STOP -> RadioService.createStopIntent(appContext)
-            else -> return
-        }
-        appContext.startService(intent)
-    }
-
-    private fun stopRadioService() {
-        startRadioService(RadioService.ACTION_STOP)
+    fun refreshState() {
+        radioRepository.refreshState()
     }
 
     fun handlePlayerError(message: String?) {
-        _playerErrorMessage.value = message
-        _playerError.value = true
+        radioRepository.handlePlayerError(message)
     }
 }

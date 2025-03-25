@@ -3,9 +3,9 @@
     <string name="play_button">Слухати Радіо Люкс ФМ Львів</string>
     <string name="stop_button">Зупинити</string>
     <string name="network_error">Немає підключення до мережі</string>
-    <string name="player_error">От халепа! Щось пішло  не так під час відтворення Радіо Люкс ФМ Львів</string>
+    <string name="player_error">От халепа! Не можу транслювати Радіо Люкс 104.7 ФМ Львів, можливо проблеми на сервері. Спробуйте пізніше</string>
     <string name="retry_button">Повторити</string>
-    <string name="notitification_content_title">Радіо Люкс FM Львів</string>
+    <string name="notitification_content_title">Радіо Люкс FM Львів 104.7</string>
     <string name="notitification_content_description">104.7 FM Львів</string>
     <string name="notitification_action_play">"Слухати Радіо Люкс FM Львів"</string>
     <string name="notitification_action_pause">"Зупинити прослуховування"</string>

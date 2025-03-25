@@ -66,6 +66,12 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
+    override fun onResume() {
+        super.onResume()
+        // Refresh UI state when the app comes to the foreground
+        radioPlayerViewModel.refreshState()
+    }
+
 
     @RequiresApi(Build.VERSION_CODES.TIRAMISU)
     private fun requestNotificationPermission() {

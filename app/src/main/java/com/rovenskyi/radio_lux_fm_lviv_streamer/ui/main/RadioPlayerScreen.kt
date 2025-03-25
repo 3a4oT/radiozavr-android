@@ -30,8 +30,6 @@ fun RadioPlayerScreen(viewModel: RadioPlayerViewModel = viewModel()) {
     val playerErrorMessage = viewModel.playerErrorLiveData.observeAsState()
     val networkStatus by viewModel.networkStatusLiveData.observeAsState(initial = true)
 
-    val currentIsPlaying by rememberUpdatedState(newValue = isPlaying)
-
     playerErrorMessage.value?.let {
         viewModel.handlePlayerError(it)
     }
@@ -80,7 +78,7 @@ fun RadioPlayerScreen(viewModel: RadioPlayerViewModel = viewModel()) {
                             modifier = Modifier
                                 .width(40.dp)
                                 .height(40.dp),
-                            painter = painterResource(id = if (currentIsPlaying) R.drawable.ic_stop else R.drawable.ic_play),
+                            painter = painterResource(id = if (isPlaying) R.drawable.ic_stop else R.drawable.ic_play),
                             contentDescription = null
                         )
                     }

@@ -40,14 +40,15 @@ class RadioService : MediaSessionService(), Player.Listener {
     @OptIn(UnstableApi::class)
     override fun onCreate() {
         super.onCreate()
+        instance = this
 
         val loadControl = DefaultLoadControl.Builder()
             .setAllocator(DefaultAllocator(true, 16))
             .setBufferDurationsMs(
                 32 * 1024, // minBufferMs
                 64 * 1024, // maxBufferMs
-                1024, // bufferForPlaybackMs
-                1024 // bufferForPlaybackAfterRebufferMs
+                1024,      // bufferForPlaybackMs
+                1024       // bufferForPlaybackAfterRebufferMs
             )
             .setTargetBufferBytes(-1)
             .setPrioritizeTimeOverSizeThresholds(true)
@@ -57,11 +58,20 @@ class RadioService : MediaSessionService(), Player.Listener {
             .setLoadControl(loadControl)
             .build()
             .apply {
-            val mediaItem = MediaItem.fromUri(projectConfig.streamUrl)
-            setMediaItem(mediaItem)
-            prepare()
-            addListener(this@RadioService)
-        }
+                val mediaMetadata = androidx.media3.common.MediaMetadata.Builder()
+                    .setTitle(getString(R.string.notitification_content_title))
+                    .setArtist(getString(R.string.notitification_content_description))
+                    .build()
+
+                val mediaItem = MediaItem.Builder()
+                    .setUri(projectConfig.streamUrl)
+                    .setMediaMetadata(mediaMetadata)
+                    .build()
+
+                setMediaItem(mediaItem)
+                prepare()
+                addListener(this@RadioService)
+            }
 
         mediaSession = MediaSession.Builder(this, exoPlayer).build()
 
@@ -74,14 +84,17 @@ class RadioService : MediaSessionService(), Player.Listener {
         when (intent?.action) {
             ACTION_PLAY -> {
                 exoPlayer.play()
+                playerEventReceiver.postPlayerState(true)
                 updateNotification(isPlaying = true)
             }
             ACTION_PAUSE -> {
                 exoPlayer.pause()
+                playerEventReceiver.postPlayerState(false)
                 updateNotification(isPlaying = false)
             }
             ACTION_STOP -> {
                 exoPlayer.stop()
+                playerEventReceiver.postPlayerState(false)
                 updateNotification(isPlaying = false)
                 stopForeground(STOP_FOREGROUND_REMOVE)
                 stopSelf()
@@ -95,6 +108,7 @@ class RadioService : MediaSessionService(), Player.Listener {
         exoPlayer.release()
         mediaSession.release()
         stopForeground(STOP_FOREGROUND_REMOVE)
+        instance = null
         super.onDestroy()
     }
 
@@ -122,14 +136,13 @@ class RadioService : MediaSessionService(), Player.Listener {
 
     private fun createNotificationChannel() {
         val channel = NotificationChannelCompat.Builder(CHANNEL_ID, NotificationManagerCompat.IMPORTANCE_LOW)
-            .setName("Радіо Люкс FM Львів")
-            .setDescription("104.7 FM Львів")
+            .setName(getString(R.string.notitification_content_title))
+            .setDescription(getString(R.string.notitification_content_description))
             .build()
         NotificationManagerCompat.from(this).createNotificationChannel(channel)
     }
 
     private fun buildNotification(isPlaying: Boolean): Notification {
-
         val playPauseAction = if (isPlaying) {
             NotificationCompat.Action(
                 android.R.drawable.ic_media_pause,
@@ -175,6 +188,9 @@ class RadioService : MediaSessionService(), Player.Listener {
         const val ACTION_PAUSE = "com.rovenskyi.radio_lux_fm_lviv_streamer.service.action.PAUSE"
         const val ACTION_STOP = "com.rovenskyi.radio_lux_fm_lviv_streamer.service.action.STOP"
 
+        @Volatile
+        private var instance: RadioService? = null
+
         fun createPlayIntent(context: Context): Intent {
             return Intent(context, RadioService::class.java).apply {
                 action = ACTION_PLAY
@@ -191,6 +207,11 @@ class RadioService : MediaSessionService(), Player.Listener {
             return Intent(context, RadioService::class.java).apply {
                 action = ACTION_STOP
             }
+        }
+
+        fun isServicePlaying(): Boolean {
+            val isPlaying = instance?.exoPlayer?.isPlaying ?: false
+            return isPlaying
         }
     }
 }

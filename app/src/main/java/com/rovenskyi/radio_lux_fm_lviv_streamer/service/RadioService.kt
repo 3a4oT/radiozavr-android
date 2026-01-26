@@ -17,7 +17,6 @@ import androidx.media3.common.Player
 import androidx.media3.common.util.UnstableApi
 import androidx.media3.exoplayer.DefaultLoadControl
 import androidx.media3.exoplayer.ExoPlayer
-import androidx.media3.exoplayer.upstream.DefaultAllocator
 import androidx.media3.session.MediaSession
 import androidx.media3.session.MediaSessionService
 import com.rovenskyi.radio_lux_fm_lviv_streamer.MainActivity
@@ -42,16 +41,14 @@ class RadioService : MediaSessionService(), Player.Listener {
         super.onCreate()
         instance = this
 
+        // Buffer configuration optimized for live HLS audio streaming
         val loadControl = DefaultLoadControl.Builder()
-            .setAllocator(DefaultAllocator(true, 16))
             .setBufferDurationsMs(
-                32 * 1024, // minBufferMs
-                64 * 1024, // maxBufferMs
-                1024,      // bufferForPlaybackMs
-                1024       // bufferForPlaybackAfterRebufferMs
+                15_000,  // minBufferMs - 15 seconds (sufficient for live audio)
+                30_000,  // maxBufferMs - 30 seconds (limited for live to reduce latency)
+                2_500,   // bufferForPlaybackMs - fast playback start
+                5_000    // bufferForPlaybackAfterRebufferMs - stability after rebuffer
             )
-            .setTargetBufferBytes(-1)
-            .setPrioritizeTimeOverSizeThresholds(true)
             .build()
 
         exoPlayer = ExoPlayer.Builder(this)

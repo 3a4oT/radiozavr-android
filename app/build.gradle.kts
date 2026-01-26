@@ -3,6 +3,7 @@ plugins {
     alias(libs.plugins.kotlin.android)
     id("kotlin-kapt")
     id("com.google.dagger.hilt.android")
+    alias(libs.plugins.kotlin.compose)
 }
 
 android {
@@ -43,6 +44,12 @@ android {
     composeOptions {
         kotlinCompilerExtensionVersion = "1.5.15"
     }
+
+    testOptions {
+        unitTests.all {
+            it.useJUnitPlatform()
+        }
+    }
 }
 
 kapt {
@@ -66,11 +73,11 @@ dependencies {
     implementation(libs.androidx.navigation.compose)
     implementation(libs.kotlinx.coroutines.core)
     implementation(libs.kotlinx.coroutines.android)
+    implementation(libs.androidx.hilt.navigation.compose)
 
     // Dependency injection
     implementation(libs.hilt.android)
     implementation(libs.androidx.media3.session)
-    implementation(libs.androidx.runtime.livedata)
     kapt(libs.hilt.android.compiler)
 
     // Debug

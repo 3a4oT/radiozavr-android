@@ -1,8 +1,9 @@
 package com.rovenskyi.radio_lux_fm_lviv_streamer.ui.main.error
 
 import androidx.compose.foundation.layout.*
-import androidx.compose.material3.*
-import androidx.compose.runtime.*
+import androidx.compose.material3.Button
+import androidx.compose.material3.Text
+import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
@@ -11,7 +12,7 @@ import androidx.compose.ui.unit.sp
 import com.rovenskyi.radio_lux_fm_lviv_streamer.R
 
 @Composable
-fun NetworkErrorScreen() {
+fun NetworkErrorScreen(onRetry: () -> Unit) {
     Column(
         modifier = Modifier
             .fillMaxSize()
@@ -21,5 +22,8 @@ fun NetworkErrorScreen() {
     ) {
         Text(stringResource(R.string.network_error), fontSize = 20.sp)
         Spacer(modifier = Modifier.height(16.dp))
+        Button(onClick = onRetry) {
+            Text(stringResource(R.string.retry_button))
+        }
     }
 }

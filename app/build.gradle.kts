@@ -73,6 +73,7 @@ dependencies {
 
     // Test
     testImplementation(libs.junit)
+    testRuntimeOnly("org.junit.platform:junit-platform-launcher")
 
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)

@@ -6,7 +6,8 @@ on:
       - '**'
 
 jobs:
-  build:
+  android:
+    name: Android
     runs-on: ubuntu-latest
 
     steps:
@@ -24,3 +25,30 @@ jobs:
 
     - name: Build and lint
       run: ./gradlew build lintDebug
+
+  web:
+    name: Web
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+
+    - name: Setup Node.js
+      uses: actions/setup-node@v4
+      with:
+        node-version: '22'
+        cache: 'npm'
+        cache-dependency-path: web/package-lock.json
+
+    - name: Install dependencies
+      working-directory: web
+      run: npm ci
+
+    - name: Lint
+      working-directory: web
+      run: npm run lint
+
+    - name: Build
+      working-directory: web
+      run: npm run build

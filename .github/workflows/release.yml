@@ -40,28 +40,24 @@ jobs:
         run: |
           echo $BASE64_KEYSTORE | base64 --decode > my-release-key.jks
 
-      - name: Build APKs and AAB
-        run: ./gradlew :app:assembleRelease :app:bundleRelease :admin:assembleRelease
+      - name: Build APK and AAB
+        run: ./gradlew :app:assembleRelease :app:bundleRelease
 
       - name: Rename artifacts
         run: |
           mv app/build/outputs/apk/release/app-release-unsigned.apk app/build/outputs/apk/release/radio-lux-fm-${{ env.VERSION }}.apk
           mv app/build/outputs/bundle/release/app-release.aab app/build/outputs/bundle/release/radio-lux-fm-${{ env.VERSION }}.aab
-          mv admin/build/outputs/apk/release/admin-release-unsigned.apk admin/build/outputs/apk/release/radio-lux-admin-${{ env.VERSION }}.apk
 
-      - name: Align APKs
-        run: |
-          zipalign -v 4 app/build/outputs/apk/release/radio-lux-fm-${{ env.VERSION }}.apk app/build/outputs/apk/release/radio-lux-fm-${{ env.VERSION }}-aligned.apk
-          zipalign -v 4 admin/build/outputs/apk/release/radio-lux-admin-${{ env.VERSION }}.apk admin/build/outputs/apk/release/radio-lux-admin-${{ env.VERSION }}-aligned.apk
+      - name: Align APK
+        run: zipalign -v 4 app/build/outputs/apk/release/radio-lux-fm-${{ env.VERSION }}.apk app/build/outputs/apk/release/radio-lux-fm-${{ env.VERSION }}-aligned.apk
 
-      - name: Sign APKs and AAB
+      - name: Sign APK and AAB
         env:
           KEYSTORE_PASSWORD: ${{ secrets.KEYSTORE_PASSWORD }}
           KEY_PASSWORD: ${{ secrets.KEY_PASSWORD }}
           KEY_ALIAS: ${{ secrets.KEY_ALIAS }}
         run: |
           apksigner sign --ks my-release-key.jks --ks-key-alias $KEY_ALIAS --ks-pass pass:$KEYSTORE_PASSWORD --key-pass pass:$KEY_PASSWORD --v2-signing-enabled true app/build/outputs/apk/release/radio-lux-fm-${{ env.VERSION }}-aligned.apk
-          apksigner sign --ks my-release-key.jks --ks-key-alias $KEY_ALIAS --ks-pass pass:$KEYSTORE_PASSWORD --key-pass pass:$KEY_PASSWORD --v2-signing-enabled true admin/build/outputs/apk/release/radio-lux-admin-${{ env.VERSION }}-aligned.apk
           jarsigner -verbose -sigalg SHA256withRSA -digestalg SHA-256 -keystore my-release-key.jks app/build/outputs/bundle/release/radio-lux-fm-${{ env.VERSION }}.aab $KEY_ALIAS -storepass $KEYSTORE_PASSWORD -keypass $KEY_PASSWORD
 
       - name: Create Release
@@ -71,6 +67,5 @@ jobs:
           gh release create ${{ env.VERSION }} \
             app/build/outputs/apk/release/radio-lux-fm-${{ env.VERSION }}-aligned.apk \
             app/build/outputs/bundle/release/radio-lux-fm-${{ env.VERSION }}.aab \
-            admin/build/outputs/apk/release/radio-lux-admin-${{ env.VERSION }}-aligned.apk \
             --title "Release ${{ env.VERSION }}" \
             --generate-notes

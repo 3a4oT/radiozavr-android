@@ -18,9 +18,6 @@ rootProject.name = "radio-lux-fm-streamer"
 // Main app
 include(":app")
 
-// Admin app
-include(":admin")
-
 // Core modules
 include(":core:models")
 include(":core:ui-theme")

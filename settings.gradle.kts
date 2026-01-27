@@ -14,4 +14,16 @@ dependencyResolutionManagement {
 }
 
 rootProject.name = "radio-lux-fm-streamer"
+
+// Main app
 include(":app")
+
+// Admin app
+include(":admin")
+
+// Core modules
+include(":core:models")
+include(":core:ui-theme")
+include(":core:ui-components")
+include(":core:network")
+include(":core:config")

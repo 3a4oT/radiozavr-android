@@ -5,42 +5,45 @@ import android.net.ConnectivityManager
 import android.net.Network
 import android.net.NetworkCapabilities
 import android.net.NetworkRequest
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
+import dagger.hilt.android.qualifiers.ApplicationContext
+import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.StateFlow
+import kotlinx.coroutines.flow.asStateFlow
 import java.io.IOException
 import javax.inject.Inject
+import javax.inject.Singleton
 
-class CheckNetworkService @Inject constructor(private val context: Context) {
-    private val _networkStatusLiveData = MutableLiveData<Boolean>()
-    val networkStatusLiveData: LiveData<Boolean> get() = _networkStatusLiveData
+@Singleton
+class CheckNetworkService @Inject constructor(@ApplicationContext private val context: Context) {
+
+    private val connectivityManager =
+        context.getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
+
+    // Initialize the flow with the *current* network state to avoid an initial false value.
+    private val _networkStatus = MutableStateFlow(isNetworkAvailable(connectivityManager))
+    val networkStatus: StateFlow<Boolean> = _networkStatus.asStateFlow()
 
     init {
-        val connectivityManager =
-            context.getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
-
-        // Register callback for network state changes
+        // Register a callback to listen for future network state changes.
         val builder = NetworkRequest.Builder()
             .addCapability(NetworkCapabilities.NET_CAPABILITY_INTERNET)
         connectivityManager.registerNetworkCallback(
             builder.build(),
             object : ConnectivityManager.NetworkCallback() {
                 override fun onAvailable(network: Network) {
-                    _networkStatusLiveData.postValue(true)
+                    _networkStatus.value = true
                 }
 
                 override fun onLost(network: Network) {
-                    _networkStatusLiveData.postValue(false)
+                    _networkStatus.value = false
                 }
 
                 override fun onCapabilitiesChanged(network: Network, networkCapabilities: NetworkCapabilities) {
                     val hasInternet = networkCapabilities.hasCapability(NetworkCapabilities.NET_CAPABILITY_INTERNET)
-                    _networkStatusLiveData.postValue(hasInternet)
+                    _networkStatus.value = hasInternet
                 }
             }
         )
-
-        // Initialize the current status
-        _networkStatusLiveData.postValue(isNetworkAvailable(connectivityManager))
     }
 
     private fun isNetworkAvailable(connectivityManager: ConnectivityManager): Boolean {
@@ -51,9 +54,7 @@ class CheckNetworkService @Inject constructor(private val context: Context) {
     }
 
     fun checkNetworkConnection() {
-        val connectivityManager =
-            context.getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
-        if (!isNetworkAvailable(connectivityManager)) {
+        if (!_networkStatus.value) {
             throw IOException("No network available")
         }
     }

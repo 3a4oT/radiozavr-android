@@ -14,7 +14,7 @@ import javax.inject.Singleton
 class RadioServiceDataSource @Inject constructor(
     private val playerEventReceiver: PlayerEventReceiver,
     private val checkNetworkService: CheckNetworkService,
-    @ApplicationContext private val context: Context
+    @param:ApplicationContext private val context: Context
 ) {
     fun getPlayerState(): StateFlow<Boolean> = playerEventReceiver.playerState
     fun getPlayerIsLoading(): StateFlow<Boolean> = playerEventReceiver.playerIsLoading

@@ -6,8 +6,10 @@ import android.app.PendingIntent
 import android.content.Context
 import android.content.Intent
 import android.content.pm.PackageManager
+import android.content.pm.ServiceInfo
 import androidx.annotation.OptIn
 import androidx.core.app.ActivityCompat
+import androidx.core.app.ServiceCompat
 import androidx.core.app.NotificationChannelCompat
 import androidx.core.app.NotificationCompat
 import androidx.core.app.NotificationManagerCompat
@@ -73,7 +75,12 @@ class RadioService : MediaSessionService(), Player.Listener {
         mediaSession = MediaSession.Builder(this, exoPlayer).build()
 
         createNotificationChannel()
-        startForeground(NOTIFICATION_ID, buildNotification(false))
+        ServiceCompat.startForeground(
+            this,
+            NOTIFICATION_ID,
+            buildNotification(false),
+            ServiceInfo.FOREGROUND_SERVICE_TYPE_MEDIA_PLAYBACK
+        )
     }
 
     override fun onStartCommand(intent: Intent?, flags: Int, startId: Int): Int {

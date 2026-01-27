@@ -12,7 +12,7 @@ android {
     defaultConfig {
         applicationId = "com.rovenskyi.radio_lux_fm_lviv_streamer"
         minSdk = 26
-        targetSdk = 35
+        targetSdk = 36
         versionCode = 1
         versionName = "0.1.1"
 
@@ -62,6 +62,7 @@ dependencies {
     implementation(libs.kotlinx.coroutines.core)
     implementation(libs.kotlinx.coroutines.android)
     implementation(libs.androidx.hilt.navigation.compose)
+    implementation(libs.androidx.hilt.lifecycle.viewmodel.compose)
 
     // Dependency injection
     implementation(libs.hilt.android)
@@ -73,7 +74,7 @@ dependencies {
 
     // Test
     testImplementation(libs.junit)
-    testRuntimeOnly("org.junit.platform:junit-platform-launcher")
+    testRuntimeOnly(libs.junit.platform.launcher)
 
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)

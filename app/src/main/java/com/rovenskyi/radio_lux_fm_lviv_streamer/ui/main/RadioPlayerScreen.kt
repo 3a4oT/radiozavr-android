@@ -14,7 +14,7 @@ import androidx.compose.ui.focus.FocusRequester
 import androidx.compose.ui.focus.focusRequester
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
-import androidx.hilt.navigation.compose.hiltViewModel
+import androidx.hilt.lifecycle.viewmodel.compose.hiltViewModel
 import com.rovenskyi.radio_lux_fm_lviv_streamer.R
 import com.rovenskyi.radio_lux_fm_lviv_streamer.domain.model.NetworkStatus
 import com.rovenskyi.radio_lux_fm_lviv_streamer.domain.model.PlayerState

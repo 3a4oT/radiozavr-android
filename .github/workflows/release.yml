@@ -3,10 +3,10 @@ name: Build and Release
 on:
   push:
     tags:
-      - '*'
+      - '[0-9]+.[0-9]+.[0-9]+'
 
 env:
-  VERSIONED_NAME: radio-lux-fm-lviv-streamer-${{ github.ref_name }}
+  VERSION: ${{ github.ref_name }}
 
 jobs:
   build:
@@ -22,14 +22,17 @@ jobs:
           distribution: 'temurin'
           java-version: '17'
 
+      - name: Setup Gradle
+        uses: gradle/actions/setup-gradle@v4
+
       - name: Set up Android SDK
         uses: android-actions/setup-android@v3
         with:
-          api-level: 35
-          build-tools: 35.0.0
+          api-level: 36
+          build-tools: 36.0.0
 
       - name: Add build-tools to PATH
-        run: echo "$ANDROID_HOME/build-tools/35.0.0" >> $GITHUB_PATH
+        run: echo "$ANDROID_HOME/build-tools/36.0.0" >> $GITHUB_PATH
 
       - name: Decode and save keystore
         env:
@@ -37,30 +40,37 @@ jobs:
         run: |
           echo $BASE64_KEYSTORE | base64 --decode > my-release-key.jks
 
-      - name: Build APK and AAB
-        run: ./gradlew assembleRelease bundleRelease
+      - name: Build APKs and AAB
+        run: ./gradlew :app:assembleRelease :app:bundleRelease :admin:assembleRelease
 
-      - name: Rename APK and AAB
+      - name: Rename artifacts
         run: |
-          mv app/build/outputs/apk/release/app-release-unsigned.apk app/build/outputs/apk/release/${{ env.VERSIONED_NAME }}.apk
-          mv app/build/outputs/bundle/release/app-release.aab app/build/outputs/bundle/release/${{ env.VERSIONED_NAME }}.aab
+          mv app/build/outputs/apk/release/app-release-unsigned.apk app/build/outputs/apk/release/radio-lux-fm-${{ env.VERSION }}.apk
+          mv app/build/outputs/bundle/release/app-release.aab app/build/outputs/bundle/release/radio-lux-fm-${{ env.VERSION }}.aab
+          mv admin/build/outputs/apk/release/admin-release-unsigned.apk admin/build/outputs/apk/release/radio-lux-admin-${{ env.VERSION }}.apk
 
-      - name: Align APK
-        run: zipalign -v 4 app/build/outputs/apk/release/${{ env.VERSIONED_NAME }}.apk app/build/outputs/apk/release/${{ env.VERSIONED_NAME }}-aligned.apk
+      - name: Align APKs
+        run: |
+          zipalign -v 4 app/build/outputs/apk/release/radio-lux-fm-${{ env.VERSION }}.apk app/build/outputs/apk/release/radio-lux-fm-${{ env.VERSION }}-aligned.apk
+          zipalign -v 4 admin/build/outputs/apk/release/radio-lux-admin-${{ env.VERSION }}.apk admin/build/outputs/apk/release/radio-lux-admin-${{ env.VERSION }}-aligned.apk
 
-      - name: Sign APK and AAB
+      - name: Sign APKs and AAB
         env:
           KEYSTORE_PASSWORD: ${{ secrets.KEYSTORE_PASSWORD }}
           KEY_PASSWORD: ${{ secrets.KEY_PASSWORD }}
           KEY_ALIAS: ${{ secrets.KEY_ALIAS }}
         run: |
-          apksigner sign --ks my-release-key.jks --ks-key-alias $KEY_ALIAS --ks-pass pass:$KEYSTORE_PASSWORD --key-pass pass:$KEY_PASSWORD --v2-signing-enabled true app/build/outputs/apk/release/${{ env.VERSIONED_NAME }}-aligned.apk
-          jarsigner -verbose -sigalg SHA256withRSA -digestalg SHA-256 -keystore my-release-key.jks app/build/outputs/bundle/release/${{ env.VERSIONED_NAME }}.aab $KEY_ALIAS -storepass $KEYSTORE_PASSWORD -keypass $KEY_PASSWORD
+          apksigner sign --ks my-release-key.jks --ks-key-alias $KEY_ALIAS --ks-pass pass:$KEYSTORE_PASSWORD --key-pass pass:$KEY_PASSWORD --v2-signing-enabled true app/build/outputs/apk/release/radio-lux-fm-${{ env.VERSION }}-aligned.apk
+          apksigner sign --ks my-release-key.jks --ks-key-alias $KEY_ALIAS --ks-pass pass:$KEYSTORE_PASSWORD --key-pass pass:$KEY_PASSWORD --v2-signing-enabled true admin/build/outputs/apk/release/radio-lux-admin-${{ env.VERSION }}-aligned.apk
+          jarsigner -verbose -sigalg SHA256withRSA -digestalg SHA-256 -keystore my-release-key.jks app/build/outputs/bundle/release/radio-lux-fm-${{ env.VERSION }}.aab $KEY_ALIAS -storepass $KEYSTORE_PASSWORD -keypass $KEY_PASSWORD
 
-      - name: Install GitHub CLI
-        run: sudo apt-get install gh
-
-      - name: Create Release and upload APK and AAB
+      - name: Create Release
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
-          echo "${{ secrets.GITHUB_TOKEN }}" | gh auth login --with-token
-          gh release create ${{ github.ref }} app/build/outputs/apk/release/${{ env.VERSIONED_NAME }}-aligned.apk app/build/outputs/bundle/release/${{ env.VERSIONED_NAME }}.aab --title "Release ${{ github.ref_name }}" --notes "Автоматичний реліз додатку AndroidTV для прослуховування через мережу інтренет Радіо Люкс ФМ Львів 104.7"
+          gh release create ${{ env.VERSION }} \
+            app/build/outputs/apk/release/radio-lux-fm-${{ env.VERSION }}-aligned.apk \
+            app/build/outputs/bundle/release/radio-lux-fm-${{ env.VERSION }}.aab \
+            admin/build/outputs/apk/release/radio-lux-admin-${{ env.VERSION }}-aligned.apk \
+            --title "Release ${{ env.VERSION }}" \
+            --generate-notes

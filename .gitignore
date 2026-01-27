@@ -19,13 +19,12 @@ CLAUDE.md
 /.idea/markdown.xml
 .DS_Store
 .vscode/
-/build
+**/build/
 /captures
 .externalNativeBuild
 .cxx
 local.properties
 app/release
-app/build
 
 
 # Built application files

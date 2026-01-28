@@ -15,9 +15,9 @@ import javax.inject.Singleton
 /**
  * Singleton that receives and debounces player events.
  *
- * Buffering state uses debounce to avoid UI flickering on unstable networks:
- * - Shows buffering only after [BUFFERING_DEBOUNCE_MS] of continuous buffering
- * - Hides buffering immediately when ready (buffer filled)
+ * Buffering state strategy:
+ * - Cold start (first play): show spinner immediately (no buffer yet)
+ * - Rebuffering (was playing): debounce [REBUFFER_DEBOUNCE_MS] to avoid flickering
  */
 @Singleton
 class PlayerEventReceiver @Inject constructor() {
@@ -34,7 +34,7 @@ class PlayerEventReceiver @Inject constructor() {
     val playerState: StateFlow<Boolean> = _playerState.asStateFlow()
 
     private var bufferingJob: Job? = null
-    private var wasPlayingBeforeBuffer = false
+    private var hasPlayedSuccessfully = false
 
     fun postPlayerError(message: String?) {
         _playerError.value = message
@@ -45,26 +45,31 @@ class PlayerEventReceiver @Inject constructor() {
     }
 
     /**
-     * Posts loading state with debounce for buffering.
+     * Posts loading state with smart debounce.
      *
-     * When buffering starts:
-     * - Waits [BUFFERING_DEBOUNCE_MS] before showing spinner
-     * - If buffer fills before timeout, spinner never shows
+     * Cold start (never played yet):
+     * - Shows spinner immediately
      *
-     * When buffering ends:
-     * - Immediately hides spinner (no delay)
+     * Rebuffering (already played successfully):
+     * - Waits [REBUFFER_DEBOUNCE_MS] before showing spinner
+     * - Prevents flickering on unstable networks
+     *
+     * Buffer ready:
+     * - Immediately hides spinner
+     * - Marks that playback succeeded (for future rebuffer detection)
      */
     fun postPlayerIsLoading(isLoading: Boolean) {
         if (isLoading) {
-            // Remember if we were playing before buffering started
-            if (_playerState.value) {
-                wasPlayingBeforeBuffer = true
-            }
-
-            // Cancel any pending job and start new debounced one
             bufferingJob?.cancel()
-            bufferingJob = scope.launch {
-                delay(BUFFERING_DEBOUNCE_MS)
+
+            if (hasPlayedSuccessfully) {
+                // Rebuffering - use debounce to avoid flickering
+                bufferingJob = scope.launch {
+                    delay(REBUFFER_DEBOUNCE_MS)
+                    _playerIsLoading.value = true
+                }
+            } else {
+                // Cold start - show spinner immediately
                 _playerIsLoading.value = true
             }
         } else {
@@ -72,30 +77,46 @@ class PlayerEventReceiver @Inject constructor() {
             bufferingJob?.cancel()
             bufferingJob = null
             _playerIsLoading.value = false
-            wasPlayingBeforeBuffer = false
+
+            // Mark that we've played successfully (buffer was filled at least once)
+            if (_playerState.value) {
+                hasPlayedSuccessfully = true
+            }
         }
     }
 
     /**
      * Posts player state (playing/stopped).
+     *
+     * On cold start (play pressed, never played yet):
+     * - Sets loading BEFORE playing state to avoid flash of stop button
      */
     fun postPlayerState(isPlaying: Boolean) {
-        _playerState.value = isPlaying
-
-        // If stopped, cancel any pending buffering indication
         if (!isPlaying) {
+            // Stopped - reset state
             bufferingJob?.cancel()
             bufferingJob = null
-            wasPlayingBeforeBuffer = false
+            hasPlayedSuccessfully = false
+            _playerIsLoading.value = false
+            _playerState.value = false
+        } else if (!hasPlayedSuccessfully) {
+            // Cold start - set loading FIRST to avoid flash of stop button
+            // Order matters: combine() emits after each change
+            _playerIsLoading.value = true
+            _playerState.value = true
+        } else {
+            // Already played successfully, just update state
+            _playerState.value = true
         }
     }
 
     companion object {
         /**
-         * Delay before showing buffering spinner.
-         * Short buffers (< 500ms) won't trigger visual feedback.
+         * Delay before showing rebuffering spinner.
+         * Only applies when playback was already successful.
+         * Short rebuffers (< 500ms) won't trigger visual feedback.
          */
-        private const val BUFFERING_DEBOUNCE_MS = 500L
+        private const val REBUFFER_DEBOUNCE_MS = 500L
     }
 }
 

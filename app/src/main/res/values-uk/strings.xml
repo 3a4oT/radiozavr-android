@@ -24,4 +24,7 @@
     <string name="settings_theme_dark">Темна</string>
     <string name="settings_theme_auto">Авто</string>
     <string name="settings_theme_content_description">Вибір теми: %1$s</string>
+
+    <!-- Loading -->
+    <string name="loading_indicator_description">Завантаження</string>
 </resources>

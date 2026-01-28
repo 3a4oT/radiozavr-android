@@ -17,6 +17,7 @@ import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
 import com.rovenskyi.radiolux.core.theme.RadioLuxTheme
 import kotlinx.coroutines.delay
+import kotlinx.coroutines.isActive
 
 private const val COLOR_CHANGE_INTERVAL_MS = 60_000L
 private const val ANIMATION_DURATION_MS = 3_000
@@ -53,7 +54,7 @@ fun RelaxingBackground(
     )
 
     LaunchedEffect(palette) {
-        while (true) {
+        while (isActive) {
             delay(COLOR_CHANGE_INTERVAL_MS)
             colorIndex1 = (colorIndex1 + 2) % palette.size
             colorIndex2 = (colorIndex2 + 2) % palette.size

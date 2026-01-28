@@ -24,4 +24,7 @@
     <string name="settings_theme_dark">Dark</string>
     <string name="settings_theme_auto">Auto</string>
     <string name="settings_theme_content_description">Theme selection: %1$s</string>
+
+    <!-- Loading -->
+    <string name="loading_indicator_description">Loading</string>
 </resources>

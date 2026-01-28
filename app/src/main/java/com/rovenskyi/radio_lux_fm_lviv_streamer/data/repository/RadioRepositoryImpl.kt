@@ -38,10 +38,6 @@ class RadioRepositoryImpl @Inject constructor(
         radioServiceDataSource.stop()
     }
 
-    override suspend fun refreshState() {
-        radioServiceDataSource.refreshState()
-    }
-
     override suspend fun clearError() {
         radioServiceDataSource.clearError()
     }

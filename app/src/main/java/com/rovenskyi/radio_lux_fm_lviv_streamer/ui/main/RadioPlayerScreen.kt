@@ -1,48 +1,71 @@
 package com.rovenskyi.radio_lux_fm_lviv_streamer.ui.main
 
-import androidx.compose.foundation.Image
-import androidx.compose.foundation.layout.*
-import androidx.compose.material3.Button
+import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.padding
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.PlayArrow
+import androidx.compose.material.icons.filled.Refresh
+import androidx.compose.material.icons.filled.Settings
+import androidx.compose.material.icons.filled.Stop
+import androidx.compose.material3.Icon
+import androidx.compose.material3.IconButton
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
-import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.focus.FocusRequester
-import androidx.compose.ui.focus.focusRequester
-import androidx.compose.ui.res.painterResource
-import androidx.compose.ui.unit.dp
+import androidx.compose.ui.res.stringResource
 import androidx.hilt.lifecycle.viewmodel.compose.hiltViewModel
+import com.rovenskyi.radiolux.core.components.background.RelaxingBackground
+import com.rovenskyi.radiolux.core.components.player.PlayerBar
+import com.rovenskyi.radiolux.core.components.player.PlayerBarState
+import com.rovenskyi.radiolux.core.theme.LocalDimensions
 import com.rovenskyi.radio_lux_fm_lviv_streamer.R
 import com.rovenskyi.radio_lux_fm_lviv_streamer.domain.model.NetworkStatus
 import com.rovenskyi.radio_lux_fm_lviv_streamer.domain.model.PlayerState
 import com.rovenskyi.radio_lux_fm_lviv_streamer.ui.components.ClockWidget
-import com.rovenskyi.radio_lux_fm_lviv_streamer.ui.components.LoadingIndicator
-import com.rovenskyi.radio_lux_fm_lviv_streamer.ui.components.RelaxingBackground
 import com.rovenskyi.radio_lux_fm_lviv_streamer.ui.main.error.NetworkErrorScreen
 import com.rovenskyi.radio_lux_fm_lviv_streamer.ui.main.error.PlayerErrorScreen
 import com.rovenskyi.radio_lux_fm_lviv_streamer.viewmodel.RadioPlayerViewModel
 
 @Composable
-fun RadioPlayerScreen(viewModel: RadioPlayerViewModel = hiltViewModel()) {
+fun RadioPlayerScreen(
+    onSettingsClick: () -> Unit,
+    modifier: Modifier = Modifier,
+    viewModel: RadioPlayerViewModel = hiltViewModel(),
+) {
     val uiState by viewModel.uiState.collectAsState()
+    val dimensions = LocalDimensions.current
 
-    Box(modifier = Modifier.fillMaxSize()) {
+    Box(modifier = modifier.fillMaxSize()) {
         RelaxingBackground()
 
+        // Settings button in top-right corner
+        IconButton(
+            onClick = onSettingsClick,
+            modifier = Modifier
+                .align(Alignment.TopEnd)
+                .padding(dimensions.paddingMedium),
+        ) {
+            Icon(
+                imageVector = Icons.Default.Settings,
+                contentDescription = stringResource(R.string.settings_title),
+            )
+        }
+
         when {
-            uiState.playerState == PlayerState.ERROR -> {
-                PlayerErrorScreen(uiState.errorMessage) { viewModel.retry() }
-            }
             uiState.networkStatus == NetworkStatus.UNAVAILABLE -> {
                 NetworkErrorScreen { viewModel.retry() }
             }
             else -> {
                 RadioPlayerContent(
                     playerState = uiState.playerState,
-                    onTogglePlayStop = { viewModel.togglePlayStop() }
+                    onTogglePlayStop = { viewModel.togglePlayStop() },
+                    onRetry = { viewModel.retry() },
                 )
             }
         }
@@ -50,49 +73,52 @@ fun RadioPlayerScreen(viewModel: RadioPlayerViewModel = hiltViewModel()) {
 }
 
 @Composable
-fun RadioPlayerContent(
+private fun RadioPlayerContent(
     playerState: PlayerState,
-    onTogglePlayStop: () -> Unit
+    onTogglePlayStop: () -> Unit,
+    onRetry: () -> Unit,
 ) {
-    if (playerState == PlayerState.LOADING) {
-        LoadingIndicator()
-    } else {
-        Column(
+    val dimensions = LocalDimensions.current
+
+    Column(
+        modifier = Modifier
+            .fillMaxSize()
+            .padding(dimensions.paddingMedium),
+        verticalArrangement = Arrangement.SpaceBetween,
+        horizontalAlignment = Alignment.CenterHorizontally,
+    ) {
+        // Top: Widget area (will be WidgetStack in future)
+        Box(
             modifier = Modifier
-                .fillMaxSize()
-                .padding(16.dp),
-            verticalArrangement = Arrangement.Center,
-            horizontalAlignment = Alignment.CenterHorizontally
+                .weight(1f)
+                .fillMaxWidth(),
+            contentAlignment = Alignment.Center,
         ) {
+            // For now, show clock. Will be replaced with WidgetStack
             ClockWidget()
-            Spacer(modifier = Modifier.height(20.dp))
-            Image(
-                modifier = Modifier
-                    .width(300.dp)
-                    .height(100.dp),
-                painter = painterResource(id = R.drawable.logo_lux),
-                contentDescription = null
-            )
-            Spacer(modifier = Modifier.height(20.dp))
-            val focusRequester = remember { FocusRequester() }
-            LaunchedEffect(Unit) {
-                focusRequester.requestFocus()
-            }
-            Button(
-                onClick = onTogglePlayStop,
-                modifier = Modifier
-                    .width(60.dp)
-                    .height(60.dp)
-                    .focusRequester(focusRequester)
-            ) {
-                Image(
-                    modifier = Modifier
-                        .width(40.dp)
-                        .height(40.dp),
-                    painter = painterResource(id = if (playerState == PlayerState.PLAYING) R.drawable.ic_stop else R.drawable.ic_play),
-                    contentDescription = null
-                )
-            }
         }
+
+        // Bottom: Player bar with branding and visualizer
+        PlayerBar(
+            state = playerState.toPlayerBarState(),
+            title = stringResource(R.string.notitification_content_title),
+            playIcon = Icons.Default.PlayArrow,
+            pauseIcon = Icons.Default.Stop,
+            retryIcon = Icons.Default.Refresh,
+            playContentDescription = stringResource(R.string.play_button),
+            pauseContentDescription = stringResource(R.string.player_pause),
+            retryContentDescription = stringResource(R.string.retry_button),
+            bufferingContentDescription = stringResource(R.string.player_buffering),
+            onPlayClick = onTogglePlayStop,
+            onRetryClick = onRetry,
+            modifier = Modifier.padding(bottom = dimensions.paddingLarge),
+        )
     }
+}
+
+private fun PlayerState.toPlayerBarState(): PlayerBarState = when (this) {
+    PlayerState.STOPPED -> PlayerBarState.STOPPED
+    PlayerState.LOADING -> PlayerBarState.BUFFERING
+    PlayerState.PLAYING -> PlayerBarState.PLAYING
+    PlayerState.ERROR -> PlayerBarState.ERROR
 }

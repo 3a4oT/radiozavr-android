@@ -25,6 +25,7 @@ dependencies {
     implementation(project(":core:models"))
     implementation(project(":core:ui-theme"))
 
+    implementation(platform(libs.compose.bom))
     implementation(libs.androidx.ui)
     implementation(libs.material3)
     implementation(libs.androidx.ui.tooling.preview)

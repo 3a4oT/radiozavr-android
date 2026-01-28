@@ -27,6 +27,12 @@ val LocalIsDarkTheme = staticCompositionLocalOf { false }
  */
 val LocalIsTv = staticCompositionLocalOf { false }
 
+/**
+ * CompositionLocal for TV focus indicator color.
+ * Changes based on theme for optimal visibility.
+ */
+val LocalTvFocusColor = staticCompositionLocalOf { FocusColors.Dark }
+
 private const val LIGHT_START_HOUR = 9
 private const val DARK_START_HOUR = 18
 
@@ -107,11 +113,13 @@ fun RadioLuxTheme(
     val colorScheme = if (isDark) DarkColorScheme else LightColorScheme
     val typography = if (isTv) TvTypography else AppTypography
     val dimensions = if (isTv) TvDimensions else PhoneDimensions
+    val focusColor = if (isDark) FocusColors.Dark else FocusColors.Light
 
     CompositionLocalProvider(
         LocalIsDarkTheme provides isDark,
         LocalIsTv provides isTv,
         LocalDimensions provides dimensions,
+        LocalTvFocusColor provides focusColor,
     ) {
         MaterialTheme(
             colorScheme = colorScheme,
@@ -157,4 +165,12 @@ object RadioLuxTheme {
         @Composable
         @ReadOnlyComposable
         get() = LocalIsTv.current
+
+    /**
+     * Current TV focus indicator color based on theme.
+     */
+    val tvFocusColor: androidx.compose.ui.graphics.Color
+        @Composable
+        @ReadOnlyComposable
+        get() = LocalTvFocusColor.current
 }

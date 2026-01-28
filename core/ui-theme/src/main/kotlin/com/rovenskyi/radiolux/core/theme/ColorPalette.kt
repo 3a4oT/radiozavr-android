@@ -26,16 +26,25 @@ object DarkColors {
 }
 
 /**
- * Light theme colors - warm and soft
- * Not pure white, reduces eye strain
+ * Light theme colors - warm and calm
+ * Creamy beige tones, easy on the eyes
  */
 object LightColors {
-    val Background = Color(0xFFFAF9F6) // Warm off-white
-    val Surface = Color(0xFFEEECEA) // Light warm gray
-    val SurfaceVariant = Color(0xFFE5E2DE) // Soft beige
+    val Background = Color(0xFFF0EBE3) // Creamy beige - calm, not too bright
+    val Surface = Color(0xFFE8E4E0) // Warm sand
+    val SurfaceVariant = Color(0xFFDDD9D5) // Soft stone
     val OnBackground = Color(0xFF2B2D42) // Dark charcoal
     val OnSurface = Color(0xFF2B2D42) // Dark charcoal
     val OnSurfaceVariant = Color(0xFF4A4E5A) // Medium gray
+}
+
+/**
+ * TV Focus colors - high visibility for D-pad navigation
+ * Different colors for each theme to ensure good contrast
+ */
+object FocusColors {
+    val Dark = Color(0xFF4DD0E1)   // Cyan 300 - bright on dark navy, calm
+    val Light = Color(0xFF1565C0) // Deep Blue 800 - visible on cream, not harsh
 }
 
 /**

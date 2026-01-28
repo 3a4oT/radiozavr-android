@@ -1,12 +1,18 @@
 package com.rovenskyi.radiolux.core.components.player
 
+import androidx.compose.animation.core.animateDpAsState
+import androidx.compose.animation.core.animateFloatAsState
+import androidx.compose.animation.core.tween
+import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
+import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.FilledIconButton
 import androidx.compose.material3.Icon
@@ -14,8 +20,17 @@ import androidx.compose.material3.IconButtonDefaults
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.scale
+import androidx.compose.ui.focus.FocusRequester
+import androidx.compose.ui.focus.focusRequester
+import androidx.compose.ui.focus.onFocusChanged
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.semantics.contentDescription
@@ -23,6 +38,7 @@ import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
+import com.rovenskyi.radiolux.core.theme.LocalTvFocusColor
 
 /**
  * State of the player for UI representation.
@@ -52,6 +68,7 @@ enum class PlayerBarState {
  * @param modifier Modifier for the container
  * @param buttonSize Size of the play button
  * @param visualizerBarCount Number of bars on each side of the button
+ * @param requestInitialFocus If true, the play button requests focus on first composition (TV)
  */
 @Composable
 fun PlayerBar(
@@ -69,7 +86,17 @@ fun PlayerBar(
     modifier: Modifier = Modifier,
     buttonSize: Dp = 64.dp,
     visualizerBarCount: Int = 4,
+    requestInitialFocus: Boolean = true,
 ) {
+    val focusRequester = remember { FocusRequester() }
+
+    // Request focus on first composition and after state changes
+    // This ensures focus returns to play button after buffering
+    LaunchedEffect(state, requestInitialFocus) {
+        if (requestInitialFocus) {
+            focusRequester.requestFocus()
+        }
+    }
     Column(
         modifier = modifier,
         horizontalAlignment = Alignment.CenterHorizontally,
@@ -98,37 +125,48 @@ fun PlayerBar(
                 Spacer(modifier = Modifier.width(16.dp))
             }
 
-            // Center: Button or Loading indicator
-            when (state) {
-                PlayerBarState.BUFFERING -> {
-                    CircularProgressIndicator(
-                        modifier = Modifier
-                            .size(buttonSize)
-                            .semantics {
-                                contentDescription = bufferingContentDescription
-                            },
-                        strokeWidth = 4.dp,
-                    )
-                }
+            // Center: Button with optional loading overlay
+            // Button is always present to maintain focus during state transitions
+            Box(contentAlignment = Alignment.Center) {
+                when (state) {
+                    PlayerBarState.ERROR -> {
+                        PlayerButton(
+                            icon = retryIcon,
+                            contentDescription = retryContentDescription,
+                            onClick = onRetryClick,
+                            size = buttonSize,
+                            containerColor = MaterialTheme.colorScheme.error,
+                            focusRequester = focusRequester,
+                        )
+                    }
 
-                PlayerBarState.ERROR -> {
-                    PlayerButton(
-                        icon = retryIcon,
-                        contentDescription = retryContentDescription,
-                        onClick = onRetryClick,
-                        size = buttonSize,
-                        containerColor = MaterialTheme.colorScheme.error,
-                    )
-                }
+                    PlayerBarState.BUFFERING -> {
+                        // Show faded button underneath to keep focus
+                        PlayerButton(
+                            icon = playIcon,
+                            contentDescription = bufferingContentDescription,
+                            onClick = { }, // No-op during buffering
+                            size = buttonSize,
+                            containerColor = MaterialTheme.colorScheme.primary.copy(alpha = 0.3f),
+                            focusRequester = focusRequester,
+                        )
+                        // Progress indicator overlay
+                        CircularProgressIndicator(
+                            modifier = Modifier.size(buttonSize),
+                            strokeWidth = 4.dp,
+                        )
+                    }
 
-                else -> {
-                    val isPlaying = state == PlayerBarState.PLAYING
-                    PlayerButton(
-                        icon = if (isPlaying) pauseIcon else playIcon,
-                        contentDescription = if (isPlaying) pauseContentDescription else playContentDescription,
-                        onClick = onPlayClick,
-                        size = buttonSize,
-                    )
+                    else -> {
+                        val isPlaying = state == PlayerBarState.PLAYING
+                        PlayerButton(
+                            icon = if (isPlaying) pauseIcon else playIcon,
+                            contentDescription = if (isPlaying) pauseContentDescription else playContentDescription,
+                            onClick = onPlayClick,
+                            size = buttonSize,
+                            focusRequester = focusRequester,
+                        )
+                    }
                 }
             }
 
@@ -151,10 +189,47 @@ private fun PlayerButton(
     onClick: () -> Unit,
     size: Dp,
     containerColor: Color = MaterialTheme.colorScheme.primary,
+    focusRequester: FocusRequester? = null,
 ) {
+    val focusColor = LocalTvFocusColor.current
+    var isFocused by remember { mutableStateOf(false) }
+
+    val scale by animateFloatAsState(
+        targetValue = if (isFocused) 1.15f else 1f,
+        animationSpec = tween(durationMillis = 150),
+        label = "playerButtonScale",
+    )
+
+    val focusBorderWidth by animateDpAsState(
+        targetValue = if (isFocused) 4.dp else 0.dp,
+        animationSpec = tween(durationMillis = 150),
+        label = "playerButtonBorder",
+    )
+
     FilledIconButton(
         onClick = onClick,
-        modifier = Modifier.size(size),
+        modifier = Modifier
+            .size(size)
+            .scale(scale)
+            .then(
+                if (focusRequester != null) {
+                    Modifier.focusRequester(focusRequester)
+                } else {
+                    Modifier
+                }
+            )
+            .onFocusChanged { isFocused = it.isFocused }
+            .then(
+                if (isFocused) {
+                    Modifier.border(
+                        width = focusBorderWidth,
+                        color = focusColor,
+                        shape = CircleShape,
+                    )
+                } else {
+                    Modifier
+                }
+            ),
         colors = IconButtonDefaults.filledIconButtonColors(
             containerColor = containerColor,
         ),

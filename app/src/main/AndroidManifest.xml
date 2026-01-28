@@ -20,7 +20,11 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Radioluxfmstreamer"
         tools:targetApi="31">
-        <activity android:name=".MainActivity" android:exported="true" android:banner="@drawable/tv_banner">
+        <activity
+            android:name=".MainActivity"
+            android:exported="true"
+            android:banner="@drawable/tv_banner"
+            android:theme="@style/Theme.Radioluxfmstreamer.Splash">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
                 <category android:name="android.intent.category.LAUNCHER" />

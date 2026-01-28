@@ -1,13 +1,21 @@
 package com.rovenskyi.radiolux.core.theme
 
 import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.Typography
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.CompositionLocalProvider
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.ReadOnlyComposable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.runtime.staticCompositionLocalOf
 import com.rovenskyi.radiolux.core.models.theme.ThemeMode
+import kotlinx.coroutines.delay
+import java.time.LocalDate
+import java.time.LocalDateTime
 import java.time.LocalTime
+import java.time.temporal.ChronoUnit
 
 /**
  * CompositionLocal for tracking if current theme is dark
@@ -19,18 +27,66 @@ val LocalIsDarkTheme = staticCompositionLocalOf { false }
  */
 val LocalIsTv = staticCompositionLocalOf { false }
 
+private const val LIGHT_START_HOUR = 9
+private const val DARK_START_HOUR = 18
+
+/**
+ * Determines if dark mode should be active based on current time.
+ * Light mode: 9:00-18:00, Dark mode: 18:00-9:00
+ */
+private fun isDarkByTime(hour: Int): Boolean = hour < LIGHT_START_HOUR || hour >= DARK_START_HOUR
+
+/**
+ * Calculates milliseconds until the next theme switch time (9:00 or 18:00).
+ */
+private fun millisUntilNextThemeChange(): Long {
+    val now = LocalDateTime.now()
+    val hour = now.hour
+
+    val nextChangeTime = if (hour < LIGHT_START_HOUR) {
+        // Before 9:00 → next change at 9:00 today
+        LocalDateTime.of(LocalDate.now(), LocalTime.of(LIGHT_START_HOUR, 0))
+    } else if (hour < DARK_START_HOUR) {
+        // Between 9:00-18:00 → next change at 18:00 today
+        LocalDateTime.of(LocalDate.now(), LocalTime.of(DARK_START_HOUR, 0))
+    } else {
+        // After 18:00 → next change at 9:00 tomorrow
+        LocalDateTime.of(LocalDate.now().plusDays(1), LocalTime.of(LIGHT_START_HOUR, 0))
+    }
+
+    return ChronoUnit.MILLIS.between(now, nextChangeTime).coerceAtLeast(1000L)
+}
+
+/**
+ * Composable that returns current dark mode state for AUTO theme
+ * and automatically recomposes when time threshold is crossed.
+ */
+@Composable
+private fun rememberAutoDarkMode(): Boolean {
+    var isDark by remember { mutableStateOf(isDarkByTime(LocalTime.now().hour)) }
+
+    LaunchedEffect(Unit) {
+        while (true) {
+            val delayMs = millisUntilNextThemeChange()
+            delay(delayMs)
+            isDark = isDarkByTime(LocalTime.now().hour)
+        }
+    }
+
+    return isDark
+}
+
 /**
  * Determines if dark mode should be active based on ThemeMode setting.
- * AUTO mode uses time-based switching: 9:00-18:00 = Light, otherwise Dark.
+ * AUTO mode uses time-based switching with real-time updates.
  */
+@Composable
 fun shouldUseDarkMode(themeMode: ThemeMode): Boolean {
+    val autoDark = rememberAutoDarkMode()
     return when (themeMode) {
         ThemeMode.LIGHT -> false
         ThemeMode.DARK -> true
-        ThemeMode.AUTO -> {
-            val hour = LocalTime.now().hour
-            hour < 9 || hour >= 18
-        }
+        ThemeMode.AUTO -> autoDark
     }
 }
 

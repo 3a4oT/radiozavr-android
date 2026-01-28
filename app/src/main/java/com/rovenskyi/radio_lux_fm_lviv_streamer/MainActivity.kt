@@ -27,6 +27,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
+import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import androidx.navigation.compose.rememberNavController
 import com.rovenskyi.radiolux.core.theme.RadioLuxTheme
 import com.rovenskyi.radio_lux_fm_lviv_streamer.navigation.AppNavigation
@@ -48,7 +49,15 @@ class MainActivity : AppCompatActivity() {
     private var permissionDeniedCallback: (() -> Unit)? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
+        val splashScreen = installSplashScreen()
+
         super.onCreate(savedInstanceState)
+
+        // Keep splash screen visible until theme is loaded from DataStore
+        splashScreen.setKeepOnScreenCondition {
+            !themeViewModel.isThemeLoaded.value
+        }
+
         setContent {
             val themeMode by themeViewModel.themeMode.collectAsState()
             val navController = rememberNavController()

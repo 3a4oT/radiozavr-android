@@ -8,6 +8,5 @@ interface RadioRepository {
     fun getPlayerError(): Flow<String?>
     suspend fun play()
     suspend fun stop()
-    suspend fun refreshState()
     suspend fun clearError()
 } 

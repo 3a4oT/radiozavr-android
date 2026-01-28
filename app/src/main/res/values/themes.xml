@@ -3,14 +3,16 @@
     <style name="Theme.Radioluxfmstreamer" parent="Theme.AppCompat.DayNight.NoActionBar">
         <!-- Primary brand color. -->
         <item name="colorPrimary">@color/purple_500</item>
-<!--        <item name="colorPrimaryVariant">@color/purple_700</item>-->
-<!--        <item name="colorOnPrimary">@color/white</item>-->
-<!--        &lt;!&ndash; Secondary brand color. &ndash;&gt;-->
-<!--        <item name="colorSecondary">@color/teal_200</item>-->
-<!--        <item name="colorSecondaryVariant">@color/teal_700</item>-->
-<!--        <item name="colorOnSecondary">@color/black</item>-->
-<!--        &lt;!&ndash; Status bar color. &ndash;&gt;-->
-<!--        <item name="android:statusBarColor">?attr/colorPrimaryVariant</item>-->
         <!-- Customize your theme here. -->
+    </style>
+
+    <!-- Splash Screen theme -->
+    <style name="Theme.Radioluxfmstreamer.Splash" parent="Theme.SplashScreen">
+        <!-- Deep navy background - neutral, works for both light/dark -->
+        <item name="windowSplashScreenBackground">@color/splash_background</item>
+        <!-- Use app launcher icon -->
+        <item name="windowSplashScreenAnimatedIcon">@mipmap/ic_launcher</item>
+        <!-- Post-splash theme -->
+        <item name="postSplashScreenTheme">@style/Theme.Radioluxfmstreamer</item>
     </style>
 </resources>

@@ -13,4 +13,31 @@
     <string name="permission_denied_message">Notification permission is required to show notifications. Please enable it in the app settings.</string>
     <string name="open_settings">Open Settings</string>
     <string name="cancel">Cancel</string>
+
+    <!-- Settings -->
+    <string name="settings_title">Settings</string>
+    <string name="settings_back">Back</string>
+    <string name="settings_group_appearance">Appearance</string>
+    <string name="settings_theme_title">Theme</string>
+    <string name="settings_theme_subtitle">Choose app color scheme</string>
+    <string name="settings_theme_light">Light</string>
+    <string name="settings_theme_dark">Dark</string>
+    <string name="settings_theme_auto">Auto</string>
+    <string name="settings_theme_content_description">Theme selection: %1$s</string>
+
+    <!-- Language settings -->
+    <string name="settings_group_language">Language</string>
+    <string name="settings_language_title">App Language</string>
+    <string name="settings_language_subtitle">Choose display language</string>
+    <string name="settings_language_system">System default</string>
+    <string name="settings_language_ukrainian">Українська</string>
+    <string name="settings_language_english">English</string>
+    <string name="settings_language_content_description">Language selection: %1$s</string>
+
+    <!-- Loading -->
+    <string name="loading_indicator_description">Loading</string>
+
+    <!-- Player -->
+    <string name="player_buffering">Buffering stream</string>
+    <string name="player_pause">Pause</string>
 </resources>

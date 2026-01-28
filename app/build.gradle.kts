@@ -19,7 +19,11 @@ android {
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
 
-        buildConfigField("String", "STREAM_URL", "\"http://streamvideo.luxnet.ua/luxlviv/luxlviv.stream/chunklist.m3u8\"")
+        buildConfigField(
+            "String",
+            "STREAM_URL",
+            "\"http://streamvideo.luxnet.ua/luxlviv/luxlviv.stream/chunklist.m3u8\""
+        )
     }
 
     buildTypes {

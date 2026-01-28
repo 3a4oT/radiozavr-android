@@ -25,6 +25,15 @@
     <string name="settings_theme_auto">Авто</string>
     <string name="settings_theme_content_description">Вибір теми: %1$s</string>
 
+    <!-- Language settings -->
+    <string name="settings_group_language">Мова</string>
+    <string name="settings_language_title">Мова додатку</string>
+    <string name="settings_language_subtitle">Оберіть мову інтерфейсу</string>
+    <string name="settings_language_system">Системна</string>
+    <string name="settings_language_ukrainian">Українська</string>
+    <string name="settings_language_english">English</string>
+    <string name="settings_language_content_description">Вибір мови: %1$s</string>
+
     <!-- Loading -->
     <string name="loading_indicator_description">Завантаження</string>
 

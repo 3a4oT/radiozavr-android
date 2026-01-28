@@ -30,13 +30,18 @@ import androidx.core.content.ContextCompat
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import androidx.navigation.compose.rememberNavController
 import com.rovenskyi.radiolux.core.theme.RadioLuxTheme
+import com.rovenskyi.radio_lux_fm_lviv_streamer.domain.repository.LanguageRepository
 import com.rovenskyi.radio_lux_fm_lviv_streamer.navigation.AppNavigation
 import com.rovenskyi.radio_lux_fm_lviv_streamer.viewmodel.ThemeViewModel
 import dagger.hilt.android.AndroidEntryPoint
+import javax.inject.Inject
 
 @AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
     private val themeViewModel: ThemeViewModel by viewModels()
+
+    @Inject
+    lateinit var languageRepository: LanguageRepository
 
     private val requestPermissionLauncher = registerForActivityResult(
         ActivityResultContracts.RequestPermission(),
@@ -68,7 +73,10 @@ class MainActivity : AppCompatActivity() {
 
             RadioLuxTheme(themeMode = themeMode) {
                 Surface(modifier = Modifier.fillMaxSize()) {
-                    AppNavigation(navController = navController)
+                    AppNavigation(
+                        navController = navController,
+                        languageRepository = languageRepository,
+                    )
                     if (showPermissionDialog) {
                         PermissionDeniedDialog(
                             onDismiss = { showPermissionDialog = false },

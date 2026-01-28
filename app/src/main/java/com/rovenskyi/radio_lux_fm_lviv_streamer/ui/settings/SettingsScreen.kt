@@ -1,12 +1,17 @@
 package com.rovenskyi.radio_lux_fm_lviv_streamer.ui.settings
 
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.ArrowBack
+import androidx.compose.material.icons.automirrored.filled.KeyboardArrowRight
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
@@ -18,40 +23,43 @@ import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.unit.dp
 import androidx.hilt.lifecycle.viewmodel.compose.hiltViewModel
-import com.rovenskyi.radiolux.core.components.buttons.SegmentedToggle
 import com.rovenskyi.radiolux.core.components.settings.SettingsGroup
 import com.rovenskyi.radiolux.core.components.settings.SettingsRow
+import com.rovenskyi.radiolux.core.models.language.LanguageMode
 import com.rovenskyi.radiolux.core.models.theme.ThemeMode
-import com.rovenskyi.radiolux.core.theme.LocalDimensions
 import com.rovenskyi.radio_lux_fm_lviv_streamer.R
+import com.rovenskyi.radio_lux_fm_lviv_streamer.domain.repository.LanguageRepository
 import com.rovenskyi.radio_lux_fm_lviv_streamer.viewmodel.ThemeViewModel
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun SettingsScreen(
+    languageRepository: LanguageRepository,
     onBackClick: () -> Unit,
+    onThemeClick: () -> Unit,
+    onLanguageClick: () -> Unit,
     modifier: Modifier = Modifier,
     themeViewModel: ThemeViewModel = hiltViewModel(),
 ) {
-    val dimensions = LocalDimensions.current
     val themeMode by themeViewModel.themeMode.collectAsState()
 
-    val themeModeOptions = listOf(
-        stringResource(R.string.settings_theme_light),
-        stringResource(R.string.settings_theme_dark),
-        stringResource(R.string.settings_theme_auto),
-    )
-
-    val selectedThemeIndex = when (themeMode) {
-        ThemeMode.LIGHT -> 0
-        ThemeMode.DARK -> 1
-        ThemeMode.AUTO -> 2
+    val currentThemeLabel = when (themeMode) {
+        ThemeMode.LIGHT -> stringResource(R.string.settings_theme_light)
+        ThemeMode.DARK -> stringResource(R.string.settings_theme_dark)
+        ThemeMode.AUTO -> stringResource(R.string.settings_theme_auto)
     }
 
-    val currentThemeLabel = themeModeOptions[selectedThemeIndex]
+    val currentLanguageMode = languageRepository.getLanguageMode()
+    val currentLanguageLabel = when (currentLanguageMode) {
+        LanguageMode.SYSTEM -> stringResource(R.string.settings_language_system)
+        LanguageMode.UKRAINIAN -> stringResource(R.string.settings_language_ukrainian)
+        LanguageMode.ENGLISH -> stringResource(R.string.settings_language_english)
+    }
 
     Scaffold(
         topBar = {
@@ -87,24 +95,30 @@ fun SettingsScreen(
                 SettingsRow(
                     title = stringResource(R.string.settings_theme_title),
                     subtitle = stringResource(R.string.settings_theme_subtitle),
+                    onClick = onThemeClick,
                     contentDescription = stringResource(
                         R.string.settings_theme_content_description,
                         currentThemeLabel,
                     ),
                 ) {
-                    SegmentedToggle(
-                        options = themeModeOptions,
-                        selectedIndex = selectedThemeIndex,
-                        onSelect = { index ->
-                            val mode = when (index) {
-                                0 -> ThemeMode.LIGHT
-                                1 -> ThemeMode.DARK
-                                else -> ThemeMode.AUTO
-                            }
-                            themeViewModel.setThemeMode(mode)
-                        },
-                        contentDescriptionPrefix = stringResource(R.string.settings_theme_title),
-                    )
+                    SettingsValueWithArrow(value = currentThemeLabel)
+                }
+            }
+
+            // Language settings group
+            SettingsGroup(
+                title = stringResource(R.string.settings_group_language),
+            ) {
+                SettingsRow(
+                    title = stringResource(R.string.settings_language_title),
+                    subtitle = stringResource(R.string.settings_language_subtitle),
+                    onClick = onLanguageClick,
+                    contentDescription = stringResource(
+                        R.string.settings_language_content_description,
+                        currentLanguageLabel,
+                    ),
+                ) {
+                    SettingsValueWithArrow(value = currentLanguageLabel)
                 }
             }
 
@@ -113,5 +127,23 @@ fun SettingsScreen(
             // - Notifications settings
             // - About section
         }
+    }
+}
+
+@Composable
+private fun SettingsValueWithArrow(value: String) {
+    Row(verticalAlignment = Alignment.CenterVertically) {
+        Text(
+            text = value,
+            style = MaterialTheme.typography.bodyMedium,
+            color = MaterialTheme.colorScheme.onSurfaceVariant,
+        )
+        Spacer(modifier = Modifier.width(4.dp))
+        Icon(
+            imageVector = Icons.AutoMirrored.Filled.KeyboardArrowRight,
+            contentDescription = null,
+            modifier = Modifier.size(24.dp),
+            tint = MaterialTheme.colorScheme.onSurfaceVariant,
+        )
     }
 }

@@ -21,3 +21,9 @@ data object RadioPlayer : AppRoute
 
 @Serializable
 data object Settings : AppRoute
+
+@Serializable
+data object Theme : AppRoute
+
+@Serializable
+data object Language : AppRoute

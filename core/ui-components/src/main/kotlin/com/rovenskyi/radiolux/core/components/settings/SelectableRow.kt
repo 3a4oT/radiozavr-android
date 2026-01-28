@@ -5,13 +5,11 @@ import androidx.compose.animation.core.animateFloatAsState
 import androidx.compose.animation.core.tween
 import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
-import androidx.compose.foundation.focusable
-import androidx.compose.foundation.layout.Arrangement
-import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.RadioButton
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
@@ -22,31 +20,31 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.scale
 import androidx.compose.ui.focus.onFocusChanged
+import androidx.compose.ui.semantics.Role
 import androidx.compose.ui.semantics.contentDescription
+import androidx.compose.ui.semantics.role
 import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.unit.dp
 import com.rovenskyi.radiolux.core.theme.LocalDimensions
 import com.rovenskyi.radiolux.core.theme.LocalTvFocusColor
 
 /**
- * Individual setting row with title, optional subtitle, and trailing content.
- * Supports click interaction and TV D-pad focus with visual indication.
+ * Selectable row with radio button for single-choice lists.
+ * TV-friendly with D-pad navigation support.
  *
- * @param title Main text for the setting
+ * @param text Label text to display
+ * @param selected Whether this item is currently selected
+ * @param onClick Called when the row is clicked
  * @param modifier Modifier to apply to the row
- * @param subtitle Optional secondary text
- * @param onClick Optional click handler
- * @param contentDescription Accessibility description
- * @param trailing Trailing content (toggle, value, icon, etc.)
+ * @param contentDescription Accessibility description for the row
  */
 @Composable
-fun SettingsRow(
-    title: String,
+fun SelectableRow(
+    text: String,
+    selected: Boolean,
+    onClick: () -> Unit,
     modifier: Modifier = Modifier,
-    subtitle: String? = null,
-    onClick: (() -> Unit)? = null,
-    contentDescription: String? = null,
-    trailing: @Composable (() -> Unit)? = null,
+    contentDescription: String = text,
 ) {
     val dimensions = LocalDimensions.current
     val focusColor = LocalTvFocusColor.current
@@ -55,16 +53,17 @@ fun SettingsRow(
     val scale by animateFloatAsState(
         targetValue = if (isFocused) 1.02f else 1f,
         animationSpec = tween(durationMillis = 150),
-        label = "settingsRowScale",
+        label = "selectableRowScale",
     )
 
     val focusBorderWidth by animateDpAsState(
         targetValue = if (isFocused) 2.dp else 0.dp,
         animationSpec = tween(durationMillis = 150),
-        label = "settingsRowBorder",
+        label = "selectableRowBorder",
     )
 
     Row(
+        verticalAlignment = Alignment.CenterVertically,
         modifier = modifier
             .fillMaxWidth()
             .scale(scale)
@@ -80,42 +79,24 @@ fun SettingsRow(
                     Modifier
                 }
             )
-            .then(
-                if (onClick != null) {
-                    Modifier
-                        .clickable(onClick = onClick)
-                        .focusable()
-                } else {
-                    Modifier
-                },
+            .clickable(onClick = onClick)
+            .padding(
+                horizontal = dimensions.paddingMedium,
+                vertical = dimensions.paddingSmall,
             )
-            .padding(dimensions.paddingMedium)
             .semantics {
-                contentDescription?.let {
-                    this.contentDescription = it
-                }
+                this.contentDescription = contentDescription
+                this.role = Role.RadioButton
             },
-        horizontalArrangement = Arrangement.SpaceBetween,
-        verticalAlignment = Alignment.CenterVertically,
     ) {
-        Column(
-            modifier = Modifier.weight(1f),
-        ) {
-            Text(
-                text = title,
-                style = MaterialTheme.typography.bodyLarge,
-                color = MaterialTheme.colorScheme.onSurface,
-            )
-            if (subtitle != null) {
-                Text(
-                    text = subtitle,
-                    style = MaterialTheme.typography.bodySmall,
-                    color = MaterialTheme.colorScheme.onSurfaceVariant,
-                )
-            }
-        }
-        if (trailing != null) {
-            trailing()
-        }
+        RadioButton(
+            selected = selected,
+            onClick = null, // Handled by row click
+        )
+        Text(
+            text = text,
+            style = MaterialTheme.typography.bodyLarge,
+            modifier = Modifier.padding(start = dimensions.paddingMedium),
+        )
     }
 }

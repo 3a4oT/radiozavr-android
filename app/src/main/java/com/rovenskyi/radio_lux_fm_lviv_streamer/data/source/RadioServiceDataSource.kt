@@ -19,6 +19,7 @@ class RadioServiceDataSource @Inject constructor(
     fun getPlayerState(): StateFlow<Boolean> = playerEventReceiver.playerState
     fun getPlayerIsLoading(): StateFlow<Boolean> = playerEventReceiver.playerIsLoading
     fun getPlayerError(): StateFlow<String?> = playerEventReceiver.playerError
+    fun getAudioSessionId(): StateFlow<Int?> = playerEventReceiver.audioSessionId
 
     fun play() {
         try {
@@ -27,10 +28,10 @@ class RadioServiceDataSource @Inject constructor(
 
             // Only if the network check is successful, clear any previous errors.
             playerEventReceiver.clearPlayerErrorMessage()
-            
+
             // And then start the radio service.
             context.startService(RadioService.createPlayIntent(context))
-        } catch (e: IOException) {
+        } catch (_: IOException) {
             // If checkNetworkConnection throws an IOException, post a specific error.
             // The error state is never cleared, so the UI remains on the error screen.
             playerEventReceiver.postPlayerError("Network connection error. Please check your internet and try again.")
@@ -44,4 +45,4 @@ class RadioServiceDataSource @Inject constructor(
     fun clearError() {
         playerEventReceiver.clearPlayerErrorMessage()
     }
-} 
+}

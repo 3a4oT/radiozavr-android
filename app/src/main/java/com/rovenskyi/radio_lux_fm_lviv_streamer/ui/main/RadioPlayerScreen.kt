@@ -29,7 +29,6 @@ import com.rovenskyi.radio_lux_fm_lviv_streamer.domain.model.NetworkStatus
 import com.rovenskyi.radio_lux_fm_lviv_streamer.domain.model.PlayerState
 import com.rovenskyi.radio_lux_fm_lviv_streamer.ui.components.ClockWidget
 import com.rovenskyi.radio_lux_fm_lviv_streamer.ui.main.error.NetworkErrorScreen
-import com.rovenskyi.radio_lux_fm_lviv_streamer.ui.main.error.PlayerErrorScreen
 import com.rovenskyi.radio_lux_fm_lviv_streamer.viewmodel.RadioPlayerViewModel
 
 @Composable
@@ -39,6 +38,7 @@ fun RadioPlayerScreen(
     viewModel: RadioPlayerViewModel = hiltViewModel(),
 ) {
     val uiState by viewModel.uiState.collectAsState()
+    val visualizerAmplitudes by viewModel.visualizerAmplitudes.collectAsState()
     val dimensions = LocalDimensions.current
 
     Box(modifier = modifier.fillMaxSize()) {
@@ -64,6 +64,8 @@ fun RadioPlayerScreen(
             else -> {
                 RadioPlayerContent(
                     playerState = uiState.playerState,
+                    errorMessage = uiState.errorMessage,
+                    visualizerAmplitudes = visualizerAmplitudes,
                     onTogglePlayStop = { viewModel.togglePlayStop() },
                     onRetry = { viewModel.retry() },
                 )
@@ -75,6 +77,8 @@ fun RadioPlayerScreen(
 @Composable
 private fun RadioPlayerContent(
     playerState: PlayerState,
+    errorMessage: String?,
+    visualizerAmplitudes: List<Float>?,
     onTogglePlayStop: () -> Unit,
     onRetry: () -> Unit,
 ) {
@@ -111,6 +115,9 @@ private fun RadioPlayerContent(
             bufferingContentDescription = stringResource(R.string.player_buffering),
             onPlayClick = onTogglePlayStop,
             onRetryClick = onRetry,
+            visualizerAmplitudes = visualizerAmplitudes,
+            errorTitle = stringResource(R.string.player_error_friendly),
+            errorDetails = errorMessage,
             modifier = Modifier.padding(bottom = dimensions.paddingLarge),
         )
     }

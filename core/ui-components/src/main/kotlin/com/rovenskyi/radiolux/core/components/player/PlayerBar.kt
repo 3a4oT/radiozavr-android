@@ -68,6 +68,10 @@ enum class PlayerBarState {
  * @param modifier Modifier for the container
  * @param buttonSize Size of the play button
  * @param visualizerBarCount Number of bars on each side of the button
+ * @param visualizerAmplitudes Optional list of amplitude values (0-1) from real audio capture.
+ *                              If null, uses simulated random animation.
+ * @param errorTitle Friendly localized error message shown when state is ERROR
+ * @param errorDetails Technical error details shown in parentheses when state is ERROR
  * @param requestInitialFocus If true, the play button requests focus on first composition (TV)
  */
 @Composable
@@ -86,6 +90,9 @@ fun PlayerBar(
     modifier: Modifier = Modifier,
     buttonSize: Dp = 64.dp,
     visualizerBarCount: Int = 4,
+    visualizerAmplitudes: List<Float>? = null,
+    errorTitle: String? = null,
+    errorDetails: String? = null,
     requestInitialFocus: Boolean = true,
 ) {
     val focusRequester = remember { FocusRequester() }
@@ -101,13 +108,27 @@ fun PlayerBar(
         modifier = modifier,
         horizontalAlignment = Alignment.CenterHorizontally,
     ) {
-        // Branding title
-        Text(
-            text = title,
-            style = MaterialTheme.typography.titleMedium,
-            fontWeight = FontWeight.Bold,
-            color = MaterialTheme.colorScheme.onSurface,
-        )
+        // Title: show error message when ERROR state, otherwise branding
+        if (state == PlayerBarState.ERROR && errorTitle != null) {
+            val displayText = if (errorDetails != null) {
+                "$errorTitle ($errorDetails)"
+            } else {
+                errorTitle
+            }
+            Text(
+                text = displayText,
+                style = MaterialTheme.typography.titleMedium,
+                fontWeight = FontWeight.Bold,
+                color = MaterialTheme.colorScheme.error,
+            )
+        } else {
+            Text(
+                text = title,
+                style = MaterialTheme.typography.titleMedium,
+                fontWeight = FontWeight.Bold,
+                color = MaterialTheme.colorScheme.onSurface,
+            )
+        }
 
         Spacer(modifier = Modifier.height(16.dp))
 
@@ -121,6 +142,7 @@ fun PlayerBar(
                 AudioVisualizer(
                     barCount = visualizerBarCount,
                     barColor = MaterialTheme.colorScheme.primary,
+                    amplitudes = visualizerAmplitudes,
                 )
                 Spacer(modifier = Modifier.width(16.dp))
             }
@@ -176,6 +198,7 @@ fun PlayerBar(
                 AudioVisualizer(
                     barCount = visualizerBarCount,
                     barColor = MaterialTheme.colorScheme.primary,
+                    amplitudes = visualizerAmplitudes,
                 )
             }
         }

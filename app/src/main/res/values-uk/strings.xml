@@ -11,6 +11,9 @@
     <string name="notitification_action_pause">"Зупинити прослуховування"</string>
     <string name="permission_denied_title">Доступ заборонено</string>
     <string name="permission_denied_message">Дозвіл на сповіщення необхідний для показу сповіщень. Будь ласка, увімкніть його в налаштуваннях додатку.</string>
+    <string name="audio_permission_rationale_title">Аудіо візуалізатор</string>
+    <string name="audio_permission_rationale_message">Щоб показувати візуалізатор, що реагує на музику, додатку потрібен доступ до мікрофону. Це використовується лише локально для захоплення аудіо виходу.</string>
+    <string name="grant_permission">Надати</string>
     <string name="open_settings">Відкрити налаштування</string>
     <string name="cancel">Скасувати</string>
 
@@ -40,4 +43,5 @@
     <!-- Player -->
     <string name="player_buffering">Буферизація потоку</string>
     <string name="player_pause">Пауза</string>
+    <string name="player_error_friendly">Ой! Щось пішло не так</string>
 </resources>

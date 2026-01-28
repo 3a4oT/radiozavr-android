@@ -7,4 +7,14 @@ plugins {
     alias(libs.plugins.ksp) apply false
     alias(libs.plugins.compose.compiler) apply false
     id("com.google.dagger.hilt.android") version "2.59" apply false
+    id("org.jlleitschuh.gradle.ktlint") version "12.2.0"
+}
+
+allprojects {
+    apply(plugin = "org.jlleitschuh.gradle.ktlint")
+
+    configure<org.jlleitschuh.gradle.ktlint.KtlintExtension> {
+        android.set(true)
+        outputColorName.set("RED")
+    }
 }

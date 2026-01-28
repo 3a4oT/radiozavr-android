@@ -45,6 +45,10 @@ android {
 }
 
 dependencies {
+    // Core modules
+    implementation(project(":core:models"))
+    implementation(project(":core:ui-theme"))
+    implementation(project(":core:ui-components"))
 
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.appcompat)
@@ -61,6 +65,7 @@ dependencies {
     implementation(libs.androidx.navigation.compose)
     implementation(libs.kotlinx.coroutines.core)
     implementation(libs.kotlinx.coroutines.android)
+    implementation(libs.datastore.preferences)
     implementation(libs.androidx.hilt.navigation.compose)
     implementation(libs.androidx.hilt.lifecycle.viewmodel.compose)
 

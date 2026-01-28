@@ -23,14 +23,16 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
+import com.rovenskyi.radiolux.core.theme.RadioLuxTheme
 import com.rovenskyi.radio_lux_fm_lviv_streamer.ui.main.RadioPlayerScreen
-import com.rovenskyi.radio_lux_fm_lviv_streamer.ui.theme.RadioLuxFmLvivStreamerTheme
 import com.rovenskyi.radio_lux_fm_lviv_streamer.viewmodel.RadioPlayerViewModel
+import com.rovenskyi.radio_lux_fm_lviv_streamer.viewmodel.ThemeViewModel
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
     private val radioPlayerViewModel: RadioPlayerViewModel by viewModels()
+    private val themeViewModel: ThemeViewModel by viewModels()
 
     private var showDialog by mutableStateOf(false)
 
@@ -46,7 +48,9 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
-            RadioLuxFmLvivStreamerTheme {
+            val themeMode by themeViewModel.themeMode.collectAsState()
+
+            RadioLuxTheme(themeMode = themeMode) {
                 Surface(modifier = Modifier.fillMaxSize()) {
                     RadioPlayerScreen(viewModel = radioPlayerViewModel)
                     if (showDialog) {

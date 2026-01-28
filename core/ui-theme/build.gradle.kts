@@ -22,6 +22,7 @@ android {
 }
 
 dependencies {
+    implementation(project(":core:models"))
     implementation(libs.androidx.ui)
     implementation(libs.material3)
 }

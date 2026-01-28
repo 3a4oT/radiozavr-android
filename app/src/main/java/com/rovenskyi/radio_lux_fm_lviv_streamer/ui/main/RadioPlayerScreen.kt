@@ -18,9 +18,9 @@ import androidx.hilt.lifecycle.viewmodel.compose.hiltViewModel
 import com.rovenskyi.radio_lux_fm_lviv_streamer.R
 import com.rovenskyi.radio_lux_fm_lviv_streamer.domain.model.NetworkStatus
 import com.rovenskyi.radio_lux_fm_lviv_streamer.domain.model.PlayerState
+import com.rovenskyi.radiolux.core.components.background.RelaxingBackground
 import com.rovenskyi.radio_lux_fm_lviv_streamer.ui.components.ClockWidget
 import com.rovenskyi.radio_lux_fm_lviv_streamer.ui.components.LoadingIndicator
-import com.rovenskyi.radio_lux_fm_lviv_streamer.ui.components.RelaxingBackground
 import com.rovenskyi.radio_lux_fm_lviv_streamer.ui.main.error.NetworkErrorScreen
 import com.rovenskyi.radio_lux_fm_lviv_streamer.ui.main.error.PlayerErrorScreen
 import com.rovenskyi.radio_lux_fm_lviv_streamer.viewmodel.RadioPlayerViewModel

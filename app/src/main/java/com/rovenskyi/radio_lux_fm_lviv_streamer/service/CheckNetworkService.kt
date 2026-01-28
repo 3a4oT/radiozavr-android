@@ -45,10 +45,6 @@ class CheckNetworkService @Inject constructor(@param:ApplicationContext private 
         connectivityManager.registerNetworkCallback(request, networkCallback)
     }
 
-    fun unregister() {
-        connectivityManager.unregisterNetworkCallback(networkCallback)
-    }
-
     private fun isNetworkAvailable(connectivityManager: ConnectivityManager): Boolean {
         val activeNetwork: Network? = connectivityManager.activeNetwork
         val capabilities: NetworkCapabilities? =

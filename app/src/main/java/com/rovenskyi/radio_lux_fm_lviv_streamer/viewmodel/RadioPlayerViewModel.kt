@@ -4,67 +4,62 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.rovenskyi.radio_lux_fm_lviv_streamer.domain.model.NetworkStatus
 import com.rovenskyi.radio_lux_fm_lviv_streamer.domain.model.PlayerState
-import com.rovenskyi.radio_lux_fm_lviv_streamer.domain.usecase.*
+import com.rovenskyi.radio_lux_fm_lviv_streamer.domain.usecase.ClearErrorUseCase
+import com.rovenskyi.radio_lux_fm_lviv_streamer.domain.usecase.ObserveNetworkStatusUseCase
+import com.rovenskyi.radio_lux_fm_lviv_streamer.domain.usecase.ObservePlayerErrorUseCase
+import com.rovenskyi.radio_lux_fm_lviv_streamer.domain.usecase.ObservePlayerStateUseCase
+import com.rovenskyi.radio_lux_fm_lviv_streamer.domain.usecase.PlayRadioUseCase
+import com.rovenskyi.radio_lux_fm_lviv_streamer.domain.usecase.RefreshPlayerStateUseCase
+import com.rovenskyi.radio_lux_fm_lviv_streamer.domain.usecase.StopRadioUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
-import kotlinx.coroutines.flow.*
+import kotlinx.coroutines.flow.SharingStarted
+import kotlinx.coroutines.flow.StateFlow
+import kotlinx.coroutines.flow.combine
+import kotlinx.coroutines.flow.stateIn
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 data class RadioPlayerUiState(
     val playerState: PlayerState = PlayerState.STOPPED,
     val networkStatus: NetworkStatus = NetworkStatus.AVAILABLE,
-    val errorMessage: String? = null
+    val errorMessage: String? = null,
 )
 
 @HiltViewModel
 class RadioPlayerViewModel @Inject constructor(
     private val playRadioUseCase: PlayRadioUseCase,
     private val stopRadioUseCase: StopRadioUseCase,
-    private val observePlayerStateUseCase: ObservePlayerStateUseCase,
-    private val observeNetworkStatusUseCase: ObserveNetworkStatusUseCase,
-    private val observePlayerErrorUseCase: ObservePlayerErrorUseCase,
+    observePlayerStateUseCase: ObservePlayerStateUseCase,
+    observeNetworkStatusUseCase: ObserveNetworkStatusUseCase,
+    observePlayerErrorUseCase: ObservePlayerErrorUseCase,
     private val refreshPlayerStateUseCase: RefreshPlayerStateUseCase,
-    private val clearErrorUseCase: ClearErrorUseCase
+    private val clearErrorUseCase: ClearErrorUseCase,
 ) : ViewModel() {
 
-    private val _uiState = MutableStateFlow(RadioPlayerUiState())
-    val uiState: StateFlow<RadioPlayerUiState> = _uiState.asStateFlow()
+    val uiState: StateFlow<RadioPlayerUiState> = combine(
+        observePlayerStateUseCase(),
+        observeNetworkStatusUseCase(),
+        observePlayerErrorUseCase(),
+    ) { playerState, networkStatus, errorMessage ->
+        RadioPlayerUiState(
+            playerState = playerState,
+            networkStatus = networkStatus,
+            errorMessage = errorMessage,
+        )
+    }.stateIn(
+        scope = viewModelScope,
+        started = SharingStarted.WhileSubscribed(5_000),
+        initialValue = RadioPlayerUiState(),
+    )
 
     init {
         clearError()
-        observePlayerState()
-        observeNetworkStatus()
-        observePlayerError()
         refreshState()
-    }
-
-    private fun observePlayerState() {
-        viewModelScope.launch {
-            observePlayerStateUseCase().collect { state ->
-                _uiState.update { it.copy(playerState = state) }
-            }
-        }
-    }
-
-    private fun observeNetworkStatus() {
-        viewModelScope.launch {
-            observeNetworkStatusUseCase().collect { status ->
-                _uiState.update { it.copy(networkStatus = status) }
-            }
-        }
-    }
-
-    private fun observePlayerError() {
-        viewModelScope.launch {
-            observePlayerErrorUseCase().collect { error ->
-                _uiState.update { it.copy(errorMessage = error) }
-            }
-        }
     }
 
     fun togglePlayStop() {
         viewModelScope.launch {
-            if (_uiState.value.playerState == PlayerState.PLAYING) {
+            if (uiState.value.playerState == PlayerState.PLAYING) {
                 stopRadioUseCase()
             } else {
                 playRadioUseCase()

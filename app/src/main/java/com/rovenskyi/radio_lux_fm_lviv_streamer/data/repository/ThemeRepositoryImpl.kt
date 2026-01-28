@@ -18,7 +18,7 @@ private val Context.themeDataStore: DataStore<Preferences> by preferencesDataSto
 
 @Singleton
 class ThemeRepositoryImpl @Inject constructor(
-    @ApplicationContext private val context: Context,
+    @param:ApplicationContext private val context: Context,
 ) : ThemeRepository {
 
     private val themeModeKey = stringPreferencesKey("theme_mode")

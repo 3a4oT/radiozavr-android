@@ -1,39 +1,33 @@
 package com.rovenskyi.radio_lux_fm_lviv_streamer.ui.main
 
-import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.width
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.PlayArrow
+import androidx.compose.material.icons.filled.Refresh
 import androidx.compose.material.icons.filled.Settings
-import androidx.compose.material3.Button
+import androidx.compose.material.icons.filled.Stop
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
-import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.focus.FocusRequester
-import androidx.compose.ui.focus.focusRequester
-import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
-import androidx.compose.ui.unit.dp
 import androidx.hilt.lifecycle.viewmodel.compose.hiltViewModel
 import com.rovenskyi.radiolux.core.components.background.RelaxingBackground
+import com.rovenskyi.radiolux.core.components.player.PlayerBar
+import com.rovenskyi.radiolux.core.components.player.PlayerBarState
 import com.rovenskyi.radiolux.core.theme.LocalDimensions
 import com.rovenskyi.radio_lux_fm_lviv_streamer.R
 import com.rovenskyi.radio_lux_fm_lviv_streamer.domain.model.NetworkStatus
 import com.rovenskyi.radio_lux_fm_lviv_streamer.domain.model.PlayerState
 import com.rovenskyi.radio_lux_fm_lviv_streamer.ui.components.ClockWidget
-import com.rovenskyi.radio_lux_fm_lviv_streamer.ui.components.LoadingIndicator
 import com.rovenskyi.radio_lux_fm_lviv_streamer.ui.main.error.NetworkErrorScreen
 import com.rovenskyi.radio_lux_fm_lviv_streamer.ui.main.error.PlayerErrorScreen
 import com.rovenskyi.radio_lux_fm_lviv_streamer.viewmodel.RadioPlayerViewModel
@@ -64,9 +58,6 @@ fun RadioPlayerScreen(
         }
 
         when {
-            uiState.playerState == PlayerState.ERROR -> {
-                PlayerErrorScreen(uiState.errorMessage) { viewModel.retry() }
-            }
             uiState.networkStatus == NetworkStatus.UNAVAILABLE -> {
                 NetworkErrorScreen { viewModel.retry() }
             }
@@ -74,6 +65,7 @@ fun RadioPlayerScreen(
                 RadioPlayerContent(
                     playerState = uiState.playerState,
                     onTogglePlayStop = { viewModel.togglePlayStop() },
+                    onRetry = { viewModel.retry() },
                 )
             }
         }
@@ -81,59 +73,52 @@ fun RadioPlayerScreen(
 }
 
 @Composable
-fun RadioPlayerContent(
+private fun RadioPlayerContent(
     playerState: PlayerState,
     onTogglePlayStop: () -> Unit,
+    onRetry: () -> Unit,
 ) {
-    if (playerState == PlayerState.LOADING) {
-        LoadingIndicator()
-    } else {
-        Column(
+    val dimensions = LocalDimensions.current
+
+    Column(
+        modifier = Modifier
+            .fillMaxSize()
+            .padding(dimensions.paddingMedium),
+        verticalArrangement = Arrangement.SpaceBetween,
+        horizontalAlignment = Alignment.CenterHorizontally,
+    ) {
+        // Top: Widget area (will be WidgetStack in future)
+        Box(
             modifier = Modifier
-                .fillMaxSize()
-                .padding(16.dp),
-            verticalArrangement = Arrangement.Center,
-            horizontalAlignment = Alignment.CenterHorizontally,
+                .weight(1f)
+                .fillMaxWidth(),
+            contentAlignment = Alignment.Center,
         ) {
+            // For now, show clock. Will be replaced with WidgetStack
             ClockWidget()
-            Spacer(modifier = Modifier.height(20.dp))
-            Image(
-                modifier = Modifier
-                    .width(300.dp)
-                    .height(100.dp),
-                painter = painterResource(id = R.drawable.logo_lux),
-                contentDescription = stringResource(R.string.app_name),
-            )
-            Spacer(modifier = Modifier.height(20.dp))
-            val focusRequester = remember { FocusRequester() }
-            LaunchedEffect(Unit) {
-                focusRequester.requestFocus()
-            }
-            Button(
-                onClick = onTogglePlayStop,
-                modifier = Modifier
-                    .width(60.dp)
-                    .height(60.dp)
-                    .focusRequester(focusRequester),
-            ) {
-                Image(
-                    modifier = Modifier
-                        .width(40.dp)
-                        .height(40.dp),
-                    painter = painterResource(
-                        id = if (playerState == PlayerState.PLAYING) {
-                            R.drawable.ic_stop
-                        } else {
-                            R.drawable.ic_play
-                        },
-                    ),
-                    contentDescription = if (playerState == PlayerState.PLAYING) {
-                        stringResource(R.string.stop_button)
-                    } else {
-                        stringResource(R.string.play_button)
-                    },
-                )
-            }
         }
+
+        // Bottom: Player bar with branding and visualizer
+        PlayerBar(
+            state = playerState.toPlayerBarState(),
+            title = stringResource(R.string.notitification_content_title),
+            playIcon = Icons.Default.PlayArrow,
+            pauseIcon = Icons.Default.Stop,
+            retryIcon = Icons.Default.Refresh,
+            playContentDescription = stringResource(R.string.play_button),
+            pauseContentDescription = stringResource(R.string.player_pause),
+            retryContentDescription = stringResource(R.string.retry_button),
+            bufferingContentDescription = stringResource(R.string.player_buffering),
+            onPlayClick = onTogglePlayStop,
+            onRetryClick = onRetry,
+            modifier = Modifier.padding(bottom = dimensions.paddingLarge),
+        )
     }
+}
+
+private fun PlayerState.toPlayerBarState(): PlayerBarState = when (this) {
+    PlayerState.STOPPED -> PlayerBarState.STOPPED
+    PlayerState.LOADING -> PlayerBarState.BUFFERING
+    PlayerState.PLAYING -> PlayerBarState.PLAYING
+    PlayerState.ERROR -> PlayerBarState.ERROR
 }

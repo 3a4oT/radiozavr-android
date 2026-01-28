@@ -27,4 +27,8 @@
 
     <!-- Loading -->
     <string name="loading_indicator_description">Завантаження</string>
+
+    <!-- Player -->
+    <string name="player_buffering">Буферизація потоку</string>
+    <string name="player_pause">Пауза</string>
 </resources>

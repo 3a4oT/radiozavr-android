@@ -27,4 +27,8 @@
 
     <!-- Loading -->
     <string name="loading_indicator_description">Loading</string>
+
+    <!-- Player -->
+    <string name="player_buffering">Buffering stream</string>
+    <string name="player_pause">Pause</string>
 </resources>

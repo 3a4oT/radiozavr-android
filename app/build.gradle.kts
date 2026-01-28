@@ -18,6 +18,8 @@ android {
         versionName = "0.1.1"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
+
+        buildConfigField("String", "STREAM_URL", "\"http://streamvideo.luxnet.ua/luxlviv/luxlviv.stream/chunklist.m3u8\"")
     }
 
     buildTypes {
@@ -36,6 +38,7 @@ android {
 
     buildFeatures {
         compose = true
+        buildConfig = true
     }
 
     testOptions {

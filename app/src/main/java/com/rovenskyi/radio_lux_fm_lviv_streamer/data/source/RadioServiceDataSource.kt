@@ -41,11 +41,6 @@ class RadioServiceDataSource @Inject constructor(
         context.startService(RadioService.createStopIntent(context))
     }
 
-    fun refreshState() {
-        val isPlaying = RadioService.isServicePlaying()
-        playerEventReceiver.postPlayerState(isPlaying)
-    }
-
     fun clearError() {
         playerEventReceiver.clearPlayerErrorMessage()
     }

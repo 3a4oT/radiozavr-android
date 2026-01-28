@@ -41,7 +41,6 @@ class RadioService : MediaSessionService(), Player.Listener {
     @OptIn(UnstableApi::class)
     override fun onCreate() {
         super.onCreate()
-        instance = this
 
         // Buffer configuration optimized for live HLS audio streaming
         val loadControl = DefaultLoadControl.Builder()
@@ -112,7 +111,6 @@ class RadioService : MediaSessionService(), Player.Listener {
         exoPlayer.release()
         mediaSession.release()
         stopForeground(STOP_FOREGROUND_REMOVE)
-        instance = null
         super.onDestroy()
     }
 
@@ -192,9 +190,6 @@ class RadioService : MediaSessionService(), Player.Listener {
         const val ACTION_PAUSE = "com.rovenskyi.radio_lux_fm_lviv_streamer.service.action.PAUSE"
         const val ACTION_STOP = "com.rovenskyi.radio_lux_fm_lviv_streamer.service.action.STOP"
 
-        @Volatile
-        private var instance: RadioService? = null
-
         fun createPlayIntent(context: Context): Intent {
             return Intent(context, RadioService::class.java).apply {
                 action = ACTION_PLAY
@@ -211,11 +206,6 @@ class RadioService : MediaSessionService(), Player.Listener {
             return Intent(context, RadioService::class.java).apply {
                 action = ACTION_STOP
             }
-        }
-
-        fun isServicePlaying(): Boolean {
-            val isPlaying = instance?.exoPlayer?.isPlaying ?: false
-            return isPlaying
         }
     }
 }

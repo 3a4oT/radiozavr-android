@@ -9,7 +9,6 @@ import com.rovenskyi.radio_lux_fm_lviv_streamer.domain.usecase.ObserveNetworkSta
 import com.rovenskyi.radio_lux_fm_lviv_streamer.domain.usecase.ObservePlayerErrorUseCase
 import com.rovenskyi.radio_lux_fm_lviv_streamer.domain.usecase.ObservePlayerStateUseCase
 import com.rovenskyi.radio_lux_fm_lviv_streamer.domain.usecase.PlayRadioUseCase
-import com.rovenskyi.radio_lux_fm_lviv_streamer.domain.usecase.RefreshPlayerStateUseCase
 import com.rovenskyi.radio_lux_fm_lviv_streamer.domain.usecase.StopRadioUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.SharingStarted
@@ -32,7 +31,6 @@ class RadioPlayerViewModel @Inject constructor(
     observePlayerStateUseCase: ObservePlayerStateUseCase,
     observeNetworkStatusUseCase: ObserveNetworkStatusUseCase,
     observePlayerErrorUseCase: ObservePlayerErrorUseCase,
-    private val refreshPlayerStateUseCase: RefreshPlayerStateUseCase,
     private val clearErrorUseCase: ClearErrorUseCase,
 ) : ViewModel() {
 
@@ -54,7 +52,6 @@ class RadioPlayerViewModel @Inject constructor(
 
     init {
         clearError()
-        refreshState()
     }
 
     fun togglePlayStop() {
@@ -71,12 +68,6 @@ class RadioPlayerViewModel @Inject constructor(
         viewModelScope.launch {
             clearError()
             playRadioUseCase()
-        }
-    }
-
-    fun refreshState() {
-        viewModelScope.launch {
-            refreshPlayerStateUseCase()
         }
     }
 

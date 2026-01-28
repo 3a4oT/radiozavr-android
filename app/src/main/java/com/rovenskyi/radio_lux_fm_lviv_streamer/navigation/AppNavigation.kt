@@ -20,6 +20,7 @@ fun AppNavigation(
     navController: NavHostController,
     languageRepository: LanguageRepository,
     modifier: Modifier = Modifier,
+    onRequestAudioPermission: () -> Unit = {},
 ) {
     NavHost(
         navController = navController,
@@ -29,6 +30,7 @@ fun AppNavigation(
         composable<RadioPlayer> {
             RadioPlayerScreen(
                 onSettingsClick = { navController.navigate(Settings) },
+                onRequestAudioPermission = onRequestAudioPermission,
             )
         }
         composable<Settings> {

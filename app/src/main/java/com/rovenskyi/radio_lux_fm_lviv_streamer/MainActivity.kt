@@ -75,6 +75,7 @@ class MainActivity : AppCompatActivity() {
             val navController = rememberNavController()
             var showPermissionDialog by remember { mutableStateOf(false) }
             var showAudioPermissionRationale by remember { mutableStateOf(false) }
+            var hasRequestedAudioPermission by remember { mutableStateOf(false) }
 
             // Set callback to update composable state
             permissionDeniedCallback = { showPermissionDialog = true }
@@ -85,6 +86,12 @@ class MainActivity : AppCompatActivity() {
                     AppNavigation(
                         navController = navController,
                         languageRepository = languageRepository,
+                        onRequestAudioPermission = {
+                            if (!hasRequestedAudioPermission) {
+                                hasRequestedAudioPermission = true
+                                requestAudioPermissionIfNeeded()
+                            }
+                        },
                     )
                     if (showPermissionDialog) {
                         PermissionDeniedDialog(
@@ -110,7 +117,6 @@ class MainActivity : AppCompatActivity() {
             }
         }
         requestNotificationPermissionIfNeeded()
-        requestAudioPermissionIfNeeded()
     }
 
     private fun requestNotificationPermissionIfNeeded() {

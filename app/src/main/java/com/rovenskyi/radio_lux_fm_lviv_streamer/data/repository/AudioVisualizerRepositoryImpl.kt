@@ -21,17 +21,21 @@ class AudioVisualizerRepositoryImpl @Inject constructor() : AudioVisualizerRepos
 
     private var audioVisualizerCapture: AudioVisualizerCapture? = null
     private var currentAudioSessionId: Int? = null
+    private var lastRequestedAudioSessionId: Int? = null
 
     private val _amplitudes = MutableStateFlow<List<Float>?>(null)
 
     override fun getAmplitudes(): Flow<List<Float>?> = _amplitudes.asStateFlow()
 
     override fun startCapture(audioSessionId: Int): Boolean {
+        // Always store the session ID for potential restart
+        lastRequestedAudioSessionId = audioSessionId
+
         if (audioSessionId == currentAudioSessionId && audioVisualizerCapture != null) {
             return true
         }
 
-        stopCapture()
+        stopCaptureInternal()
         currentAudioSessionId = audioSessionId
 
         return try {
@@ -55,6 +59,17 @@ class AudioVisualizerRepositoryImpl @Inject constructor() : AudioVisualizerRepos
     }
 
     override fun stopCapture() {
+        stopCaptureInternal()
+        lastRequestedAudioSessionId = null
+    }
+
+    override fun restartCapture() {
+        val sessionId = lastRequestedAudioSessionId ?: return
+        stopCaptureInternal()
+        startCapture(sessionId)
+    }
+
+    private fun stopCaptureInternal() {
         amplitudesCollectionJob?.cancel()
         amplitudesCollectionJob = null
         audioVisualizerCapture?.release()

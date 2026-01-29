@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- About -->
+    <string name="about_title">About</string>
+    <string name="about_row_title">Details</string>
+    <string name="about_subtitle">Version, author and source code</string>
+    <string name="about_content_description">Application information</string>
+    <string name="about_group_application">Application</string>
+    <string name="about_version">Version</string>
+    <string name="about_build_type">Build Type</string>
+    <string name="about_build_debug">Debug</string>
+    <string name="about_build_release">Release</string>
+    <string name="about_author">Author</string>
+    <string name="about_author_name">Petro Rovenskyi</string>
+    <string name="about_source_code">Source Code</string>
+    <string name="about_github_url">github.com/3a4oT/radio-lux-fm-lviv-android-streamer</string>
+    <string name="about_source_code_content_description">Open GitHub repository</string>
+    <string name="about_group_permissions">Permissions</string>
+    <string name="about_permission_notifications">Notifications</string>
+    <string name="about_permission_notifications_subtitle">Show playback controls in notification</string>
+    <string name="about_permission_audio">Audio Visualizer</string>
+    <string name="about_permission_audio_subtitle">React to music with visual effects</string>
+    <string name="about_permission_status_granted">Granted</string>
+    <string name="about_permission_status_denied">Denied</string>
+    <string name="about_permission_status_not_asked">Not requested</string>
+    <string name="about_permission_content_description">Permission status: %1$s</string>
+</resources>

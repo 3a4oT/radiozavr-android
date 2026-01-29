@@ -28,6 +28,7 @@ dependencies {
     implementation(platform(libs.compose.bom))
     implementation(libs.androidx.ui)
     implementation(libs.material3)
+    implementation(libs.material.icons.extended)
     implementation(libs.androidx.ui.tooling.preview)
     debugImplementation(libs.androidx.ui.tooling)
 }

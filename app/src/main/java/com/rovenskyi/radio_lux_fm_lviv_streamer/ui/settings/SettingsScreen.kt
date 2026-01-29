@@ -28,6 +28,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import androidx.hilt.lifecycle.viewmodel.compose.hiltViewModel
+import com.rovenskyi.radio_lux_fm_lviv_streamer.BuildConfig
 import com.rovenskyi.radio_lux_fm_lviv_streamer.R
 import com.rovenskyi.radio_lux_fm_lviv_streamer.domain.repository.LanguageRepository
 import com.rovenskyi.radio_lux_fm_lviv_streamer.viewmodel.ThemeViewModel
@@ -44,30 +45,16 @@ fun SettingsScreen(
     onThemeClick: () -> Unit,
     onLanguageClick: () -> Unit,
     onPlaybackClick: () -> Unit,
+    onAboutClick: () -> Unit,
     modifier: Modifier = Modifier,
     themeViewModel: ThemeViewModel = hiltViewModel(),
 ) {
     val themeMode by themeViewModel.themeMode.collectAsState()
 
-    val currentThemeLabel = when (themeMode) {
-        ThemeMode.LIGHT -> stringResource(R.string.settings_theme_light)
-        ThemeMode.DARK -> stringResource(R.string.settings_theme_dark)
-        ThemeMode.AUTO -> stringResource(R.string.settings_theme_auto)
-    }
-
-    val currentLanguageMode = languageRepository.getLanguageMode()
-    val currentLanguageLabel = when (currentLanguageMode) {
-        LanguageMode.SYSTEM -> stringResource(R.string.settings_language_system)
-        LanguageMode.UKRAINIAN -> stringResource(R.string.settings_language_ukrainian)
-        LanguageMode.ENGLISH -> stringResource(R.string.settings_language_english)
-    }
-
     Scaffold(
         topBar = {
             TopAppBar(
-                title = {
-                    Text(text = stringResource(R.string.settings_title))
-                },
+                title = { Text(text = stringResource(R.string.settings_title)) },
                 navigationIcon = {
                     IconButton(onClick = onBackClick) {
                         Icon(
@@ -89,53 +76,86 @@ fun SettingsScreen(
                 .padding(paddingValues)
                 .verticalScroll(rememberScrollState()),
         ) {
-            // Appearance settings group
-            SettingsGroup(
-                title = stringResource(R.string.settings_group_appearance),
-            ) {
-                SettingsRow(
-                    title = stringResource(R.string.settings_theme_title),
-                    subtitle = stringResource(R.string.settings_theme_subtitle),
-                    onClick = onThemeClick,
-                    contentDescription = stringResource(
-                        R.string.settings_theme_content_description,
-                        currentThemeLabel,
-                    ),
-                ) {
-                    SettingsValueWithArrow(value = currentThemeLabel)
-                }
-            }
+            AppearanceGroup(themeMode = themeMode, onThemeClick = onThemeClick)
+            LanguageGroup(languageRepository = languageRepository, onLanguageClick = onLanguageClick)
+            PlaybackGroup(onPlaybackClick = onPlaybackClick)
+            AboutGroup(onAboutClick = onAboutClick)
+        }
+    }
+}
 
-            // Language settings group
-            SettingsGroup(
-                title = stringResource(R.string.settings_group_language),
-            ) {
-                SettingsRow(
-                    title = stringResource(R.string.settings_language_title),
-                    subtitle = stringResource(R.string.settings_language_subtitle),
-                    onClick = onLanguageClick,
-                    contentDescription = stringResource(
-                        R.string.settings_language_content_description,
-                        currentLanguageLabel,
-                    ),
-                ) {
-                    SettingsValueWithArrow(value = currentLanguageLabel)
-                }
-            }
+@Composable
+private fun AppearanceGroup(themeMode: ThemeMode, onThemeClick: () -> Unit) {
+    val currentThemeLabel = when (themeMode) {
+        ThemeMode.LIGHT -> stringResource(R.string.settings_theme_light)
+        ThemeMode.DARK -> stringResource(R.string.settings_theme_dark)
+        ThemeMode.AUTO -> stringResource(R.string.settings_theme_auto)
+    }
 
-            // Playback settings group
-            SettingsGroup(
-                title = stringResource(R.string.settings_group_playback),
-            ) {
-                SettingsRow(
-                    title = stringResource(R.string.settings_playback_title),
-                    subtitle = stringResource(R.string.settings_playback_subtitle),
-                    onClick = onPlaybackClick,
-                    contentDescription = stringResource(R.string.settings_playback_content_description),
-                ) {
-                    SettingsValueWithArrow()
-                }
-            }
+    SettingsGroup(title = stringResource(R.string.settings_group_appearance)) {
+        SettingsRow(
+            title = stringResource(R.string.settings_theme_title),
+            subtitle = stringResource(R.string.settings_theme_subtitle),
+            onClick = onThemeClick,
+            contentDescription = stringResource(R.string.settings_theme_content_description, currentThemeLabel),
+        ) {
+            SettingsValueWithArrow(value = currentThemeLabel)
+        }
+    }
+}
+
+@Composable
+private fun LanguageGroup(languageRepository: LanguageRepository, onLanguageClick: () -> Unit) {
+    val currentLanguageMode = languageRepository.getLanguageMode()
+    val currentLanguageLabel = when (currentLanguageMode) {
+        LanguageMode.SYSTEM -> stringResource(R.string.settings_language_system)
+        LanguageMode.UKRAINIAN -> stringResource(R.string.settings_language_ukrainian)
+        LanguageMode.ENGLISH -> stringResource(R.string.settings_language_english)
+    }
+
+    SettingsGroup(title = stringResource(R.string.settings_group_language)) {
+        SettingsRow(
+            title = stringResource(R.string.settings_language_title),
+            subtitle = stringResource(R.string.settings_language_subtitle),
+            onClick = onLanguageClick,
+            contentDescription = stringResource(R.string.settings_language_content_description, currentLanguageLabel),
+        ) {
+            SettingsValueWithArrow(value = currentLanguageLabel)
+        }
+    }
+}
+
+@Composable
+private fun PlaybackGroup(onPlaybackClick: () -> Unit) {
+    SettingsGroup(title = stringResource(R.string.settings_group_playback)) {
+        SettingsRow(
+            title = stringResource(R.string.settings_playback_title),
+            subtitle = stringResource(R.string.settings_playback_subtitle),
+            onClick = onPlaybackClick,
+            contentDescription = stringResource(R.string.settings_playback_content_description),
+        ) {
+            SettingsValueWithArrow()
+        }
+    }
+}
+
+@Composable
+private fun AboutGroup(onAboutClick: () -> Unit) {
+    val buildTypeLabel = if (BuildConfig.DEBUG) {
+        stringResource(R.string.about_build_debug)
+    } else {
+        stringResource(R.string.about_build_release)
+    }
+    val aboutValue = "${BuildConfig.VERSION_NAME} $buildTypeLabel"
+
+    SettingsGroup(title = stringResource(R.string.about_title)) {
+        SettingsRow(
+            title = stringResource(R.string.about_row_title),
+            subtitle = stringResource(R.string.about_subtitle),
+            onClick = onAboutClick,
+            contentDescription = stringResource(R.string.about_content_description),
+        ) {
+            SettingsValueWithArrow(value = aboutValue)
         }
     }
 }

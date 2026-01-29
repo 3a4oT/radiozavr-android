@@ -53,4 +53,29 @@
     <string name="player_buffering">Buffering stream</string>
     <string name="player_pause">Pause</string>
     <string name="player_error_friendly">Oops! Something went wrong</string>
+
+    <!-- About -->
+    <string name="about_title">Про застосунок</string>
+    <string name="about_row_title">Деталі</string>
+    <string name="about_subtitle">Версія, автор та вихідний код</string>
+    <string name="about_content_description">Інформація про застосунок</string>
+    <string name="about_group_application">Застосунок</string>
+    <string name="about_version">Версія</string>
+    <string name="about_build_type">Тип збірки</string>
+    <string name="about_build_debug">Debug</string>
+    <string name="about_build_release">Release</string>
+    <string name="about_author">Автор</string>
+    <string name="about_author_name">Петро Ровенський</string>
+    <string name="about_source_code">Вихідний код</string>
+    <string name="about_github_url">github.com/3a4oT/radio-lux-fm-lviv-android-streamer</string>
+    <string name="about_source_code_content_description">Відкрити репозиторій GitHub</string>
+    <string name="about_group_permissions">Дозволи</string>
+    <string name="about_permission_notifications">Сповіщення</string>
+    <string name="about_permission_notifications_subtitle">Показувати елементи керування у сповіщенні</string>
+    <string name="about_permission_audio">Аудіо візуалізатор</string>
+    <string name="about_permission_audio_subtitle">Реагувати на музику візуальними ефектами</string>
+    <string name="about_permission_status_granted">Надано</string>
+    <string name="about_permission_status_denied">Відхилено</string>
+    <string name="about_permission_status_not_asked">Не запитано</string>
+    <string name="about_permission_content_description">Статус дозволу: %1$s</string>
 </resources>

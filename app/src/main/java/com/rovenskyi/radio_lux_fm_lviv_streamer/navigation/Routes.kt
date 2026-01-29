@@ -30,3 +30,6 @@ data object Language : AppRoute
 
 @Serializable
 data object Playback : AppRoute
+
+@Serializable
+data object About : AppRoute

@@ -14,8 +14,10 @@ import androidx.compose.material.icons.filled.Stop
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
+import kotlinx.coroutines.delay
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
@@ -29,17 +31,28 @@ import com.rovenskyi.radio_lux_fm_lviv_streamer.domain.model.NetworkStatus
 import com.rovenskyi.radio_lux_fm_lviv_streamer.domain.model.PlayerState
 import com.rovenskyi.radio_lux_fm_lviv_streamer.ui.components.ClockWidget
 import com.rovenskyi.radio_lux_fm_lviv_streamer.ui.main.error.NetworkErrorScreen
-import com.rovenskyi.radio_lux_fm_lviv_streamer.ui.main.error.PlayerErrorScreen
 import com.rovenskyi.radio_lux_fm_lviv_streamer.viewmodel.RadioPlayerViewModel
+
+private const val AUDIO_PERMISSION_DELAY_MS = 3000L
 
 @Composable
 fun RadioPlayerScreen(
     onSettingsClick: () -> Unit,
     modifier: Modifier = Modifier,
+    onRequestAudioPermission: () -> Unit = {},
     viewModel: RadioPlayerViewModel = hiltViewModel(),
 ) {
     val uiState by viewModel.uiState.collectAsState()
+    val visualizerAmplitudes by viewModel.visualizerAmplitudes.collectAsState()
     val dimensions = LocalDimensions.current
+
+    // Request audio permission 3 seconds after successful playback starts
+    LaunchedEffect(uiState.playerState) {
+        if (uiState.playerState == PlayerState.PLAYING) {
+            delay(AUDIO_PERMISSION_DELAY_MS)
+            onRequestAudioPermission()
+        }
+    }
 
     Box(modifier = modifier.fillMaxSize()) {
         RelaxingBackground()
@@ -64,6 +77,8 @@ fun RadioPlayerScreen(
             else -> {
                 RadioPlayerContent(
                     playerState = uiState.playerState,
+                    errorMessage = uiState.errorMessage,
+                    visualizerAmplitudes = visualizerAmplitudes,
                     onTogglePlayStop = { viewModel.togglePlayStop() },
                     onRetry = { viewModel.retry() },
                 )
@@ -75,6 +90,8 @@ fun RadioPlayerScreen(
 @Composable
 private fun RadioPlayerContent(
     playerState: PlayerState,
+    errorMessage: String?,
+    visualizerAmplitudes: List<Float>?,
     onTogglePlayStop: () -> Unit,
     onRetry: () -> Unit,
 ) {
@@ -111,6 +128,9 @@ private fun RadioPlayerContent(
             bufferingContentDescription = stringResource(R.string.player_buffering),
             onPlayClick = onTogglePlayStop,
             onRetryClick = onRetry,
+            visualizerAmplitudes = visualizerAmplitudes,
+            errorTitle = stringResource(R.string.player_error_friendly),
+            errorDetails = errorMessage,
             modifier = Modifier.padding(bottom = dimensions.paddingLarge),
         )
     }

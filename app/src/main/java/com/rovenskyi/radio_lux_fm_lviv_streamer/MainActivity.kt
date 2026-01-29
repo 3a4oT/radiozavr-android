@@ -51,7 +51,14 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
+    private val requestAudioPermissionLauncher = registerForActivityResult(
+        ActivityResultContracts.RequestPermission(),
+    ) { _: Boolean ->
+        // Audio permission is optional - visualizer will fall back to animation
+    }
+
     private var permissionDeniedCallback: (() -> Unit)? = null
+    private var audioPermissionRationaleCallback: (() -> Unit)? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         val splashScreen = installSplashScreen()
@@ -67,15 +74,24 @@ class MainActivity : AppCompatActivity() {
             val themeMode by themeViewModel.themeMode.collectAsState()
             val navController = rememberNavController()
             var showPermissionDialog by remember { mutableStateOf(false) }
+            var showAudioPermissionRationale by remember { mutableStateOf(false) }
+            var hasRequestedAudioPermission by remember { mutableStateOf(false) }
 
             // Set callback to update composable state
             permissionDeniedCallback = { showPermissionDialog = true }
+            audioPermissionRationaleCallback = { showAudioPermissionRationale = true }
 
             RadioLuxTheme(themeMode = themeMode) {
                 Surface(modifier = Modifier.fillMaxSize()) {
                     AppNavigation(
                         navController = navController,
                         languageRepository = languageRepository,
+                        onRequestAudioPermission = {
+                            if (!hasRequestedAudioPermission) {
+                                hasRequestedAudioPermission = true
+                                requestAudioPermissionIfNeeded()
+                            }
+                        },
                     )
                     if (showPermissionDialog) {
                         PermissionDeniedDialog(
@@ -83,6 +99,17 @@ class MainActivity : AppCompatActivity() {
                             onOpenSettings = {
                                 showPermissionDialog = false
                                 openAppSettings()
+                            },
+                        )
+                    }
+                    if (showAudioPermissionRationale) {
+                        AudioPermissionRationaleDialog(
+                            onDismiss = { showAudioPermissionRationale = false },
+                            onGrant = {
+                                showAudioPermissionRationale = false
+                                requestAudioPermissionLauncher.launch(
+                                    Manifest.permission.RECORD_AUDIO
+                                )
                             },
                         )
                     }
@@ -117,6 +144,26 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
+    private fun requestAudioPermissionIfNeeded() {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.P) {
+            if (ContextCompat.checkSelfPermission(
+                    this,
+                    Manifest.permission.RECORD_AUDIO,
+                ) != PackageManager.PERMISSION_GRANTED
+            ) {
+                if (ActivityCompat.shouldShowRequestPermissionRationale(
+                        this,
+                        Manifest.permission.RECORD_AUDIO,
+                    )
+                ) {
+                    audioPermissionRationaleCallback?.invoke()
+                } else {
+                    requestAudioPermissionLauncher.launch(Manifest.permission.RECORD_AUDIO)
+                }
+            }
+        }
+    }
+
     private fun openAppSettings() {
         val intent = Intent(Settings.ACTION_APPLICATION_DETAILS_SETTINGS).apply {
             data = Uri.fromParts("package", packageName, null)
@@ -137,6 +184,28 @@ private fun PermissionDeniedDialog(
         confirmButton = {
             Button(onClick = onOpenSettings) {
                 Text(text = stringResource(id = R.string.open_settings))
+            }
+        },
+        dismissButton = {
+            Button(onClick = onDismiss) {
+                Text(text = stringResource(id = R.string.cancel))
+            }
+        },
+    )
+}
+
+@Composable
+private fun AudioPermissionRationaleDialog(
+    onDismiss: () -> Unit,
+    onGrant: () -> Unit,
+) {
+    AlertDialog(
+        onDismissRequest = onDismiss,
+        title = { Text(text = stringResource(id = R.string.audio_permission_rationale_title)) },
+        text = { Text(text = stringResource(id = R.string.audio_permission_rationale_message)) },
+        confirmButton = {
+            Button(onClick = onGrant) {
+                Text(text = stringResource(id = R.string.grant_permission))
             }
         },
         dismissButton = {

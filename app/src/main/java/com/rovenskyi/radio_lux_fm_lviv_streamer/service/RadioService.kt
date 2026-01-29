@@ -98,6 +98,7 @@ class RadioService : MediaSessionService(), Player.Listener {
             ACTION_STOP -> {
                 exoPlayer.stop()
                 playerEventReceiver.postPlayerState(false)
+                playerEventReceiver.postAudioSessionId(null)
                 updateNotification(isPlaying = false)
                 stopForeground(STOP_FOREGROUND_REMOVE)
                 stopSelf()
@@ -121,10 +122,12 @@ class RadioService : MediaSessionService(), Player.Listener {
         playerEventReceiver.postPlayerIsLoading(isLoading)
     }
 
+    @OptIn(UnstableApi::class)
     override fun onPlaybackStateChanged(state: Int) {
         super.onPlaybackStateChanged(state)
         if (state == Player.STATE_READY) {
             playerEventReceiver.postPlayerIsLoading(false)
+            playerEventReceiver.postAudioSessionId(exoPlayer.audioSessionId)
         } else if (state == Player.STATE_BUFFERING) {
             playerEventReceiver.postPlayerIsLoading(true)
         }

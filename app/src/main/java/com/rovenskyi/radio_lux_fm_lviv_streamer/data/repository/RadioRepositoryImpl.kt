@@ -30,6 +30,10 @@ class RadioRepositoryImpl @Inject constructor(
         return radioServiceDataSource.getPlayerError()
     }
 
+    override fun getAudioSessionId(): Flow<Int?> {
+        return radioServiceDataSource.getAudioSessionId()
+    }
+
     override suspend fun play() {
         radioServiceDataSource.play()
     }

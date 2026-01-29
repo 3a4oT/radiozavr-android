@@ -122,6 +122,7 @@ class RadioService : MediaSessionService(), Player.Listener {
         playerEventReceiver.postPlayerIsLoading(isLoading)
     }
 
+    @OptIn(UnstableApi::class)
     override fun onPlaybackStateChanged(state: Int) {
         super.onPlaybackStateChanged(state)
         if (state == Player.STATE_READY) {

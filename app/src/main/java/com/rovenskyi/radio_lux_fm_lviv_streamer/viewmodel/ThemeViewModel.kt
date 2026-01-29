@@ -2,8 +2,8 @@ package com.rovenskyi.radio_lux_fm_lviv_streamer.viewmodel
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.rovenskyi.radiolux.core.models.theme.ThemeMode
 import com.rovenskyi.radio_lux_fm_lviv_streamer.domain.repository.ThemeRepository
+import com.rovenskyi.radiolux.core.models.theme.ThemeMode
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.SharingStarted

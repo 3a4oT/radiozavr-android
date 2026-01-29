@@ -19,11 +19,11 @@ import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.hilt.lifecycle.viewmodel.compose.hiltViewModel
+import com.rovenskyi.radio_lux_fm_lviv_streamer.R
+import com.rovenskyi.radio_lux_fm_lviv_streamer.viewmodel.ThemeViewModel
 import com.rovenskyi.radiolux.core.components.settings.SelectableRow
 import com.rovenskyi.radiolux.core.components.settings.SettingsGroup
 import com.rovenskyi.radiolux.core.models.theme.ThemeMode
-import com.rovenskyi.radio_lux_fm_lviv_streamer.R
-import com.rovenskyi.radio_lux_fm_lviv_streamer.viewmodel.ThemeViewModel
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable

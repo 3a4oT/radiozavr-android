@@ -8,6 +8,7 @@ import androidx.navigation.compose.composable
 import com.rovenskyi.radio_lux_fm_lviv_streamer.domain.repository.LanguageRepository
 import com.rovenskyi.radio_lux_fm_lviv_streamer.ui.main.RadioPlayerScreen
 import com.rovenskyi.radio_lux_fm_lviv_streamer.ui.settings.LanguageScreen
+import com.rovenskyi.radio_lux_fm_lviv_streamer.ui.settings.PlaybackSettingsScreen
 import com.rovenskyi.radio_lux_fm_lviv_streamer.ui.settings.SettingsScreen
 import com.rovenskyi.radio_lux_fm_lviv_streamer.ui.settings.ThemeScreen
 
@@ -39,6 +40,7 @@ fun AppNavigation(
                 onBackClick = { navController.popBackStack() },
                 onThemeClick = { navController.navigate(Theme) },
                 onLanguageClick = { navController.navigate(Language) },
+                onPlaybackClick = { navController.navigate(Playback) },
             )
         }
         composable<Theme> {
@@ -49,6 +51,11 @@ fun AppNavigation(
         composable<Language> {
             LanguageScreen(
                 languageRepository = languageRepository,
+                onBackClick = { navController.popBackStack() },
+            )
+        }
+        composable<Playback> {
+            PlaybackSettingsScreen(
                 onBackClick = { navController.popBackStack() },
             )
         }

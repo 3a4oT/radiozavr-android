@@ -5,7 +5,7 @@ import kotlinx.coroutines.flow.Flow
 import javax.inject.Inject
 
 class ObserveAudioSessionIdUseCase @Inject constructor(
-    private val radioRepository: RadioRepository
+    private val radioRepository: RadioRepository,
 ) {
     operator fun invoke(): Flow<Int?> = radioRepository.getAudioSessionId()
 }

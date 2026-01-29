@@ -8,14 +8,14 @@ import kotlinx.coroutines.flow.combine
 import javax.inject.Inject
 
 class RadioRepositoryImpl @Inject constructor(
-    private val radioServiceDataSource: RadioServiceDataSource
+    private val radioServiceDataSource: RadioServiceDataSource,
 ) : RadioRepository {
 
     override fun getPlayerState(): Flow<PlayerState> {
         return combine(
             radioServiceDataSource.getPlayerState(),
             radioServiceDataSource.getPlayerIsLoading(),
-            radioServiceDataSource.getPlayerError()
+            radioServiceDataSource.getPlayerError(),
         ) { isPlaying, isLoading, error ->
             when {
                 error != null -> PlayerState.ERROR

@@ -19,7 +19,7 @@ import kotlinx.coroutines.flow.asStateFlow
  */
 class AudioVisualizerCapture(
     private val audioSessionId: Int,
-    private val barCount: Int = DEFAULT_BAR_COUNT
+    private val barCount: Int = DEFAULT_BAR_COUNT,
 ) {
     private var visualizer: Visualizer? = null
 
@@ -39,7 +39,7 @@ class AudioVisualizerCapture(
                         override fun onWaveFormDataCapture(
                             visualizer: Visualizer,
                             waveform: ByteArray,
-                            samplingRate: Int
+                            samplingRate: Int,
                         ) {
                             // Not used - we use FFT data
                         }
@@ -47,14 +47,14 @@ class AudioVisualizerCapture(
                         override fun onFftDataCapture(
                             visualizer: Visualizer,
                             fft: ByteArray,
-                            samplingRate: Int
+                            samplingRate: Int,
                         ) {
                             _amplitudes.value = computeAmplitudes(fft)
                         }
                     },
                     Visualizer.getMaxCaptureRate() / 2,
                     false,
-                    true
+                    true,
                 )
                 enabled = true
             }

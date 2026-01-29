@@ -4,6 +4,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.rovenskyi.radio_lux_fm_lviv_streamer.domain.model.NetworkStatus
 import com.rovenskyi.radio_lux_fm_lviv_streamer.domain.model.PlayerState
+import com.rovenskyi.radio_lux_fm_lviv_streamer.domain.repository.PlaybackSettingsRepository
 import com.rovenskyi.radio_lux_fm_lviv_streamer.domain.usecase.ClearErrorUseCase
 import com.rovenskyi.radio_lux_fm_lviv_streamer.domain.usecase.ObserveAudioSessionIdUseCase
 import com.rovenskyi.radio_lux_fm_lviv_streamer.domain.usecase.ObserveNetworkStatusUseCase
@@ -40,7 +41,15 @@ class RadioPlayerViewModel @Inject constructor(
     private val startVisualizerCaptureUseCase: StartVisualizerCaptureUseCase,
     private val stopVisualizerCaptureUseCase: StopVisualizerCaptureUseCase,
     private val clearErrorUseCase: ClearErrorUseCase,
+    playbackSettingsRepository: PlaybackSettingsRepository,
 ) : ViewModel() {
+
+    val autoPlayEnabled: StateFlow<Boolean> = playbackSettingsRepository.autoPlayEnabled
+        .stateIn(
+            scope = viewModelScope,
+            started = SharingStarted.Eagerly,
+            initialValue = false,
+        )
 
     val uiState: StateFlow<RadioPlayerUiState> = combine(
         observePlayerStateUseCase(),
@@ -95,6 +104,12 @@ class RadioPlayerViewModel @Inject constructor(
     fun retry() {
         viewModelScope.launch {
             clearError()
+            playRadioUseCase()
+        }
+    }
+
+    fun play() {
+        viewModelScope.launch {
             playRadioUseCase()
         }
     }

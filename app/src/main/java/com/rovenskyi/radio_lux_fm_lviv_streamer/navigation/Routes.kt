@@ -27,3 +27,6 @@ data object Theme : AppRoute
 
 @Serializable
 data object Language : AppRoute
+
+@Serializable
+data object Playback : AppRoute

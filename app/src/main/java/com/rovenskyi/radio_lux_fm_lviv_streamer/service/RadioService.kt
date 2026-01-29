@@ -9,10 +9,10 @@ import android.content.pm.PackageManager
 import android.content.pm.ServiceInfo
 import androidx.annotation.OptIn
 import androidx.core.app.ActivityCompat
-import androidx.core.app.ServiceCompat
 import androidx.core.app.NotificationChannelCompat
 import androidx.core.app.NotificationCompat
 import androidx.core.app.NotificationManagerCompat
+import androidx.core.app.ServiceCompat
 import androidx.media3.common.MediaItem
 import androidx.media3.common.PlaybackException
 import androidx.media3.common.Player
@@ -45,10 +45,10 @@ class RadioService : MediaSessionService(), Player.Listener {
         // Buffer configuration optimized for live HLS audio streaming
         val loadControl = DefaultLoadControl.Builder()
             .setBufferDurationsMs(
-                15_000,  // minBufferMs - 15 seconds (sufficient for live audio)
-                30_000,  // maxBufferMs - 30 seconds (limited for live to reduce latency)
-                2_500,   // bufferForPlaybackMs - fast playback start
-                5_000    // bufferForPlaybackAfterRebufferMs - stability after rebuffer
+                15_000, // minBufferMs - 15 seconds (sufficient for live audio)
+                30_000, // maxBufferMs - 30 seconds (limited for live to reduce latency)
+                2_500, // bufferForPlaybackMs - fast playback start
+                5_000, // bufferForPlaybackAfterRebufferMs - stability after rebuffer
             )
             .build()
 
@@ -78,7 +78,7 @@ class RadioService : MediaSessionService(), Player.Listener {
             this,
             NOTIFICATION_ID,
             buildNotification(false),
-            ServiceInfo.FOREGROUND_SERVICE_TYPE_MEDIA_PLAYBACK
+            ServiceInfo.FOREGROUND_SERVICE_TYPE_MEDIA_PLAYBACK,
         )
     }
 
@@ -152,13 +152,13 @@ class RadioService : MediaSessionService(), Player.Listener {
             NotificationCompat.Action(
                 android.R.drawable.ic_media_pause,
                 getString(R.string.notitification_action_pause),
-                PendingIntent.getService(this, 0, createPauseIntent(this), PendingIntent.FLAG_IMMUTABLE)
+                PendingIntent.getService(this, 0, createPauseIntent(this), PendingIntent.FLAG_IMMUTABLE),
             )
         } else {
             NotificationCompat.Action(
                 android.R.drawable.ic_media_play,
                 getString(R.string.notitification_action_play),
-                PendingIntent.getService(this, 0, createPlayIntent(this), PendingIntent.FLAG_IMMUTABLE)
+                PendingIntent.getService(this, 0, createPlayIntent(this), PendingIntent.FLAG_IMMUTABLE),
             )
         }
 
@@ -178,7 +178,7 @@ class RadioService : MediaSessionService(), Player.Listener {
         val notification = buildNotification(isPlaying)
         if (ActivityCompat.checkSelfPermission(
                 this,
-                Manifest.permission.POST_NOTIFICATIONS
+                Manifest.permission.POST_NOTIFICATIONS,
             ) != PackageManager.PERMISSION_GRANTED
         ) {
             return

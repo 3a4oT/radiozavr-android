@@ -10,4 +10,4 @@ interface RadioRepository {
     suspend fun play()
     suspend fun stop()
     suspend fun clearError()
-} 
+}

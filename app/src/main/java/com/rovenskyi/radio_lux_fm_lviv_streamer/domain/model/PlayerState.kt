@@ -4,5 +4,5 @@ enum class PlayerState {
     PLAYING,
     LOADING,
     STOPPED,
-    ERROR
-} 
+    ERROR,
+}

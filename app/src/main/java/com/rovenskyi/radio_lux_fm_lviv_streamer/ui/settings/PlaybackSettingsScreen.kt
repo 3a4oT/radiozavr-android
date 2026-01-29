@@ -22,10 +22,10 @@ import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.hilt.lifecycle.viewmodel.compose.hiltViewModel
-import com.rovenskyi.radiolux.core.components.settings.SettingsGroup
-import com.rovenskyi.radiolux.core.components.settings.SettingsRow
 import com.rovenskyi.radio_lux_fm_lviv_streamer.R
 import com.rovenskyi.radio_lux_fm_lviv_streamer.viewmodel.PlaybackSettingsViewModel
+import com.rovenskyi.radiolux.core.components.settings.SettingsGroup
+import com.rovenskyi.radiolux.core.components.settings.SettingsRow
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable

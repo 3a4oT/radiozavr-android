@@ -28,42 +28,42 @@ abstract class DataModule {
     @Binds
     @Singleton
     abstract fun bindRadioRepository(
-        radioRepositoryImpl: RadioRepositoryImpl
+        radioRepositoryImpl: RadioRepositoryImpl,
     ): RadioRepository
 
     @Binds
     @Singleton
     abstract fun bindNetworkRepository(
-        networkRepositoryImpl: NetworkRepositoryImpl
+        networkRepositoryImpl: NetworkRepositoryImpl,
     ): NetworkRepository
 
     @Binds
     @Singleton
     abstract fun bindThemeRepository(
-        themeRepositoryImpl: ThemeRepositoryImpl
+        themeRepositoryImpl: ThemeRepositoryImpl,
     ): ThemeRepository
 
     @Binds
     @Singleton
     abstract fun bindLanguageRepository(
-        languageRepositoryImpl: LanguageRepositoryImpl
+        languageRepositoryImpl: LanguageRepositoryImpl,
     ): LanguageRepository
 
     @Binds
     @Singleton
     abstract fun bindAudioVisualizerRepository(
-        audioVisualizerRepositoryImpl: AudioVisualizerRepositoryImpl
+        audioVisualizerRepositoryImpl: AudioVisualizerRepositoryImpl,
     ): AudioVisualizerRepository
 
     @Binds
     @Singleton
     abstract fun bindPlatformRepository(
-        platformRepositoryImpl: PlatformRepositoryImpl
+        platformRepositoryImpl: PlatformRepositoryImpl,
     ): PlatformRepository
 
     @Binds
     @Singleton
     abstract fun bindPlaybackSettingsRepository(
-        playbackSettingsRepositoryImpl: PlaybackSettingsRepositoryImpl
+        playbackSettingsRepositoryImpl: PlaybackSettingsRepositoryImpl,
     ): PlaybackSettingsRepository
-} 
+}

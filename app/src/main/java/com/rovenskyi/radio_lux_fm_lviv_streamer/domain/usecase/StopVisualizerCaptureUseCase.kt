@@ -4,7 +4,7 @@ import com.rovenskyi.radio_lux_fm_lviv_streamer.domain.repository.AudioVisualize
 import javax.inject.Inject
 
 class StopVisualizerCaptureUseCase @Inject constructor(
-    private val audioVisualizerRepository: AudioVisualizerRepository
+    private val audioVisualizerRepository: AudioVisualizerRepository,
 ) {
     operator fun invoke() = audioVisualizerRepository.stopCapture()
 }

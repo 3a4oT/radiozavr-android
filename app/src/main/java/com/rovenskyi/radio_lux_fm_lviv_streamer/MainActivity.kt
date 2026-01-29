@@ -30,13 +30,13 @@ import androidx.core.content.ContextCompat
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.compose.rememberNavController
-import com.rovenskyi.radiolux.core.theme.RadioLuxTheme
 import com.rovenskyi.radio_lux_fm_lviv_streamer.domain.repository.LanguageRepository
 import com.rovenskyi.radio_lux_fm_lviv_streamer.domain.repository.PlatformRepository
 import com.rovenskyi.radio_lux_fm_lviv_streamer.domain.repository.PlaybackSettingsRepository
 import com.rovenskyi.radio_lux_fm_lviv_streamer.domain.repository.RadioRepository
 import com.rovenskyi.radio_lux_fm_lviv_streamer.navigation.AppNavigation
 import com.rovenskyi.radio_lux_fm_lviv_streamer.viewmodel.ThemeViewModel
+import com.rovenskyi.radiolux.core.theme.RadioLuxTheme
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.delay
@@ -127,7 +127,7 @@ class MainActivity : AppCompatActivity() {
                             onGrant = {
                                 showAudioPermissionRationale = false
                                 requestAudioPermissionLauncher.launch(
-                                    Manifest.permission.RECORD_AUDIO
+                                    Manifest.permission.RECORD_AUDIO,
                                 )
                             },
                         )

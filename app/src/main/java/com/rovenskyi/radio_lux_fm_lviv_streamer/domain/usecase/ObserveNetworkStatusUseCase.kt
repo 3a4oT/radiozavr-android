@@ -7,4 +7,4 @@ import javax.inject.Inject
 
 class ObserveNetworkStatusUseCase @Inject constructor(private val networkRepository: NetworkRepository) {
     operator fun invoke(): Flow<NetworkStatus> = networkRepository.getNetworkStatus()
-} 
+}

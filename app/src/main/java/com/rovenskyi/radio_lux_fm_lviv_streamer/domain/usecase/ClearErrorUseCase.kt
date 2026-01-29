@@ -5,4 +5,4 @@ import javax.inject.Inject
 
 class ClearErrorUseCase @Inject constructor(private val radioRepository: RadioRepository) {
     suspend operator fun invoke() = radioRepository.clearError()
-} 
+}

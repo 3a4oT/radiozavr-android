@@ -28,13 +28,13 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import androidx.hilt.lifecycle.viewmodel.compose.hiltViewModel
+import com.rovenskyi.radio_lux_fm_lviv_streamer.R
+import com.rovenskyi.radio_lux_fm_lviv_streamer.domain.repository.LanguageRepository
+import com.rovenskyi.radio_lux_fm_lviv_streamer.viewmodel.ThemeViewModel
 import com.rovenskyi.radiolux.core.components.settings.SettingsGroup
 import com.rovenskyi.radiolux.core.components.settings.SettingsRow
 import com.rovenskyi.radiolux.core.models.language.LanguageMode
 import com.rovenskyi.radiolux.core.models.theme.ThemeMode
-import com.rovenskyi.radio_lux_fm_lviv_streamer.R
-import com.rovenskyi.radio_lux_fm_lviv_streamer.domain.repository.LanguageRepository
-import com.rovenskyi.radio_lux_fm_lviv_streamer.viewmodel.ThemeViewModel
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable

@@ -30,6 +30,7 @@ import androidx.core.content.ContextCompat
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.compose.rememberNavController
+import com.rovenskyi.radio_lux_fm_lviv_streamer.domain.repository.AudioVisualizerRepository
 import com.rovenskyi.radio_lux_fm_lviv_streamer.domain.repository.LanguageRepository
 import com.rovenskyi.radio_lux_fm_lviv_streamer.domain.repository.PlatformRepository
 import com.rovenskyi.radio_lux_fm_lviv_streamer.domain.repository.PlaybackSettingsRepository
@@ -60,6 +61,9 @@ class MainActivity : AppCompatActivity() {
     @Inject
     lateinit var radioRepository: RadioRepository
 
+    @Inject
+    lateinit var audioVisualizerRepository: AudioVisualizerRepository
+
     private var autoStopJob: Job? = null
 
     private val requestPermissionLauncher = registerForActivityResult(
@@ -72,8 +76,11 @@ class MainActivity : AppCompatActivity() {
 
     private val requestAudioPermissionLauncher = registerForActivityResult(
         ActivityResultContracts.RequestPermission(),
-    ) { _: Boolean ->
-        // Audio permission is optional - visualizer will fall back to animation
+    ) { isGranted: Boolean ->
+        if (isGranted) {
+            // Restart visualizer capture to use real audio data
+            audioVisualizerRepository.restartCapture()
+        }
     }
 
     private var permissionDeniedCallback: (() -> Unit)? = null

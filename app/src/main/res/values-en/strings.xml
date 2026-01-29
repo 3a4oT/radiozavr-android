@@ -1,5 +1,60 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <string name="app_name">Radio Lux FM Lviv</string>
+    <string name="play_button">Stream Radio Lux FM Lviv</string>
+    <string name="network_error">No network connection</string>
+    <string name="retry_button">Retry</string>
+    <string name="notitification_content_title">Radio Lux FM Lviv 104.7</string>
+    <string name="notitification_content_description">104.7 FM Lviv</string>
+    <string name="notitification_action_play">Start streaming</string>
+    <string name="notitification_action_pause">Pause streaming</string>
+    <string name="permission_denied_title">Permission Denied</string>
+    <string name="permission_denied_message">Notification permission is required to show notifications. Please enable it in the app settings.</string>
+    <string name="audio_permission_rationale_title">Audio Visualizer</string>
+    <string name="audio_permission_rationale_message">To show the audio visualizer reacting to music, the app needs microphone access. This is only used locally to capture audio output.</string>
+    <string name="grant_permission">Grant</string>
+    <string name="open_settings">Open Settings</string>
+    <string name="cancel">Cancel</string>
+
+    <!-- Settings -->
+    <string name="settings_title">Settings</string>
+    <string name="settings_back">Back</string>
+    <string name="settings_group_appearance">Appearance</string>
+    <string name="settings_theme_title">Theme</string>
+    <string name="settings_theme_subtitle">Choose app color scheme</string>
+    <string name="settings_theme_light">Light</string>
+    <string name="settings_theme_dark">Dark</string>
+    <string name="settings_theme_auto">Auto</string>
+    <string name="settings_theme_content_description">Theme selection: %1$s</string>
+
+    <!-- Language settings -->
+    <string name="settings_group_language">Language</string>
+    <string name="settings_language_title">App Language</string>
+    <string name="settings_language_subtitle">Choose display language</string>
+    <string name="settings_language_system">System default</string>
+    <string name="settings_language_ukrainian">Українська</string>
+    <string name="settings_language_english">English</string>
+    <string name="settings_language_content_description">Language selection: %1$s</string>
+
+    <!-- Playback settings -->
+    <string name="settings_group_playback">Playback</string>
+    <string name="settings_playback_title">Playback</string>
+    <string name="settings_playback_subtitle">Auto-play and background behavior</string>
+    <string name="settings_playback_content_description">Playback settings</string>
+    <string name="settings_autoplay_title">Auto-play on start</string>
+    <string name="settings_autoplay_subtitle">Start playing when app opens</string>
+    <string name="settings_autoplay_content_description">Auto-play on start: %1$s</string>
+    <string name="settings_autostop_title">Stop when leaving app</string>
+    <string name="settings_autostop_subtitle">Stop playback when switching to another app</string>
+    <string name="settings_autostop_content_description">Stop when leaving app: %1$s</string>
+    <string name="settings_enabled">Enabled</string>
+    <string name="settings_disabled">Disabled</string>
+
+    <!-- Player -->
+    <string name="player_buffering">Buffering stream</string>
+    <string name="player_pause">Pause</string>
+    <string name="player_error_friendly">Oops! Something went wrong</string>
+
     <!-- About -->
     <string name="about_title">About</string>
     <string name="about_row_title">Details</string>

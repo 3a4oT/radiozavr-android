@@ -1,0 +1,112 @@
+# Detekt configuration for Android/Compose project
+# https://detekt.dev/docs/rules/style
+# Includes detekt-formatting (ktlint rules)
+
+build:
+  maxIssues: 0
+  weights:
+    complexity: 2
+    style: 1
+    potential-bugs: 2
+
+console-reports:
+  active: true
+
+output-reports:
+  active: true
+
+complexity:
+  active: true
+  LongMethod:
+    active: true
+    threshold: 100  # Compose screens are naturally longer
+  LongParameterList:
+    active: true
+    functionThreshold: 20  # Compose functions have many parameters (icons, callbacks, etc.)
+    constructorThreshold: 12  # ViewModels with DI can have many dependencies
+  TooManyFunctions:
+    active: false
+
+empty-blocks:
+  active: true
+
+exceptions:
+  active: true
+  TooGenericExceptionCaught:
+    active: false
+
+# Formatting rules (from detekt-formatting / ktlint)
+formatting:
+  active: true
+  android: true
+  autoCorrect: true
+  FinalNewline:
+    active: true
+    autoCorrect: true
+  Indentation:
+    active: true
+    autoCorrect: true
+    indentSize: 4
+  MaximumLineLength:
+    active: true
+    maxLineLength: 120
+  NoWildcardImports:
+    active: true
+  NoUnusedImports:
+    active: true
+    autoCorrect: true
+  NoTrailingSpaces:
+    active: true
+    autoCorrect: true
+  PackageName:
+    active: false  # Using naming:PackageNaming instead
+  TrailingCommaOnCallSite:
+    active: false  # Too noisy, not enforced in project
+  TrailingCommaOnDeclarationSite:
+    active: false  # Too noisy, not enforced in project
+
+naming:
+  active: true
+  FunctionNaming:
+    active: true
+    # Exclude Composable functions
+    excludes: ['**/test/**', '**/androidTest/**', '**/ui/**', '**/navigation/**']
+    functionPattern: '[a-zA-Z][a-zA-Z0-9]*'  # Allow PascalCase for Composables
+  MatchingDeclarationName:
+    active: false  # Common in Compose: enum + composable in same file
+  PackageNaming:
+    active: true
+    # Allow underscores in package names (Android convention)
+    packagePattern: '[a-z]+(\.[a-z][A-Za-z0-9_]*)*'
+  TopLevelPropertyNaming:
+    active: true
+    constantPattern: '[A-Z][A-Za-z0-9_]*'
+  VariableNaming:
+    active: true
+
+performance:
+  active: true
+
+potential-bugs:
+  active: true
+
+style:
+  active: true
+  MagicNumber:
+    active: false
+  MaxLineLength:
+    active: false  # Using formatting:MaximumLineLength instead
+  NewLineAtEndOfFile:
+    active: false  # Using formatting:FinalNewline instead
+  UnusedImports:
+    active: false  # Using formatting:NoUnusedImports instead
+  UnusedPrivateMember:
+    active: true
+  UnusedPrivateClass:
+    active: true
+  WildcardImport:
+    active: false  # Using formatting:NoWildcardImports instead
+  ReturnCount:
+    active: false
+  ForbiddenComment:
+    active: false

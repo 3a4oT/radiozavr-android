@@ -7,7 +7,7 @@ import javax.inject.Singleton
 
 @Singleton
 class NetworkDataSource @Inject constructor(
-    private val checkNetworkService: CheckNetworkService
+    private val checkNetworkService: CheckNetworkService,
 ) {
     fun getNetworkStatus(): StateFlow<Boolean> = checkNetworkService.networkStatus
-} 
+}

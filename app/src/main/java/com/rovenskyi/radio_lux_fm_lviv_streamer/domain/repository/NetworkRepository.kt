@@ -5,4 +5,4 @@ import kotlinx.coroutines.flow.Flow
 
 interface NetworkRepository {
     fun getNetworkStatus(): Flow<NetworkStatus>
-} 
+}

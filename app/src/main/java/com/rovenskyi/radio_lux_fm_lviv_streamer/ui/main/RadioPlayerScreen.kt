@@ -17,21 +17,21 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
-import kotlinx.coroutines.delay
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.hilt.lifecycle.viewmodel.compose.hiltViewModel
-import com.rovenskyi.radiolux.core.components.background.RelaxingBackground
-import com.rovenskyi.radiolux.core.components.player.PlayerBar
-import com.rovenskyi.radiolux.core.components.player.PlayerBarState
-import com.rovenskyi.radiolux.core.theme.LocalDimensions
 import com.rovenskyi.radio_lux_fm_lviv_streamer.R
 import com.rovenskyi.radio_lux_fm_lviv_streamer.domain.model.NetworkStatus
 import com.rovenskyi.radio_lux_fm_lviv_streamer.domain.model.PlayerState
 import com.rovenskyi.radio_lux_fm_lviv_streamer.ui.components.ClockWidget
 import com.rovenskyi.radio_lux_fm_lviv_streamer.ui.main.error.NetworkErrorScreen
 import com.rovenskyi.radio_lux_fm_lviv_streamer.viewmodel.RadioPlayerViewModel
+import com.rovenskyi.radiolux.core.components.background.RelaxingBackground
+import com.rovenskyi.radiolux.core.components.player.PlayerBar
+import com.rovenskyi.radiolux.core.components.player.PlayerBarState
+import com.rovenskyi.radiolux.core.theme.LocalDimensions
+import kotlinx.coroutines.delay
 
 private const val AUDIO_PERMISSION_DELAY_MS = 3000L
 
@@ -44,7 +44,15 @@ fun RadioPlayerScreen(
 ) {
     val uiState by viewModel.uiState.collectAsState()
     val visualizerAmplitudes by viewModel.visualizerAmplitudes.collectAsState()
+    val autoPlayEnabled by viewModel.autoPlayEnabled.collectAsState()
     val dimensions = LocalDimensions.current
+
+    // Auto-play on app start if enabled
+    LaunchedEffect(autoPlayEnabled) {
+        if (autoPlayEnabled && uiState.playerState == PlayerState.STOPPED) {
+            viewModel.play()
+        }
+    }
 
     // Request audio permission 3 seconds after successful playback starts
     LaunchedEffect(uiState.playerState) {

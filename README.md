@@ -11,6 +11,33 @@
 
 ---
 
+## Development
+
+### Tech Stack
+
+| Компонент | Технологія |
+|-----------|------------|
+| **Мова** | Kotlin |
+| **UI** | Jetpack Compose |
+| **Архітектура** | Clean Architecture, Repository Pattern |
+| **DI** | Hilt |
+| **Async** | Kotlin Coroutines, Flow |
+| **Static Analysis** | Detekt (formatting + style + bugs) |
+| **Deep Inspections** | Qodana (unused code, cross-file analysis) |
+| **Android Lint** | Built-in |
+
+### Команди
+
+```bash
+./gradlew assembleDebug           # Build
+./gradlew detekt                  # Static analysis
+./gradlew detekt --auto-correct   # Auto-fix formatting
+./gradlew lintDebug               # Android Lint
+./gradlew test                    # Tests
+```
+
+---
+
 ## Web Admin
 
 Веб-панель для керування конфігурацією додатку через Firebase Remote Config.

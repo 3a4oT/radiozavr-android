@@ -1,9 +1,7 @@
 <resources>
     <string name="app_name">Радіо Люкс ФМ Львів</string>
     <string name="play_button">Слухати Радіо Люкс ФМ Львів</string>
-    <string name="stop_button">Зупинити</string>
     <string name="network_error">Немає підключення до мережі</string>
-    <string name="player_error">От халепа! Не можу транслювати Радіо Люкс 104.7 ФМ Львів, можливо проблеми на сервері. Спробуйте пізніше</string>
     <string name="retry_button">Повторити</string>
     <string name="notitification_content_title">Радіо Люкс FM Львів 104.7</string>
     <string name="notitification_content_description">104.7 FM Львів</string>
@@ -37,8 +35,19 @@
     <string name="settings_language_english">English</string>
     <string name="settings_language_content_description">Вибір мови: %1$s</string>
 
-    <!-- Loading -->
-    <string name="loading_indicator_description">Завантаження</string>
+    <!-- Playback settings -->
+    <string name="settings_group_playback">Відтворення</string>
+    <string name="settings_playback_title">Відтворення</string>
+    <string name="settings_playback_subtitle">Автозапуск та поведінка у фоні</string>
+    <string name="settings_playback_content_description">Налаштування відтворення</string>
+    <string name="settings_autoplay_title">Автозапуск при відкритті</string>
+    <string name="settings_autoplay_subtitle">Почати відтворення при запуску додатку</string>
+    <string name="settings_autoplay_content_description">Автозапуск при відкритті: %1$s</string>
+    <string name="settings_autostop_title">Зупинка при виході</string>
+    <string name="settings_autostop_subtitle">Зупинити відтворення при переході до іншого додатку</string>
+    <string name="settings_autostop_content_description">Зупинка при виході: %1$s</string>
+    <string name="settings_enabled">Увімкнено</string>
+    <string name="settings_disabled">Вимкнено</string>
 
     <!-- Player -->
     <string name="player_buffering">Буферизація потоку</string>

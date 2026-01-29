@@ -43,7 +43,7 @@ object LightColors {
  * Different colors for each theme to ensure good contrast
  */
 object FocusColors {
-    val Dark = Color(0xFF4DD0E1)   // Cyan 300 - bright on dark navy, calm
+    val Dark = Color(0xFF4DD0E1) // Cyan 300 - bright on dark navy, calm
     val Light = Color(0xFF1565C0) // Deep Blue 800 - visible on cream, not harsh
 }
 

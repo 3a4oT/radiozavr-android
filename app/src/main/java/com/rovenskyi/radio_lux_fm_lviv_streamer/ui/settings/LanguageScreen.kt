@@ -20,11 +20,11 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
+import com.rovenskyi.radio_lux_fm_lviv_streamer.R
+import com.rovenskyi.radio_lux_fm_lviv_streamer.domain.repository.LanguageRepository
 import com.rovenskyi.radiolux.core.components.settings.SelectableRow
 import com.rovenskyi.radiolux.core.components.settings.SettingsGroup
 import com.rovenskyi.radiolux.core.models.language.LanguageMode
-import com.rovenskyi.radio_lux_fm_lviv_streamer.R
-import com.rovenskyi.radio_lux_fm_lviv_streamer.domain.repository.LanguageRepository
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable

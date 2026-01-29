@@ -28,13 +28,13 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import androidx.hilt.lifecycle.viewmodel.compose.hiltViewModel
+import com.rovenskyi.radio_lux_fm_lviv_streamer.R
+import com.rovenskyi.radio_lux_fm_lviv_streamer.domain.repository.LanguageRepository
+import com.rovenskyi.radio_lux_fm_lviv_streamer.viewmodel.ThemeViewModel
 import com.rovenskyi.radiolux.core.components.settings.SettingsGroup
 import com.rovenskyi.radiolux.core.components.settings.SettingsRow
 import com.rovenskyi.radiolux.core.models.language.LanguageMode
 import com.rovenskyi.radiolux.core.models.theme.ThemeMode
-import com.rovenskyi.radio_lux_fm_lviv_streamer.R
-import com.rovenskyi.radio_lux_fm_lviv_streamer.domain.repository.LanguageRepository
-import com.rovenskyi.radio_lux_fm_lviv_streamer.viewmodel.ThemeViewModel
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -43,6 +43,7 @@ fun SettingsScreen(
     onBackClick: () -> Unit,
     onThemeClick: () -> Unit,
     onLanguageClick: () -> Unit,
+    onPlaybackClick: () -> Unit,
     modifier: Modifier = Modifier,
     themeViewModel: ThemeViewModel = hiltViewModel(),
 ) {
@@ -122,23 +123,34 @@ fun SettingsScreen(
                 }
             }
 
-            // Future settings groups will be added here:
-            // - Playback settings (autoplay, etc.)
-            // - Notifications settings
-            // - About section
+            // Playback settings group
+            SettingsGroup(
+                title = stringResource(R.string.settings_group_playback),
+            ) {
+                SettingsRow(
+                    title = stringResource(R.string.settings_playback_title),
+                    subtitle = stringResource(R.string.settings_playback_subtitle),
+                    onClick = onPlaybackClick,
+                    contentDescription = stringResource(R.string.settings_playback_content_description),
+                ) {
+                    SettingsValueWithArrow()
+                }
+            }
         }
     }
 }
 
 @Composable
-private fun SettingsValueWithArrow(value: String) {
+private fun SettingsValueWithArrow(value: String = "") {
     Row(verticalAlignment = Alignment.CenterVertically) {
-        Text(
-            text = value,
-            style = MaterialTheme.typography.bodyMedium,
-            color = MaterialTheme.colorScheme.onSurfaceVariant,
-        )
-        Spacer(modifier = Modifier.width(4.dp))
+        if (value.isNotEmpty()) {
+            Text(
+                text = value,
+                style = MaterialTheme.typography.bodyMedium,
+                color = MaterialTheme.colorScheme.onSurfaceVariant,
+            )
+            Spacer(modifier = Modifier.width(4.dp))
+        }
         Icon(
             imageVector = Icons.AutoMirrored.Filled.KeyboardArrowRight,
             contentDescription = null,

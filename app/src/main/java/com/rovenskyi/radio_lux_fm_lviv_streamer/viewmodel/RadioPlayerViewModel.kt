@@ -5,11 +5,15 @@ import androidx.lifecycle.viewModelScope
 import com.rovenskyi.radio_lux_fm_lviv_streamer.domain.model.NetworkStatus
 import com.rovenskyi.radio_lux_fm_lviv_streamer.domain.model.PlayerState
 import com.rovenskyi.radio_lux_fm_lviv_streamer.domain.usecase.ClearErrorUseCase
+import com.rovenskyi.radio_lux_fm_lviv_streamer.domain.usecase.ObserveAudioSessionIdUseCase
 import com.rovenskyi.radio_lux_fm_lviv_streamer.domain.usecase.ObserveNetworkStatusUseCase
 import com.rovenskyi.radio_lux_fm_lviv_streamer.domain.usecase.ObservePlayerErrorUseCase
 import com.rovenskyi.radio_lux_fm_lviv_streamer.domain.usecase.ObservePlayerStateUseCase
+import com.rovenskyi.radio_lux_fm_lviv_streamer.domain.usecase.ObserveVisualizerAmplitudesUseCase
 import com.rovenskyi.radio_lux_fm_lviv_streamer.domain.usecase.PlayRadioUseCase
+import com.rovenskyi.radio_lux_fm_lviv_streamer.domain.usecase.StartVisualizerCaptureUseCase
 import com.rovenskyi.radio_lux_fm_lviv_streamer.domain.usecase.StopRadioUseCase
+import com.rovenskyi.radio_lux_fm_lviv_streamer.domain.usecase.StopVisualizerCaptureUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.StateFlow
@@ -31,6 +35,10 @@ class RadioPlayerViewModel @Inject constructor(
     observePlayerStateUseCase: ObservePlayerStateUseCase,
     observeNetworkStatusUseCase: ObserveNetworkStatusUseCase,
     observePlayerErrorUseCase: ObservePlayerErrorUseCase,
+    private val observeAudioSessionIdUseCase: ObserveAudioSessionIdUseCase,
+    observeVisualizerAmplitudesUseCase: ObserveVisualizerAmplitudesUseCase,
+    private val startVisualizerCaptureUseCase: StartVisualizerCaptureUseCase,
+    private val stopVisualizerCaptureUseCase: StopVisualizerCaptureUseCase,
     private val clearErrorUseCase: ClearErrorUseCase,
 ) : ViewModel() {
 
@@ -50,8 +58,28 @@ class RadioPlayerViewModel @Inject constructor(
         initialValue = RadioPlayerUiState(),
     )
 
+    val visualizerAmplitudes: StateFlow<List<Float>?> =
+        observeVisualizerAmplitudesUseCase().stateIn(
+            scope = viewModelScope,
+            started = SharingStarted.WhileSubscribed(5_000),
+            initialValue = null,
+        )
+
     init {
         clearError()
+        observeAudioSession()
+    }
+
+    private fun observeAudioSession() {
+        viewModelScope.launch {
+            observeAudioSessionIdUseCase().collect { sessionId ->
+                if (sessionId != null) {
+                    startVisualizerCaptureUseCase(sessionId)
+                } else {
+                    stopVisualizerCaptureUseCase()
+                }
+            }
+        }
     }
 
     fun togglePlayStop() {
@@ -75,5 +103,10 @@ class RadioPlayerViewModel @Inject constructor(
         viewModelScope.launch {
             clearErrorUseCase()
         }
+    }
+
+    override fun onCleared() {
+        super.onCleared()
+        stopVisualizerCaptureUseCase()
     }
 }

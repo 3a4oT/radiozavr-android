@@ -33,6 +33,9 @@ class PlayerEventReceiver @Inject constructor() {
     private val _playerState = MutableStateFlow(false)
     val playerState: StateFlow<Boolean> = _playerState.asStateFlow()
 
+    private val _audioSessionId = MutableStateFlow<Int?>(null)
+    val audioSessionId: StateFlow<Int?> = _audioSessionId.asStateFlow()
+
     private var bufferingJob: Job? = null
     private var hasPlayedSuccessfully = false
 
@@ -42,6 +45,14 @@ class PlayerEventReceiver @Inject constructor() {
 
     fun clearPlayerErrorMessage() {
         _playerError.value = null
+        // Reset for retry - next play should show loading from clean state
+        hasPlayedSuccessfully = false
+        _playerState.value = false
+        _playerIsLoading.value = false
+    }
+
+    fun postAudioSessionId(sessionId: Int?) {
+        _audioSessionId.value = sessionId
     }
 
     /**

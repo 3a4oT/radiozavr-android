@@ -1,9 +1,7 @@
 <resources>
     <string name="app_name">Радіо Люкс ФМ Львів</string>
     <string name="play_button">Слухати Радіо Люкс ФМ Львів</string>
-    <string name="stop_button">Зупинити</string>
     <string name="network_error">Немає підключення до мережі</string>
-    <string name="player_error">От халепа! Не можу транслювати Радіо Люкс 104.7 ФМ Львів, можливо проблеми на сервері. Спробуйте пізніше</string>
     <string name="retry_button">Повторити</string>
     <string name="notitification_content_title">Радіо Люкс FM Львів 104.7</string>
     <string name="notitification_content_description">104.7 FM Львів</string>
@@ -50,9 +48,6 @@
     <string name="settings_autostop_content_description">Зупинка при виході: %1$s</string>
     <string name="settings_enabled">Увімкнено</string>
     <string name="settings_disabled">Вимкнено</string>
-
-    <!-- Loading -->
-    <string name="loading_indicator_description">Завантаження</string>
 
     <!-- Player -->
     <string name="player_buffering">Буферизація потоку</string>

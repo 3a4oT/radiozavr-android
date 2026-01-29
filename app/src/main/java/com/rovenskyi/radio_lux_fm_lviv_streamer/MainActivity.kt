@@ -28,12 +28,20 @@ import androidx.compose.ui.res.stringResource
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
+import androidx.lifecycle.lifecycleScope
 import androidx.navigation.compose.rememberNavController
 import com.rovenskyi.radiolux.core.theme.RadioLuxTheme
 import com.rovenskyi.radio_lux_fm_lviv_streamer.domain.repository.LanguageRepository
+import com.rovenskyi.radio_lux_fm_lviv_streamer.domain.repository.PlatformRepository
+import com.rovenskyi.radio_lux_fm_lviv_streamer.domain.repository.PlaybackSettingsRepository
+import com.rovenskyi.radio_lux_fm_lviv_streamer.domain.repository.RadioRepository
 import com.rovenskyi.radio_lux_fm_lviv_streamer.navigation.AppNavigation
 import com.rovenskyi.radio_lux_fm_lviv_streamer.viewmodel.ThemeViewModel
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.Job
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.flow.first
+import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @AndroidEntryPoint
@@ -42,6 +50,17 @@ class MainActivity : AppCompatActivity() {
 
     @Inject
     lateinit var languageRepository: LanguageRepository
+
+    @Inject
+    lateinit var platformRepository: PlatformRepository
+
+    @Inject
+    lateinit var playbackSettingsRepository: PlaybackSettingsRepository
+
+    @Inject
+    lateinit var radioRepository: RadioRepository
+
+    private var autoStopJob: Job? = null
 
     private val requestPermissionLauncher = registerForActivityResult(
         ActivityResultContracts.RequestPermission(),
@@ -119,6 +138,27 @@ class MainActivity : AppCompatActivity() {
         requestNotificationPermissionIfNeeded()
     }
 
+    override fun onStart() {
+        super.onStart()
+        // Cancel pending auto-stop if user returns to the app
+        autoStopJob?.cancel()
+        autoStopJob = null
+    }
+
+    override fun onStop() {
+        super.onStop()
+        // Auto-stop on background (TV only, if enabled)
+        if (platformRepository.isTv) {
+            autoStopJob = lifecycleScope.launch {
+                val autoStopEnabled = playbackSettingsRepository.autoStopOnBackgroundEnabled.first()
+                if (autoStopEnabled) {
+                    delay(AUTO_STOP_DELAY_MS)
+                    radioRepository.stop()
+                }
+            }
+        }
+    }
+
     private fun requestNotificationPermissionIfNeeded() {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
             if (ContextCompat.checkSelfPermission(
@@ -169,6 +209,10 @@ class MainActivity : AppCompatActivity() {
             data = Uri.fromParts("package", packageName, null)
         }
         startActivity(intent)
+    }
+
+    companion object {
+        private const val AUTO_STOP_DELAY_MS = 5000L
     }
 }
 

@@ -135,14 +135,6 @@ fun RadioLuxTheme(
 object RadioLuxTheme {
 
     /**
-     * Current gradient palette based on dark mode state.
-     */
-    val gradientPalette: List<androidx.compose.ui.graphics.Color>
-        @Composable
-        @ReadOnlyComposable
-        get() = GradientPalette.forDarkMode(LocalIsDarkTheme.current)
-
-    /**
      * Current dimensions based on device type (TV vs Phone).
      */
     val dimensions: Dimensions

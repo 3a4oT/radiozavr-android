@@ -24,7 +24,7 @@ class ThemeRepositoryImpl @Inject constructor(
     private val themeModeKey = stringPreferencesKey("theme_mode")
 
     override val themeMode: Flow<ThemeMode> = context.themeDataStore.data.map { prefs ->
-        prefs[themeModeKey]?.let { ThemeMode.valueOf(it) } ?: ThemeMode.AUTO
+        prefs[themeModeKey]?.let { ThemeMode.valueOf(it) } ?: ThemeMode.DARK
     }
 
     override suspend fun setThemeMode(mode: ThemeMode) {

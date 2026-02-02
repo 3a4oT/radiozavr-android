@@ -10,8 +10,8 @@
     <style name="Theme.Radioluxfmstreamer.Splash" parent="Theme.SplashScreen">
         <!-- Deep navy background - neutral, works for both light/dark -->
         <item name="windowSplashScreenBackground">@color/splash_background</item>
-        <!-- Use app launcher icon -->
-        <item name="windowSplashScreenAnimatedIcon">@mipmap/ic_launcher</item>
+        <!-- Splash icon with transparent background -->
+        <item name="windowSplashScreenAnimatedIcon">@drawable/ic_splash</item>
         <!-- Post-splash theme -->
         <item name="postSplashScreenTheme">@style/Theme.Radioluxfmstreamer</item>
     </style>

@@ -24,7 +24,7 @@ import androidx.hilt.lifecycle.viewmodel.compose.hiltViewModel
 import com.rovenskyi.radio_lux_fm_lviv_streamer.R
 import com.rovenskyi.radio_lux_fm_lviv_streamer.domain.model.NetworkStatus
 import com.rovenskyi.radio_lux_fm_lviv_streamer.domain.model.PlayerState
-import com.rovenskyi.radio_lux_fm_lviv_streamer.ui.components.ClockWidget
+import com.rovenskyi.radio_lux_fm_lviv_streamer.ui.components.RotatingWidget
 import com.rovenskyi.radio_lux_fm_lviv_streamer.ui.main.error.NetworkErrorScreen
 import com.rovenskyi.radio_lux_fm_lviv_streamer.viewmodel.RadioPlayerViewModel
 import com.rovenskyi.radiolux.core.components.background.RelaxingBackground
@@ -114,15 +114,14 @@ private fun RadioPlayerContent(
         verticalArrangement = Arrangement.SpaceBetween,
         horizontalAlignment = Alignment.CenterHorizontally,
     ) {
-        // Top: Widget area (will be WidgetStack in future)
+        // Top: Rotating widget area (clock → birthday → riddle, every 3 min)
         Box(
             modifier = Modifier
                 .weight(1f)
                 .fillMaxWidth(),
             contentAlignment = Alignment.Center,
         ) {
-            // For now, show clock. Will be replaced with WidgetStack
-            ClockWidget()
+            RotatingWidget()
         }
 
         // Bottom: Player bar with branding and visualizer

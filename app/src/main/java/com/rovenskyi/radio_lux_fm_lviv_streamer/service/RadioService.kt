@@ -135,6 +135,10 @@ class RadioService : MediaSessionService(), Player.Listener {
             ACTION_PLAY -> {
                 exoPlayer.play()
                 playerEventReceiver.postPlayerState(true)
+                // If already buffered, clear loading state immediately
+                if (exoPlayer.playbackState == Player.STATE_READY && !exoPlayer.isLoading) {
+                    playerEventReceiver.postPlayerIsLoading(false)
+                }
                 updateNotification(isPlaying = true)
             }
             ACTION_PAUSE -> {
@@ -190,6 +194,10 @@ class RadioService : MediaSessionService(), Player.Listener {
             exoPlayer.prepare()
             exoPlayer.play()
             playerEventReceiver.postPlayerState(true)
+            // If already buffered, clear loading state immediately
+            if (exoPlayer.playbackState == Player.STATE_READY && !exoPlayer.isLoading) {
+                playerEventReceiver.postPlayerIsLoading(false)
+            }
             updateNotification(isPlaying = true)
         }
     }

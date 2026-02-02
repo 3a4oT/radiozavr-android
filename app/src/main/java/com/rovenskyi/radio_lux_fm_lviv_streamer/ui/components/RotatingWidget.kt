@@ -23,7 +23,6 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
-import com.rovenskyi.radiolux.core.theme.LocalIsTv
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.isActive
 import java.time.LocalTime
@@ -182,7 +181,6 @@ private val funQuestions = listOf(
 
 @Composable
 private fun RiddleContent(isAfterRevealTime: Boolean, questionIndex: Int) {
-    val isTv = LocalIsTv.current
     val question = remember(questionIndex) {
         funQuestions[questionIndex % funQuestions.size]
     }
@@ -197,26 +195,26 @@ private fun RiddleContent(isAfterRevealTime: Boolean, questionIndex: Int) {
     ) {
         Text(
             text = question.emoji,
-            style = if (isTv) MaterialTheme.typography.displayMedium else MaterialTheme.typography.headlineLarge,
+            style = MaterialTheme.typography.headlineLarge,
         )
-        Spacer(modifier = Modifier.height(if (isTv) 16.dp else 8.dp))
+        Spacer(modifier = Modifier.height(8.dp))
         Text(
             text = question.question,
-            style = if (isTv) MaterialTheme.typography.headlineMedium else MaterialTheme.typography.titleMedium,
+            style = MaterialTheme.typography.titleLarge,
             textAlign = TextAlign.Center,
         )
-        Spacer(modifier = Modifier.height(if (isTv) 16.dp else 8.dp))
+        Spacer(modifier = Modifier.height(8.dp))
         if (shouldShowAnswer) {
             Text(
                 text = "💡 ${question.answer}",
-                style = if (isTv) MaterialTheme.typography.headlineSmall else MaterialTheme.typography.bodyLarge,
+                style = MaterialTheme.typography.bodyLarge,
                 color = MaterialTheme.colorScheme.primary,
                 textAlign = TextAlign.Center,
             )
         } else {
             Text(
                 text = "Натисни для відповіді",
-                style = if (isTv) MaterialTheme.typography.bodyLarge else MaterialTheme.typography.bodySmall,
+                style = MaterialTheme.typography.bodySmall,
                 color = MaterialTheme.colorScheme.onSurfaceVariant,
             )
         }

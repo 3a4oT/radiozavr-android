@@ -31,11 +31,16 @@ import com.rovenskyi.radio_lux_fm_lviv_streamer.domain.analytics.event.PlayerEve
 import com.rovenskyi.radio_lux_fm_lviv_streamer.domain.analytics.model.ErrorType
 import com.rovenskyi.radio_lux_fm_lviv_streamer.domain.model.NetworkStatus
 import com.rovenskyi.radio_lux_fm_lviv_streamer.domain.repository.NetworkRepository
+import com.rovenskyi.radio_lux_fm_lviv_streamer.domain.repository.PlatformRepository
+import com.rovenskyi.radio_lux_fm_lviv_streamer.domain.repository.PlaybackSettingsRepository
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.Job
 import kotlinx.coroutines.SupervisorJob
 import kotlinx.coroutines.cancel
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
@@ -54,11 +59,19 @@ class RadioService : MediaSessionService(), Player.Listener {
     @Inject
     lateinit var networkRepository: NetworkRepository
 
+    @Inject
+    lateinit var platformRepository: PlatformRepository
+
+    @Inject
+    lateinit var playbackSettingsRepository: PlaybackSettingsRepository
+
     private lateinit var exoPlayer: ExoPlayer
     private lateinit var mediaSession: MediaSession
 
     private val serviceScope = CoroutineScope(SupervisorJob() + Dispatchers.Main)
     private var wasPlayingBeforeBuffer = false
+    private var autoStopJob: Job? = null
+    private var wasStoppedByAutoStop = false
 
     @OptIn(UnstableApi::class)
     override fun onCreate() {
@@ -137,8 +150,48 @@ class RadioService : MediaSessionService(), Player.Listener {
                 stopForeground(STOP_FOREGROUND_REMOVE)
                 stopSelf()
             }
+            ACTION_APP_BACKGROUND -> handleAppBackground()
+            ACTION_APP_FOREGROUND -> handleAppForeground()
         }
         return START_STICKY
+    }
+
+    /**
+     * Schedules auto-stop when app goes to background (TV only).
+     * Stops playback after [AUTO_STOP_DELAY_MS] if still in background.
+     */
+    private fun handleAppBackground() {
+        if (!platformRepository.isTv) return
+
+        autoStopJob = serviceScope.launch {
+            val autoStopEnabled = playbackSettingsRepository.autoStopOnBackgroundEnabled.first()
+            if (autoStopEnabled && exoPlayer.isPlaying) {
+                delay(AUTO_STOP_DELAY_MS)
+                wasStoppedByAutoStop = true
+                exoPlayer.stop()
+                playerEventReceiver.postPlayerState(false)
+                playerEventReceiver.postAudioSessionId(null)
+                updateNotification(isPlaying = false)
+            }
+        }
+    }
+
+    /**
+     * Cancels pending auto-stop and resumes if was stopped by auto-stop.
+     */
+    private fun handleAppForeground() {
+        // Cancel pending auto-stop
+        autoStopJob?.cancel()
+        autoStopJob = null
+
+        // Auto-resume if was stopped by auto-stop
+        if (wasStoppedByAutoStop) {
+            wasStoppedByAutoStop = false
+            exoPlayer.prepare()
+            exoPlayer.play()
+            playerEventReceiver.postPlayerState(true)
+            updateNotification(isPlaying = true)
+        }
     }
 
     override fun onDestroy() {
@@ -275,9 +328,13 @@ class RadioService : MediaSessionService(), Player.Listener {
     companion object {
         private const val CHANNEL_ID = "com.rovenskyi.radio_lux_fm_lviv_streamer.service.radio_playback_channel"
         private const val NOTIFICATION_ID = 1
+        private const val AUTO_STOP_DELAY_MS = 5000L
+
         const val ACTION_PLAY = "com.rovenskyi.radio_lux_fm_lviv_streamer.service.action.PLAY"
         const val ACTION_PAUSE = "com.rovenskyi.radio_lux_fm_lviv_streamer.service.action.PAUSE"
         const val ACTION_STOP = "com.rovenskyi.radio_lux_fm_lviv_streamer.service.action.STOP"
+        const val ACTION_APP_BACKGROUND = "com.rovenskyi.radio_lux_fm_lviv_streamer.service.action.APP_BACKGROUND"
+        const val ACTION_APP_FOREGROUND = "com.rovenskyi.radio_lux_fm_lviv_streamer.service.action.APP_FOREGROUND"
 
         fun createPlayIntent(context: Context): Intent {
             return Intent(context, RadioService::class.java).apply {
@@ -294,6 +351,18 @@ class RadioService : MediaSessionService(), Player.Listener {
         fun createStopIntent(context: Context): Intent {
             return Intent(context, RadioService::class.java).apply {
                 action = ACTION_STOP
+            }
+        }
+
+        fun createAppBackgroundIntent(context: Context): Intent {
+            return Intent(context, RadioService::class.java).apply {
+                action = ACTION_APP_BACKGROUND
+            }
+        }
+
+        fun createAppForegroundIntent(context: Context): Intent {
+            return Intent(context, RadioService::class.java).apply {
+                action = ACTION_APP_FOREGROUND
             }
         }
     }

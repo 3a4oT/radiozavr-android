@@ -28,23 +28,17 @@ import androidx.compose.ui.res.stringResource
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
-import androidx.lifecycle.lifecycleScope
 import androidx.navigation.compose.rememberNavController
 import com.google.firebase.analytics.FirebaseAnalytics
 import com.rovenskyi.radio_lux_fm_lviv_streamer.domain.analytics.AnalyticsTracker
 import com.rovenskyi.radio_lux_fm_lviv_streamer.domain.repository.AudioVisualizerRepository
 import com.rovenskyi.radio_lux_fm_lviv_streamer.domain.repository.LanguageRepository
 import com.rovenskyi.radio_lux_fm_lviv_streamer.domain.repository.PlatformRepository
-import com.rovenskyi.radio_lux_fm_lviv_streamer.domain.repository.PlaybackSettingsRepository
-import com.rovenskyi.radio_lux_fm_lviv_streamer.domain.repository.RadioRepository
 import com.rovenskyi.radio_lux_fm_lviv_streamer.navigation.AppNavigation
+import com.rovenskyi.radio_lux_fm_lviv_streamer.service.RadioService
 import com.rovenskyi.radio_lux_fm_lviv_streamer.viewmodel.ThemeViewModel
 import com.rovenskyi.radiolux.core.theme.RadioLuxTheme
 import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.coroutines.Job
-import kotlinx.coroutines.delay
-import kotlinx.coroutines.flow.first
-import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @AndroidEntryPoint
@@ -58,19 +52,10 @@ class MainActivity : AppCompatActivity() {
     lateinit var platformRepository: PlatformRepository
 
     @Inject
-    lateinit var playbackSettingsRepository: PlaybackSettingsRepository
-
-    @Inject
-    lateinit var radioRepository: RadioRepository
-
-    @Inject
     lateinit var audioVisualizerRepository: AudioVisualizerRepository
 
     @Inject
     lateinit var analyticsTracker: AnalyticsTracker
-
-    private var autoStopJob: Job? = null
-    private var wasStoppedByAutoStop = false
 
     private val requestPermissionLauncher = registerForActivityResult(
         ActivityResultContracts.RequestPermission(),
@@ -113,7 +98,7 @@ class MainActivity : AppCompatActivity() {
             permissionDeniedCallback = { showPermissionDialog = true }
             audioPermissionRationaleCallback = { showAudioPermissionRationale = true }
 
-            RadioLuxTheme(themeMode = themeMode) {
+            RadioLuxTheme(themeMode = themeMode, isTv = platformRepository.isTv) {
                 Surface(modifier = Modifier.fillMaxSize()) {
                     AppNavigation(
                         navController = navController,
@@ -168,32 +153,14 @@ class MainActivity : AppCompatActivity() {
 
     override fun onStart() {
         super.onStart()
-        // Cancel pending auto-stop if user returns to the app
-        autoStopJob?.cancel()
-        autoStopJob = null
-
-        // Auto-resume if playback was stopped by auto-stop
-        if (wasStoppedByAutoStop) {
-            wasStoppedByAutoStop = false
-            lifecycleScope.launch {
-                radioRepository.play()
-            }
-        }
+        // Notify service that app is in foreground (cancels auto-stop, may resume playback)
+        startService(RadioService.createAppForegroundIntent(this))
     }
 
     override fun onStop() {
         super.onStop()
-        // Auto-stop on background (TV only, if enabled)
-        if (platformRepository.isTv) {
-            autoStopJob = lifecycleScope.launch {
-                val autoStopEnabled = playbackSettingsRepository.autoStopOnBackgroundEnabled.first()
-                if (autoStopEnabled) {
-                    delay(AUTO_STOP_DELAY_MS)
-                    wasStoppedByAutoStop = true
-                    radioRepository.stop()
-                }
-            }
-        }
+        // Notify service that app went to background (may trigger auto-stop on TV)
+        startService(RadioService.createAppBackgroundIntent(this))
     }
 
     private fun requestNotificationPermissionIfNeeded() {
@@ -246,10 +213,6 @@ class MainActivity : AppCompatActivity() {
             data = Uri.fromParts("package", packageName, null)
         }
         startActivity(intent)
-    }
-
-    companion object {
-        private const val AUTO_STOP_DELAY_MS = 5000L
     }
 }
 

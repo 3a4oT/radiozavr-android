@@ -133,6 +133,10 @@ class RadioService : MediaSessionService(), Player.Listener {
         super.onStartCommand(intent, flags, startId)
         when (intent?.action) {
             ACTION_PLAY -> {
+                // If player is in IDLE state (after error or stop), prepare first
+                if (exoPlayer.playbackState == Player.STATE_IDLE) {
+                    exoPlayer.prepare()
+                }
                 exoPlayer.play()
                 playerEventReceiver.postPlayerState(true)
                 // If already buffered, clear loading state immediately

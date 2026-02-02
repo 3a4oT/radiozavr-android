@@ -120,6 +120,10 @@ class RadioPlayerViewModel @Inject constructor(
 
     fun play() {
         viewModelScope.launch {
+            val currentState = uiState.value.playerState
+            if (currentState == PlayerState.PLAYING || currentState == PlayerState.LOADING) {
+                return@launch
+            }
             playRadioUseCase()
             analyticsTracker.track(PlayerEvent.PlayStarted(PlaySource.AUTO_PLAY))
         }

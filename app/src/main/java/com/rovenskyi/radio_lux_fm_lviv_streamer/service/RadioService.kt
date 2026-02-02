@@ -140,7 +140,8 @@ class RadioService : MediaSessionService(), Player.Listener {
                 exoPlayer.play()
                 playerEventReceiver.postPlayerState(true)
                 // If already buffered, clear loading state immediately
-                if (exoPlayer.playbackState == Player.STATE_READY && !exoPlayer.isLoading) {
+                // Note: don't check isLoading - for live streams it's often true during prefetch
+                if (exoPlayer.playbackState == Player.STATE_READY) {
                     playerEventReceiver.postPlayerIsLoading(false)
                 }
                 updateNotification(isPlaying = true)
@@ -199,7 +200,8 @@ class RadioService : MediaSessionService(), Player.Listener {
             exoPlayer.play()
             playerEventReceiver.postPlayerState(true)
             // If already buffered, clear loading state immediately
-            if (exoPlayer.playbackState == Player.STATE_READY && !exoPlayer.isLoading) {
+            // Note: don't check isLoading - for live streams it's often true during prefetch
+            if (exoPlayer.playbackState == Player.STATE_READY) {
                 playerEventReceiver.postPlayerIsLoading(false)
             }
             updateNotification(isPlaying = true)
@@ -219,7 +221,12 @@ class RadioService : MediaSessionService(), Player.Listener {
 
     override fun onIsLoadingChanged(isLoading: Boolean) {
         super.onIsLoadingChanged(isLoading)
-        playerEventReceiver.postPlayerIsLoading(isLoading)
+        // Only propagate loading state during actual buffering (not STATE_READY)
+        // For live HLS streams, isLoading is often true during STATE_READY (prefetching)
+        // We rely on onPlaybackStateChanged for accurate UI state transitions
+        if (exoPlayer.playbackState != Player.STATE_READY) {
+            playerEventReceiver.postPlayerIsLoading(isLoading)
+        }
     }
 
     @OptIn(UnstableApi::class)

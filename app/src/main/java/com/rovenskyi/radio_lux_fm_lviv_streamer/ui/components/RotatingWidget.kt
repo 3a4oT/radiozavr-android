@@ -22,6 +22,7 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.style.TextAlign
+import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.isActive
@@ -202,6 +203,8 @@ private fun RiddleContent(isAfterRevealTime: Boolean, questionIndex: Int) {
             text = question.question,
             style = MaterialTheme.typography.titleLarge,
             textAlign = TextAlign.Center,
+            maxLines = 3,
+            overflow = TextOverflow.Ellipsis,
         )
         Spacer(modifier = Modifier.height(8.dp))
         if (shouldShowAnswer) {
@@ -210,6 +213,8 @@ private fun RiddleContent(isAfterRevealTime: Boolean, questionIndex: Int) {
                 style = MaterialTheme.typography.bodyLarge,
                 color = MaterialTheme.colorScheme.primary,
                 textAlign = TextAlign.Center,
+                maxLines = 2,
+                overflow = TextOverflow.Ellipsis,
             )
         } else {
             Text(

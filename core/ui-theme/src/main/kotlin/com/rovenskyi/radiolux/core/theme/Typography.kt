@@ -155,8 +155,8 @@ val TvTypography = Typography(
     ),
     titleMedium = TextStyle(
         fontWeight = FontWeight.Medium,
-        fontSize = 24.sp,
-        lineHeight = 36.sp,
+        fontSize = 16.sp,
+        lineHeight = 24.sp,
         letterSpacing = 0.15.sp,
     ),
     titleSmall = TextStyle(

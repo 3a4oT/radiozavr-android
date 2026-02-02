@@ -7,7 +7,10 @@ import android.content.Context
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.content.pm.ServiceInfo
+import android.os.Build
 import androidx.annotation.OptIn
+import androidx.annotation.StringRes
+import androidx.appcompat.app.AppCompatDelegate
 import androidx.core.app.ActivityCompat
 import androidx.core.app.NotificationChannelCompat
 import androidx.core.app.NotificationCompat
@@ -76,8 +79,8 @@ class RadioService : MediaSessionService(), Player.Listener {
             .build()
             .apply {
                 val mediaMetadata = androidx.media3.common.MediaMetadata.Builder()
-                    .setTitle(getString(R.string.notitification_content_title))
-                    .setArtist(getString(R.string.notitification_content_description))
+                    .setTitle(getLocalizedString(R.string.notitification_content_title))
+                    .setArtist(getLocalizedString(R.string.notitification_content_description))
                     .build()
 
                 val mediaItem = MediaItem.Builder()
@@ -197,8 +200,8 @@ class RadioService : MediaSessionService(), Player.Listener {
 
     private fun createNotificationChannel() {
         val channel = NotificationChannelCompat.Builder(CHANNEL_ID, NotificationManagerCompat.IMPORTANCE_LOW)
-            .setName(getString(R.string.notitification_content_title))
-            .setDescription(getString(R.string.notitification_content_description))
+            .setName(getLocalizedString(R.string.notitification_content_title))
+            .setDescription(getLocalizedString(R.string.notitification_content_description))
             .build()
         NotificationManagerCompat.from(this).createNotificationChannel(channel)
     }
@@ -207,23 +210,30 @@ class RadioService : MediaSessionService(), Player.Listener {
         val playPauseAction = if (isPlaying) {
             NotificationCompat.Action(
                 android.R.drawable.ic_media_pause,
-                getString(R.string.notitification_action_pause),
+                getLocalizedString(R.string.notitification_action_pause),
                 PendingIntent.getService(this, 0, createPauseIntent(this), PendingIntent.FLAG_IMMUTABLE),
             )
         } else {
             NotificationCompat.Action(
                 android.R.drawable.ic_media_play,
-                getString(R.string.notitification_action_play),
+                getLocalizedString(R.string.notitification_action_play),
                 PendingIntent.getService(this, 0, createPlayIntent(this), PendingIntent.FLAG_IMMUTABLE),
             )
         }
 
-        val intent = Intent(this, MainActivity::class.java)
-        val pendingIntent: PendingIntent = PendingIntent.getActivity(this, 0, intent, PendingIntent.FLAG_IMMUTABLE)
+        val intent = Intent(this, MainActivity::class.java).apply {
+            flags = Intent.FLAG_ACTIVITY_SINGLE_TOP or Intent.FLAG_ACTIVITY_CLEAR_TOP
+        }
+        val pendingIntent: PendingIntent = PendingIntent.getActivity(
+            this,
+            0,
+            intent,
+            PendingIntent.FLAG_IMMUTABLE or PendingIntent.FLAG_UPDATE_CURRENT,
+        )
 
         return NotificationCompat.Builder(this, CHANNEL_ID)
-            .setContentTitle(getString(R.string.notitification_content_title))
-            .setContentText(getString(R.string.notitification_content_description))
+            .setContentTitle(getLocalizedString(R.string.notitification_content_title))
+            .setContentText(getLocalizedString(R.string.notitification_content_description))
             .setSmallIcon(R.mipmap.ic_launcher_foreground)
             .setContentIntent(pendingIntent)
             .addAction(playPauseAction)
@@ -240,6 +250,26 @@ class RadioService : MediaSessionService(), Player.Listener {
             return
         }
         NotificationManagerCompat.from(this).notify(NOTIFICATION_ID, notification)
+    }
+
+    /**
+     * Gets a string using the app's selected locale (for per-app language support).
+     * On Android 13+, the system handles this automatically.
+     * On Android 12 and below, we need to manually create a localized context.
+     */
+    private fun getLocalizedString(@StringRes resId: Int): String {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
+            return getString(resId)
+        }
+        val appLocales = AppCompatDelegate.getApplicationLocales()
+        if (appLocales.isEmpty) {
+            return getString(resId)
+        }
+        val locale = appLocales[0] ?: return getString(resId)
+        val config = resources.configuration.apply {
+            setLocale(locale)
+        }
+        return createConfigurationContext(config).getString(resId)
     }
 
     companion object {

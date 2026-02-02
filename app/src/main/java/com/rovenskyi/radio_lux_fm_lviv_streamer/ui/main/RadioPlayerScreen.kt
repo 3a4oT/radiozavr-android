@@ -34,6 +34,7 @@ import com.rovenskyi.radiolux.core.theme.LocalDimensions
 import kotlinx.coroutines.delay
 
 private const val AUDIO_PERMISSION_DELAY_MS = 3000L
+private const val AUTO_PLAY_STATE_SYNC_DELAY_MS = 300L
 
 @Composable
 fun RadioPlayerScreen(
@@ -47,8 +48,9 @@ fun RadioPlayerScreen(
     val autoPlayEnabled by viewModel.autoPlayEnabled.collectAsState()
     val dimensions = LocalDimensions.current
 
-    // Auto-play on app start if enabled
-    LaunchedEffect(autoPlayEnabled) {
+    // Auto-play on app start if enabled (run once with delay for state sync)
+    LaunchedEffect(Unit) {
+        delay(AUTO_PLAY_STATE_SYNC_DELAY_MS)
         if (autoPlayEnabled && uiState.playerState == PlayerState.STOPPED) {
             viewModel.play()
         }

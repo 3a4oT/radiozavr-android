@@ -88,6 +88,7 @@ fun AboutScreen(
             ApplicationInfoGroup(
                 versionName = viewModel.versionName,
                 isDebugBuild = viewModel.isDebugBuild,
+                onGitHubLinkClick = viewModel::onGitHubLinkClicked,
             )
             PermissionsGroup(
                 notificationStatus = notificationStatus,
@@ -101,6 +102,7 @@ fun AboutScreen(
 private fun ApplicationInfoGroup(
     versionName: String,
     isDebugBuild: Boolean,
+    onGitHubLinkClick: () -> Unit,
 ) {
     val context = LocalContext.current
     val buildTypeLabel = if (isDebugBuild) {
@@ -119,16 +121,17 @@ private fun ApplicationInfoGroup(
         SettingsRow(title = stringResource(R.string.about_author)) {
             SettingsValue(text = stringResource(R.string.about_author_name))
         }
-        SourceCodeRow(context = context)
+        SourceCodeRow(context = context, onGitHubLinkClick = onGitHubLinkClick)
     }
 }
 
 @Composable
-private fun SourceCodeRow(context: Context) {
+private fun SourceCodeRow(context: Context, onGitHubLinkClick: () -> Unit) {
     SettingsRow(
         title = stringResource(R.string.about_source_code),
         subtitle = stringResource(R.string.about_github_url),
         onClick = {
+            onGitHubLinkClick()
             val intent = Intent(Intent.ACTION_VIEW, Uri.parse(AboutViewModel.GITHUB_URL))
             context.startActivity(intent)
         },

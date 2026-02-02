@@ -31,6 +31,7 @@ import androidx.hilt.lifecycle.viewmodel.compose.hiltViewModel
 import com.rovenskyi.radio_lux_fm_lviv_streamer.BuildConfig
 import com.rovenskyi.radio_lux_fm_lviv_streamer.R
 import com.rovenskyi.radio_lux_fm_lviv_streamer.domain.repository.LanguageRepository
+import com.rovenskyi.radio_lux_fm_lviv_streamer.viewmodel.SettingsViewModel
 import com.rovenskyi.radio_lux_fm_lviv_streamer.viewmodel.ThemeViewModel
 import com.rovenskyi.radiolux.core.components.settings.SettingsGroup
 import com.rovenskyi.radiolux.core.components.settings.SettingsRow
@@ -39,6 +40,7 @@ import com.rovenskyi.radiolux.core.models.theme.ThemeMode
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
+@Suppress("UnusedParameter")
 fun SettingsScreen(
     languageRepository: LanguageRepository,
     onBackClick: () -> Unit,
@@ -47,6 +49,7 @@ fun SettingsScreen(
     onPlaybackClick: () -> Unit,
     onAboutClick: () -> Unit,
     modifier: Modifier = Modifier,
+    settingsViewModel: SettingsViewModel = hiltViewModel(),
     themeViewModel: ThemeViewModel = hiltViewModel(),
 ) {
     val themeMode by themeViewModel.themeMode.collectAsState()

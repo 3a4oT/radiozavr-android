@@ -2,6 +2,9 @@ package com.rovenskyi.radio_lux_fm_lviv_streamer.viewmodel
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.rovenskyi.radio_lux_fm_lviv_streamer.domain.analytics.AnalyticsTracker
+import com.rovenskyi.radio_lux_fm_lviv_streamer.domain.analytics.event.ScreenEvent
+import com.rovenskyi.radio_lux_fm_lviv_streamer.domain.analytics.event.SettingsEvent
 import com.rovenskyi.radio_lux_fm_lviv_streamer.domain.repository.PlatformRepository
 import com.rovenskyi.radio_lux_fm_lviv_streamer.domain.repository.PlaybackSettingsRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -14,10 +17,15 @@ import javax.inject.Inject
 @HiltViewModel
 class PlaybackSettingsViewModel @Inject constructor(
     private val playbackSettingsRepository: PlaybackSettingsRepository,
+    private val analyticsTracker: AnalyticsTracker,
     platformRepository: PlatformRepository,
 ) : ViewModel() {
 
     val isTv: Boolean = platformRepository.isTv
+
+    init {
+        analyticsTracker.track(ScreenEvent.Playback)
+    }
 
     val autoPlayEnabled: StateFlow<Boolean> = playbackSettingsRepository.autoPlayEnabled
         .stateIn(
@@ -36,12 +44,14 @@ class PlaybackSettingsViewModel @Inject constructor(
     fun setAutoPlayEnabled(enabled: Boolean) {
         viewModelScope.launch {
             playbackSettingsRepository.setAutoPlayEnabled(enabled)
+            analyticsTracker.track(SettingsEvent.AutoPlayToggled(enabled))
         }
     }
 
     fun setAutoStopOnBackgroundEnabled(enabled: Boolean) {
         viewModelScope.launch {
             playbackSettingsRepository.setAutoStopOnBackgroundEnabled(enabled)
+            analyticsTracker.track(SettingsEvent.AutoStopToggled(enabled))
         }
     }
 }

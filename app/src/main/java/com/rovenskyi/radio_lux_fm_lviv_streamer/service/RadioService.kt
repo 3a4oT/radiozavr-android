@@ -23,6 +23,9 @@ import androidx.media3.session.MediaSession
 import androidx.media3.session.MediaSessionService
 import com.rovenskyi.radio_lux_fm_lviv_streamer.MainActivity
 import com.rovenskyi.radio_lux_fm_lviv_streamer.R
+import com.rovenskyi.radio_lux_fm_lviv_streamer.domain.analytics.AnalyticsTracker
+import com.rovenskyi.radio_lux_fm_lviv_streamer.domain.analytics.event.PlayerEvent
+import com.rovenskyi.radio_lux_fm_lviv_streamer.domain.analytics.model.ErrorType
 import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
 
@@ -34,6 +37,9 @@ class RadioService : MediaSessionService(), Player.Listener {
 
     @Inject
     lateinit var projectConfig: ProjectConfig
+
+    @Inject
+    lateinit var analyticsTracker: AnalyticsTracker
 
     private lateinit var exoPlayer: ExoPlayer
     private lateinit var mediaSession: MediaSession
@@ -137,6 +143,22 @@ class RadioService : MediaSessionService(), Player.Listener {
     override fun onPlayerError(error: PlaybackException) {
         super.onPlayerError(error)
         playerEventReceiver.postPlayerError(error.message)
+
+        // Track error in analytics and Crashlytics
+        analyticsTracker.track(
+            PlayerEvent.PlaybackError(
+                errorType = ErrorType.PLAYBACK,
+                errorCode = error.errorCode,
+                errorMessage = error.message,
+            ),
+        )
+        analyticsTracker.logError(
+            throwable = error,
+            context = mapOf(
+                "stream_url" to projectConfig.streamUrl,
+                "error_code" to error.errorCode.toString(),
+            ),
+        )
     }
 
     private fun createNotificationChannel() {

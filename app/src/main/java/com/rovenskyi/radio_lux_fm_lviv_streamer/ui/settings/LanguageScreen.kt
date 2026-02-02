@@ -14,14 +14,13 @@ import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBar
 import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
-import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
+import androidx.hilt.lifecycle.viewmodel.compose.hiltViewModel
 import com.rovenskyi.radio_lux_fm_lviv_streamer.R
-import com.rovenskyi.radio_lux_fm_lviv_streamer.domain.repository.LanguageRepository
+import com.rovenskyi.radio_lux_fm_lviv_streamer.viewmodel.LanguageViewModel
 import com.rovenskyi.radiolux.core.components.settings.SelectableRow
 import com.rovenskyi.radiolux.core.components.settings.SettingsGroup
 import com.rovenskyi.radiolux.core.models.language.LanguageMode
@@ -29,11 +28,11 @@ import com.rovenskyi.radiolux.core.models.language.LanguageMode
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun LanguageScreen(
-    languageRepository: LanguageRepository,
     onBackClick: () -> Unit,
     modifier: Modifier = Modifier,
+    viewModel: LanguageViewModel = hiltViewModel(),
 ) {
-    var selectedMode by remember { mutableStateOf(languageRepository.getLanguageMode()) }
+    val selectedMode by viewModel.selectedMode.collectAsState()
 
     val languageOptions = listOf(
         LanguageMode.SYSTEM to stringResource(R.string.settings_language_system),
@@ -74,10 +73,7 @@ fun LanguageScreen(
                     SelectableRow(
                         text = label,
                         selected = selectedMode == mode,
-                        onClick = {
-                            selectedMode = mode
-                            languageRepository.setLanguageMode(mode)
-                        },
+                        onClick = { viewModel.setLanguageMode(mode) },
                         contentDescription = stringResource(
                             R.string.settings_language_content_description,
                             label,

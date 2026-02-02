@@ -45,3 +45,6 @@ fastlane/test_output
 # Signing files
 *.base64
 *.jks
+
+# Firebase
+google-services.json

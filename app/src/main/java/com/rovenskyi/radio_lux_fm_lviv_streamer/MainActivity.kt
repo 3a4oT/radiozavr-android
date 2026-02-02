@@ -30,6 +30,8 @@ import androidx.core.content.ContextCompat
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.compose.rememberNavController
+import com.google.firebase.analytics.FirebaseAnalytics
+import com.rovenskyi.radio_lux_fm_lviv_streamer.domain.analytics.AnalyticsTracker
 import com.rovenskyi.radio_lux_fm_lviv_streamer.domain.repository.AudioVisualizerRepository
 import com.rovenskyi.radio_lux_fm_lviv_streamer.domain.repository.LanguageRepository
 import com.rovenskyi.radio_lux_fm_lviv_streamer.domain.repository.PlatformRepository
@@ -63,6 +65,9 @@ class MainActivity : AppCompatActivity() {
 
     @Inject
     lateinit var audioVisualizerRepository: AudioVisualizerRepository
+
+    @Inject
+    lateinit var analyticsTracker: AnalyticsTracker
 
     private var autoStopJob: Job? = null
 
@@ -143,6 +148,21 @@ class MainActivity : AppCompatActivity() {
             }
         }
         requestNotificationPermissionIfNeeded()
+        setupAnalytics()
+    }
+
+    private fun setupAnalytics() {
+        // Log app open event
+        FirebaseAnalytics.getInstance(this).logEvent(FirebaseAnalytics.Event.APP_OPEN, null)
+
+        // Set user properties for segmentation
+        val deviceType = platformRepository.deviceType
+        analyticsTracker.setUserProperty("device_type", deviceType.analyticsValue)
+        analyticsTracker.setUserProperty("is_large_screen", platformRepository.isLargeScreen.toString())
+
+        // Set Crashlytics context
+        analyticsTracker.setErrorContext("device_type", deviceType.analyticsValue)
+        analyticsTracker.setErrorContext("is_large_screen", platformRepository.isLargeScreen.toString())
     }
 
     override fun onStart() {

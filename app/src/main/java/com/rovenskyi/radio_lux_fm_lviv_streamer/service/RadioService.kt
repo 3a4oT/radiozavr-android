@@ -23,7 +23,17 @@ import androidx.media3.session.MediaSession
 import androidx.media3.session.MediaSessionService
 import com.rovenskyi.radio_lux_fm_lviv_streamer.MainActivity
 import com.rovenskyi.radio_lux_fm_lviv_streamer.R
+import com.rovenskyi.radio_lux_fm_lviv_streamer.domain.analytics.AnalyticsTracker
+import com.rovenskyi.radio_lux_fm_lviv_streamer.domain.analytics.event.PlayerEvent
+import com.rovenskyi.radio_lux_fm_lviv_streamer.domain.analytics.model.ErrorType
+import com.rovenskyi.radio_lux_fm_lviv_streamer.domain.model.NetworkStatus
+import com.rovenskyi.radio_lux_fm_lviv_streamer.domain.repository.NetworkRepository
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.SupervisorJob
+import kotlinx.coroutines.cancel
+import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @AndroidEntryPoint
@@ -35,8 +45,17 @@ class RadioService : MediaSessionService(), Player.Listener {
     @Inject
     lateinit var projectConfig: ProjectConfig
 
+    @Inject
+    lateinit var analyticsTracker: AnalyticsTracker
+
+    @Inject
+    lateinit var networkRepository: NetworkRepository
+
     private lateinit var exoPlayer: ExoPlayer
     private lateinit var mediaSession: MediaSession
+
+    private val serviceScope = CoroutineScope(SupervisorJob() + Dispatchers.Main)
+    private var wasPlayingBeforeBuffer = false
 
     @OptIn(UnstableApi::class)
     override fun onCreate() {
@@ -80,6 +99,18 @@ class RadioService : MediaSessionService(), Player.Listener {
             buildNotification(false),
             ServiceInfo.FOREGROUND_SERVICE_TYPE_MEDIA_PLAYBACK,
         )
+
+        observeNetworkStatus()
+    }
+
+    private fun observeNetworkStatus() {
+        serviceScope.launch {
+            networkRepository.getNetworkStatus().collect { status ->
+                if (status == NetworkStatus.UNAVAILABLE && exoPlayer.isPlaying) {
+                    analyticsTracker.track(PlayerEvent.NetworkError(wasPlaying = true))
+                }
+            }
+        }
     }
 
     override fun onStartCommand(intent: Intent?, flags: Int, startId: Int): Int {
@@ -108,6 +139,7 @@ class RadioService : MediaSessionService(), Player.Listener {
     }
 
     override fun onDestroy() {
+        serviceScope.cancel()
         exoPlayer.removeListener(this)
         exoPlayer.release()
         mediaSession.release()
@@ -125,11 +157,19 @@ class RadioService : MediaSessionService(), Player.Listener {
     @OptIn(UnstableApi::class)
     override fun onPlaybackStateChanged(state: Int) {
         super.onPlaybackStateChanged(state)
-        if (state == Player.STATE_READY) {
-            playerEventReceiver.postPlayerIsLoading(false)
-            playerEventReceiver.postAudioSessionId(exoPlayer.audioSessionId)
-        } else if (state == Player.STATE_BUFFERING) {
-            playerEventReceiver.postPlayerIsLoading(true)
+        when (state) {
+            Player.STATE_READY -> {
+                playerEventReceiver.postPlayerIsLoading(false)
+                playerEventReceiver.postAudioSessionId(exoPlayer.audioSessionId)
+                wasPlayingBeforeBuffer = true
+            }
+            Player.STATE_BUFFERING -> {
+                playerEventReceiver.postPlayerIsLoading(true)
+                analyticsTracker.track(PlayerEvent.BufferingStarted(isRebuffer = wasPlayingBeforeBuffer))
+            }
+            Player.STATE_IDLE, Player.STATE_ENDED -> {
+                wasPlayingBeforeBuffer = false
+            }
         }
     }
 
@@ -137,6 +177,22 @@ class RadioService : MediaSessionService(), Player.Listener {
     override fun onPlayerError(error: PlaybackException) {
         super.onPlayerError(error)
         playerEventReceiver.postPlayerError(error.message)
+
+        // Track error in analytics and Crashlytics
+        analyticsTracker.track(
+            PlayerEvent.PlaybackError(
+                errorType = ErrorType.PLAYBACK,
+                errorCode = error.errorCode,
+                errorMessage = error.message,
+            ),
+        )
+        analyticsTracker.logError(
+            throwable = error,
+            context = mapOf(
+                "stream_url" to projectConfig.streamUrl,
+                "error_code" to error.errorCode.toString(),
+            ),
+        )
     }
 
     private fun createNotificationChannel() {

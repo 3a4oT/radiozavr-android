@@ -2,6 +2,11 @@ package com.rovenskyi.radio_lux_fm_lviv_streamer.viewmodel
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.rovenskyi.radio_lux_fm_lviv_streamer.domain.analytics.AnalyticsTracker
+import com.rovenskyi.radio_lux_fm_lviv_streamer.domain.analytics.event.PlayerEvent
+import com.rovenskyi.radio_lux_fm_lviv_streamer.domain.analytics.event.ScreenEvent
+import com.rovenskyi.radio_lux_fm_lviv_streamer.domain.analytics.model.PlaySource
+import com.rovenskyi.radio_lux_fm_lviv_streamer.domain.analytics.model.StopReason
 import com.rovenskyi.radio_lux_fm_lviv_streamer.domain.model.NetworkStatus
 import com.rovenskyi.radio_lux_fm_lviv_streamer.domain.model.PlayerState
 import com.rovenskyi.radio_lux_fm_lviv_streamer.domain.repository.PlaybackSettingsRepository
@@ -42,6 +47,7 @@ class RadioPlayerViewModel @Inject constructor(
     private val stopVisualizerCaptureUseCase: StopVisualizerCaptureUseCase,
     private val clearErrorUseCase: ClearErrorUseCase,
     playbackSettingsRepository: PlaybackSettingsRepository,
+    private val analyticsTracker: AnalyticsTracker,
 ) : ViewModel() {
 
     val autoPlayEnabled: StateFlow<Boolean> = playbackSettingsRepository.autoPlayEnabled
@@ -75,6 +81,7 @@ class RadioPlayerViewModel @Inject constructor(
         )
 
     init {
+        analyticsTracker.track(ScreenEvent.RadioPlayer)
         clearError()
         observeAudioSession()
     }
@@ -95,8 +102,10 @@ class RadioPlayerViewModel @Inject constructor(
         viewModelScope.launch {
             if (uiState.value.playerState == PlayerState.PLAYING) {
                 stopRadioUseCase()
+                analyticsTracker.track(PlayerEvent.PlayStopped(StopReason.USER_CLICK))
             } else {
                 playRadioUseCase()
+                analyticsTracker.track(PlayerEvent.PlayStarted(PlaySource.USER_CLICK))
             }
         }
     }
@@ -105,12 +114,14 @@ class RadioPlayerViewModel @Inject constructor(
         viewModelScope.launch {
             clearError()
             playRadioUseCase()
+            analyticsTracker.track(PlayerEvent.PlayStarted(PlaySource.USER_CLICK))
         }
     }
 
     fun play() {
         viewModelScope.launch {
             playRadioUseCase()
+            analyticsTracker.track(PlayerEvent.PlayStarted(PlaySource.AUTO_PLAY))
         }
     }
 

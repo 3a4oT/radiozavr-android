@@ -2,6 +2,9 @@ package com.rovenskyi.radio_lux_fm_lviv_streamer.viewmodel
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.rovenskyi.radio_lux_fm_lviv_streamer.domain.analytics.AnalyticsTracker
+import com.rovenskyi.radio_lux_fm_lviv_streamer.domain.analytics.event.ScreenEvent
+import com.rovenskyi.radio_lux_fm_lviv_streamer.domain.analytics.event.SettingsEvent
 import com.rovenskyi.radio_lux_fm_lviv_streamer.domain.repository.ThemeRepository
 import com.rovenskyi.radiolux.core.models.theme.ThemeMode
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -17,6 +20,7 @@ import javax.inject.Inject
 @HiltViewModel
 class ThemeViewModel @Inject constructor(
     private val themeRepository: ThemeRepository,
+    private val analyticsTracker: AnalyticsTracker,
 ) : ViewModel() {
 
     private val _isThemeLoaded = MutableStateFlow(false)
@@ -35,6 +39,11 @@ class ThemeViewModel @Inject constructor(
     fun setThemeMode(mode: ThemeMode) {
         viewModelScope.launch {
             themeRepository.setThemeMode(mode)
+            analyticsTracker.track(SettingsEvent.ThemeChanged(mode))
         }
+    }
+
+    fun trackThemeScreenView() {
+        analyticsTracker.track(ScreenEvent.Theme)
     }
 }

@@ -23,7 +23,7 @@ complexity:
   LongParameterList:
     active: true
     functionThreshold: 20  # Compose functions have many parameters (icons, callbacks, etc.)
-    constructorThreshold: 12  # ViewModels with DI can have many dependencies
+    constructorThreshold: 13  # ViewModels with DI can have many dependencies
   TooManyFunctions:
     active: false
 

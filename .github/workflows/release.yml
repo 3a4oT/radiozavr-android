@@ -34,11 +34,15 @@ jobs:
       - name: Add build-tools to PATH
         run: echo "$ANDROID_HOME/build-tools/36.0.0" >> $GITHUB_PATH
 
+      - name: Decode google-services.json
+        env:
+          GOOGLE_SERVICES_JSON: ${{ secrets.GOOGLE_SERVICES_JSON }}
+        run: echo "$GOOGLE_SERVICES_JSON" | base64 --decode > app/google-services.json
+
       - name: Decode and save keystore
         env:
           BASE64_KEYSTORE: ${{ secrets.BASE64_KEYSTORE }}
-        run: |
-          echo $BASE64_KEYSTORE | base64 --decode > my-release-key.jks
+        run: echo "$BASE64_KEYSTORE" | base64 --decode > my-release-key.jks
 
       - name: Build APK and AAB
         run: ./gradlew :app:assembleRelease :app:bundleRelease

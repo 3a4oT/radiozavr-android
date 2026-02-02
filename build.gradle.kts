@@ -6,6 +6,8 @@ plugins {
     alias(libs.plugins.kotlin.serialization) apply false
     alias(libs.plugins.ksp) apply false
     alias(libs.plugins.compose.compiler) apply false
+    alias(libs.plugins.google.services) apply false
+    alias(libs.plugins.firebase.crashlytics.plugin) apply false
     id("com.google.dagger.hilt.android") version "2.59" apply false
     id("io.gitlab.arturbosch.detekt") version "1.23.8"
 }

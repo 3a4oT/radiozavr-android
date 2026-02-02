@@ -52,7 +52,6 @@ fun AppNavigation(
         }
         composable<Language> {
             LanguageScreen(
-                languageRepository = languageRepository,
                 onBackClick = { navController.popBackStack() },
             )
         }

@@ -13,6 +13,8 @@
 
 ## Development
 
+> **Для контриб'юторів:** див. [docs/DEVELOPMENT.md](docs/DEVELOPMENT.md) — налаштування Firebase та CI.
+
 ### Tech Stack
 
 | Компонент | Технологія |

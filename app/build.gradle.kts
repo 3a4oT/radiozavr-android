@@ -3,6 +3,8 @@ plugins {
     alias(libs.plugins.ksp)
     alias(libs.plugins.compose.compiler)
     alias(libs.plugins.kotlin.serialization)
+    alias(libs.plugins.google.services)
+    alias(libs.plugins.firebase.crashlytics.plugin)
     id("com.google.dagger.hilt.android")
 }
 
@@ -14,8 +16,8 @@ android {
         applicationId = "com.rovenskyi.radio_lux_fm_lviv_streamer"
         minSdk = 26
         targetSdk = 36
-        versionCode = 1
-        versionName = "0.1.1"
+        versionCode = 2
+        versionName = "0.2.0"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
 
@@ -28,7 +30,8 @@ android {
 
     buildTypes {
         release {
-            isMinifyEnabled = false
+            isMinifyEnabled = true
+            isShrinkResources = true
             proguardFiles(
                 getDefaultProguardFile("proguard-android-optimize.txt"),
                 "proguard-rules.pro"
@@ -57,6 +60,11 @@ dependencies {
     implementation(project(":core:models"))
     implementation(project(":core:ui-theme"))
     implementation(project(":core:ui-components"))
+
+    // Firebase BOM - manages versions for all Firebase libraries
+    implementation(platform(libs.firebase.bom))
+    implementation(libs.firebase.analytics)
+    implementation(libs.firebase.crashlytics)
 
     // Compose BOM - manages versions for all Compose libraries
     implementation(platform(libs.compose.bom))

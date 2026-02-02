@@ -14,6 +14,7 @@ import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBar
 import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
@@ -33,6 +34,10 @@ fun ThemeScreen(
     themeViewModel: ThemeViewModel = hiltViewModel(),
 ) {
     val selectedMode by themeViewModel.themeMode.collectAsState()
+
+    LaunchedEffect(Unit) {
+        themeViewModel.trackThemeScreenView()
+    }
 
     val themeOptions = listOf(
         ThemeMode.LIGHT to stringResource(R.string.settings_theme_light),

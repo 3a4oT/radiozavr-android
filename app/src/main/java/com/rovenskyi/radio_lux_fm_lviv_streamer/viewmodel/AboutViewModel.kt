@@ -3,6 +3,11 @@ package com.rovenskyi.radio_lux_fm_lviv_streamer.viewmodel
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.rovenskyi.radio_lux_fm_lviv_streamer.BuildConfig
+import com.rovenskyi.radio_lux_fm_lviv_streamer.domain.analytics.AnalyticsTracker
+import com.rovenskyi.radio_lux_fm_lviv_streamer.domain.analytics.event.ButtonEvent
+import com.rovenskyi.radio_lux_fm_lviv_streamer.domain.analytics.event.ScreenEvent
+import com.rovenskyi.radio_lux_fm_lviv_streamer.domain.analytics.model.ButtonName
+import com.rovenskyi.radio_lux_fm_lviv_streamer.domain.analytics.model.ScreenName
 import com.rovenskyi.radio_lux_fm_lviv_streamer.domain.repository.PermissionRepository
 import com.rovenskyi.radiolux.core.models.permission.PermissionStatus
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -14,10 +19,19 @@ import javax.inject.Inject
 @HiltViewModel
 class AboutViewModel @Inject constructor(
     private val permissionRepository: PermissionRepository,
+    private val analyticsTracker: AnalyticsTracker,
 ) : ViewModel() {
 
     val versionName: String = BuildConfig.VERSION_NAME
     val isDebugBuild: Boolean = BuildConfig.DEBUG
+
+    init {
+        analyticsTracker.track(ScreenEvent.About)
+    }
+
+    fun onGitHubLinkClicked() {
+        analyticsTracker.track(ButtonEvent(ButtonName.GITHUB_LINK, ScreenName.ABOUT))
+    }
 
     val notificationPermissionStatus: StateFlow<PermissionStatus> =
         permissionRepository.notificationPermissionStatus

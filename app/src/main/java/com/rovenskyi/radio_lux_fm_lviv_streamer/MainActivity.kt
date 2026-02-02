@@ -156,11 +156,13 @@ class MainActivity : AppCompatActivity() {
         FirebaseAnalytics.getInstance(this).logEvent(FirebaseAnalytics.Event.APP_OPEN, null)
 
         // Set user properties for segmentation
-        val platformType = if (platformRepository.isTv) "tv" else "phone"
-        analyticsTracker.setUserProperty("platform_type", platformType)
+        val deviceType = platformRepository.deviceType
+        analyticsTracker.setUserProperty("device_type", deviceType.analyticsValue)
+        analyticsTracker.setUserProperty("is_large_screen", platformRepository.isLargeScreen.toString())
 
         // Set Crashlytics context
-        analyticsTracker.setErrorContext("is_tv", platformRepository.isTv.toString())
+        analyticsTracker.setErrorContext("device_type", deviceType.analyticsValue)
+        analyticsTracker.setErrorContext("is_large_screen", platformRepository.isLargeScreen.toString())
     }
 
     override fun onStart() {

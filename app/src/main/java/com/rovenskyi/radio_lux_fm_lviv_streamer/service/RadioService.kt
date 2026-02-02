@@ -224,7 +224,7 @@ class RadioService : MediaSessionService(), Player.Listener {
         return NotificationCompat.Builder(this, CHANNEL_ID)
             .setContentTitle(getString(R.string.notitification_content_title))
             .setContentText(getString(R.string.notitification_content_description))
-            .setSmallIcon(R.drawable.logo_lux)
+            .setSmallIcon(R.mipmap.ic_launcher_foreground)
             .setContentIntent(pendingIntent)
             .addAction(playPauseAction)
             .build()

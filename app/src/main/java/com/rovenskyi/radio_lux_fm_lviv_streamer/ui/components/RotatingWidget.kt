@@ -24,6 +24,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
+import com.rovenskyi.radiolux.core.theme.LocalIsTv
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.isActive
 import java.time.LocalTime
@@ -39,6 +40,7 @@ private val timeFormatter = DateTimeFormatter.ofPattern("HH:mm")
  */
 @Composable
 fun RotatingWidget(modifier: Modifier = Modifier) {
+    val isTv = LocalIsTv.current
     var questionIndex by rememberSaveable { mutableIntStateOf((System.currentTimeMillis() % Int.MAX_VALUE).toInt()) }
     var currentTime by remember { mutableStateOf(LocalTime.now()) }
 
@@ -61,10 +63,11 @@ fun RotatingWidget(modifier: Modifier = Modifier) {
         modifier = modifier,
         horizontalAlignment = Alignment.CenterHorizontally,
     ) {
-        // Clock - always visible
-        ClockContent(currentTime)
-
-        Spacer(modifier = Modifier.height(24.dp))
+        // Clock - only on TV
+        if (isTv) {
+            ClockContent(currentTime)
+            Spacer(modifier = Modifier.height(24.dp))
+        }
 
         // Riddle - rotating with animation
         AnimatedContent(

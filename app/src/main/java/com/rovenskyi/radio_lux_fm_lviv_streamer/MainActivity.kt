@@ -70,6 +70,7 @@ class MainActivity : AppCompatActivity() {
     lateinit var analyticsTracker: AnalyticsTracker
 
     private var autoStopJob: Job? = null
+    private var wasStoppedByAutoStop = false
 
     private val requestPermissionLauncher = registerForActivityResult(
         ActivityResultContracts.RequestPermission(),
@@ -170,6 +171,14 @@ class MainActivity : AppCompatActivity() {
         // Cancel pending auto-stop if user returns to the app
         autoStopJob?.cancel()
         autoStopJob = null
+
+        // Auto-resume if playback was stopped by auto-stop
+        if (wasStoppedByAutoStop) {
+            wasStoppedByAutoStop = false
+            lifecycleScope.launch {
+                radioRepository.play()
+            }
+        }
     }
 
     override fun onStop() {
@@ -180,6 +189,7 @@ class MainActivity : AppCompatActivity() {
                 val autoStopEnabled = playbackSettingsRepository.autoStopOnBackgroundEnabled.first()
                 if (autoStopEnabled) {
                     delay(AUTO_STOP_DELAY_MS)
+                    wasStoppedByAutoStop = true
                     radioRepository.stop()
                 }
             }

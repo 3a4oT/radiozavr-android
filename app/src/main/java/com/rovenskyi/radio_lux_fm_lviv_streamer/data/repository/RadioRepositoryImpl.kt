@@ -19,7 +19,7 @@ class RadioRepositoryImpl @Inject constructor(
         ) { isPlaying, isLoading, error ->
             when {
                 error != null -> PlayerState.ERROR
-                isPlaying && isLoading -> PlayerState.LOADING
+                isLoading -> PlayerState.LOADING
                 isPlaying -> PlayerState.PLAYING
                 else -> PlayerState.STOPPED
             }

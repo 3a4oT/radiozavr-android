@@ -1,6 +1,7 @@
 package com.rovenskyi.radio_lux_fm_lviv_streamer.domain.analytics.event
 
 import com.rovenskyi.radiolux.core.models.language.LanguageMode
+import com.rovenskyi.radiolux.core.models.riddle.RiddleInterval
 import com.rovenskyi.radiolux.core.models.theme.ThemeMode
 
 sealed class SettingsEvent : AnalyticsEvent {
@@ -25,9 +26,15 @@ sealed class SettingsEvent : AnalyticsEvent {
         override val params: Map<String, Any> = mapOf(PARAM_ENABLED to enabled)
     }
 
+    data class RiddleIntervalChanged(val interval: RiddleInterval) : SettingsEvent() {
+        override val name: String = "riddle_interval_changed"
+        override val params: Map<String, Any> = mapOf(PARAM_INTERVAL_SECONDS to interval.seconds)
+    }
+
     companion object {
         const val PARAM_THEME_NAME = "theme_name"
         const val PARAM_LANGUAGE = "language"
         const val PARAM_ENABLED = "enabled"
+        const val PARAM_INTERVAL_SECONDS = "interval_seconds"
     }
 }

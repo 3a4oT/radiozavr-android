@@ -54,6 +54,17 @@
     <string name="player_pause">Пауза</string>
     <string name="player_error_friendly">Ой! Щось пішло не так</string>
 
+    <!-- Riddle settings -->
+    <string name="settings_group_riddle">Загадки</string>
+    <string name="settings_riddle_title">Інтервал зміни</string>
+    <string name="settings_riddle_subtitle">Час між зміною загадок</string>
+    <string name="settings_riddle_content_description">Інтервал загадок: %1$s</string>
+    <string name="settings_riddle_interval_6">6 секунд</string>
+    <string name="settings_riddle_interval_12">12 секунд</string>
+    <string name="settings_riddle_interval_20">20 секунд</string>
+    <string name="settings_riddle_interval_30">30 секунд</string>
+    <string name="settings_riddle_interval_60">60 секунд</string>
+
     <!-- Riddle Widget -->
     <string name="riddle_tap_for_answer">Торкнись для відповіді</string>
     <string name="riddle_press_ok_for_answer">Натисни OK для відповіді</string>

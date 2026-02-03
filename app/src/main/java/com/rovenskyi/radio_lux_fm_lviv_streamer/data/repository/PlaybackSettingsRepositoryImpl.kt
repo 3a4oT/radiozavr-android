@@ -5,9 +5,11 @@ import androidx.datastore.core.DataStore
 import androidx.datastore.preferences.core.Preferences
 import androidx.datastore.preferences.core.booleanPreferencesKey
 import androidx.datastore.preferences.core.edit
+import androidx.datastore.preferences.core.intPreferencesKey
 import androidx.datastore.preferences.preferencesDataStore
 import com.rovenskyi.radio_lux_fm_lviv_streamer.domain.repository.PlatformRepository
 import com.rovenskyi.radio_lux_fm_lviv_streamer.domain.repository.PlaybackSettingsRepository
+import com.rovenskyi.radiolux.core.models.riddle.RiddleInterval
 import dagger.hilt.android.qualifiers.ApplicationContext
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
@@ -26,6 +28,7 @@ class PlaybackSettingsRepositoryImpl @Inject constructor(
 
     private val autoPlayKey = booleanPreferencesKey("auto_play_enabled")
     private val autoStopKey = booleanPreferencesKey("auto_stop_on_background_enabled")
+    private val riddleIntervalKey = intPreferencesKey("riddle_interval_seconds")
 
     override val autoPlayEnabled: Flow<Boolean> = context.playbackSettingsDataStore.data.map { prefs ->
         prefs[autoPlayKey] ?: platformRepository.isTv // Default: true on TV, false on Phone
@@ -33,6 +36,11 @@ class PlaybackSettingsRepositoryImpl @Inject constructor(
 
     override val autoStopOnBackgroundEnabled: Flow<Boolean> = context.playbackSettingsDataStore.data.map { prefs ->
         prefs[autoStopKey] ?: platformRepository.isTv // Default: true on TV, false on Phone
+    }
+
+    override val riddleInterval: Flow<RiddleInterval> = context.playbackSettingsDataStore.data.map { prefs ->
+        val seconds = prefs[riddleIntervalKey] ?: RiddleInterval.DEFAULT.seconds
+        RiddleInterval.fromSeconds(seconds)
     }
 
     override suspend fun setAutoPlayEnabled(enabled: Boolean) {
@@ -44,6 +52,12 @@ class PlaybackSettingsRepositoryImpl @Inject constructor(
     override suspend fun setAutoStopOnBackgroundEnabled(enabled: Boolean) {
         context.playbackSettingsDataStore.edit { prefs ->
             prefs[autoStopKey] = enabled
+        }
+    }
+
+    override suspend fun setRiddleInterval(interval: RiddleInterval) {
+        context.playbackSettingsDataStore.edit { prefs ->
+            prefs[riddleIntervalKey] = interval.seconds
         }
     }
 }

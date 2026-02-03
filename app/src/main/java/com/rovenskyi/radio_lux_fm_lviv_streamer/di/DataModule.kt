@@ -7,6 +7,7 @@ import com.rovenskyi.radio_lux_fm_lviv_streamer.data.repository.PermissionReposi
 import com.rovenskyi.radio_lux_fm_lviv_streamer.data.repository.PlatformRepositoryImpl
 import com.rovenskyi.radio_lux_fm_lviv_streamer.data.repository.PlaybackSettingsRepositoryImpl
 import com.rovenskyi.radio_lux_fm_lviv_streamer.data.repository.RadioRepositoryImpl
+import com.rovenskyi.radio_lux_fm_lviv_streamer.data.repository.RiddleRepositoryImpl
 import com.rovenskyi.radio_lux_fm_lviv_streamer.data.repository.ThemeRepositoryImpl
 import com.rovenskyi.radio_lux_fm_lviv_streamer.domain.repository.AudioVisualizerRepository
 import com.rovenskyi.radio_lux_fm_lviv_streamer.domain.repository.LanguageRepository
@@ -15,6 +16,7 @@ import com.rovenskyi.radio_lux_fm_lviv_streamer.domain.repository.PermissionRepo
 import com.rovenskyi.radio_lux_fm_lviv_streamer.domain.repository.PlatformRepository
 import com.rovenskyi.radio_lux_fm_lviv_streamer.domain.repository.PlaybackSettingsRepository
 import com.rovenskyi.radio_lux_fm_lviv_streamer.domain.repository.RadioRepository
+import com.rovenskyi.radio_lux_fm_lviv_streamer.domain.repository.RiddleRepository
 import com.rovenskyi.radio_lux_fm_lviv_streamer.domain.repository.ThemeRepository
 import dagger.Binds
 import dagger.Module
@@ -74,4 +76,10 @@ abstract class DataModule {
     abstract fun bindPermissionRepository(
         permissionRepositoryImpl: PermissionRepositoryImpl,
     ): PermissionRepository
+
+    @Binds
+    @Singleton
+    abstract fun bindRiddleRepository(
+        riddleRepositoryImpl: RiddleRepositoryImpl,
+    ): RiddleRepository
 }

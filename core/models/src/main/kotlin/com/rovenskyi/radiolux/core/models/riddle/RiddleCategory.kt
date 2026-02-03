@@ -28,4 +28,5 @@ enum class RiddleCategory(
     DINOSAURS("dinosaurs.json", "🦖"),
     SPORTS("sports.json", "⚽"),
     INVENTIONS("inventions.json", "🚗"),
+    HARRY_POTTER("harry_potter.json", "⚡"),
 }

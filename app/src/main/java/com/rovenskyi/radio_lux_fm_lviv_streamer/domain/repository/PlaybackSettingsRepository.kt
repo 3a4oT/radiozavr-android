@@ -1,5 +1,6 @@
 package com.rovenskyi.radio_lux_fm_lviv_streamer.domain.repository
 
+import com.rovenskyi.radiolux.core.models.riddle.RiddleInterval
 import kotlinx.coroutines.flow.Flow
 
 /**
@@ -20,6 +21,12 @@ interface PlaybackSettingsRepository {
     val autoStopOnBackgroundEnabled: Flow<Boolean>
 
     /**
+     * Interval for riddle rotation.
+     * Default: 30 seconds.
+     */
+    val riddleInterval: Flow<RiddleInterval>
+
+    /**
      * Sets auto-play on start preference.
      */
     suspend fun setAutoPlayEnabled(enabled: Boolean)
@@ -28,4 +35,9 @@ interface PlaybackSettingsRepository {
      * Sets auto-stop on background preference (TV only).
      */
     suspend fun setAutoStopOnBackgroundEnabled(enabled: Boolean)
+
+    /**
+     * Sets riddle rotation interval.
+     */
+    suspend fun setRiddleInterval(interval: RiddleInterval)
 }

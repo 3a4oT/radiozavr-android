@@ -55,6 +55,17 @@
     <string name="player_pause">Pause</string>
     <string name="player_error_friendly">Oops! Something went wrong</string>
 
+    <!-- Riddle settings -->
+    <string name="settings_group_riddle">Riddle</string>
+    <string name="settings_riddle_title">Rotation interval</string>
+    <string name="settings_riddle_subtitle">Time between riddle changes</string>
+    <string name="settings_riddle_content_description">Riddle interval: %1$s</string>
+    <string name="settings_riddle_interval_6">6 seconds</string>
+    <string name="settings_riddle_interval_12">12 seconds</string>
+    <string name="settings_riddle_interval_20">20 seconds</string>
+    <string name="settings_riddle_interval_30">30 seconds</string>
+    <string name="settings_riddle_interval_60">60 seconds</string>
+
     <!-- Riddle Widget -->
     <string name="riddle_tap_for_answer">Tap for answer</string>
     <string name="riddle_press_ok_for_answer">Press OK for answer</string>

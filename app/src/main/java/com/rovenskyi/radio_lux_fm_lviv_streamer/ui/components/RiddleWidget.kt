@@ -64,6 +64,7 @@ fun RiddleWidget(
     viewModel: RiddleWidgetViewModel = hiltViewModel(),
 ) {
     val riddle by viewModel.currentRiddle.collectAsState()
+    val isTv = LocalIsTv.current
 
     riddle?.let { currentRiddle ->
         AnimatedContent(
@@ -72,7 +73,10 @@ fun RiddleWidget(
             label = "riddle_rotation",
             modifier = modifier,
         ) { targetRiddle ->
-            RiddleContent(riddle = targetRiddle)
+            RiddleContent(
+                riddle = targetRiddle,
+                onAnswerRevealed = { viewModel.trackAnswerRevealed(isTv) },
+            )
         }
     }
 }
@@ -80,6 +84,7 @@ fun RiddleWidget(
 @Composable
 private fun RiddleContent(
     riddle: Riddle,
+    onAnswerRevealed: () -> Unit,
 ) {
     val isTv = LocalIsTv.current
     val dimensions = LocalDimensions.current
@@ -141,7 +146,12 @@ private fun RiddleContent(
                     Modifier
                 },
             )
-            .clickable { showAnswer = !showAnswer }
+            .clickable {
+                if (!showAnswer) {
+                    onAnswerRevealed()
+                }
+                showAnswer = !showAnswer
+            }
             .focusable()
             .padding(dimensions.paddingMedium)
             .semantics {

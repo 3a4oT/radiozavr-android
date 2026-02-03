@@ -32,4 +32,7 @@ data object Language : AppRoute
 data object Playback : AppRoute
 
 @Serializable
+data object RiddleSettings : AppRoute
+
+@Serializable
 data object About : AppRoute

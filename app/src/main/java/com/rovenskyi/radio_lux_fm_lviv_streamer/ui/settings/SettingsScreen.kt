@@ -31,11 +31,13 @@ import androidx.hilt.navigation.compose.hiltViewModel
 import com.rovenskyi.radio_lux_fm_lviv_streamer.BuildConfig
 import com.rovenskyi.radio_lux_fm_lviv_streamer.R
 import com.rovenskyi.radio_lux_fm_lviv_streamer.domain.repository.LanguageRepository
+import com.rovenskyi.radio_lux_fm_lviv_streamer.viewmodel.RiddleSettingsViewModel
 import com.rovenskyi.radio_lux_fm_lviv_streamer.viewmodel.SettingsViewModel
 import com.rovenskyi.radio_lux_fm_lviv_streamer.viewmodel.ThemeViewModel
 import com.rovenskyi.radiolux.core.components.settings.SettingsGroup
 import com.rovenskyi.radiolux.core.components.settings.SettingsRow
 import com.rovenskyi.radiolux.core.models.language.LanguageMode
+import com.rovenskyi.radiolux.core.models.riddle.RiddleInterval
 import com.rovenskyi.radiolux.core.models.theme.ThemeMode
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -47,12 +49,15 @@ fun SettingsScreen(
     onThemeClick: () -> Unit,
     onLanguageClick: () -> Unit,
     onPlaybackClick: () -> Unit,
+    onRiddleClick: () -> Unit,
     onAboutClick: () -> Unit,
     modifier: Modifier = Modifier,
     settingsViewModel: SettingsViewModel = hiltViewModel(),
     themeViewModel: ThemeViewModel = hiltViewModel(),
+    riddleSettingsViewModel: RiddleSettingsViewModel = hiltViewModel(),
 ) {
     val themeMode by themeViewModel.themeMode.collectAsState()
+    val riddleInterval by riddleSettingsViewModel.riddleInterval.collectAsState()
 
     Scaffold(
         topBar = {
@@ -82,6 +87,7 @@ fun SettingsScreen(
             AppearanceGroup(themeMode = themeMode, onThemeClick = onThemeClick)
             LanguageGroup(languageRepository = languageRepository, onLanguageClick = onLanguageClick)
             PlaybackGroup(onPlaybackClick = onPlaybackClick)
+            RiddleGroup(riddleInterval = riddleInterval, onRiddleClick = onRiddleClick)
             AboutGroup(onAboutClick = onAboutClick)
         }
     }
@@ -138,6 +144,28 @@ private fun PlaybackGroup(onPlaybackClick: () -> Unit) {
             contentDescription = stringResource(R.string.settings_playback_content_description),
         ) {
             SettingsValueWithArrow()
+        }
+    }
+}
+
+@Composable
+private fun RiddleGroup(riddleInterval: RiddleInterval, onRiddleClick: () -> Unit) {
+    val currentIntervalLabel = when (riddleInterval) {
+        RiddleInterval.SECONDS_6 -> stringResource(R.string.settings_riddle_interval_6)
+        RiddleInterval.SECONDS_12 -> stringResource(R.string.settings_riddle_interval_12)
+        RiddleInterval.SECONDS_20 -> stringResource(R.string.settings_riddle_interval_20)
+        RiddleInterval.SECONDS_30 -> stringResource(R.string.settings_riddle_interval_30)
+        RiddleInterval.SECONDS_60 -> stringResource(R.string.settings_riddle_interval_60)
+    }
+
+    SettingsGroup(title = stringResource(R.string.settings_group_riddle)) {
+        SettingsRow(
+            title = stringResource(R.string.settings_riddle_title),
+            subtitle = stringResource(R.string.settings_riddle_subtitle),
+            onClick = onRiddleClick,
+            contentDescription = stringResource(R.string.settings_riddle_content_description, currentIntervalLabel),
+        ) {
+            SettingsValueWithArrow(value = currentIntervalLabel)
         }
     }
 }

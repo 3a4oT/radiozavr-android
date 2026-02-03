@@ -10,6 +10,7 @@ import com.rovenskyi.radio_lux_fm_lviv_streamer.ui.main.RadioPlayerScreen
 import com.rovenskyi.radio_lux_fm_lviv_streamer.ui.settings.AboutScreen
 import com.rovenskyi.radio_lux_fm_lviv_streamer.ui.settings.LanguageScreen
 import com.rovenskyi.radio_lux_fm_lviv_streamer.ui.settings.PlaybackSettingsScreen
+import com.rovenskyi.radio_lux_fm_lviv_streamer.ui.settings.RiddleSettingsScreen
 import com.rovenskyi.radio_lux_fm_lviv_streamer.ui.settings.SettingsScreen
 import com.rovenskyi.radio_lux_fm_lviv_streamer.ui.settings.ThemeScreen
 
@@ -42,6 +43,7 @@ fun AppNavigation(
                 onThemeClick = { navController.navigate(Theme) },
                 onLanguageClick = { navController.navigate(Language) },
                 onPlaybackClick = { navController.navigate(Playback) },
+                onRiddleClick = { navController.navigate(RiddleSettings) },
                 onAboutClick = { navController.navigate(About) },
             )
         }
@@ -57,6 +59,11 @@ fun AppNavigation(
         }
         composable<Playback> {
             PlaybackSettingsScreen(
+                onBackClick = { navController.popBackStack() },
+            )
+        }
+        composable<RiddleSettings> {
+            RiddleSettingsScreen(
                 onBackClick = { navController.popBackStack() },
             )
         }

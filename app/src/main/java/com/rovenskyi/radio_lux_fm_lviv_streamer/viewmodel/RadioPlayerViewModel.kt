@@ -50,6 +50,8 @@ class RadioPlayerViewModel @Inject constructor(
     private val analyticsTracker: AnalyticsTracker,
 ) : ViewModel() {
 
+    private var hasAttemptedAutoPlay = false
+
     val autoPlayEnabled: StateFlow<Boolean> = playbackSettingsRepository.autoPlayEnabled
         .stateIn(
             scope = viewModelScope,
@@ -118,15 +120,30 @@ class RadioPlayerViewModel @Inject constructor(
         }
     }
 
-    fun play() {
+    /**
+     * Attempts auto-play on app start. Only executes once per app session.
+     * The flag is always set regardless of [isEnabled] to prevent auto-play
+     * from triggering if user enables the setting mid-session.
+     *
+     * @param isEnabled Whether auto-play setting is enabled
+     * @return true if auto-play was triggered, false if skipped
+     */
+    fun tryAutoPlay(isEnabled: Boolean): Boolean {
+        if (hasAttemptedAutoPlay) return false
+        hasAttemptedAutoPlay = true
+
+        if (!isEnabled) return false
+
+        val currentState = uiState.value.playerState
+        if (currentState == PlayerState.PLAYING || currentState == PlayerState.LOADING) {
+            return false
+        }
+
         viewModelScope.launch {
-            val currentState = uiState.value.playerState
-            if (currentState == PlayerState.PLAYING || currentState == PlayerState.LOADING) {
-                return@launch
-            }
             playRadioUseCase()
             analyticsTracker.track(PlayerEvent.PlayStarted(PlaySource.AUTO_PLAY))
         }
+        return true
     }
 
     private fun clearError() {

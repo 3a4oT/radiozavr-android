@@ -5,66 +5,66 @@ import androidx.lifecycle.viewModelScope
 import com.rovenskyi.radio_lux_fm_lviv_streamer.domain.analytics.AnalyticsTracker
 import com.rovenskyi.radio_lux_fm_lviv_streamer.domain.analytics.event.RiddleEvent
 import com.rovenskyi.radio_lux_fm_lviv_streamer.domain.repository.PlaybackSettingsRepository
-import com.rovenskyi.radio_lux_fm_lviv_streamer.domain.repository.RiddleRepository
+import com.rovenskyi.radio_lux_fm_lviv_streamer.service.RiddleRotationService
 import com.rovenskyi.radiolux.core.models.riddle.Riddle
 import com.rovenskyi.radiolux.core.models.riddle.RiddleInterval
 import dagger.hilt.android.lifecycle.HiltViewModel
-import kotlinx.coroutines.Job
-import kotlinx.coroutines.delay
-import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.StateFlow
-import kotlinx.coroutines.flow.asStateFlow
-import kotlinx.coroutines.isActive
-import kotlinx.coroutines.launch
+import kotlinx.coroutines.flow.combine
+import kotlinx.coroutines.flow.launchIn
+import kotlinx.coroutines.flow.onEach
+import kotlinx.coroutines.flow.stateIn
 import javax.inject.Inject
 
 /**
+ * UI state for RiddleWidget.
+ */
+data class RiddleUiState(
+    val riddle: Riddle? = null,
+    val riddleStartTime: Long = System.currentTimeMillis(),
+    val intervalSeconds: Int = RiddleInterval.DEFAULT.seconds,
+)
+
+/**
  * ViewModel for RiddleWidget.
- * Manages riddle loading and rotation based on user-configured interval.
+ *
+ * Following architecture guidelines:
+ * - Uses combine() + stateIn() for UI state composition
+ * - Delegates rotation logic to RiddleRotationService
+ * - Only handles UI-specific concerns (analytics)
  */
 @HiltViewModel
 class RiddleWidgetViewModel @Inject constructor(
-    private val riddleRepository: RiddleRepository,
+    private val riddleRotationService: RiddleRotationService,
     private val playbackSettingsRepository: PlaybackSettingsRepository,
     private val analyticsTracker: AnalyticsTracker,
 ) : ViewModel() {
 
-    private val _currentRiddle = MutableStateFlow<Riddle?>(null)
-    val currentRiddle: StateFlow<Riddle?> = _currentRiddle.asStateFlow()
-
-    private val _riddleIndex = MutableStateFlow(0)
-    val riddleIndex: StateFlow<Int> = _riddleIndex.asStateFlow()
-
-    private var rotationJob: Job? = null
+    /**
+     * Combined UI state from service and settings.
+     * Uses WhileSubscribed(5_000) per architecture guidelines.
+     */
+    val uiState: StateFlow<RiddleUiState> = combine(
+        riddleRotationService.rotationState,
+        playbackSettingsRepository.riddleInterval,
+    ) { rotationState, interval ->
+        RiddleUiState(
+            riddle = rotationState.riddle,
+            riddleStartTime = rotationState.startTimeMillis,
+            intervalSeconds = interval.seconds,
+        )
+    }.stateIn(
+        scope = viewModelScope,
+        started = SharingStarted.WhileSubscribed(5_000),
+        initialValue = RiddleUiState(),
+    )
 
     init {
-        loadNextRiddle()
-        observeIntervalChanges()
-    }
-
-    private fun loadNextRiddle() {
-        viewModelScope.launch {
-            _currentRiddle.value = riddleRepository.getNextUniqueRiddle()
-            _riddleIndex.value++
-        }
-    }
-
-    private fun observeIntervalChanges() {
-        viewModelScope.launch {
-            playbackSettingsRepository.riddleInterval.collect { interval ->
-                restartRotation(interval)
-            }
-        }
-    }
-
-    private fun restartRotation(interval: RiddleInterval) {
-        rotationJob?.cancel()
-        rotationJob = viewModelScope.launch {
-            while (isActive) {
-                delay(interval.milliseconds)
-                loadNextRiddle()
-            }
-        }
+        // Observe interval changes and update service
+        playbackSettingsRepository.riddleInterval
+            .onEach { interval -> riddleRotationService.setInterval(interval) }
+            .launchIn(viewModelScope)
     }
 
     fun trackAnswerRevealed(isTv: Boolean) {

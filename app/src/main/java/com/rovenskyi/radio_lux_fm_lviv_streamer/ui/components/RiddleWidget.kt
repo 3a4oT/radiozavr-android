@@ -10,8 +10,11 @@ import androidx.compose.animation.togetherWith
 import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.focusable
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.MaterialTheme
@@ -21,7 +24,6 @@ import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
-import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -33,16 +35,21 @@ import androidx.compose.ui.semantics.contentDescription
 import androidx.compose.ui.semantics.role
 import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.text.style.TextAlign
-import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import androidx.hilt.lifecycle.viewmodel.compose.hiltViewModel
 import com.rovenskyi.radio_lux_fm_lviv_streamer.R
 import com.rovenskyi.radio_lux_fm_lviv_streamer.viewmodel.RiddleWidgetViewModel
+import com.rovenskyi.radiolux.core.components.widgets.CircularCountdownIndicator
 import com.rovenskyi.radiolux.core.models.riddle.Riddle
 import com.rovenskyi.radiolux.core.theme.LocalDimensions
 import com.rovenskyi.radiolux.core.theme.LocalIsTv
 import com.rovenskyi.radiolux.core.theme.LocalTvFocusColor
 import java.time.LocalTime
+
+private const val TV_INDICATOR_SIZE_DP = 76
+private const val PHONE_INDICATOR_SIZE_DP = 60
+private const val TV_STROKE_WIDTH_DP = 4
+private const val PHONE_STROKE_WIDTH_DP = 3
 
 private val ANSWER_REVEAL_TIME: LocalTime = LocalTime.of(22, 30)
 
@@ -63,20 +70,27 @@ fun RiddleWidget(
     modifier: Modifier = Modifier,
     viewModel: RiddleWidgetViewModel = hiltViewModel(),
 ) {
-    val riddle by viewModel.currentRiddle.collectAsState()
+    val uiState by viewModel.uiState.collectAsState()
     val isTv = LocalIsTv.current
 
-    riddle?.let { currentRiddle ->
-        AnimatedContent(
-            targetState = currentRiddle,
-            transitionSpec = { fadeIn() togetherWith fadeOut() },
-            label = "riddle_rotation",
-            modifier = modifier,
-        ) { targetRiddle ->
-            RiddleContent(
-                riddle = targetRiddle,
-                onAnswerRevealed = { viewModel.trackAnswerRevealed(isTv) },
-            )
+    // Box centers content both horizontally and vertically within available space
+    Box(
+        modifier = modifier.fillMaxSize(),
+        contentAlignment = Alignment.Center,
+    ) {
+        uiState.riddle?.let { currentRiddle ->
+            AnimatedContent(
+                targetState = currentRiddle,
+                transitionSpec = { fadeIn() togetherWith fadeOut() },
+                label = "riddle_rotation",
+            ) { targetRiddle ->
+                RiddleContent(
+                    riddle = targetRiddle,
+                    intervalSeconds = uiState.intervalSeconds,
+                    riddleStartTime = uiState.riddleStartTime,
+                    onAnswerRevealed = { viewModel.trackAnswerRevealed(isTv) },
+                )
+            }
         }
     }
 }
@@ -84,15 +98,19 @@ fun RiddleWidget(
 @Composable
 private fun RiddleContent(
     riddle: Riddle,
+    intervalSeconds: Int,
+    riddleStartTime: Long,
     onAnswerRevealed: () -> Unit,
 ) {
     val isTv = LocalIsTv.current
     val dimensions = LocalDimensions.current
     val focusColor = LocalTvFocusColor.current
-    val currentTime = LocalTime.now()
-    val isAfterRevealTime = currentTime >= ANSWER_REVEAL_TIME
 
-    var showAnswer by rememberSaveable(riddle.question) { mutableStateOf(false) }
+    // Cache time check - only read once per riddle
+    val isAfterRevealTime = remember(riddle) { LocalTime.now() >= ANSWER_REVEAL_TIME }
+
+    // Use remember (not rememberSaveable) - state should reset on riddle change, not survive process death
+    var showAnswer by remember(riddle.question) { mutableStateOf(false) }
     var isFocused by remember { mutableStateOf(false) }
 
     val shouldShowAnswer = showAnswer || isAfterRevealTime
@@ -133,6 +151,7 @@ private fun RiddleContent(
 
     Column(
         modifier = Modifier
+            .fillMaxWidth()
             .scale(scale)
             .onFocusChanged { isFocused = it.isFocused }
             .then(
@@ -153,41 +172,59 @@ private fun RiddleContent(
                 showAnswer = !showAnswer
             }
             .focusable()
-            .padding(dimensions.paddingMedium)
+            .padding(horizontal = dimensions.paddingLarge)
+            .padding(vertical = dimensions.paddingMedium)
             .semantics {
                 contentDescription = accessibilityDescription
                 role = Role.Button
             },
         horizontalAlignment = Alignment.CenterHorizontally,
     ) {
-        Text(
-            text = riddle.emoji,
-            style = MaterialTheme.typography.headlineLarge,
-        )
+        CircularCountdownIndicator(
+            durationSeconds = intervalSeconds,
+            animationKey = riddle,
+            startTimeMillis = riddleStartTime,
+            size = if (isTv) TV_INDICATOR_SIZE_DP.dp else PHONE_INDICATOR_SIZE_DP.dp,
+            strokeWidth = if (isTv) TV_STROKE_WIDTH_DP.dp else PHONE_STROKE_WIDTH_DP.dp,
+        ) {
+            Text(
+                text = riddle.emoji,
+                style = MaterialTheme.typography.headlineLarge,
+            )
+        }
         Spacer(modifier = Modifier.height(dimensions.spacingSmall))
         Text(
             text = riddle.question,
             style = MaterialTheme.typography.titleLarge,
             textAlign = TextAlign.Center,
-            maxLines = 3,
-            overflow = TextOverflow.Ellipsis,
         )
         Spacer(modifier = Modifier.height(dimensions.spacingSmall))
-        if (shouldShowAnswer) {
-            Text(
-                text = "\uD83D\uDCA1 ${riddle.answer}",
-                style = MaterialTheme.typography.bodyLarge,
-                color = MaterialTheme.colorScheme.primary,
-                textAlign = TextAlign.Center,
-                maxLines = 2,
-                overflow = TextOverflow.Ellipsis,
-            )
-        } else {
-            Text(
-                text = stringResource(hintTextRes),
-                style = MaterialTheme.typography.bodySmall,
-                color = MaterialTheme.colorScheme.onSurfaceVariant,
-            )
-        }
+        RiddleAnswerHint(
+            answer = riddle.answer,
+            showAnswer = shouldShowAnswer,
+            hintTextRes = hintTextRes,
+        )
+    }
+}
+
+@Composable
+private fun RiddleAnswerHint(
+    answer: String,
+    showAnswer: Boolean,
+    hintTextRes: Int,
+) {
+    if (showAnswer) {
+        Text(
+            text = "\uD83D\uDCA1 $answer",
+            style = MaterialTheme.typography.bodyLarge,
+            color = MaterialTheme.colorScheme.primary,
+            textAlign = TextAlign.Center,
+        )
+    } else {
+        Text(
+            text = stringResource(hintTextRes),
+            style = MaterialTheme.typography.bodySmall,
+            color = MaterialTheme.colorScheme.onSurfaceVariant,
+        )
     }
 }

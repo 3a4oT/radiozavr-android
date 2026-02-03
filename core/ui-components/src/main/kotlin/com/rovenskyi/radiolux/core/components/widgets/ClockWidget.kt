@@ -1,4 +1,4 @@
-package com.rovenskyi.radio_lux_fm_lviv_streamer.ui.components
+package com.rovenskyi.radiolux.core.components.widgets
 
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
@@ -9,46 +9,51 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.semantics.contentDescription
 import androidx.compose.ui.semantics.semantics
-import com.rovenskyi.radio_lux_fm_lviv_streamer.R
+import androidx.compose.ui.text.TextStyle
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.isActive
 import java.time.LocalTime
 import java.time.format.DateTimeFormatter
 
-private val timeFormatter = DateTimeFormatter.ofPattern("HH:mm")
+private val DEFAULT_TIME_FORMATTER = DateTimeFormatter.ofPattern("HH:mm")
+private const val UPDATE_INTERVAL_MS = 1000L
 
 /**
  * Widget that displays the current time.
- * Updates every second.
+ * Updates every second automatically.
  *
- * Accessibility:
- * - Full TalkBack support with content description
+ * @param modifier Modifier for the text
+ * @param style Text style (defaults to displayLarge)
+ * @param formatter DateTimeFormatter for time format (defaults to HH:mm)
+ * @param contentDescriptionProvider Lambda to generate accessibility description from formatted time
  */
 @Composable
 fun ClockWidget(
     modifier: Modifier = Modifier,
+    style: TextStyle = MaterialTheme.typography.displayLarge,
+    formatter: DateTimeFormatter = DEFAULT_TIME_FORMATTER,
+    contentDescriptionProvider: (String) -> String = { it },
 ) {
     var currentTime by remember { mutableStateOf(LocalTime.now()) }
 
     // Update time every second
     LaunchedEffect(Unit) {
         while (isActive) {
-            delay(1000L)
+            delay(UPDATE_INTERVAL_MS)
             currentTime = LocalTime.now()
         }
     }
 
-    val formattedTime = currentTime.format(timeFormatter)
-    val clockDescription = stringResource(R.string.clock_content_description, formattedTime)
+    val formattedTime = currentTime.format(formatter)
+    val description = contentDescriptionProvider(formattedTime)
 
     Text(
         text = formattedTime,
-        style = MaterialTheme.typography.displayLarge,
+        style = style,
         modifier = modifier.semantics {
-            contentDescription = clockDescription
+            contentDescription = description
         },
     )
 }

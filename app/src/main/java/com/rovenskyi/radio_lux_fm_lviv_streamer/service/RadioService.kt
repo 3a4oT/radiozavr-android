@@ -136,19 +136,23 @@ class RadioService : MediaSessionService(), Player.Listener {
                 addListener(this@RadioService)
             }
 
-        // Activity to open when notification is tapped
-        val sessionActivityIntent = PendingIntent.getActivity(
-            this,
-            0,
-            Intent(this, MainActivity::class.java).apply {
-                flags = Intent.FLAG_ACTIVITY_SINGLE_TOP or Intent.FLAG_ACTIVITY_CLEAR_TOP
-            },
-            PendingIntent.FLAG_IMMUTABLE or PendingIntent.FLAG_UPDATE_CURRENT,
-        )
-
         mediaSession = MediaSession.Builder(this, exoPlayer)
-            .setSessionActivity(sessionActivityIntent)
             .setCallback(MediaSessionCallback())
+            .apply {
+                // On TV: don't set sessionActivity - system uses LEANBACK_LAUNCHER from manifest
+                // On Phone: set sessionActivity for notification tap to open app
+                if (!platformRepository.isTv) {
+                    val sessionActivityIntent = PendingIntent.getActivity(
+                        this@RadioService,
+                        0,
+                        Intent(this@RadioService, MainActivity::class.java).apply {
+                            flags = Intent.FLAG_ACTIVITY_SINGLE_TOP
+                        },
+                        PendingIntent.FLAG_IMMUTABLE or PendingIntent.FLAG_UPDATE_CURRENT,
+                    )
+                    setSessionActivity(sessionActivityIntent)
+                }
+            }
             .build()
 
         observeNetworkStatus()

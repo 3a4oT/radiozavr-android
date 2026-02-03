@@ -2,6 +2,8 @@ package com.rovenskyi.radio_lux_fm_lviv_streamer.viewmodel
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.rovenskyi.radio_lux_fm_lviv_streamer.domain.analytics.AnalyticsTracker
+import com.rovenskyi.radio_lux_fm_lviv_streamer.domain.analytics.event.RiddleEvent
 import com.rovenskyi.radio_lux_fm_lviv_streamer.domain.repository.RiddleRepository
 import com.rovenskyi.radiolux.core.models.riddle.Riddle
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -22,6 +24,7 @@ private const val ROTATION_INTERVAL_MS = 20_000L
 @HiltViewModel
 class RiddleWidgetViewModel @Inject constructor(
     private val riddleRepository: RiddleRepository,
+    private val analyticsTracker: AnalyticsTracker,
 ) : ViewModel() {
 
     private val _currentRiddle = MutableStateFlow<Riddle?>(null)
@@ -49,5 +52,9 @@ class RiddleWidgetViewModel @Inject constructor(
                 loadNextRiddle()
             }
         }
+    }
+
+    fun trackAnswerRevealed(isTv: Boolean) {
+        analyticsTracker.track(RiddleEvent.AnswerRevealed(isTv))
     }
 }

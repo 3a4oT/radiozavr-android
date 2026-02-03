@@ -64,16 +64,15 @@ fun RiddleWidget(
     viewModel: RiddleWidgetViewModel = hiltViewModel(),
 ) {
     val riddle by viewModel.currentRiddle.collectAsState()
-    val riddleIndex by viewModel.riddleIndex.collectAsState()
 
     riddle?.let { currentRiddle ->
         AnimatedContent(
-            targetState = riddleIndex,
+            targetState = currentRiddle,
             transitionSpec = { fadeIn() togetherWith fadeOut() },
             label = "riddle_rotation",
             modifier = modifier,
-        ) { _ ->
-            RiddleContent(riddle = currentRiddle)
+        ) { targetRiddle ->
+            RiddleContent(riddle = targetRiddle)
         }
     }
 }

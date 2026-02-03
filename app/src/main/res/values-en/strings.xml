@@ -6,8 +6,8 @@
     <string name="retry_button">Retry</string>
     <string name="notitification_content_title">Radio Lux FM Lviv 104.7</string>
     <string name="notitification_content_description">104.7 FM Lviv</string>
-    <string name="notitification_action_play">Start streaming</string>
-    <string name="notitification_action_pause">Pause streaming</string>
+    <string name="notification_channel_name">Radio Playback</string>
+    <string name="notification_channel_description">Shows playback controls for radio stream</string>
     <string name="permission_denied_title">Permission Denied</string>
     <string name="permission_denied_message">Notification permission is required to show notifications. Please enable it in the app settings.</string>
     <string name="audio_permission_rationale_title">Audio Visualizer</string>

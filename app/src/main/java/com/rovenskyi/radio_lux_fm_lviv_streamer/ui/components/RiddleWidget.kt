@@ -46,8 +46,8 @@ import com.rovenskyi.radiolux.core.theme.LocalIsTv
 import com.rovenskyi.radiolux.core.theme.LocalTvFocusColor
 import java.time.LocalTime
 
-private const val TV_INDICATOR_SIZE_DP = 72
-private const val PHONE_INDICATOR_SIZE_DP = 56
+private const val TV_INDICATOR_SIZE_DP = 76
+private const val PHONE_INDICATOR_SIZE_DP = 60
 private const val TV_STROKE_WIDTH_DP = 4
 private const val PHONE_STROKE_WIDTH_DP = 3
 

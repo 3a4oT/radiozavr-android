@@ -156,16 +156,17 @@ private fun WidgetArea(modifier: Modifier = Modifier) {
     Column(
         modifier = modifier.fillMaxWidth(),
         horizontalAlignment = Alignment.CenterHorizontally,
-        verticalArrangement = Arrangement.Center,
     ) {
-        // Clock - only on TV
+        // Clock - only on TV (fixed at top)
         if (isTv) {
             ClockWidget()
-            Spacer(modifier = Modifier.height(dimensions.spacingLarge))
+            Spacer(modifier = Modifier.height(dimensions.spacingMedium))
         }
 
-        // Riddles - always visible
-        RiddleWidget()
+        // Riddles - takes remaining space, scrollable if needed
+        RiddleWidget(
+            modifier = Modifier.weight(1f),
+        )
     }
 }
 

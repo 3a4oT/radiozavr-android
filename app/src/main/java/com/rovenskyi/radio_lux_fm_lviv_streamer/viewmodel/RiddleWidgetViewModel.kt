@@ -21,6 +21,7 @@ import javax.inject.Inject
 /**
  * ViewModel for RiddleWidget.
  * Manages riddle loading and rotation based on user-configured interval.
+ * Progress animation is handled in UI layer via Compose Animatable.
  */
 @HiltViewModel
 class RiddleWidgetViewModel @Inject constructor(
@@ -34,6 +35,10 @@ class RiddleWidgetViewModel @Inject constructor(
 
     private val _riddleIndex = MutableStateFlow(0)
     val riddleIndex: StateFlow<Int> = _riddleIndex.asStateFlow()
+
+    /** Current interval in seconds for UI animation */
+    private val _intervalSeconds = MutableStateFlow(RiddleInterval.DEFAULT.seconds)
+    val intervalSeconds: StateFlow<Int> = _intervalSeconds.asStateFlow()
 
     private var rotationJob: Job? = null
 
@@ -52,6 +57,7 @@ class RiddleWidgetViewModel @Inject constructor(
     private fun observeIntervalChanges() {
         viewModelScope.launch {
             playbackSettingsRepository.riddleInterval.collect { interval ->
+                _intervalSeconds.value = interval.seconds
                 restartRotation(interval)
             }
         }

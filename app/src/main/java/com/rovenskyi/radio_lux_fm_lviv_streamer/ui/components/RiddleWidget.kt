@@ -13,6 +13,7 @@ import androidx.compose.foundation.focusable
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
@@ -23,7 +24,6 @@ import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
-import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -74,9 +74,9 @@ fun RiddleWidget(
     val intervalSeconds by viewModel.intervalSeconds.collectAsState()
     val isTv = LocalIsTv.current
 
-    // Center content, let it grow naturally based on text length
+    // Box centers content both horizontally and vertically within available space
     Box(
-        modifier = modifier,
+        modifier = modifier.fillMaxSize(),
         contentAlignment = Alignment.Center,
     ) {
         riddle?.let { currentRiddle ->
@@ -108,7 +108,8 @@ private fun RiddleContent(
     // Cache time check - only read once per riddle
     val isAfterRevealTime = remember(riddle) { LocalTime.now() >= ANSWER_REVEAL_TIME }
 
-    var showAnswer by rememberSaveable(riddle.question) { mutableStateOf(false) }
+    // Use remember (not rememberSaveable) - state should reset on riddle change, not survive process death
+    var showAnswer by remember(riddle.question) { mutableStateOf(false) }
     var isFocused by remember { mutableStateOf(false) }
 
     val shouldShowAnswer = showAnswer || isAfterRevealTime

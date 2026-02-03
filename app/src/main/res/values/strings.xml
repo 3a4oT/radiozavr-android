@@ -54,6 +54,14 @@
     <string name="player_pause">Pause</string>
     <string name="player_error_friendly">Oops! Something went wrong</string>
 
+    <!-- Riddle Widget -->
+    <string name="riddle_tap_for_answer">Tap for answer</string>
+    <string name="riddle_press_ok_for_answer">Press OK for answer</string>
+    <string name="riddle_content_description">Riddle: %1$s. Tap to reveal answer</string>
+    <string name="riddle_content_description_tv">Riddle: %1$s. Press OK to reveal answer</string>
+    <string name="riddle_answer_content_description">Answer: %1$s</string>
+    <string name="clock_content_description">Current time: %1$s</string>
+
     <!-- About -->
     <string name="about_title">About</string>
     <string name="about_row_title">Details</string>

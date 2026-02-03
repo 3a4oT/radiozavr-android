@@ -16,11 +16,11 @@ import javax.inject.Inject
 private const val ROTATION_INTERVAL_MS = 20_000L
 
 /**
- * ViewModel for RotatingWidget.
+ * ViewModel for RiddleWidget.
  * Manages riddle loading and rotation on 20-second intervals.
  */
 @HiltViewModel
-class RotatingWidgetViewModel @Inject constructor(
+class RiddleWidgetViewModel @Inject constructor(
     private val riddleRepository: RiddleRepository,
 ) : ViewModel() {
 

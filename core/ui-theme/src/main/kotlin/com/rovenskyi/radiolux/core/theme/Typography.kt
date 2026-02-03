@@ -113,8 +113,8 @@ val AppTypography = Typography(
 val TvTypography = Typography(
     displayLarge = TextStyle(
         fontWeight = FontWeight.Bold,
-        fontSize = 86.sp,
-        lineHeight = 96.sp,
+        fontSize = 72.sp,
+        lineHeight = 80.sp,
         letterSpacing = (-0.25).sp,
     ),
     displayMedium = TextStyle(
@@ -155,8 +155,8 @@ val TvTypography = Typography(
     ),
     titleMedium = TextStyle(
         fontWeight = FontWeight.Medium,
-        fontSize = 24.sp,
-        lineHeight = 36.sp,
+        fontSize = 16.sp,
+        lineHeight = 24.sp,
         letterSpacing = 0.15.sp,
     ),
     titleSmall = TextStyle(

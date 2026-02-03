@@ -54,6 +54,14 @@
     <string name="player_pause">Пауза</string>
     <string name="player_error_friendly">Ой! Щось пішло не так</string>
 
+    <!-- Riddle Widget -->
+    <string name="riddle_tap_for_answer">Торкнись для відповіді</string>
+    <string name="riddle_press_ok_for_answer">Натисни OK для відповіді</string>
+    <string name="riddle_content_description">Загадка: %1$s. Торкнись щоб побачити відповідь</string>
+    <string name="riddle_content_description_tv">Загадка: %1$s. Натисни OK щоб побачити відповідь</string>
+    <string name="riddle_answer_content_description">Відповідь: %1$s</string>
+    <string name="clock_content_description">Поточний час: %1$s</string>
+
     <!-- About -->
     <string name="about_title">Про застосунок</string>
     <string name="about_row_title">Деталі</string>

@@ -3,8 +3,10 @@ package com.rovenskyi.radio_lux_fm_lviv_streamer.ui.main
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.PlayArrow
@@ -20,17 +22,19 @@ import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
-import androidx.hilt.lifecycle.viewmodel.compose.hiltViewModel
+import androidx.hilt.navigation.compose.hiltViewModel
 import com.rovenskyi.radio_lux_fm_lviv_streamer.R
 import com.rovenskyi.radio_lux_fm_lviv_streamer.domain.model.NetworkStatus
 import com.rovenskyi.radio_lux_fm_lviv_streamer.domain.model.PlayerState
 import com.rovenskyi.radio_lux_fm_lviv_streamer.ui.components.ClockWidget
+import com.rovenskyi.radio_lux_fm_lviv_streamer.ui.components.RiddleWidget
 import com.rovenskyi.radio_lux_fm_lviv_streamer.ui.main.error.NetworkErrorScreen
 import com.rovenskyi.radio_lux_fm_lviv_streamer.viewmodel.RadioPlayerViewModel
 import com.rovenskyi.radiolux.core.components.background.RelaxingBackground
 import com.rovenskyi.radiolux.core.components.player.PlayerBar
 import com.rovenskyi.radiolux.core.components.player.PlayerBarState
 import com.rovenskyi.radiolux.core.theme.LocalDimensions
+import com.rovenskyi.radiolux.core.theme.LocalIsTv
 import kotlinx.coroutines.delay
 
 private const val AUDIO_PERMISSION_DELAY_MS = 3000L
@@ -114,16 +118,8 @@ private fun RadioPlayerContent(
         verticalArrangement = Arrangement.SpaceBetween,
         horizontalAlignment = Alignment.CenterHorizontally,
     ) {
-        // Top: Widget area (will be WidgetStack in future)
-        Box(
-            modifier = Modifier
-                .weight(1f)
-                .fillMaxWidth(),
-            contentAlignment = Alignment.Center,
-        ) {
-            // For now, show clock. Will be replaced with WidgetStack
-            ClockWidget()
-        }
+        // Top: Widget area (clock on TV, riddles everywhere)
+        WidgetArea(modifier = Modifier.weight(1f))
 
         // Bottom: Player bar with branding and visualizer
         PlayerBar(
@@ -143,6 +139,27 @@ private fun RadioPlayerContent(
             errorDetails = errorMessage,
             modifier = Modifier.padding(bottom = dimensions.paddingLarge),
         )
+    }
+}
+
+@Composable
+private fun WidgetArea(modifier: Modifier = Modifier) {
+    val isTv = LocalIsTv.current
+    val dimensions = LocalDimensions.current
+
+    Column(
+        modifier = modifier.fillMaxWidth(),
+        horizontalAlignment = Alignment.CenterHorizontally,
+        verticalArrangement = Arrangement.Center,
+    ) {
+        // Clock - only on TV
+        if (isTv) {
+            ClockWidget()
+            Spacer(modifier = Modifier.height(dimensions.spacingLarge))
+        }
+
+        // Riddles - always visible
+        RiddleWidget()
     }
 }
 

@@ -37,7 +37,7 @@ class RotatingWidgetViewModel @Inject constructor(
 
     private fun loadNextRiddle() {
         viewModelScope.launch {
-            _currentRiddle.value = riddleRepository.getRandomRiddle()
+            _currentRiddle.value = riddleRepository.getNextUniqueRiddle()
             _riddleIndex.value++
         }
     }

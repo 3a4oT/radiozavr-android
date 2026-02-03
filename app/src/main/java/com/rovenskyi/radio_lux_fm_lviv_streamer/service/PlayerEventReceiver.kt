@@ -65,9 +65,9 @@ class PlayerEventReceiver @Inject constructor() {
      * - Waits [REBUFFER_DEBOUNCE_MS] before showing spinner
      * - Prevents flickering on unstable networks
      *
-     * Buffer ready:
+     * Buffer ready (STATE_READY):
      * - Immediately hides spinner
-     * - Marks that playback succeeded (for future rebuffer detection)
+     * - Marks that buffer filled (for future rebuffer detection)
      */
     fun postPlayerIsLoading(isLoading: Boolean) {
         if (isLoading) {
@@ -84,23 +84,23 @@ class PlayerEventReceiver @Inject constructor() {
                 _playerIsLoading.value = true
             }
         } else {
-            // Buffer filled - immediately hide spinner
+            // Buffer filled (STATE_READY) - immediately hide spinner
             bufferingJob?.cancel()
             bufferingJob = null
             _playerIsLoading.value = false
 
-            // Mark that we've played successfully (buffer was filled at least once)
-            if (_playerState.value) {
-                hasPlayedSuccessfully = true
-            }
+            // Mark that buffer filled - regardless of playerState
+            // (STATE_READY callback may arrive before onIsPlayingChanged)
+            hasPlayedSuccessfully = true
         }
     }
 
     /**
      * Posts player state (playing/stopped).
      *
-     * On cold start (play pressed, never played yet):
-     * - Sets loading BEFORE playing state to avoid flash of stop button
+     * Called from onIsPlayingChanged - only when player.isPlaying changes.
+     * Note: isPlaying=true requires STATE_READY, so hasPlayedSuccessfully
+     * should already be true by the time this is called with isPlaying=true.
      */
     fun postPlayerState(isPlaying: Boolean) {
         if (!isPlaying) {
@@ -110,13 +110,9 @@ class PlayerEventReceiver @Inject constructor() {
             hasPlayedSuccessfully = false
             _playerIsLoading.value = false
             _playerState.value = false
-        } else if (!hasPlayedSuccessfully) {
-            // Cold start - set loading FIRST to avoid flash of stop button
-            // Order matters: combine() emits after each change
-            _playerIsLoading.value = true
-            _playerState.value = true
         } else {
-            // Already played successfully, just update state
+            // Playing - just update state
+            // Loading state is managed by postPlayerIsLoading (from onPlaybackStateChanged)
             _playerState.value = true
         }
     }

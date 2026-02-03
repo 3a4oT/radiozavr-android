@@ -1,27 +1,26 @@
 package com.rovenskyi.radio_lux_fm_lviv_streamer.service
 
-import android.Manifest
-import android.app.Notification
+import android.app.NotificationChannel
+import android.app.NotificationManager
 import android.app.PendingIntent
 import android.content.Context
 import android.content.Intent
-import android.content.pm.PackageManager
-import android.content.pm.ServiceInfo
+import android.graphics.Bitmap
+import android.graphics.BitmapFactory
 import android.os.Build
 import androidx.annotation.OptIn
 import androidx.annotation.StringRes
 import androidx.appcompat.app.AppCompatDelegate
-import androidx.core.app.ActivityCompat
-import androidx.core.app.NotificationChannelCompat
-import androidx.core.app.NotificationCompat
-import androidx.core.app.NotificationManagerCompat
-import androidx.core.app.ServiceCompat
+import androidx.media3.common.AudioAttributes
+import androidx.media3.common.C
 import androidx.media3.common.MediaItem
+import androidx.media3.common.MediaMetadata
 import androidx.media3.common.PlaybackException
 import androidx.media3.common.Player
 import androidx.media3.common.util.UnstableApi
 import androidx.media3.exoplayer.DefaultLoadControl
 import androidx.media3.exoplayer.ExoPlayer
+import androidx.media3.session.DefaultMediaNotificationProvider
 import androidx.media3.session.MediaSession
 import androidx.media3.session.MediaSessionService
 import com.rovenskyi.radio_lux_fm_lviv_streamer.MainActivity
@@ -44,6 +43,15 @@ import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
+/**
+ * Media playback service using Media3's MediaSessionService.
+ *
+ * Key features:
+ * - Automatic MediaStyle notification (lock screen, Quick Settings, Bluetooth)
+ * - Proper audio focus handling via AudioAttributes
+ * - System media controls integration (like iOS Control Center)
+ * - TV screensaver prevention during playback
+ */
 @AndroidEntryPoint
 class RadioService : MediaSessionService(), Player.Listener {
 
@@ -77,6 +85,22 @@ class RadioService : MediaSessionService(), Player.Listener {
     override fun onCreate() {
         super.onCreate()
 
+        // Create notification channel (required for Android 8+)
+        createNotificationChannel()
+
+        // Set up Media3's notification provider for automatic MediaStyle notifications
+        setMediaNotificationProvider(
+            DefaultMediaNotificationProvider.Builder(this)
+                .setChannelId(NOTIFICATION_CHANNEL_ID)
+                .build(),
+        )
+
+        // Audio attributes for music streaming - enables proper audio focus
+        val audioAttributes = AudioAttributes.Builder()
+            .setUsage(C.USAGE_MEDIA)
+            .setContentType(C.AUDIO_CONTENT_TYPE_MUSIC)
+            .build()
+
         // Buffer configuration optimized for live HLS audio streaming
         val loadControl = DefaultLoadControl.Builder()
             .setBufferDurationsMs(
@@ -89,11 +113,18 @@ class RadioService : MediaSessionService(), Player.Listener {
 
         exoPlayer = ExoPlayer.Builder(this)
             .setLoadControl(loadControl)
+            .setAudioAttributes(audioAttributes, true) // handleAudioFocus = true
+            .setWakeMode(C.WAKE_MODE_NETWORK) // Keep WiFi/CPU during playback
             .build()
             .apply {
-                val mediaMetadata = androidx.media3.common.MediaMetadata.Builder()
+                val artworkBitmap = BitmapFactory.decodeResource(resources, R.mipmap.ic_launcher_foreground)
+
+                val mediaMetadata = MediaMetadata.Builder()
                     .setTitle(getLocalizedString(R.string.notitification_content_title))
                     .setArtist(getLocalizedString(R.string.notitification_content_description))
+                    .setArtworkData(bitmapToByteArray(artworkBitmap), MediaMetadata.PICTURE_TYPE_FRONT_COVER)
+                    .setIsPlayable(true)
+                    .setIsBrowsable(false)
                     .build()
 
                 val mediaItem = MediaItem.Builder()
@@ -102,21 +133,31 @@ class RadioService : MediaSessionService(), Player.Listener {
                     .build()
 
                 setMediaItem(mediaItem)
-                prepare()
                 addListener(this@RadioService)
             }
 
-        mediaSession = MediaSession.Builder(this, exoPlayer).build()
-
-        createNotificationChannel()
-        ServiceCompat.startForeground(
+        // Activity to open when notification is tapped
+        val sessionActivityIntent = PendingIntent.getActivity(
             this,
-            NOTIFICATION_ID,
-            buildNotification(false),
-            ServiceInfo.FOREGROUND_SERVICE_TYPE_MEDIA_PLAYBACK,
+            0,
+            Intent(this, MainActivity::class.java).apply {
+                flags = Intent.FLAG_ACTIVITY_SINGLE_TOP or Intent.FLAG_ACTIVITY_CLEAR_TOP
+            },
+            PendingIntent.FLAG_IMMUTABLE or PendingIntent.FLAG_UPDATE_CURRENT,
         )
 
+        mediaSession = MediaSession.Builder(this, exoPlayer)
+            .setSessionActivity(sessionActivityIntent)
+            .setCallback(MediaSessionCallback())
+            .build()
+
         observeNetworkStatus()
+    }
+
+    private fun bitmapToByteArray(bitmap: Bitmap): ByteArray {
+        val stream = java.io.ByteArrayOutputStream()
+        bitmap.compress(Bitmap.CompressFormat.PNG, 100, stream)
+        return stream.toByteArray()
     }
 
     private fun observeNetworkStatus() {
@@ -131,34 +172,9 @@ class RadioService : MediaSessionService(), Player.Listener {
 
     override fun onStartCommand(intent: Intent?, flags: Int, startId: Int): Int {
         super.onStartCommand(intent, flags, startId)
+        // Playback is controlled via MediaController (not custom actions)
+        // Only handle app lifecycle events for TV auto-stop feature
         when (intent?.action) {
-            ACTION_PLAY -> {
-                // If player is in IDLE state (after error or stop), prepare first
-                if (exoPlayer.playbackState == Player.STATE_IDLE) {
-                    exoPlayer.prepare()
-                }
-                exoPlayer.play()
-                playerEventReceiver.postPlayerState(true)
-                // If already buffered, clear loading state immediately
-                // Note: don't check isLoading - for live streams it's often true during prefetch
-                if (exoPlayer.playbackState == Player.STATE_READY) {
-                    playerEventReceiver.postPlayerIsLoading(false)
-                }
-                updateNotification(isPlaying = true)
-            }
-            ACTION_PAUSE -> {
-                exoPlayer.pause()
-                playerEventReceiver.postPlayerState(false)
-                updateNotification(isPlaying = false)
-            }
-            ACTION_STOP -> {
-                exoPlayer.stop()
-                playerEventReceiver.postPlayerState(false)
-                playerEventReceiver.postAudioSessionId(null)
-                updateNotification(isPlaying = false)
-                stopForeground(STOP_FOREGROUND_REMOVE)
-                stopSelf()
-            }
             ACTION_APP_BACKGROUND -> handleAppBackground()
             ACTION_APP_FOREGROUND -> handleAppForeground()
         }
@@ -178,9 +194,7 @@ class RadioService : MediaSessionService(), Player.Listener {
                 delay(AUTO_STOP_DELAY_MS)
                 wasStoppedByAutoStop = true
                 exoPlayer.stop()
-                playerEventReceiver.postPlayerState(false)
-                playerEventReceiver.postAudioSessionId(null)
-                updateNotification(isPlaying = false)
+                // State changes are propagated via onIsPlayingChanged
             }
         }
     }
@@ -198,13 +212,7 @@ class RadioService : MediaSessionService(), Player.Listener {
             wasStoppedByAutoStop = false
             exoPlayer.prepare()
             exoPlayer.play()
-            playerEventReceiver.postPlayerState(true)
-            // If already buffered, clear loading state immediately
-            // Note: don't check isLoading - for live streams it's often true during prefetch
-            if (exoPlayer.playbackState == Player.STATE_READY) {
-                playerEventReceiver.postPlayerIsLoading(false)
-            }
-            updateNotification(isPlaying = true)
+            // State changes are propagated via onIsPlayingChanged
         }
     }
 
@@ -213,20 +221,28 @@ class RadioService : MediaSessionService(), Player.Listener {
         exoPlayer.removeListener(this)
         exoPlayer.release()
         mediaSession.release()
-        stopForeground(STOP_FOREGROUND_REMOVE)
         super.onDestroy()
     }
 
     override fun onGetSession(controllerInfo: MediaSession.ControllerInfo): MediaSession = mediaSession
 
+    override fun onIsPlayingChanged(isPlaying: Boolean) {
+        super.onIsPlayingChanged(isPlaying)
+        playerEventReceiver.postPlayerState(isPlaying)
+        if (!isPlaying && exoPlayer.playbackState == Player.STATE_IDLE) {
+            playerEventReceiver.postAudioSessionId(null)
+        }
+    }
+
+    /**
+     * Note: For live streaming, ExoPlayer continuously buffers ahead, so isLoading
+     * toggles frequently even during playback. We intentionally DO NOT propagate
+     * isLoading here - instead we use onPlaybackStateChanged for loading UI state.
+     * STATE_BUFFERING = loading, STATE_READY = not loading.
+     */
     override fun onIsLoadingChanged(isLoading: Boolean) {
         super.onIsLoadingChanged(isLoading)
-        // Only propagate loading state during actual buffering (not STATE_READY)
-        // For live HLS streams, isLoading is often true during STATE_READY (prefetching)
-        // We rely on onPlaybackStateChanged for accurate UI state transitions
-        if (exoPlayer.playbackState != Player.STATE_READY) {
-            playerEventReceiver.postPlayerIsLoading(isLoading)
-        }
+        // Intentionally empty - loading state is managed via onPlaybackStateChanged
     }
 
     @OptIn(UnstableApi::class)
@@ -248,12 +264,10 @@ class RadioService : MediaSessionService(), Player.Listener {
         }
     }
 
-    // Override listener methods to handle network errors
     override fun onPlayerError(error: PlaybackException) {
         super.onPlayerError(error)
         playerEventReceiver.postPlayerError(error.message)
 
-        // Track error in analytics and Crashlytics
         analyticsTracker.track(
             PlayerEvent.PlaybackError(
                 errorType = ErrorType.PLAYBACK,
@@ -270,64 +284,23 @@ class RadioService : MediaSessionService(), Player.Listener {
         )
     }
 
+    /**
+     * Creates notification channel for media playback.
+     */
     private fun createNotificationChannel() {
-        val channel = NotificationChannelCompat.Builder(CHANNEL_ID, NotificationManagerCompat.IMPORTANCE_LOW)
-            .setName(getLocalizedString(R.string.notitification_content_title))
-            .setDescription(getLocalizedString(R.string.notitification_content_description))
-            .build()
-        NotificationManagerCompat.from(this).createNotificationChannel(channel)
-    }
-
-    private fun buildNotification(isPlaying: Boolean): Notification {
-        val playPauseAction = if (isPlaying) {
-            NotificationCompat.Action(
-                android.R.drawable.ic_media_pause,
-                getLocalizedString(R.string.notitification_action_pause),
-                PendingIntent.getService(this, 0, createPauseIntent(this), PendingIntent.FLAG_IMMUTABLE),
-            )
-        } else {
-            NotificationCompat.Action(
-                android.R.drawable.ic_media_play,
-                getLocalizedString(R.string.notitification_action_play),
-                PendingIntent.getService(this, 0, createPlayIntent(this), PendingIntent.FLAG_IMMUTABLE),
-            )
+        val channel = NotificationChannel(
+            NOTIFICATION_CHANNEL_ID,
+            getLocalizedString(R.string.notification_channel_name),
+            NotificationManager.IMPORTANCE_LOW, // Low importance = no sound
+        ).apply {
+            description = getLocalizedString(R.string.notification_channel_description)
         }
-
-        val intent = Intent(this, MainActivity::class.java).apply {
-            flags = Intent.FLAG_ACTIVITY_SINGLE_TOP or Intent.FLAG_ACTIVITY_CLEAR_TOP
-        }
-        val pendingIntent: PendingIntent = PendingIntent.getActivity(
-            this,
-            0,
-            intent,
-            PendingIntent.FLAG_IMMUTABLE or PendingIntent.FLAG_UPDATE_CURRENT,
-        )
-
-        return NotificationCompat.Builder(this, CHANNEL_ID)
-            .setContentTitle(getLocalizedString(R.string.notitification_content_title))
-            .setContentText(getLocalizedString(R.string.notitification_content_description))
-            .setSmallIcon(R.mipmap.ic_launcher_foreground)
-            .setContentIntent(pendingIntent)
-            .addAction(playPauseAction)
-            .build()
-    }
-
-    private fun updateNotification(isPlaying: Boolean) {
-        val notification = buildNotification(isPlaying)
-        if (ActivityCompat.checkSelfPermission(
-                this,
-                Manifest.permission.POST_NOTIFICATIONS,
-            ) != PackageManager.PERMISSION_GRANTED
-        ) {
-            return
-        }
-        NotificationManagerCompat.from(this).notify(NOTIFICATION_ID, notification)
+        val notificationManager = getSystemService(NotificationManager::class.java)
+        notificationManager.createNotificationChannel(channel)
     }
 
     /**
      * Gets a string using the app's selected locale (for per-app language support).
-     * On Android 13+, the system handles this automatically.
-     * On Android 12 and below, we need to manually create a localized context.
      */
     private fun getLocalizedString(@StringRes resId: Int): String {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
@@ -344,34 +317,33 @@ class RadioService : MediaSessionService(), Player.Listener {
         return createConfigurationContext(config).getString(resId)
     }
 
+    /**
+     * MediaSession callback for handling custom commands.
+     */
+    @OptIn(UnstableApi::class)
+    private inner class MediaSessionCallback : MediaSession.Callback {
+        override fun onConnect(
+            session: MediaSession,
+            controller: MediaSession.ControllerInfo,
+        ): MediaSession.ConnectionResult {
+            return MediaSession.ConnectionResult.AcceptedResultBuilder(session)
+                .setAvailableSessionCommands(
+                    MediaSession.ConnectionResult.DEFAULT_SESSION_COMMANDS.buildUpon()
+                        .build(),
+                )
+                .build()
+        }
+    }
+
     companion object {
-        private const val CHANNEL_ID = "com.rovenskyi.radio_lux_fm_lviv_streamer.service.radio_playback_channel"
-        private const val NOTIFICATION_ID = 1
         private const val AUTO_STOP_DELAY_MS = 5000L
+        private const val NOTIFICATION_CHANNEL_ID = "radio_playback_channel"
 
-        const val ACTION_PLAY = "com.rovenskyi.radio_lux_fm_lviv_streamer.service.action.PLAY"
-        const val ACTION_PAUSE = "com.rovenskyi.radio_lux_fm_lviv_streamer.service.action.PAUSE"
-        const val ACTION_STOP = "com.rovenskyi.radio_lux_fm_lviv_streamer.service.action.STOP"
-        const val ACTION_APP_BACKGROUND = "com.rovenskyi.radio_lux_fm_lviv_streamer.service.action.APP_BACKGROUND"
-        const val ACTION_APP_FOREGROUND = "com.rovenskyi.radio_lux_fm_lviv_streamer.service.action.APP_FOREGROUND"
-
-        fun createPlayIntent(context: Context): Intent {
-            return Intent(context, RadioService::class.java).apply {
-                action = ACTION_PLAY
-            }
-        }
-
-        fun createPauseIntent(context: Context): Intent {
-            return Intent(context, RadioService::class.java).apply {
-                action = ACTION_PAUSE
-            }
-        }
-
-        fun createStopIntent(context: Context): Intent {
-            return Intent(context, RadioService::class.java).apply {
-                action = ACTION_STOP
-            }
-        }
+        // App lifecycle actions for TV auto-stop feature
+        private const val ACTION_APP_BACKGROUND =
+            "com.rovenskyi.radio_lux_fm_lviv_streamer.service.action.APP_BACKGROUND"
+        private const val ACTION_APP_FOREGROUND =
+            "com.rovenskyi.radio_lux_fm_lviv_streamer.service.action.APP_FOREGROUND"
 
         fun createAppBackgroundIntent(context: Context): Intent {
             return Intent(context, RadioService::class.java).apply {

@@ -30,6 +30,7 @@ import androidx.core.content.ContextCompat
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import androidx.navigation.compose.rememberNavController
 import com.google.firebase.analytics.FirebaseAnalytics
+import com.rovenskyi.radio_lux_fm_lviv_streamer.data.source.MediaControllerManager
 import com.rovenskyi.radio_lux_fm_lviv_streamer.domain.analytics.AnalyticsTracker
 import com.rovenskyi.radio_lux_fm_lviv_streamer.domain.repository.AudioVisualizerRepository
 import com.rovenskyi.radio_lux_fm_lviv_streamer.domain.repository.LanguageRepository
@@ -56,6 +57,9 @@ class MainActivity : AppCompatActivity() {
 
     @Inject
     lateinit var analyticsTracker: AnalyticsTracker
+
+    @Inject
+    lateinit var mediaControllerManager: MediaControllerManager
 
     private val requestPermissionLauncher = registerForActivityResult(
         ActivityResultContracts.RequestPermission(),
@@ -133,8 +137,16 @@ class MainActivity : AppCompatActivity() {
                 }
             }
         }
+        // Connect to MediaSession for playback control and automatic notifications
+        mediaControllerManager.connect()
+
         requestNotificationPermissionIfNeeded()
         setupAnalytics()
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        mediaControllerManager.release()
     }
 
     private fun setupAnalytics() {

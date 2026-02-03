@@ -1,20 +1,24 @@
 package com.rovenskyi.radio_lux_fm_lviv_streamer.data.source
 
-import android.content.Context
 import com.rovenskyi.radio_lux_fm_lviv_streamer.service.CheckNetworkService
 import com.rovenskyi.radio_lux_fm_lviv_streamer.service.PlayerEventReceiver
-import com.rovenskyi.radio_lux_fm_lviv_streamer.service.RadioService
-import dagger.hilt.android.qualifiers.ApplicationContext
 import kotlinx.coroutines.flow.StateFlow
 import java.io.IOException
 import javax.inject.Inject
 import javax.inject.Singleton
 
+/**
+ * Data source for radio playback control.
+ *
+ * Uses MediaController to communicate with RadioService, which enables:
+ * - Automatic MediaStyle notifications
+ * - System media controls (lock screen, Quick Settings, Bluetooth)
+ */
 @Singleton
 class RadioServiceDataSource @Inject constructor(
     private val playerEventReceiver: PlayerEventReceiver,
     private val checkNetworkService: CheckNetworkService,
-    @param:ApplicationContext private val context: Context,
+    private val mediaControllerManager: MediaControllerManager,
 ) {
     fun getPlayerState(): StateFlow<Boolean> = playerEventReceiver.playerState
     fun getPlayerIsLoading(): StateFlow<Boolean> = playerEventReceiver.playerIsLoading
@@ -29,8 +33,8 @@ class RadioServiceDataSource @Inject constructor(
             // Only if the network check is successful, clear any previous errors.
             playerEventReceiver.clearPlayerErrorMessage()
 
-            // And then start the radio service.
-            context.startService(RadioService.createPlayIntent(context))
+            // Use MediaController to start playback (triggers automatic notification)
+            mediaControllerManager.play()
         } catch (_: IOException) {
             // If checkNetworkConnection throws an IOException, post a specific error.
             // The error state is never cleared, so the UI remains on the error screen.
@@ -39,7 +43,7 @@ class RadioServiceDataSource @Inject constructor(
     }
 
     fun stop() {
-        context.startService(RadioService.createStopIntent(context))
+        mediaControllerManager.stop()
     }
 
     fun clearError() {

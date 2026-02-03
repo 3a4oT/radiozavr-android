@@ -1,5 +1,7 @@
 package com.rovenskyi.radio_lux_fm_lviv_streamer.ui.main
 
+import android.app.Activity
+import android.view.WindowManager
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -16,13 +18,15 @@ import androidx.compose.material.icons.filled.Stop
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.DisposableEffect
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
-import androidx.hilt.navigation.compose.hiltViewModel
+import androidx.hilt.lifecycle.viewmodel.compose.hiltViewModel
 import com.rovenskyi.radio_lux_fm_lviv_streamer.R
 import com.rovenskyi.radio_lux_fm_lviv_streamer.domain.model.NetworkStatus
 import com.rovenskyi.radio_lux_fm_lviv_streamer.domain.model.PlayerState
@@ -51,6 +55,7 @@ fun RadioPlayerScreen(
     val visualizerAmplitudes by viewModel.visualizerAmplitudes.collectAsState()
     val autoPlayEnabled by viewModel.autoPlayEnabled.collectAsState()
     val dimensions = LocalDimensions.current
+    val isTv = LocalIsTv.current
 
     // Auto-play on app start if enabled (runs only once per app session via ViewModel flag)
     LaunchedEffect(Unit) {
@@ -65,6 +70,9 @@ fun RadioPlayerScreen(
             onRequestAudioPermission()
         }
     }
+
+    // Keep screen on during playback (prevents TV screensaver)
+    KeepScreenOn(enabled = isTv && uiState.playerState == PlayerState.PLAYING)
 
     Box(modifier = modifier.fillMaxSize()) {
         RelaxingBackground()
@@ -166,4 +174,22 @@ private fun PlayerState.toPlayerBarState(): PlayerBarState = when (this) {
     PlayerState.LOADING -> PlayerBarState.BUFFERING
     PlayerState.PLAYING -> PlayerBarState.PLAYING
     PlayerState.ERROR -> PlayerBarState.ERROR
+}
+
+/**
+ * Manages FLAG_KEEP_SCREEN_ON window flag.
+ * Prevents screensaver on TV during playback.
+ */
+@Composable
+private fun KeepScreenOn(enabled: Boolean) {
+    val context = LocalContext.current
+    DisposableEffect(enabled) {
+        val window = (context as? Activity)?.window
+        if (enabled) {
+            window?.addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON)
+        }
+        onDispose {
+            window?.clearFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON)
+        }
+    }
 }

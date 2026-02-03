@@ -27,6 +27,7 @@ private const val START_ANGLE = -90f
  *
  * @param durationSeconds Total countdown duration in seconds
  * @param animationKey Key to restart animation (e.g., item ID)
+ * @param startTimeMillis Timestamp when countdown started (for resuming after navigation)
  * @param modifier Modifier for the container
  * @param size Size of the indicator
  * @param strokeWidth Width of the progress arc
@@ -39,6 +40,7 @@ private const val START_ANGLE = -90f
 fun CircularCountdownIndicator(
     durationSeconds: Int,
     animationKey: Any,
+    startTimeMillis: Long = System.currentTimeMillis(),
     modifier: Modifier = Modifier,
     size: Dp = 56.dp,
     strokeWidth: Dp = 3.dp,
@@ -48,20 +50,32 @@ fun CircularCountdownIndicator(
     content: @Composable () -> Unit = {},
 ) {
     val warningThreshold = warningSeconds.toFloat() / durationSeconds
+    val totalDurationMs = durationSeconds * 1000L
 
-    // Compose Animatable - automatically invalidates on each frame
-    val progress = remember { Animatable(1f) }
+    // Calculate initial progress based on elapsed time (for resume after navigation)
+    val initialProgress = remember(animationKey, startTimeMillis) {
+        val elapsed = System.currentTimeMillis() - startTimeMillis
+        (1f - (elapsed.toFloat() / totalDurationMs)).coerceIn(0f, 1f)
+    }
 
-    // Restart animation when key changes
-    LaunchedEffect(animationKey, durationSeconds) {
-        progress.snapTo(1f)
-        progress.animateTo(
-            targetValue = 0f,
-            animationSpec = tween(
-                durationMillis = durationSeconds * 1000,
-                easing = LinearEasing,
-            ),
-        )
+    val progress = remember(animationKey) { Animatable(initialProgress) }
+
+    // Animate remaining time from current progress to 0
+    LaunchedEffect(animationKey, startTimeMillis) {
+        val elapsed = System.currentTimeMillis() - startTimeMillis
+        val currentProgress = (1f - (elapsed.toFloat() / totalDurationMs)).coerceIn(0f, 1f)
+        val remainingMs = (currentProgress * totalDurationMs).toInt()
+
+        progress.snapTo(currentProgress)
+        if (remainingMs > 0) {
+            progress.animateTo(
+                targetValue = 0f,
+                animationSpec = tween(
+                    durationMillis = remainingMs,
+                    easing = LinearEasing,
+                ),
+            )
+        }
     }
 
     Box(

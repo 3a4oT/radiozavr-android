@@ -70,8 +70,7 @@ fun RiddleWidget(
     modifier: Modifier = Modifier,
     viewModel: RiddleWidgetViewModel = hiltViewModel(),
 ) {
-    val riddle by viewModel.currentRiddle.collectAsState()
-    val intervalSeconds by viewModel.intervalSeconds.collectAsState()
+    val uiState by viewModel.uiState.collectAsState()
     val isTv = LocalIsTv.current
 
     // Box centers content both horizontally and vertically within available space
@@ -79,7 +78,7 @@ fun RiddleWidget(
         modifier = modifier.fillMaxSize(),
         contentAlignment = Alignment.Center,
     ) {
-        riddle?.let { currentRiddle ->
+        uiState.riddle?.let { currentRiddle ->
             AnimatedContent(
                 targetState = currentRiddle,
                 transitionSpec = { fadeIn() togetherWith fadeOut() },
@@ -87,7 +86,8 @@ fun RiddleWidget(
             ) { targetRiddle ->
                 RiddleContent(
                     riddle = targetRiddle,
-                    intervalSeconds = intervalSeconds,
+                    intervalSeconds = uiState.intervalSeconds,
+                    riddleStartTime = uiState.riddleStartTime,
                     onAnswerRevealed = { viewModel.trackAnswerRevealed(isTv) },
                 )
             }
@@ -99,6 +99,7 @@ fun RiddleWidget(
 private fun RiddleContent(
     riddle: Riddle,
     intervalSeconds: Int,
+    riddleStartTime: Long,
     onAnswerRevealed: () -> Unit,
 ) {
     val isTv = LocalIsTv.current
@@ -182,6 +183,7 @@ private fun RiddleContent(
         CircularCountdownIndicator(
             durationSeconds = intervalSeconds,
             animationKey = riddle,
+            startTimeMillis = riddleStartTime,
             size = if (isTv) TV_INDICATOR_SIZE_DP.dp else PHONE_INDICATOR_SIZE_DP.dp,
             strokeWidth = if (isTv) TV_STROKE_WIDTH_DP.dp else PHONE_STROKE_WIDTH_DP.dp,
         ) {

@@ -52,12 +52,10 @@ fun RadioPlayerScreen(
     val autoPlayEnabled by viewModel.autoPlayEnabled.collectAsState()
     val dimensions = LocalDimensions.current
 
-    // Auto-play on app start if enabled (run once with delay for state sync)
+    // Auto-play on app start if enabled (runs only once per app session via ViewModel flag)
     LaunchedEffect(Unit) {
         delay(AUTO_PLAY_STATE_SYNC_DELAY_MS)
-        if (autoPlayEnabled && uiState.playerState == PlayerState.STOPPED) {
-            viewModel.play()
-        }
+        viewModel.tryAutoPlay(autoPlayEnabled)
     }
 
     // Request audio permission 3 seconds after successful playback starts

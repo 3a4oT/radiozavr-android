@@ -31,4 +31,7 @@ dependencies {
     implementation(libs.material.icons.extended)
     implementation(libs.androidx.ui.tooling.preview)
     debugImplementation(libs.androidx.ui.tooling)
+
+    // QR Code generation
+    implementation(libs.zxing.core)
 }

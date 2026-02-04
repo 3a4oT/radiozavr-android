@@ -3,10 +3,13 @@ package com.rovenskyi.radio_lux_fm_lviv_streamer.ui.settings
 import android.content.Context
 import android.content.Intent
 import android.net.Uri
+import android.widget.Toast
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
@@ -38,10 +41,13 @@ import androidx.lifecycle.compose.LocalLifecycleOwner
 import androidx.lifecycle.repeatOnLifecycle
 import com.rovenskyi.radio_lux_fm_lviv_streamer.R
 import com.rovenskyi.radio_lux_fm_lviv_streamer.viewmodel.AboutViewModel
+import com.rovenskyi.radiolux.core.components.qrcode.QrCode
 import com.rovenskyi.radiolux.core.components.settings.PermissionStatusIndicator
 import com.rovenskyi.radiolux.core.components.settings.SettingsGroup
 import com.rovenskyi.radiolux.core.components.settings.SettingsRow
 import com.rovenskyi.radiolux.core.models.permission.PermissionStatus
+import com.rovenskyi.radiolux.core.theme.LocalDimensions
+import com.rovenskyi.radiolux.core.theme.LocalIsTv
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -125,15 +131,67 @@ private fun ApplicationInfoGroup(
     }
 }
 
+/**
+ * Source code row with platform-specific behavior:
+ * - TV: Shows QR code (no browser available)
+ * - Phone: Opens browser with safe intent handling
+ */
 @Composable
 private fun SourceCodeRow(context: Context, onGitHubLinkClick: () -> Unit) {
+    val isTv = LocalIsTv.current
+
+    if (isTv) {
+        SourceCodeQrRow()
+    } else {
+        SourceCodeLinkRow(context = context, onGitHubLinkClick = onGitHubLinkClick)
+    }
+}
+
+/**
+ * TV version: Shows QR code that can be scanned with phone.
+ */
+@Composable
+private fun SourceCodeQrRow() {
+    val dimensions = LocalDimensions.current
+
+    SettingsRow(
+        title = stringResource(R.string.about_source_code),
+        subtitle = stringResource(R.string.about_source_code_qr_hint),
+        contentDescription = stringResource(R.string.about_source_code_qr_content_description),
+    ) {
+        Column(
+            horizontalAlignment = Alignment.CenterHorizontally,
+            verticalArrangement = Arrangement.Center,
+        ) {
+            QrCode(
+                content = AboutViewModel.GITHUB_URL,
+                size = dimensions.qrCodeSize,
+                contentDescription = stringResource(R.string.about_source_code_qr_content_description),
+            )
+            Spacer(modifier = Modifier.height(dimensions.spacingSmall))
+            Text(
+                text = stringResource(R.string.about_github_url),
+                style = MaterialTheme.typography.labelSmall,
+                color = MaterialTheme.colorScheme.onSurfaceVariant,
+            )
+        }
+    }
+}
+
+/**
+ * Phone version: Clickable row that opens browser.
+ * Handles case when no browser is available.
+ */
+@Composable
+private fun SourceCodeLinkRow(context: Context, onGitHubLinkClick: () -> Unit) {
+    val noBrowserMessage = stringResource(R.string.about_source_code_no_browser)
+
     SettingsRow(
         title = stringResource(R.string.about_source_code),
         subtitle = stringResource(R.string.about_github_url),
         onClick = {
             onGitHubLinkClick()
-            val intent = Intent(Intent.ACTION_VIEW, Uri.parse(AboutViewModel.GITHUB_URL))
-            context.startActivity(intent)
+            openUrlSafely(context, AboutViewModel.GITHUB_URL, noBrowserMessage)
         },
         contentDescription = stringResource(R.string.about_source_code_content_description),
     ) {
@@ -143,6 +201,18 @@ private fun SourceCodeRow(context: Context, onGitHubLinkClick: () -> Unit) {
             modifier = Modifier.size(24.dp),
             tint = MaterialTheme.colorScheme.onSurfaceVariant,
         )
+    }
+}
+
+/**
+ * Opens URL in browser with safe handling for devices without browser.
+ */
+private fun openUrlSafely(context: Context, url: String, errorMessage: String) {
+    val intent = Intent(Intent.ACTION_VIEW, Uri.parse(url))
+    if (intent.resolveActivity(context.packageManager) != null) {
+        context.startActivity(intent)
+    } else {
+        Toast.makeText(context, errorMessage, Toast.LENGTH_SHORT).show()
     }
 }
 

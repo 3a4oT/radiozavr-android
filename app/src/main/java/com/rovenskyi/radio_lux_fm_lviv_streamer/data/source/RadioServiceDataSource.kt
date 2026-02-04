@@ -25,7 +25,7 @@ class RadioServiceDataSource @Inject constructor(
     fun getPlayerError(): StateFlow<String?> = playerEventReceiver.playerError
     fun getAudioSessionId(): StateFlow<Int?> = playerEventReceiver.audioSessionId
 
-    fun play() {
+    suspend fun play() {
         try {
             // First, check for network connectivity. If it fails, an exception will be thrown.
             checkNetworkService.checkNetworkConnection()
@@ -42,7 +42,7 @@ class RadioServiceDataSource @Inject constructor(
         }
     }
 
-    fun stop() {
+    suspend fun stop() {
         mediaControllerManager.stop()
     }
 

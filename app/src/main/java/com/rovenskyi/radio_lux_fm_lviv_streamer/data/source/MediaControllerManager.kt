@@ -9,6 +9,8 @@ import com.google.common.util.concurrent.ListenableFuture
 import com.google.common.util.concurrent.MoreExecutors
 import com.rovenskyi.radio_lux_fm_lviv_streamer.service.RadioService
 import dagger.hilt.android.qualifiers.ApplicationContext
+import kotlinx.coroutines.guava.await
+import kotlinx.coroutines.withTimeoutOrNull
 import javax.inject.Inject
 import javax.inject.Singleton
 
@@ -47,29 +49,49 @@ class MediaControllerManager @Inject constructor(
     }
 
     /**
-     * Starts playback. Prepares player if needed.
+     * Awaits controller connection with timeout.
+     * Returns connected controller or null if timeout/failure.
      */
-    fun play() {
-        mediaController?.let { controller ->
-            if (controller.playbackState == Player.STATE_IDLE) {
-                controller.prepare()
+    private suspend fun awaitController(): MediaController? {
+        // If already connected, return immediately
+        mediaController?.let { if (it.isConnected) return it }
+
+        // Ensure connect() was called
+        val future = controllerFuture ?: return null
+
+        return withTimeoutOrNull(CONNECTION_TIMEOUT_MS) {
+            try {
+                future.await().also { mediaController = it }
+            } catch (_: Exception) {
+                null
             }
-            controller.play()
         }
     }
 
     /**
-     * Pauses playback.
+     * Starts playback. Awaits controller connection if needed.
+     * Prepares player if in IDLE state.
      */
-    fun pause() {
-        mediaController?.pause()
+    suspend fun play() {
+        val controller = awaitController() ?: return
+        if (controller.playbackState == Player.STATE_IDLE) {
+            controller.prepare()
+        }
+        controller.play()
     }
 
     /**
-     * Stops playback and clears the media item.
+     * Pauses playback. Awaits controller connection if needed.
      */
-    fun stop() {
-        mediaController?.stop()
+    suspend fun pause() {
+        awaitController()?.pause()
+    }
+
+    /**
+     * Stops playback. Awaits controller connection if needed.
+     */
+    suspend fun stop() {
+        awaitController()?.stop()
     }
 
     /**
@@ -87,4 +109,8 @@ class MediaControllerManager @Inject constructor(
      */
     val isConnected: Boolean
         get() = mediaController?.isConnected == true
+
+    companion object {
+        private const val CONNECTION_TIMEOUT_MS = 5000L
+    }
 }

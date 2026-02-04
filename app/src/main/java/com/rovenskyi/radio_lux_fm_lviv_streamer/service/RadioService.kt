@@ -214,9 +214,11 @@ class RadioService : MediaSessionService(), Player.Listener {
         // Auto-resume if was stopped by auto-stop
         if (wasStoppedByAutoStop) {
             wasStoppedByAutoStop = false
+            // Post loading state immediately to ensure UI updates before async prepare
+            playerEventReceiver.postPlayerIsLoading(true)
             exoPlayer.prepare()
             exoPlayer.play()
-            // State changes are propagated via onIsPlayingChanged
+            // Further state changes propagated via onPlaybackStateChanged/onIsPlayingChanged
         }
     }
 

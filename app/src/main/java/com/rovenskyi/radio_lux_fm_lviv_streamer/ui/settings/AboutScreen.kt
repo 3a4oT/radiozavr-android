@@ -66,40 +66,42 @@ fun AboutScreen(
         }
     }
 
-    Scaffold(
-        topBar = {
-            TopAppBar(
-                title = { Text(text = stringResource(R.string.about_title)) },
-                navigationIcon = {
-                    IconButton(onClick = onBackClick) {
-                        Icon(
-                            imageVector = Icons.AutoMirrored.Filled.ArrowBack,
-                            contentDescription = stringResource(R.string.settings_back),
-                        )
-                    }
-                },
-                colors = TopAppBarDefaults.topAppBarColors(
-                    containerColor = MaterialTheme.colorScheme.surface,
-                ),
-            )
-        },
-        modifier = modifier,
-    ) { paddingValues ->
-        Column(
-            modifier = Modifier
-                .fillMaxSize()
-                .padding(paddingValues)
-                .verticalScroll(rememberScrollState()),
-        ) {
-            ApplicationInfoGroup(
-                versionName = viewModel.versionName,
-                isDebugBuild = viewModel.isDebugBuild,
-                onGitHubLinkClick = viewModel::onGitHubLinkClicked,
-            )
-            PermissionsGroup(
-                notificationStatus = notificationStatus,
-                audioStatus = audioStatus,
-            )
+    SettingsThemeProvider {
+        Scaffold(
+            topBar = {
+                TopAppBar(
+                    title = { Text(text = stringResource(R.string.about_title)) },
+                    navigationIcon = {
+                        IconButton(onClick = onBackClick) {
+                            Icon(
+                                imageVector = Icons.AutoMirrored.Filled.ArrowBack,
+                                contentDescription = stringResource(R.string.settings_back),
+                            )
+                        }
+                    },
+                    colors = TopAppBarDefaults.topAppBarColors(
+                        containerColor = MaterialTheme.colorScheme.surface,
+                    ),
+                )
+            },
+            modifier = modifier,
+        ) { paddingValues ->
+            Column(
+                modifier = Modifier
+                    .fillMaxSize()
+                    .padding(paddingValues)
+                    .verticalScroll(rememberScrollState()),
+            ) {
+                ApplicationInfoGroup(
+                    versionName = viewModel.versionName,
+                    isDebugBuild = viewModel.isDebugBuild,
+                    onGitHubLinkClick = viewModel::onGitHubLinkClicked,
+                )
+                PermissionsGroup(
+                    notificationStatus = notificationStatus,
+                    audioStatus = audioStatus,
+                )
+            }
         }
     }
 }

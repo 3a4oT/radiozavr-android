@@ -38,65 +38,45 @@ fun PlaybackSettingsScreen(
     val autoStopEnabled by viewModel.autoStopOnBackgroundEnabled.collectAsState()
     val isTv = viewModel.isTv
 
-    Scaffold(
-        topBar = {
-            TopAppBar(
-                title = {
-                    Text(text = stringResource(R.string.settings_playback_title))
-                },
-                navigationIcon = {
-                    IconButton(onClick = onBackClick) {
-                        Icon(
-                            imageVector = Icons.AutoMirrored.Filled.ArrowBack,
-                            contentDescription = stringResource(R.string.settings_back),
-                        )
-                    }
-                },
-                colors = TopAppBarDefaults.topAppBarColors(
-                    containerColor = MaterialTheme.colorScheme.surface,
-                ),
-            )
-        },
-        modifier = modifier,
-    ) { paddingValues ->
-        Column(
-            modifier = Modifier
-                .fillMaxSize()
-                .padding(paddingValues)
-                .verticalScroll(rememberScrollState()),
-        ) {
-            SettingsGroup(
-                title = stringResource(R.string.settings_group_playback),
-            ) {
-                // Auto-play on start (both TV and Phone)
-                SettingsRow(
-                    title = stringResource(R.string.settings_autoplay_title),
-                    subtitle = stringResource(R.string.settings_autoplay_subtitle),
-                    onClick = { viewModel.setAutoPlayEnabled(!autoPlayEnabled) },
-                    contentDescription = stringResource(
-                        R.string.settings_autoplay_content_description,
-                        if (autoPlayEnabled) {
-                            stringResource(R.string.settings_enabled)
-                        } else {
-                            stringResource(R.string.settings_disabled)
-                        },
+    SettingsThemeProvider {
+        Scaffold(
+            topBar = {
+                TopAppBar(
+                    title = {
+                        Text(text = stringResource(R.string.settings_playback_title))
+                    },
+                    navigationIcon = {
+                        IconButton(onClick = onBackClick) {
+                            Icon(
+                                imageVector = Icons.AutoMirrored.Filled.ArrowBack,
+                                contentDescription = stringResource(R.string.settings_back),
+                            )
+                        }
+                    },
+                    colors = TopAppBarDefaults.topAppBarColors(
+                        containerColor = MaterialTheme.colorScheme.surface,
                     ),
+                )
+            },
+            modifier = modifier,
+        ) { paddingValues ->
+            Column(
+                modifier = Modifier
+                    .fillMaxSize()
+                    .padding(paddingValues)
+                    .verticalScroll(rememberScrollState()),
+            ) {
+                SettingsGroup(
+                    title = stringResource(R.string.settings_group_playback),
                 ) {
-                    Switch(
-                        checked = autoPlayEnabled,
-                        onCheckedChange = { viewModel.setAutoPlayEnabled(it) },
-                    )
-                }
-
-                // Auto-stop on background (TV only)
-                if (isTv) {
+                    // Auto-play on start (both TV and Phone)
                     SettingsRow(
-                        title = stringResource(R.string.settings_autostop_title),
-                        subtitle = stringResource(R.string.settings_autostop_subtitle),
-                        onClick = { viewModel.setAutoStopOnBackgroundEnabled(!autoStopEnabled) },
+                        title = stringResource(R.string.settings_autoplay_title),
+                        subtitle = stringResource(R.string.settings_autoplay_subtitle),
+                        onClick = { viewModel.setAutoPlayEnabled(!autoPlayEnabled) },
                         contentDescription = stringResource(
-                            R.string.settings_autostop_content_description,
-                            if (autoStopEnabled) {
+                            R.string.settings_autoplay_content_description,
+                            if (autoPlayEnabled) {
                                 stringResource(R.string.settings_enabled)
                             } else {
                                 stringResource(R.string.settings_disabled)
@@ -104,9 +84,31 @@ fun PlaybackSettingsScreen(
                         ),
                     ) {
                         Switch(
-                            checked = autoStopEnabled,
-                            onCheckedChange = { viewModel.setAutoStopOnBackgroundEnabled(it) },
+                            checked = autoPlayEnabled,
+                            onCheckedChange = { viewModel.setAutoPlayEnabled(it) },
                         )
+                    }
+
+                    // Auto-stop on background (TV only)
+                    if (isTv) {
+                        SettingsRow(
+                            title = stringResource(R.string.settings_autostop_title),
+                            subtitle = stringResource(R.string.settings_autostop_subtitle),
+                            onClick = { viewModel.setAutoStopOnBackgroundEnabled(!autoStopEnabled) },
+                            contentDescription = stringResource(
+                                R.string.settings_autostop_content_description,
+                                if (autoStopEnabled) {
+                                    stringResource(R.string.settings_enabled)
+                                } else {
+                                    stringResource(R.string.settings_disabled)
+                                },
+                            ),
+                        ) {
+                            Switch(
+                                checked = autoStopEnabled,
+                                onCheckedChange = { viewModel.setAutoStopOnBackgroundEnabled(it) },
+                            )
+                        }
                     }
                 }
             }

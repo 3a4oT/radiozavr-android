@@ -47,45 +47,47 @@ fun RiddleSettingsScreen(
         RiddleInterval.SECONDS_60 to stringResource(R.string.settings_riddle_interval_60),
     )
 
-    Scaffold(
-        topBar = {
-            TopAppBar(
-                title = {
-                    Text(text = stringResource(R.string.settings_riddle_title))
-                },
-                navigationIcon = {
-                    IconButton(onClick = onBackClick) {
-                        Icon(
-                            imageVector = Icons.AutoMirrored.Filled.ArrowBack,
-                            contentDescription = stringResource(R.string.settings_back),
+    SettingsThemeProvider {
+        Scaffold(
+            topBar = {
+                TopAppBar(
+                    title = {
+                        Text(text = stringResource(R.string.settings_riddle_title))
+                    },
+                    navigationIcon = {
+                        IconButton(onClick = onBackClick) {
+                            Icon(
+                                imageVector = Icons.AutoMirrored.Filled.ArrowBack,
+                                contentDescription = stringResource(R.string.settings_back),
+                            )
+                        }
+                    },
+                    colors = TopAppBarDefaults.topAppBarColors(
+                        containerColor = MaterialTheme.colorScheme.surface,
+                    ),
+                )
+            },
+            modifier = modifier,
+        ) { paddingValues ->
+            Column(
+                modifier = Modifier
+                    .fillMaxSize()
+                    .padding(paddingValues),
+            ) {
+                SettingsGroup(
+                    title = stringResource(R.string.settings_group_riddle),
+                ) {
+                    intervalOptions.forEach { (interval, label) ->
+                        SelectableRow(
+                            text = label,
+                            selected = selectedInterval == interval,
+                            onClick = { viewModel.setRiddleInterval(interval) },
+                            contentDescription = stringResource(
+                                R.string.settings_riddle_content_description,
+                                label,
+                            ),
                         )
                     }
-                },
-                colors = TopAppBarDefaults.topAppBarColors(
-                    containerColor = MaterialTheme.colorScheme.surface,
-                ),
-            )
-        },
-        modifier = modifier,
-    ) { paddingValues ->
-        Column(
-            modifier = Modifier
-                .fillMaxSize()
-                .padding(paddingValues),
-        ) {
-            SettingsGroup(
-                title = stringResource(R.string.settings_group_riddle),
-            ) {
-                intervalOptions.forEach { (interval, label) ->
-                    SelectableRow(
-                        text = label,
-                        selected = selectedInterval == interval,
-                        onClick = { viewModel.setRiddleInterval(interval) },
-                        contentDescription = stringResource(
-                            R.string.settings_riddle_content_description,
-                            label,
-                        ),
-                    )
                 }
             }
         }

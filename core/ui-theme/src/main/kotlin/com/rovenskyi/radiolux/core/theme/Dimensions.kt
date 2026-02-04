@@ -52,6 +52,9 @@ data class Dimensions(
     // Card sizes
     val cardMinHeight: Dp = 80.dp,
 
+    // QR code size
+    val qrCodeSize: Dp = 100.dp,
+
     // Safe area margins (TV overscan)
     val safeAreaHorizontal: Dp = 0.dp,
     val safeAreaVertical: Dp = 0.dp,
@@ -107,6 +110,9 @@ val TvDimensions = Dimensions(
 
     // Card sizes
     cardMinHeight = 120.dp,
+
+    // QR code size - larger for TV scanning from distance
+    qrCodeSize = 150.dp,
 
     // Safe area margins (TV overscan protection)
     safeAreaHorizontal = 48.dp,

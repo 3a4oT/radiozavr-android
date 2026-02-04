@@ -40,45 +40,47 @@ fun LanguageScreen(
         LanguageMode.ENGLISH to stringResource(R.string.settings_language_english),
     )
 
-    Scaffold(
-        topBar = {
-            TopAppBar(
-                title = {
-                    Text(text = stringResource(R.string.settings_language_title))
-                },
-                navigationIcon = {
-                    IconButton(onClick = onBackClick) {
-                        Icon(
-                            imageVector = Icons.AutoMirrored.Filled.ArrowBack,
-                            contentDescription = stringResource(R.string.settings_back),
+    SettingsThemeProvider {
+        Scaffold(
+            topBar = {
+                TopAppBar(
+                    title = {
+                        Text(text = stringResource(R.string.settings_language_title))
+                    },
+                    navigationIcon = {
+                        IconButton(onClick = onBackClick) {
+                            Icon(
+                                imageVector = Icons.AutoMirrored.Filled.ArrowBack,
+                                contentDescription = stringResource(R.string.settings_back),
+                            )
+                        }
+                    },
+                    colors = TopAppBarDefaults.topAppBarColors(
+                        containerColor = MaterialTheme.colorScheme.surface,
+                    ),
+                )
+            },
+            modifier = modifier,
+        ) { paddingValues ->
+            Column(
+                modifier = Modifier
+                    .fillMaxSize()
+                    .padding(paddingValues),
+            ) {
+                SettingsGroup(
+                    title = stringResource(R.string.settings_group_language),
+                ) {
+                    languageOptions.forEach { (mode, label) ->
+                        SelectableRow(
+                            text = label,
+                            selected = selectedMode == mode,
+                            onClick = { viewModel.setLanguageMode(mode) },
+                            contentDescription = stringResource(
+                                R.string.settings_language_content_description,
+                                label,
+                            ),
                         )
                     }
-                },
-                colors = TopAppBarDefaults.topAppBarColors(
-                    containerColor = MaterialTheme.colorScheme.surface,
-                ),
-            )
-        },
-        modifier = modifier,
-    ) { paddingValues ->
-        Column(
-            modifier = Modifier
-                .fillMaxSize()
-                .padding(paddingValues),
-        ) {
-            SettingsGroup(
-                title = stringResource(R.string.settings_group_language),
-            ) {
-                languageOptions.forEach { (mode, label) ->
-                    SelectableRow(
-                        text = label,
-                        selected = selectedMode == mode,
-                        onClick = { viewModel.setLanguageMode(mode) },
-                        contentDescription = stringResource(
-                            R.string.settings_language_content_description,
-                            label,
-                        ),
-                    )
                 }
             }
         }

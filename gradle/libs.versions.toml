@@ -1,6 +1,7 @@
 [versions]
 activityCompose = "1.12.3"
 splashScreen = "1.2.0"
+zxingCore = "3.5.4"
 agp = "9.0.0"
 composeBom = "2026.01.01"
 firebaseBom = "34.8.0"
@@ -61,6 +62,9 @@ androidx-media3-session = { group = "androidx.media3", name = "media3-session", 
 androidx-hilt-navigation-compose = { module = "androidx.hilt:hilt-navigation-compose", version.ref = "hiltNavigationCompose" }
 androidx-hilt-lifecycle-viewmodel-compose = { module = "androidx.hilt:hilt-lifecycle-viewmodel-compose", version.ref = "hiltNavigationCompose" }
 androidx-core-splashscreen = { module = "androidx.core:core-splashscreen", version.ref = "splashScreen" }
+
+# QR Code generation
+zxing-core = { module = "com.google.zxing:core", version.ref = "zxingCore" }
 
 # Firebase
 firebase-bom = { group = "com.google.firebase", name = "firebase-bom", version.ref = "firebaseBom" }

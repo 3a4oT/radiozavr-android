@@ -59,36 +59,38 @@ fun SettingsScreen(
     val themeMode by themeViewModel.themeMode.collectAsState()
     val riddleInterval by riddleSettingsViewModel.riddleInterval.collectAsState()
 
-    Scaffold(
-        topBar = {
-            TopAppBar(
-                title = { Text(text = stringResource(R.string.settings_title)) },
-                navigationIcon = {
-                    IconButton(onClick = onBackClick) {
-                        Icon(
-                            imageVector = Icons.AutoMirrored.Filled.ArrowBack,
-                            contentDescription = stringResource(R.string.settings_back),
-                        )
-                    }
-                },
-                colors = TopAppBarDefaults.topAppBarColors(
-                    containerColor = MaterialTheme.colorScheme.surface,
-                ),
-            )
-        },
-        modifier = modifier,
-    ) { paddingValues ->
-        Column(
-            modifier = Modifier
-                .fillMaxSize()
-                .padding(paddingValues)
-                .verticalScroll(rememberScrollState()),
-        ) {
-            AppearanceGroup(themeMode = themeMode, onThemeClick = onThemeClick)
-            LanguageGroup(languageRepository = languageRepository, onLanguageClick = onLanguageClick)
-            PlaybackGroup(onPlaybackClick = onPlaybackClick)
-            RiddleGroup(riddleInterval = riddleInterval, onRiddleClick = onRiddleClick)
-            AboutGroup(onAboutClick = onAboutClick)
+    SettingsThemeProvider {
+        Scaffold(
+            topBar = {
+                TopAppBar(
+                    title = { Text(text = stringResource(R.string.settings_title)) },
+                    navigationIcon = {
+                        IconButton(onClick = onBackClick) {
+                            Icon(
+                                imageVector = Icons.AutoMirrored.Filled.ArrowBack,
+                                contentDescription = stringResource(R.string.settings_back),
+                            )
+                        }
+                    },
+                    colors = TopAppBarDefaults.topAppBarColors(
+                        containerColor = MaterialTheme.colorScheme.surface,
+                    ),
+                )
+            },
+            modifier = modifier,
+        ) { paddingValues ->
+            Column(
+                modifier = Modifier
+                    .fillMaxSize()
+                    .padding(paddingValues)
+                    .verticalScroll(rememberScrollState()),
+            ) {
+                AppearanceGroup(themeMode = themeMode, onThemeClick = onThemeClick)
+                LanguageGroup(languageRepository = languageRepository, onLanguageClick = onLanguageClick)
+                PlaybackGroup(onPlaybackClick = onPlaybackClick)
+                RiddleGroup(riddleInterval = riddleInterval, onRiddleClick = onRiddleClick)
+                AboutGroup(onAboutClick = onAboutClick)
+            }
         }
     }
 }

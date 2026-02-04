@@ -45,45 +45,47 @@ fun ThemeScreen(
         ThemeMode.AUTO to stringResource(R.string.settings_theme_auto),
     )
 
-    Scaffold(
-        topBar = {
-            TopAppBar(
-                title = {
-                    Text(text = stringResource(R.string.settings_theme_title))
-                },
-                navigationIcon = {
-                    IconButton(onClick = onBackClick) {
-                        Icon(
-                            imageVector = Icons.AutoMirrored.Filled.ArrowBack,
-                            contentDescription = stringResource(R.string.settings_back),
+    SettingsThemeProvider {
+        Scaffold(
+            topBar = {
+                TopAppBar(
+                    title = {
+                        Text(text = stringResource(R.string.settings_theme_title))
+                    },
+                    navigationIcon = {
+                        IconButton(onClick = onBackClick) {
+                            Icon(
+                                imageVector = Icons.AutoMirrored.Filled.ArrowBack,
+                                contentDescription = stringResource(R.string.settings_back),
+                            )
+                        }
+                    },
+                    colors = TopAppBarDefaults.topAppBarColors(
+                        containerColor = MaterialTheme.colorScheme.surface,
+                    ),
+                )
+            },
+            modifier = modifier,
+        ) { paddingValues ->
+            Column(
+                modifier = Modifier
+                    .fillMaxSize()
+                    .padding(paddingValues),
+            ) {
+                SettingsGroup(
+                    title = stringResource(R.string.settings_group_appearance),
+                ) {
+                    themeOptions.forEach { (mode, label) ->
+                        SelectableRow(
+                            text = label,
+                            selected = selectedMode == mode,
+                            onClick = { themeViewModel.setThemeMode(mode) },
+                            contentDescription = stringResource(
+                                R.string.settings_theme_content_description,
+                                label,
+                            ),
                         )
                     }
-                },
-                colors = TopAppBarDefaults.topAppBarColors(
-                    containerColor = MaterialTheme.colorScheme.surface,
-                ),
-            )
-        },
-        modifier = modifier,
-    ) { paddingValues ->
-        Column(
-            modifier = Modifier
-                .fillMaxSize()
-                .padding(paddingValues),
-        ) {
-            SettingsGroup(
-                title = stringResource(R.string.settings_group_appearance),
-            ) {
-                themeOptions.forEach { (mode, label) ->
-                    SelectableRow(
-                        text = label,
-                        selected = selectedMode == mode,
-                        onClick = { themeViewModel.setThemeMode(mode) },
-                        contentDescription = stringResource(
-                            R.string.settings_theme_content_description,
-                            label,
-                        ),
-                    )
                 }
             }
         }

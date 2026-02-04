@@ -97,13 +97,12 @@ fun SettingsRow(
             )
             .then(
                 if (onClick != null) {
-                    Modifier
-                        .clickable(onClick = onClick)
-                        .focusable()
+                    Modifier.clickable(onClick = onClick)
                 } else {
                     Modifier
                 },
             )
+            .focusable()
             .padding(dimensions.paddingMedium)
             .semantics {
                 contentDescription?.let {

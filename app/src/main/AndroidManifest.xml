@@ -47,10 +47,16 @@
                 android:name="android.app.lib_name"
                 android:value="@string/app_name" />
         </activity>
+        <!--
+        MediaSessionService must be exported for system media integration:
+        - Bluetooth media buttons, notification controls, Google Assistant
+        - Access is controlled via MediaSession.Callback.onConnect()
+        -->
         <service
             android:name=".service.RadioService"
             android:exported="true"
-            android:foregroundServiceType="mediaPlayback">
+            android:foregroundServiceType="mediaPlayback"
+            tools:ignore="ExportedService">
             <intent-filter>
                 <action android:name="androidx.media3.session.MediaSessionService" />
             </intent-filter>

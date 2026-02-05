@@ -66,7 +66,6 @@ android {
         // Suppress advisory warnings (not bugs)
         disable += "AndroidGradlePluginVersion" // Minor Gradle update
         disable += "NewerVersionAvailable" // Library updates - separate PR
-        disable += "ExportedService" // MediaSessionService must be exported
     }
 }
 

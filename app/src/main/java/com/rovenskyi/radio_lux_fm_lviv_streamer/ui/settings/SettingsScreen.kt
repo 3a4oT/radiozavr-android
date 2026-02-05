@@ -40,7 +40,6 @@ import com.rovenskyi.radiolux.core.models.theme.ThemeMode
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-@Suppress("UnusedParameter")
 fun SettingsScreen(
     languageRepository: LanguageRepository,
     onBackClick: () -> Unit,
@@ -50,9 +49,11 @@ fun SettingsScreen(
     onWidgetsClick: () -> Unit,
     onAboutClick: () -> Unit,
     modifier: Modifier = Modifier,
-    settingsViewModel: SettingsViewModel = hiltViewModel(),
     themeViewModel: ThemeViewModel = hiltViewModel(),
 ) {
+    // ViewModel instantiation triggers screen_view analytics in init{}
+    hiltViewModel<SettingsViewModel>()
+
     val themeMode by themeViewModel.themeMode.collectAsState()
 
     SettingsThemeProvider {

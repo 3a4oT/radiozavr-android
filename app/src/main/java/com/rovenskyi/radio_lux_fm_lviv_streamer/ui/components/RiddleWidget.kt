@@ -90,7 +90,9 @@ fun RiddleWidget(
                     interval = uiState.interval,
                     riddleStartTime = uiState.riddleStartTime,
                     answerMode = uiState.answerMode,
-                    onAnswerRevealed = { viewModel.trackAnswerRevealed(isTv) },
+                    onAnswerRevealed = { isAutomatic ->
+                        viewModel.trackAnswerRevealed(isTv, isAutomatic)
+                    },
                 )
             }
         }
@@ -103,7 +105,7 @@ private fun RiddleContent(
     interval: RiddleInterval,
     riddleStartTime: Long,
     answerMode: RiddleAnswerMode,
-    onAnswerRevealed: () -> Unit,
+    onAnswerRevealed: (isAutomatic: Boolean) -> Unit,
 ) {
     val isTv = LocalIsTv.current
     val dimensions = LocalDimensions.current
@@ -114,7 +116,7 @@ private fun RiddleContent(
 
     AutoRevealEffect(answerMode, riddle, interval, riddleStartTime, showAnswer) {
         showAnswer = true
-        onAnswerRevealed()
+        onAnswerRevealed(true)
     }
 
     RiddleColumn(
@@ -128,7 +130,7 @@ private fun RiddleContent(
         showAnswer = showAnswer,
         onFocusChanged = { isFocused = it },
         onToggleAnswer = {
-            if (!showAnswer) onAnswerRevealed()
+            if (!showAnswer) onAnswerRevealed(false)
             showAnswer = !showAnswer
         },
     )

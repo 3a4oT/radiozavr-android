@@ -6,6 +6,7 @@ enum class ScreenName(val value: String) {
     THEME("theme"),
     LANGUAGE("language"),
     PLAYBACK("playback"),
+    WIDGETS("widgets"),
     RIDDLE("riddle"),
     ABOUT("about"),
 }

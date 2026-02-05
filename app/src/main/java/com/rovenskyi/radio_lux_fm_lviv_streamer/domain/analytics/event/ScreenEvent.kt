@@ -20,7 +20,8 @@ sealed class ScreenEvent(
     data object Theme : ScreenEvent(ScreenName.THEME, "ThemeScreen")
     data object Language : ScreenEvent(ScreenName.LANGUAGE, "LanguageScreen")
     data object Playback : ScreenEvent(ScreenName.PLAYBACK, "PlaybackSettingsScreen")
-    data object Riddle : ScreenEvent(ScreenName.RIDDLE, "RiddleSettingsScreen")
+    data object Widgets : ScreenEvent(ScreenName.WIDGETS, "WidgetsSettingsScreen")
+    data object Riddle : ScreenEvent(ScreenName.RIDDLE, "RiddleWidgetSettingsScreen")
     data object About : ScreenEvent(ScreenName.ABOUT, "AboutScreen")
 
     companion object {

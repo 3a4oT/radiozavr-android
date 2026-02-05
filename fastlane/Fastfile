@@ -57,10 +57,11 @@ platform :android do
     # Build signed AAB
     build_bundle
 
-    # Upload to internal testing track
+    # Upload to internal testing track with mapping file for crash analysis
     upload_to_play_store(
       track: "internal",
       aab: lane_context[SharedValues::GRADLE_AAB_OUTPUT_PATH],
+      mapping: "app/build/outputs/mapping/release/mapping.txt",
       skip_upload_images: true,
       skip_upload_screenshots: true
     )
@@ -73,6 +74,7 @@ platform :android do
     upload_to_play_store(
       track: "beta",
       aab: lane_context[SharedValues::GRADLE_AAB_OUTPUT_PATH],
+      mapping: "app/build/outputs/mapping/release/mapping.txt",
       skip_upload_images: true,
       skip_upload_screenshots: true
     )
@@ -84,7 +86,8 @@ platform :android do
 
     upload_to_play_store(
       track: "production",
-      aab: lane_context[SharedValues::GRADLE_AAB_OUTPUT_PATH]
+      aab: lane_context[SharedValues::GRADLE_AAB_OUTPUT_PATH],
+      mapping: "app/build/outputs/mapping/release/mapping.txt"
     )
   end
 

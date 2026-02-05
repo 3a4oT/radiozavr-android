@@ -1,14 +1,25 @@
 # Radiozavr ProGuard Rules
+# Last updated: 2026-02-05
+#
+# Note: Many libraries include their own consumer-rules.pro:
+# - kotlinx.coroutines 1.6+ (bundled rules)
+# - Media3 1.0+ (bundled rules)
+# - Hilt 2.41+ (bundled rules via plugin)
+# Only app-specific and essential rules are kept here.
 
 # ============================================
 # Firebase Crashlytics - readable stack traces
 # ============================================
+# Required for deobfuscated crash reports
+# See: https://firebase.google.com/docs/crashlytics/get-deobfuscated-reports
 -keepattributes SourceFile,LineNumberTable
 -renamesourcefileattribute SourceFile
 
 # ============================================
 # Kotlin Serialization
 # ============================================
+# Required for @Serializable classes (Navigation routes, data classes)
+# See: https://github.com/Kotlin/kotlinx.serialization#android
 -keepattributes *Annotation*, InnerClasses
 -dontnote kotlinx.serialization.**
 
@@ -27,57 +38,37 @@
 }
 
 # ============================================
-# Kotlin Coroutines
-# ============================================
--keepnames class kotlinx.coroutines.internal.MainDispatcherFactory {}
--keepnames class kotlinx.coroutines.CoroutineExceptionHandler {}
-
-# ============================================
 # Media3 / ExoPlayer
 # ============================================
-# Suppress warnings for unused formats (HLS only)
+# Suppress warnings for unused formats (app uses HLS only)
 -dontwarn androidx.media3.datasource.rtmp.**
 -dontwarn androidx.media3.exoplayer.dash.**
 -dontwarn androidx.media3.exoplayer.smoothstreaming.**
 
-# Keep Player.Listener interface and implementations
+# Keep Player.Listener implementations (reflection callbacks)
 -keep interface androidx.media3.common.Player$Listener { *; }
 -keep class * implements androidx.media3.common.Player$Listener { *; }
 
-# Keep MediaSessionService and MediaSession
+# Keep MediaSessionService subclasses
 -keep class * extends androidx.media3.session.MediaSessionService { *; }
--keep class * extends androidx.media3.session.MediaSession$Callback { *; }
--keep class androidx.media3.session.** { *; }
 
 # ============================================
-# Hilt / Dagger - keep injection points
+# Hilt / Dagger
 # ============================================
--keep class dagger.hilt.android.internal.** { *; }
--keep class * extends dagger.hilt.android.internal.managers.ComponentSupplier { *; }
--keep class * implements dagger.hilt.internal.GeneratedComponent { *; }
-
-# Keep @Inject annotated fields and constructors
--keepclasseswithmembers class * {
-    @javax.inject.Inject <fields>;
-}
--keepclasseswithmembers class * {
-    @javax.inject.Inject <init>(...);
-}
-
-# Keep @AndroidEntryPoint classes
+# Hilt 2.41+ includes consumer rules, but keep this for safety
 -keep @dagger.hilt.android.AndroidEntryPoint class * { *; }
 
 # ============================================
-# App-specific - keep service communication
+# App-specific
 # ============================================
-# Keep PlayerEventReceiver (singleton for service-UI communication)
+# Keep PlayerEventReceiver (singleton for service-UI communication via Flow)
 -keep class com.rovenskyi.radiozavr.service.PlayerEventReceiver { *; }
 
-# Keep RadioService companion object (intent actions)
+# Keep RadioService companion object (intent action constants)
 -keep class com.rovenskyi.radiozavr.service.RadioService$Companion { *; }
 
 # ============================================
-# Debug - configuration output
+# Debug
 # ============================================
-# Uncomment to debug R8 rules:
+# Uncomment to output full R8 configuration for debugging:
 # -printconfiguration build/outputs/logs/r8-configuration.txt

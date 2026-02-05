@@ -64,7 +64,6 @@ android {
 
     lint {
         // Suppress advisory warnings (not bugs)
-        disable += "AndroidGradlePluginVersion" // Minor Gradle update
         disable += "NewerVersionAvailable" // Library updates - separate PR
     }
 }

@@ -62,10 +62,6 @@ android {
         }
     }
 
-    lint {
-        // Suppress advisory warnings (not bugs)
-        disable += "NewerVersionAvailable" // Library updates - separate PR
-    }
 }
 
 dependencies {

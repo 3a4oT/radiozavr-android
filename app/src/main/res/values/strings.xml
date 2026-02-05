@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Radio Lux FM Lviv</string>
+    <string name="app_name">Radiozavr Lviv</string>
     <string name="play_button">Stream Radio Lux FM Lviv</string>
     <string name="network_error">No network connection</string>
     <string name="retry_button">Retry</string>
@@ -83,7 +83,6 @@
     <string name="riddle_content_description">Riddle: %1$s. Tap to reveal answer</string>
     <string name="riddle_content_description_tv">Riddle: %1$s. Press OK to reveal answer</string>
     <string name="riddle_answer_content_description">Answer: %1$s</string>
-    <string name="clock_content_description">Current time: %1$s</string>
 
     <!-- About -->
     <string name="about_title">About</string>

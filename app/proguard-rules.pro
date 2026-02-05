@@ -1,4 +1,4 @@
-# Radio Lux FM ProGuard Rules
+# Radiozavr ProGuard Rules
 
 # ============================================
 # Firebase Crashlytics - readable stack traces
@@ -71,10 +71,10 @@
 # App-specific - keep service communication
 # ============================================
 # Keep PlayerEventReceiver (singleton for service-UI communication)
--keep class com.rovenskyi.radio_lux_fm_lviv_streamer.service.PlayerEventReceiver { *; }
+-keep class com.rovenskyi.radiozavr.service.PlayerEventReceiver { *; }
 
 # Keep RadioService companion object (intent actions)
--keep class com.rovenskyi.radio_lux_fm_lviv_streamer.service.RadioService$Companion { *; }
+-keep class com.rovenskyi.radiozavr.service.RadioService$Companion { *; }
 
 # ============================================
 # Debug - configuration output

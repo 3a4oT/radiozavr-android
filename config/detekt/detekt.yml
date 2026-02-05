@@ -58,6 +58,9 @@ formatting:
   NoTrailingSpaces:
     active: true
     autoCorrect: true
+  ImportOrdering:
+    active: true
+    autoCorrect: true
   PackageName:
     active: false  # Using naming:PackageNaming instead
   TrailingCommaOnCallSite:

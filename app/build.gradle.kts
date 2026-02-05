@@ -9,11 +9,11 @@ plugins {
 }
 
 android {
-    namespace = "com.rovenskyi.radio_lux_fm_lviv_streamer"
+    namespace = "com.rovenskyi.radiozavr"
     compileSdk = 36
 
     defaultConfig {
-        applicationId = "com.rovenskyi.radio_lux_fm_lviv_streamer"
+        applicationId = "com.rovenskyi.radiozavr"
         minSdk = 26
         targetSdk = 36
         versionCode = 9
@@ -52,6 +52,21 @@ android {
         unitTests.all {
             it.useJUnitPlatform()
         }
+    }
+
+    // Disable language splitting for App Bundle
+    // Required because we support in-app language switching
+    bundle {
+        language {
+            enableSplit = false
+        }
+    }
+
+    lint {
+        // Suppress advisory warnings (not bugs)
+        disable += "AndroidGradlePluginVersion" // Minor Gradle update
+        disable += "NewerVersionAvailable" // Library updates - separate PR
+        disable += "ExportedService" // MediaSessionService must be exported
     }
 }
 

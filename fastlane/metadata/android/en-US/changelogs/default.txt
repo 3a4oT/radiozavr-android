@@ -1,0 +1,6 @@
+• First release of Radiozavr
+• Live streaming of Lviv radio 104.7
+• Android TV support with remote control
+• Riddle mode for entertainment
+• Audio visualizer
+• Light, dark, and automatic themes

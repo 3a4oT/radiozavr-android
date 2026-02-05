@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Радіо Люкс ФМ Львів</string>
+    <string name="app_name">Радіозавр Львів</string>
     <string name="play_button">Слухати Радіо Люкс ФМ Львів</string>
     <string name="network_error">Немає підключення до мережі</string>
     <string name="retry_button">Повторити</string>
@@ -83,7 +83,6 @@
     <string name="riddle_content_description">Загадка: %1$s. Торкнись щоб побачити відповідь</string>
     <string name="riddle_content_description_tv">Загадка: %1$s. Натисни OK щоб побачити відповідь</string>
     <string name="riddle_answer_content_description">Відповідь: %1$s</string>
-    <string name="clock_content_description">Поточний час: %1$s</string>
 
     <!-- About -->
     <string name="about_title">Про застосунок</string>

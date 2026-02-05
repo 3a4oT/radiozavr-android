@@ -1,0 +1,8 @@
+# frozen_string_literal: true
+
+# App identifier (package name)
+package_name("com.rovenskyi.radiozavr")
+
+# Path to the JSON key file for Google Play API access
+# This file should NOT be committed to git
+json_key_file("fastlane/play-store-credentials.json")

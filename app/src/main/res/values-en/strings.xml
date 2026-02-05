@@ -84,7 +84,6 @@
     <string name="riddle_content_description">Riddle: %1$s. Tap to reveal answer</string>
     <string name="riddle_content_description_tv">Riddle: %1$s. Press OK to reveal answer</string>
     <string name="riddle_answer_content_description">Answer: %1$s</string>
-    <string name="clock_content_description">Current time: %1$s</string>
 
     <!-- About -->
     <string name="about_title">About</string>
@@ -99,7 +98,7 @@
     <string name="about_author">Author</string>
     <string name="about_author_name">Petro Rovenskyi</string>
     <string name="about_source_code">Source Code</string>
-    <string name="about_github_url">github.com/3a4oT/radio-lux-fm-lviv-android-streamer</string>
+    <string name="about_github_url">github.com/3a4oT/radiozavr-android</string>
     <string name="about_source_code_content_description">Open GitHub repository</string>
     <string name="about_source_code_qr_hint">Scan QR code to open</string>
     <string name="about_source_code_qr_content_description">QR code for GitHub repository</string>

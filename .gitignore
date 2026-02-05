@@ -37,10 +37,15 @@ out/
 *.hprof
 
 # fastlane
-fastlane/report.xml
-fastlane/Preview.html
-fastlane/screenshots
-fastlane/test_output
+**/fastlane/report.xml
+**/fastlane/Preview.html
+**/fastlane/screenshots
+**/fastlane/test_output
+**/fastlane/README.md
+**/fastlane/.env*
+**/fastlane/metadata/**/images/**
+*-credentials.json
+play-store-credentials.json
 
 # Signing files
 *.base64

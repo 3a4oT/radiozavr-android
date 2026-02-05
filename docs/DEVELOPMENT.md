@@ -8,7 +8,7 @@
 
 1. Відкрий [Firebase Console](https://console.firebase.google.com/)
 2. Вибери або створи проект
-3. Додай Android app з package name: `com.rovenskyi.radio_lux_fm_lviv_streamer`
+3. Додай Android app з package name: `com.rovenskyi.radiozavr`
 4. Завантаж `google-services.json`
 5. Розмісти в `app/google-services.json`
 

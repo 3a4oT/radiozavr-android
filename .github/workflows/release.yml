@@ -49,11 +49,11 @@ jobs:
 
       - name: Rename artifacts
         run: |
-          mv app/build/outputs/apk/release/app-release-unsigned.apk app/build/outputs/apk/release/radio-lux-fm-${{ env.VERSION }}.apk
-          mv app/build/outputs/bundle/release/app-release.aab app/build/outputs/bundle/release/radio-lux-fm-${{ env.VERSION }}.aab
+          mv app/build/outputs/apk/release/app-release-unsigned.apk app/build/outputs/apk/release/radiozavr-${{ env.VERSION }}.apk
+          mv app/build/outputs/bundle/release/app-release.aab app/build/outputs/bundle/release/radiozavr-${{ env.VERSION }}.aab
 
       - name: Align APK
-        run: zipalign -v 4 app/build/outputs/apk/release/radio-lux-fm-${{ env.VERSION }}.apk app/build/outputs/apk/release/radio-lux-fm-${{ env.VERSION }}-aligned.apk
+        run: zipalign -v 4 app/build/outputs/apk/release/radiozavr-${{ env.VERSION }}.apk app/build/outputs/apk/release/radiozavr-${{ env.VERSION }}-aligned.apk
 
       - name: Sign APK and AAB
         env:
@@ -61,15 +61,15 @@ jobs:
           KEY_PASSWORD: ${{ secrets.KEY_PASSWORD }}
           KEY_ALIAS: ${{ secrets.KEY_ALIAS }}
         run: |
-          apksigner sign --ks my-release-key.jks --ks-key-alias $KEY_ALIAS --ks-pass pass:$KEYSTORE_PASSWORD --key-pass pass:$KEY_PASSWORD --v2-signing-enabled true app/build/outputs/apk/release/radio-lux-fm-${{ env.VERSION }}-aligned.apk
-          jarsigner -verbose -sigalg SHA256withRSA -digestalg SHA-256 -keystore my-release-key.jks app/build/outputs/bundle/release/radio-lux-fm-${{ env.VERSION }}.aab $KEY_ALIAS -storepass $KEYSTORE_PASSWORD -keypass $KEY_PASSWORD
+          apksigner sign --ks my-release-key.jks --ks-key-alias $KEY_ALIAS --ks-pass pass:$KEYSTORE_PASSWORD --key-pass pass:$KEY_PASSWORD --v2-signing-enabled true app/build/outputs/apk/release/radiozavr-${{ env.VERSION }}-aligned.apk
+          jarsigner -verbose -sigalg SHA256withRSA -digestalg SHA-256 -keystore my-release-key.jks app/build/outputs/bundle/release/radiozavr-${{ env.VERSION }}.aab $KEY_ALIAS -storepass $KEYSTORE_PASSWORD -keypass $KEY_PASSWORD
 
       - name: Create Release
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
           gh release create ${{ env.VERSION }} \
-            app/build/outputs/apk/release/radio-lux-fm-${{ env.VERSION }}-aligned.apk \
-            app/build/outputs/bundle/release/radio-lux-fm-${{ env.VERSION }}.aab \
+            app/build/outputs/apk/release/radiozavr-${{ env.VERSION }}-aligned.apk \
+            app/build/outputs/bundle/release/radiozavr-${{ env.VERSION }}.aab \
             --title "Release ${{ env.VERSION }}" \
             --generate-notes

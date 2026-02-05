@@ -1,0 +1,25 @@
+Radiozavr — your companion for streaming Lviv's favorite radio. Wherever you are — everything in your city is lux.
+
+📻 LVIV RADIO 104.7
+Live broadcast in crystal clear quality. No buffering, no delays, no ads.
+
+📺 BUILT FOR ANDROID TV
+Enjoy music from your hometown on the big screen. Works perfectly with your remote and Bluetooth headphone media buttons.
+
+🎯 RIDDLE MODE
+Turn background listening into a family game. Riddles rotate automatically — guess before your favorite song ends. Two modes: guess yourself or reveal answers instantly.
+
+🎨 MODERN DESIGN
+• Audio visualizer that dances to the music
+• Light, dark, and automatic themes
+• Adaptive interface for phones, tablets, and TVs
+
+✨ WHY RADIOZAVR
+• No ads, no subscriptions — free forever
+• Fast launch and minimal battery consumption
+• Background playback with notification controls
+• Ukrainian and English languages
+
+Radiozavr — because listening to your hometown radio should be simple and enjoyable.
+
+Questions or suggestions? Reach out on GitHub.

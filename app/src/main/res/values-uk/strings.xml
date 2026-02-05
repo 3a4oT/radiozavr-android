@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Радіо Люкс ФМ Львів</string>
+    <string name="app_name">Радіозавр Львів</string>
     <string name="play_button">Слухати Радіо Люкс ФМ Львів</string>
     <string name="network_error">Немає підключення до мережі</string>
     <string name="retry_button">Повторити</string>
@@ -83,7 +83,6 @@
     <string name="riddle_content_description">Загадка: %1$s. Торкнись щоб побачити відповідь</string>
     <string name="riddle_content_description_tv">Загадка: %1$s. Натисни OK щоб побачити відповідь</string>
     <string name="riddle_answer_content_description">Відповідь: %1$s</string>
-    <string name="clock_content_description">Поточний час: %1$s</string>
 
     <!-- About -->
     <string name="about_title">Про застосунок</string>
@@ -98,7 +97,7 @@
     <string name="about_author">Автор</string>
     <string name="about_author_name">Петро Ровенський</string>
     <string name="about_source_code">Вихідний код</string>
-    <string name="about_github_url">github.com/3a4oT/radio-lux-fm-lviv-android-streamer</string>
+    <string name="about_github_url">github.com/3a4oT/radiozavr-android</string>
     <string name="about_source_code_content_description">Відкрити репозиторій GitHub</string>
     <string name="about_source_code_qr_hint">Скануйте QR-код щоб відкрити</string>
     <string name="about_source_code_qr_content_description">QR-код для репозиторію GitHub</string>

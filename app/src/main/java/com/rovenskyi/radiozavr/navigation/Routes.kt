@@ -1,0 +1,41 @@
+package com.rovenskyi.radiozavr.navigation
+
+import kotlinx.serialization.Serializable
+
+/**
+ * Type-safe navigation routes organized by domain.
+ * Using sealed interfaces for grouping and Kotlin Serialization for Navigation 2.8+.
+ */
+sealed interface AppRoute
+
+// =============================================================================
+// Main Flow
+// =============================================================================
+
+@Serializable
+data object RadioPlayer : AppRoute
+
+// =============================================================================
+// Settings Flow
+// =============================================================================
+
+@Serializable
+data object Settings : AppRoute
+
+@Serializable
+data object Theme : AppRoute
+
+@Serializable
+data object Language : AppRoute
+
+@Serializable
+data object Playback : AppRoute
+
+@Serializable
+data object WidgetsSettings : AppRoute
+
+@Serializable
+data object RiddleWidgetSettings : AppRoute
+
+@Serializable
+data object About : AppRoute

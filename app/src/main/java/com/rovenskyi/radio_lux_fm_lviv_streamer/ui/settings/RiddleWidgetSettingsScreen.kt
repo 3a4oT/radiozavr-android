@@ -16,7 +16,6 @@ import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBar
 import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
@@ -38,10 +37,6 @@ fun RiddleWidgetSettingsScreen(
 ) {
     val selectedInterval by viewModel.riddleInterval.collectAsState()
     val selectedAnswerMode by viewModel.riddleAnswerMode.collectAsState()
-
-    LaunchedEffect(Unit) {
-        viewModel.trackRiddleScreenView()
-    }
 
     val intervalOptions = listOf(
         RiddleInterval.SECONDS_6 to stringResource(R.string.settings_riddle_interval_6),

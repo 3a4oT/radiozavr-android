@@ -21,6 +21,10 @@ class RiddleSettingsViewModel @Inject constructor(
     private val analyticsTracker: AnalyticsTracker,
 ) : ViewModel() {
 
+    init {
+        analyticsTracker.track(ScreenEvent.Riddle)
+    }
+
     val riddleInterval: StateFlow<RiddleInterval> = playbackSettingsRepository.riddleInterval
         .stateIn(
             scope = viewModelScope,
@@ -47,9 +51,5 @@ class RiddleSettingsViewModel @Inject constructor(
             playbackSettingsRepository.setRiddleAnswerMode(mode)
             analyticsTracker.track(SettingsEvent.RiddleAnswerModeChanged(mode))
         }
-    }
-
-    fun trackRiddleScreenView() {
-        analyticsTracker.track(ScreenEvent.Riddle)
     }
 }

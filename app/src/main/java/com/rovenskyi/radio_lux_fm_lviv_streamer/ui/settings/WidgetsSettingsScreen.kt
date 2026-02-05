@@ -23,7 +23,9 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
+import androidx.hilt.lifecycle.viewmodel.compose.hiltViewModel
 import com.rovenskyi.radio_lux_fm_lviv_streamer.R
+import com.rovenskyi.radio_lux_fm_lviv_streamer.viewmodel.WidgetsSettingsViewModel
 import com.rovenskyi.radiolux.core.components.settings.SettingsGroup
 import com.rovenskyi.radiolux.core.components.settings.SettingsRow
 
@@ -34,6 +36,9 @@ fun WidgetsSettingsScreen(
     onRiddleClick: () -> Unit,
     modifier: Modifier = Modifier,
 ) {
+    // ViewModel instantiation triggers screen_view analytics in init{}
+    hiltViewModel<WidgetsSettingsViewModel>()
+
     SettingsThemeProvider {
         Scaffold(
             topBar = {

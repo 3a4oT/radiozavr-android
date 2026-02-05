@@ -71,7 +71,7 @@ class RiddleWidgetViewModel @Inject constructor(
             .launchIn(viewModelScope)
     }
 
-    fun trackAnswerRevealed(isTv: Boolean) {
-        analyticsTracker.track(RiddleEvent.AnswerRevealed(isTv))
+    fun trackAnswerRevealed(isTv: Boolean, isAutomatic: Boolean) {
+        analyticsTracker.track(RiddleEvent.AnswerRevealed(isTv, isAutomatic))
     }
 }

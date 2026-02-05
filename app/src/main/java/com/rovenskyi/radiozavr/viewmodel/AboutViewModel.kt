@@ -54,6 +54,6 @@ class AboutViewModel @Inject constructor(
     }
 
     companion object {
-        const val GITHUB_URL = "https://github.com/3a4oT/radio-lux-fm-lviv-android-streamer"
+        const val GITHUB_URL = "https://github.com/3a4oT/radiozavr-android"
     }
 }

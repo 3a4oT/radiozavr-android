@@ -97,7 +97,7 @@
     <string name="about_author">Автор</string>
     <string name="about_author_name">Петро Ровенський</string>
     <string name="about_source_code">Вихідний код</string>
-    <string name="about_github_url">github.com/3a4oT/radio-lux-fm-lviv-android-streamer</string>
+    <string name="about_github_url">github.com/3a4oT/radiozavr-android</string>
     <string name="about_source_code_content_description">Відкрити репозиторій GitHub</string>
     <string name="about_source_code_qr_hint">Скануйте QR-код щоб відкрити</string>
     <string name="about_source_code_qr_content_description">QR-код для репозиторію GitHub</string>

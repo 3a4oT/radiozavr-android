@@ -7,6 +7,7 @@ import com.rovenskyi.radio_lux_fm_lviv_streamer.domain.analytics.event.RiddleEve
 import com.rovenskyi.radio_lux_fm_lviv_streamer.domain.repository.PlaybackSettingsRepository
 import com.rovenskyi.radio_lux_fm_lviv_streamer.service.RiddleRotationService
 import com.rovenskyi.radiolux.core.models.riddle.Riddle
+import com.rovenskyi.radiolux.core.models.riddle.RiddleAnswerMode
 import com.rovenskyi.radiolux.core.models.riddle.RiddleInterval
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.SharingStarted
@@ -23,7 +24,8 @@ import javax.inject.Inject
 data class RiddleUiState(
     val riddle: Riddle? = null,
     val riddleStartTime: Long = System.currentTimeMillis(),
-    val intervalSeconds: Int = RiddleInterval.DEFAULT.seconds,
+    val interval: RiddleInterval = RiddleInterval.DEFAULT,
+    val answerMode: RiddleAnswerMode = RiddleAnswerMode.DEFAULT,
 )
 
 /**
@@ -48,11 +50,13 @@ class RiddleWidgetViewModel @Inject constructor(
     val uiState: StateFlow<RiddleUiState> = combine(
         riddleRotationService.rotationState,
         playbackSettingsRepository.riddleInterval,
-    ) { rotationState, interval ->
+        playbackSettingsRepository.riddleAnswerMode,
+    ) { rotationState, interval, answerMode ->
         RiddleUiState(
             riddle = rotationState.riddle,
             riddleStartTime = rotationState.startTimeMillis,
-            intervalSeconds = interval.seconds,
+            interval = interval,
+            answerMode = answerMode,
         )
     }.stateIn(
         scope = viewModelScope,

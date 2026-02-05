@@ -3,6 +3,8 @@ package com.rovenskyi.radio_lux_fm_lviv_streamer.ui.settings
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.ArrowBack
 import androidx.compose.material3.ExperimentalMaterial3Api
@@ -24,16 +26,18 @@ import com.rovenskyi.radio_lux_fm_lviv_streamer.R
 import com.rovenskyi.radio_lux_fm_lviv_streamer.viewmodel.RiddleSettingsViewModel
 import com.rovenskyi.radiolux.core.components.settings.SelectableRow
 import com.rovenskyi.radiolux.core.components.settings.SettingsGroup
+import com.rovenskyi.radiolux.core.models.riddle.RiddleAnswerMode
 import com.rovenskyi.radiolux.core.models.riddle.RiddleInterval
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun RiddleSettingsScreen(
+fun RiddleWidgetSettingsScreen(
     onBackClick: () -> Unit,
     modifier: Modifier = Modifier,
     viewModel: RiddleSettingsViewModel = hiltViewModel(),
 ) {
     val selectedInterval by viewModel.riddleInterval.collectAsState()
+    val selectedAnswerMode by viewModel.riddleAnswerMode.collectAsState()
 
     LaunchedEffect(Unit) {
         viewModel.trackRiddleScreenView()
@@ -47,12 +51,17 @@ fun RiddleSettingsScreen(
         RiddleInterval.SECONDS_60 to stringResource(R.string.settings_riddle_interval_60),
     )
 
+    val answerModeOptions = listOf(
+        RiddleAnswerMode.AUTOMATIC to stringResource(R.string.settings_answer_mode_automatic),
+        RiddleAnswerMode.MANUAL to stringResource(R.string.settings_answer_mode_manual),
+    )
+
     SettingsThemeProvider {
         Scaffold(
             topBar = {
                 TopAppBar(
                     title = {
-                        Text(text = stringResource(R.string.settings_riddle_title))
+                        Text(text = stringResource(R.string.settings_riddle_widget_title))
                     },
                     navigationIcon = {
                         IconButton(onClick = onBackClick) {
@@ -72,10 +81,27 @@ fun RiddleSettingsScreen(
             Column(
                 modifier = Modifier
                     .fillMaxSize()
-                    .padding(paddingValues),
+                    .padding(paddingValues)
+                    .verticalScroll(rememberScrollState()),
             ) {
                 SettingsGroup(
-                    title = stringResource(R.string.settings_group_riddle),
+                    title = stringResource(R.string.settings_riddle_answer_mode_group),
+                ) {
+                    answerModeOptions.forEach { (mode, label) ->
+                        SelectableRow(
+                            text = label,
+                            selected = selectedAnswerMode == mode,
+                            onClick = { viewModel.setRiddleAnswerMode(mode) },
+                            contentDescription = stringResource(
+                                R.string.settings_answer_mode_content_description,
+                                label,
+                            ),
+                        )
+                    }
+                }
+
+                SettingsGroup(
+                    title = stringResource(R.string.settings_riddle_interval_group),
                 ) {
                     intervalOptions.forEach { (interval, label) ->
                         SelectableRow(
@@ -83,7 +109,7 @@ fun RiddleSettingsScreen(
                             selected = selectedInterval == interval,
                             onClick = { viewModel.setRiddleInterval(interval) },
                             contentDescription = stringResource(
-                                R.string.settings_riddle_content_description,
+                                R.string.settings_riddle_interval_content_description,
                                 label,
                             ),
                         )

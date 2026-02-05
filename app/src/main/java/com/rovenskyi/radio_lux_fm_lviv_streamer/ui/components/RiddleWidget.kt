@@ -20,6 +20,7 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
@@ -29,36 +30,37 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.scale
 import androidx.compose.ui.focus.onFocusChanged
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.semantics.Role
 import androidx.compose.ui.semantics.contentDescription
 import androidx.compose.ui.semantics.role
 import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.text.style.TextAlign
+import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import androidx.hilt.lifecycle.viewmodel.compose.hiltViewModel
 import com.rovenskyi.radio_lux_fm_lviv_streamer.R
 import com.rovenskyi.radio_lux_fm_lviv_streamer.viewmodel.RiddleWidgetViewModel
 import com.rovenskyi.radiolux.core.components.widgets.CircularCountdownIndicator
 import com.rovenskyi.radiolux.core.models.riddle.Riddle
+import com.rovenskyi.radiolux.core.models.riddle.RiddleAnswerMode
+import com.rovenskyi.radiolux.core.models.riddle.RiddleInterval
 import com.rovenskyi.radiolux.core.theme.LocalDimensions
 import com.rovenskyi.radiolux.core.theme.LocalIsTv
 import com.rovenskyi.radiolux.core.theme.LocalTvFocusColor
-import java.time.LocalTime
+import kotlinx.coroutines.delay
 
 private const val TV_INDICATOR_SIZE_DP = 76
 private const val PHONE_INDICATOR_SIZE_DP = 60
 private const val TV_STROKE_WIDTH_DP = 4
 private const val PHONE_STROKE_WIDTH_DP = 3
 
-private val ANSWER_REVEAL_TIME: LocalTime = LocalTime.of(22, 30)
-
 private const val ANIMATION_DURATION_MS = 150
 private const val FOCUS_SCALE = 1.02f
 
 /**
  * Widget that displays rotating riddles.
- * Riddles rotate every 20 seconds.
  *
  * Accessibility:
  * - Full TalkBack support with content descriptions
@@ -73,7 +75,6 @@ fun RiddleWidget(
     val uiState by viewModel.uiState.collectAsState()
     val isTv = LocalIsTv.current
 
-    // Box centers content both horizontally and vertically within available space
     Box(
         modifier = modifier.fillMaxSize(),
         contentAlignment = Alignment.Center,
@@ -86,8 +87,9 @@ fun RiddleWidget(
             ) { targetRiddle ->
                 RiddleContent(
                     riddle = targetRiddle,
-                    intervalSeconds = uiState.intervalSeconds,
+                    interval = uiState.interval,
                     riddleStartTime = uiState.riddleStartTime,
+                    answerMode = uiState.answerMode,
                     onAnswerRevealed = { viewModel.trackAnswerRevealed(isTv) },
                 )
             }
@@ -98,82 +100,108 @@ fun RiddleWidget(
 @Composable
 private fun RiddleContent(
     riddle: Riddle,
-    intervalSeconds: Int,
+    interval: RiddleInterval,
     riddleStartTime: Long,
+    answerMode: RiddleAnswerMode,
     onAnswerRevealed: () -> Unit,
 ) {
     val isTv = LocalIsTv.current
     val dimensions = LocalDimensions.current
     val focusColor = LocalTvFocusColor.current
 
-    // Cache time check - only read once per riddle
-    val isAfterRevealTime = remember(riddle) { LocalTime.now() >= ANSWER_REVEAL_TIME }
-
-    // Use remember (not rememberSaveable) - state should reset on riddle change, not survive process death
     var showAnswer by remember(riddle.question) { mutableStateOf(false) }
     var isFocused by remember { mutableStateOf(false) }
 
-    val shouldShowAnswer = showAnswer || isAfterRevealTime
+    AutoRevealEffect(answerMode, riddle, interval, riddleStartTime, showAnswer) {
+        showAnswer = true
+        onAnswerRevealed()
+    }
 
-    // Focus animations (only meaningful on TV)
+    RiddleColumn(
+        riddle = riddle,
+        interval = interval,
+        riddleStartTime = riddleStartTime,
+        isTv = isTv,
+        isFocused = isFocused,
+        focusColor = focusColor,
+        focusBorderWidth = dimensions.focusBorderWidth,
+        showAnswer = showAnswer,
+        onFocusChanged = { isFocused = it },
+        onToggleAnswer = {
+            if (!showAnswer) onAnswerRevealed()
+            showAnswer = !showAnswer
+        },
+    )
+}
+
+@Composable
+private fun AutoRevealEffect(
+    answerMode: RiddleAnswerMode,
+    riddle: Riddle,
+    interval: RiddleInterval,
+    riddleStartTime: Long,
+    showAnswer: Boolean,
+    onAutoReveal: () -> Unit,
+) {
+    LaunchedEffect(riddle, answerMode) {
+        if (answerMode == RiddleAnswerMode.AUTOMATIC && !showAnswer) {
+            val autoRevealDelayMs = (interval.seconds - interval.autoRevealSeconds) * 1000L
+            val elapsed = System.currentTimeMillis() - riddleStartTime
+            val remainingDelay = autoRevealDelayMs - elapsed
+
+            if (remainingDelay > 0) {
+                delay(remainingDelay)
+            }
+            onAutoReveal()
+        }
+    }
+}
+
+@Composable
+private fun RiddleColumn(
+    riddle: Riddle,
+    interval: RiddleInterval,
+    riddleStartTime: Long,
+    isTv: Boolean,
+    isFocused: Boolean,
+    focusColor: Color,
+    focusBorderWidth: Dp,
+    showAnswer: Boolean,
+    onFocusChanged: (Boolean) -> Unit,
+    onToggleAnswer: () -> Unit,
+) {
+    val dimensions = LocalDimensions.current
+
     val scale by animateFloatAsState(
         targetValue = if (isFocused) FOCUS_SCALE else 1f,
         animationSpec = tween(durationMillis = ANIMATION_DURATION_MS),
         label = "riddleScale",
     )
 
-    val focusBorderWidth by animateDpAsState(
-        targetValue = if (isFocused) dimensions.focusBorderWidth else 0.dp,
+    val animatedBorderWidth by animateDpAsState(
+        targetValue = if (isFocused) focusBorderWidth else 0.dp,
         animationSpec = tween(durationMillis = ANIMATION_DURATION_MS),
         label = "riddleFocusBorder",
     )
 
-    // Platform-specific strings
-    val riddleDescriptionRes = if (isTv) {
-        R.string.riddle_content_description_tv
-    } else {
-        R.string.riddle_content_description
-    }
-    val hintTextRes = if (isTv) {
-        R.string.riddle_press_ok_for_answer
-    } else {
-        R.string.riddle_tap_for_answer
-    }
+    val hintTextRes = if (isTv) R.string.riddle_press_ok_for_answer else R.string.riddle_tap_for_answer
+    val accessibilityDescription = buildAccessibilityDescription(riddle, showAnswer, isTv)
 
-    // Accessibility descriptions
-    val riddleDescription = stringResource(riddleDescriptionRes, riddle.question)
-    val answerDescription = stringResource(R.string.riddle_answer_content_description, riddle.answer)
-    val accessibilityDescription = if (shouldShowAnswer) {
-        "$riddleDescription $answerDescription"
+    val borderModifier = if (isFocused) {
+        Modifier.border(width = animatedBorderWidth, color = focusColor, shape = MaterialTheme.shapes.medium)
     } else {
-        riddleDescription
+        Modifier
     }
 
     Column(
         modifier = Modifier
             .fillMaxWidth()
             .scale(scale)
-            .onFocusChanged { isFocused = it.isFocused }
-            .then(
-                if (isFocused) {
-                    Modifier.border(
-                        width = focusBorderWidth,
-                        color = focusColor,
-                        shape = MaterialTheme.shapes.medium,
-                    )
-                } else {
-                    Modifier
-                },
-            )
-            .clickable {
-                if (!showAnswer) {
-                    onAnswerRevealed()
-                }
-                showAnswer = !showAnswer
-            }
+            .onFocusChanged { onFocusChanged(it.isFocused) }
+            .then(borderModifier)
+            .clickable(onClick = onToggleAnswer)
             .focusable()
-            .padding(horizontal = dimensions.paddingLarge)
-            .padding(vertical = dimensions.paddingMedium)
+            .padding(horizontal = dimensions.paddingLarge, vertical = dimensions.paddingMedium)
             .semantics {
                 contentDescription = accessibilityDescription
                 role = Role.Button
@@ -181,38 +209,36 @@ private fun RiddleContent(
         horizontalAlignment = Alignment.CenterHorizontally,
     ) {
         CircularCountdownIndicator(
-            durationSeconds = intervalSeconds,
+            durationSeconds = interval.seconds,
             animationKey = riddle,
             startTimeMillis = riddleStartTime,
             size = if (isTv) TV_INDICATOR_SIZE_DP.dp else PHONE_INDICATOR_SIZE_DP.dp,
             strokeWidth = if (isTv) TV_STROKE_WIDTH_DP.dp else PHONE_STROKE_WIDTH_DP.dp,
+            warningSeconds = interval.warningSeconds,
         ) {
-            Text(
-                text = riddle.emoji,
-                style = MaterialTheme.typography.headlineLarge,
-            )
+            Text(text = riddle.emoji, style = MaterialTheme.typography.headlineLarge)
         }
         Spacer(modifier = Modifier.height(dimensions.spacingSmall))
-        Text(
-            text = riddle.question,
-            style = MaterialTheme.typography.titleLarge,
-            textAlign = TextAlign.Center,
-        )
+        Text(text = riddle.question, style = MaterialTheme.typography.titleLarge, textAlign = TextAlign.Center)
         Spacer(modifier = Modifier.height(dimensions.spacingSmall))
-        RiddleAnswerHint(
-            answer = riddle.answer,
-            showAnswer = shouldShowAnswer,
-            hintTextRes = hintTextRes,
-        )
+        RiddleAnswerHint(answer = riddle.answer, showAnswer = showAnswer, hintTextRes = hintTextRes)
     }
 }
 
 @Composable
-private fun RiddleAnswerHint(
-    answer: String,
-    showAnswer: Boolean,
-    hintTextRes: Int,
-) {
+private fun buildAccessibilityDescription(riddle: Riddle, showAnswer: Boolean, isTv: Boolean): String {
+    val riddleDescriptionRes = if (isTv) R.string.riddle_content_description_tv else R.string.riddle_content_description
+    val riddleDescription = stringResource(riddleDescriptionRes, riddle.question)
+    return if (showAnswer) {
+        val answerDescription = stringResource(R.string.riddle_answer_content_description, riddle.answer)
+        "$riddleDescription $answerDescription"
+    } else {
+        riddleDescription
+    }
+}
+
+@Composable
+private fun RiddleAnswerHint(answer: String, showAnswer: Boolean, hintTextRes: Int) {
     if (showAnswer) {
         Text(
             text = "\uD83D\uDCA1 $answer",

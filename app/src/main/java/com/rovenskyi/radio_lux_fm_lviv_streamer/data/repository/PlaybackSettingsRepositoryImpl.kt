@@ -6,9 +6,11 @@ import androidx.datastore.preferences.core.Preferences
 import androidx.datastore.preferences.core.booleanPreferencesKey
 import androidx.datastore.preferences.core.edit
 import androidx.datastore.preferences.core.intPreferencesKey
+import androidx.datastore.preferences.core.stringPreferencesKey
 import androidx.datastore.preferences.preferencesDataStore
 import com.rovenskyi.radio_lux_fm_lviv_streamer.domain.repository.PlatformRepository
 import com.rovenskyi.radio_lux_fm_lviv_streamer.domain.repository.PlaybackSettingsRepository
+import com.rovenskyi.radiolux.core.models.riddle.RiddleAnswerMode
 import com.rovenskyi.radiolux.core.models.riddle.RiddleInterval
 import dagger.hilt.android.qualifiers.ApplicationContext
 import kotlinx.coroutines.flow.Flow
@@ -29,6 +31,7 @@ class PlaybackSettingsRepositoryImpl @Inject constructor(
     private val autoPlayKey = booleanPreferencesKey("auto_play_enabled")
     private val autoStopKey = booleanPreferencesKey("auto_stop_on_background_enabled")
     private val riddleIntervalKey = intPreferencesKey("riddle_interval_seconds")
+    private val riddleAnswerModeKey = stringPreferencesKey("riddle_answer_mode")
 
     override val autoPlayEnabled: Flow<Boolean> = context.playbackSettingsDataStore.data.map { prefs ->
         prefs[autoPlayKey] ?: platformRepository.isTv // Default: true on TV, false on Phone
@@ -41,6 +44,11 @@ class PlaybackSettingsRepositoryImpl @Inject constructor(
     override val riddleInterval: Flow<RiddleInterval> = context.playbackSettingsDataStore.data.map { prefs ->
         val seconds = prefs[riddleIntervalKey] ?: RiddleInterval.DEFAULT.seconds
         RiddleInterval.fromSeconds(seconds)
+    }
+
+    override val riddleAnswerMode: Flow<RiddleAnswerMode> = context.playbackSettingsDataStore.data.map { prefs ->
+        val modeName = prefs[riddleAnswerModeKey] ?: RiddleAnswerMode.DEFAULT.name
+        runCatching { RiddleAnswerMode.valueOf(modeName) }.getOrDefault(RiddleAnswerMode.DEFAULT)
     }
 
     override suspend fun setAutoPlayEnabled(enabled: Boolean) {
@@ -58,6 +66,12 @@ class PlaybackSettingsRepositoryImpl @Inject constructor(
     override suspend fun setRiddleInterval(interval: RiddleInterval) {
         context.playbackSettingsDataStore.edit { prefs ->
             prefs[riddleIntervalKey] = interval.seconds
+        }
+    }
+
+    override suspend fun setRiddleAnswerMode(mode: RiddleAnswerMode) {
+        context.playbackSettingsDataStore.edit { prefs ->
+            prefs[riddleAnswerModeKey] = mode.name
         }
     }
 }

@@ -54,16 +54,28 @@
     <string name="player_pause">Pause</string>
     <string name="player_error_friendly">Oops! Something went wrong</string>
 
-    <!-- Riddle settings -->
-    <string name="settings_group_riddle">Riddle</string>
-    <string name="settings_riddle_title">Rotation interval</string>
-    <string name="settings_riddle_subtitle">Time between riddle changes</string>
-    <string name="settings_riddle_content_description">Riddle interval: %1$s</string>
+    <!-- Widgets settings -->
+    <string name="settings_widgets_title">Widgets</string>
+    <string name="settings_widgets_row_title">Widget Settings</string>
+    <string name="settings_widgets_subtitle">Configure home screen widgets</string>
+    <string name="settings_widgets_content_description">Widget settings</string>
+    <string name="settings_group_widgets">Available widgets</string>
+
+    <!-- Riddle widget settings -->
+    <string name="settings_riddle_widget_title">Riddles</string>
+    <string name="settings_riddle_widget_subtitle">Answer mode, rotation interval</string>
+    <string name="settings_riddle_widget_content_description">Riddle widget settings</string>
+    <string name="settings_riddle_interval_group">Rotation interval</string>
+    <string name="settings_riddle_interval_content_description">Riddle interval: %1$s</string>
     <string name="settings_riddle_interval_6">6 seconds</string>
     <string name="settings_riddle_interval_12">12 seconds</string>
     <string name="settings_riddle_interval_20">20 seconds</string>
     <string name="settings_riddle_interval_30">30 seconds</string>
     <string name="settings_riddle_interval_60">60 seconds</string>
+    <string name="settings_riddle_answer_mode_group">Answer mode</string>
+    <string name="settings_answer_mode_manual">Manual (press OK)</string>
+    <string name="settings_answer_mode_automatic">Automatic</string>
+    <string name="settings_answer_mode_content_description">Answer mode: %1$s</string>
 
     <!-- Riddle Widget -->
     <string name="riddle_tap_for_answer">Tap for answer</string>

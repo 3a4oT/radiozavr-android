@@ -10,9 +10,10 @@ import com.rovenskyi.radio_lux_fm_lviv_streamer.ui.main.RadioPlayerScreen
 import com.rovenskyi.radio_lux_fm_lviv_streamer.ui.settings.AboutScreen
 import com.rovenskyi.radio_lux_fm_lviv_streamer.ui.settings.LanguageScreen
 import com.rovenskyi.radio_lux_fm_lviv_streamer.ui.settings.PlaybackSettingsScreen
-import com.rovenskyi.radio_lux_fm_lviv_streamer.ui.settings.RiddleSettingsScreen
+import com.rovenskyi.radio_lux_fm_lviv_streamer.ui.settings.RiddleWidgetSettingsScreen
 import com.rovenskyi.radio_lux_fm_lviv_streamer.ui.settings.SettingsScreen
 import com.rovenskyi.radio_lux_fm_lviv_streamer.ui.settings.ThemeScreen
+import com.rovenskyi.radio_lux_fm_lviv_streamer.ui.settings.WidgetsSettingsScreen
 
 /**
  * Main navigation host for the app.
@@ -43,7 +44,7 @@ fun AppNavigation(
                 onThemeClick = { navController.navigate(Theme) },
                 onLanguageClick = { navController.navigate(Language) },
                 onPlaybackClick = { navController.navigate(Playback) },
-                onRiddleClick = { navController.navigate(RiddleSettings) },
+                onWidgetsClick = { navController.navigate(WidgetsSettings) },
                 onAboutClick = { navController.navigate(About) },
             )
         }
@@ -62,8 +63,14 @@ fun AppNavigation(
                 onBackClick = { navController.popBackStack() },
             )
         }
-        composable<RiddleSettings> {
-            RiddleSettingsScreen(
+        composable<WidgetsSettings> {
+            WidgetsSettingsScreen(
+                onBackClick = { navController.popBackStack() },
+                onRiddleClick = { navController.navigate(RiddleWidgetSettings) },
+            )
+        }
+        composable<RiddleWidgetSettings> {
+            RiddleWidgetSettingsScreen(
                 onBackClick = { navController.popBackStack() },
             )
         }

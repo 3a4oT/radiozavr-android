@@ -1,5 +1,6 @@
 package com.rovenskyi.radio_lux_fm_lviv_streamer.domain.repository
 
+import com.rovenskyi.radiolux.core.models.riddle.RiddleAnswerMode
 import com.rovenskyi.radiolux.core.models.riddle.RiddleInterval
 import kotlinx.coroutines.flow.Flow
 
@@ -27,6 +28,12 @@ interface PlaybackSettingsRepository {
     val riddleInterval: Flow<RiddleInterval>
 
     /**
+     * Mode for revealing riddle answers.
+     * Default: AUTOMATIC.
+     */
+    val riddleAnswerMode: Flow<RiddleAnswerMode>
+
+    /**
      * Sets auto-play on start preference.
      */
     suspend fun setAutoPlayEnabled(enabled: Boolean)
@@ -40,4 +47,9 @@ interface PlaybackSettingsRepository {
      * Sets riddle rotation interval.
      */
     suspend fun setRiddleInterval(interval: RiddleInterval)
+
+    /**
+     * Sets riddle answer reveal mode.
+     */
+    suspend fun setRiddleAnswerMode(mode: RiddleAnswerMode)
 }

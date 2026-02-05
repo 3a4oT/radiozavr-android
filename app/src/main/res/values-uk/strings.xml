@@ -54,16 +54,28 @@
     <string name="player_pause">Пауза</string>
     <string name="player_error_friendly">Ой! Щось пішло не так</string>
 
-    <!-- Riddle settings -->
-    <string name="settings_group_riddle">Загадки</string>
-    <string name="settings_riddle_title">Інтервал зміни</string>
-    <string name="settings_riddle_subtitle">Час між зміною загадок</string>
-    <string name="settings_riddle_content_description">Інтервал загадок: %1$s</string>
+    <!-- Widgets settings -->
+    <string name="settings_widgets_title">Віджети</string>
+    <string name="settings_widgets_row_title">Налаштування віджетів</string>
+    <string name="settings_widgets_subtitle">Налаштування віджетів головного екрану</string>
+    <string name="settings_widgets_content_description">Налаштування віджетів</string>
+    <string name="settings_group_widgets">Доступні віджети</string>
+
+    <!-- Riddle widget settings -->
+    <string name="settings_riddle_widget_title">Загадки</string>
+    <string name="settings_riddle_widget_subtitle">Режим відповіді, інтервал зміни</string>
+    <string name="settings_riddle_widget_content_description">Налаштування віджета загадок</string>
+    <string name="settings_riddle_interval_group">Інтервал зміни</string>
+    <string name="settings_riddle_interval_content_description">Інтервал загадок: %1$s</string>
     <string name="settings_riddle_interval_6">6 секунд</string>
     <string name="settings_riddle_interval_12">12 секунд</string>
     <string name="settings_riddle_interval_20">20 секунд</string>
     <string name="settings_riddle_interval_30">30 секунд</string>
     <string name="settings_riddle_interval_60">60 секунд</string>
+    <string name="settings_riddle_answer_mode_group">Режим відповіді</string>
+    <string name="settings_answer_mode_manual">Вручну (натисни OK)</string>
+    <string name="settings_answer_mode_automatic">Автоматично</string>
+    <string name="settings_answer_mode_content_description">Режим відповіді: %1$s</string>
 
     <!-- Riddle Widget -->
     <string name="riddle_tap_for_answer">Торкнись для відповіді</string>

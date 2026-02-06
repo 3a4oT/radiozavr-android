@@ -26,6 +26,7 @@ enum class RiddleCategory(
     SCIENCE("science.json", "🔬"),
     ENGLISH_VOCAB_A2("english_vocab_a2.json", "🇬🇧"),
     ENGLISH_VOCAB_B1("english_vocab_b1.json", "🇬🇧"),
+    ENGLISH_VOCAB_B2("english_vocab_b2.json", "🇬🇧"),
     DINOSAURS("dinosaurs.json", "🦖"),
     SPORTS("sports.json", "⚽"),
     ENGLISH_GRAMMAR("english_grammar.json", "📝"),

@@ -1,7 +1,7 @@
 package com.rovenskyi.radiozavr.data.repository
 
-import com.rovenskyi.radiolux.core.models.riddle.Riddle
-import com.rovenskyi.radiolux.core.models.riddle.RiddleCategory
+import com.rovenskyi.radiozavr.core.models.riddle.Riddle
+import com.rovenskyi.radiozavr.core.models.riddle.RiddleCategory
 import com.rovenskyi.radiozavr.data.source.RiddleAssetDataSource
 import com.rovenskyi.radiozavr.data.source.RiddleHistoryDataStore
 import com.rovenskyi.radiozavr.domain.repository.RiddleRepository

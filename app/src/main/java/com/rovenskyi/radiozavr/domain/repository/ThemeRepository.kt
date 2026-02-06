@@ -1,6 +1,6 @@
 package com.rovenskyi.radiozavr.domain.repository
 
-import com.rovenskyi.radiolux.core.models.theme.ThemeMode
+import com.rovenskyi.radiozavr.core.models.theme.ThemeMode
 import kotlinx.coroutines.flow.Flow
 
 /**

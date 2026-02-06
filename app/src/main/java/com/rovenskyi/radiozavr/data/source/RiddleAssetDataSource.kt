@@ -1,8 +1,8 @@
 package com.rovenskyi.radiozavr.data.source
 
 import android.content.Context
-import com.rovenskyi.radiolux.core.models.riddle.Riddle
-import com.rovenskyi.radiolux.core.models.riddle.RiddleCategory
+import com.rovenskyi.radiozavr.core.models.riddle.Riddle
+import com.rovenskyi.radiozavr.core.models.riddle.RiddleCategory
 import dagger.hilt.android.qualifiers.ApplicationContext
 import kotlinx.serialization.json.Json
 import javax.inject.Inject

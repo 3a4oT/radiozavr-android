@@ -2,9 +2,9 @@ package com.rovenskyi.radiozavr.viewmodel
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.rovenskyi.radiolux.core.models.riddle.Riddle
-import com.rovenskyi.radiolux.core.models.riddle.RiddleAnswerMode
-import com.rovenskyi.radiolux.core.models.riddle.RiddleInterval
+import com.rovenskyi.radiozavr.core.models.riddle.Riddle
+import com.rovenskyi.radiozavr.core.models.riddle.RiddleAnswerMode
+import com.rovenskyi.radiozavr.core.models.riddle.RiddleInterval
 import com.rovenskyi.radiozavr.domain.analytics.AnalyticsTracker
 import com.rovenskyi.radiozavr.domain.analytics.event.RiddleEvent
 import com.rovenskyi.radiozavr.domain.repository.PlaybackSettingsRepository

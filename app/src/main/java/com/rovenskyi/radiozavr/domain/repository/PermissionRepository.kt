@@ -1,6 +1,6 @@
 package com.rovenskyi.radiozavr.domain.repository
 
-import com.rovenskyi.radiolux.core.models.permission.PermissionStatus
+import com.rovenskyi.radiozavr.core.models.permission.PermissionStatus
 import kotlinx.coroutines.flow.Flow
 
 /**

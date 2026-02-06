@@ -40,14 +40,14 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import androidx.hilt.lifecycle.viewmodel.compose.hiltViewModel
-import com.rovenskyi.radiolux.core.components.widgets.CircularCountdownIndicator
-import com.rovenskyi.radiolux.core.models.riddle.Riddle
-import com.rovenskyi.radiolux.core.models.riddle.RiddleAnswerMode
-import com.rovenskyi.radiolux.core.models.riddle.RiddleInterval
-import com.rovenskyi.radiolux.core.theme.LocalDimensions
-import com.rovenskyi.radiolux.core.theme.LocalIsTv
-import com.rovenskyi.radiolux.core.theme.LocalTvFocusColor
 import com.rovenskyi.radiozavr.R
+import com.rovenskyi.radiozavr.core.components.widgets.CircularCountdownIndicator
+import com.rovenskyi.radiozavr.core.models.riddle.Riddle
+import com.rovenskyi.radiozavr.core.models.riddle.RiddleAnswerMode
+import com.rovenskyi.radiozavr.core.models.riddle.RiddleInterval
+import com.rovenskyi.radiozavr.core.theme.LocalDimensions
+import com.rovenskyi.radiozavr.core.theme.LocalIsTv
+import com.rovenskyi.radiozavr.core.theme.LocalTvFocusColor
 import com.rovenskyi.radiozavr.viewmodel.RiddleWidgetViewModel
 import kotlinx.coroutines.delay
 

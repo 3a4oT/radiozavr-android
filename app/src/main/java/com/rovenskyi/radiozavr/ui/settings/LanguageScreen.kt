@@ -19,10 +19,10 @@ import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.hilt.lifecycle.viewmodel.compose.hiltViewModel
-import com.rovenskyi.radiolux.core.components.settings.SelectableRow
-import com.rovenskyi.radiolux.core.components.settings.SettingsGroup
-import com.rovenskyi.radiolux.core.models.language.LanguageMode
 import com.rovenskyi.radiozavr.R
+import com.rovenskyi.radiozavr.core.components.settings.SelectableRow
+import com.rovenskyi.radiozavr.core.components.settings.SettingsGroup
+import com.rovenskyi.radiozavr.core.models.language.LanguageMode
 import com.rovenskyi.radiozavr.viewmodel.LanguageViewModel
 
 @OptIn(ExperimentalMaterial3Api::class)

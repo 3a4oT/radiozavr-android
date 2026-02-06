@@ -1,7 +1,7 @@
 package com.rovenskyi.radiozavr.domain.repository
 
-import com.rovenskyi.radiolux.core.models.riddle.RiddleAnswerMode
-import com.rovenskyi.radiolux.core.models.riddle.RiddleInterval
+import com.rovenskyi.radiozavr.core.models.riddle.RiddleAnswerMode
+import com.rovenskyi.radiozavr.core.models.riddle.RiddleInterval
 import kotlinx.coroutines.flow.Flow
 
 /**

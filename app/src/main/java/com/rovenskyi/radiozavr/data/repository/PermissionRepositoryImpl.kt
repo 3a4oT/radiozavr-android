@@ -5,7 +5,7 @@ import android.content.Context
 import android.content.pm.PackageManager
 import android.os.Build
 import androidx.core.content.ContextCompat
-import com.rovenskyi.radiolux.core.models.permission.PermissionStatus
+import com.rovenskyi.radiozavr.core.models.permission.PermissionStatus
 import com.rovenskyi.radiozavr.domain.repository.PermissionRepository
 import dagger.hilt.android.qualifiers.ApplicationContext
 import kotlinx.coroutines.flow.Flow

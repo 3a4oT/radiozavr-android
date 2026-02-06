@@ -1,7 +1,7 @@
 package com.rovenskyi.radiozavr.domain.repository
 
-import com.rovenskyi.radiolux.core.models.riddle.Riddle
-import com.rovenskyi.radiolux.core.models.riddle.RiddleCategory
+import com.rovenskyi.radiozavr.core.models.riddle.Riddle
+import com.rovenskyi.radiozavr.core.models.riddle.RiddleCategory
 
 /**
  * Repository for accessing riddles from various sources.

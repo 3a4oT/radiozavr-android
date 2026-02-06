@@ -30,7 +30,7 @@ import androidx.core.content.ContextCompat
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import androidx.navigation.compose.rememberNavController
 import com.google.firebase.analytics.FirebaseAnalytics
-import com.rovenskyi.radiolux.core.theme.RadioLuxTheme
+import com.rovenskyi.radiozavr.core.theme.RadiozavrTheme
 import com.rovenskyi.radiozavr.data.source.MediaControllerManager
 import com.rovenskyi.radiozavr.domain.analytics.AnalyticsTracker
 import com.rovenskyi.radiozavr.domain.repository.AudioVisualizerRepository
@@ -102,7 +102,7 @@ class MainActivity : AppCompatActivity() {
             permissionDeniedCallback = { showPermissionDialog = true }
             audioPermissionRationaleCallback = { showAudioPermissionRationale = true }
 
-            RadioLuxTheme(themeMode = themeMode, isTv = platformRepository.isTv) {
+            RadiozavrTheme(themeMode = themeMode, isTv = platformRepository.isTv) {
                 Surface(modifier = Modifier.fillMaxSize()) {
                     AppNavigation(
                         navController = navController,

@@ -40,14 +40,14 @@ import androidx.hilt.lifecycle.viewmodel.compose.hiltViewModel
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.compose.LocalLifecycleOwner
 import androidx.lifecycle.repeatOnLifecycle
-import com.rovenskyi.radiolux.core.components.qrcode.QrCode
-import com.rovenskyi.radiolux.core.components.settings.PermissionStatusIndicator
-import com.rovenskyi.radiolux.core.components.settings.SettingsGroup
-import com.rovenskyi.radiolux.core.components.settings.SettingsRow
-import com.rovenskyi.radiolux.core.models.permission.PermissionStatus
-import com.rovenskyi.radiolux.core.theme.LocalDimensions
-import com.rovenskyi.radiolux.core.theme.LocalIsTv
 import com.rovenskyi.radiozavr.R
+import com.rovenskyi.radiozavr.core.components.qrcode.QrCode
+import com.rovenskyi.radiozavr.core.components.settings.PermissionStatusIndicator
+import com.rovenskyi.radiozavr.core.components.settings.SettingsGroup
+import com.rovenskyi.radiozavr.core.components.settings.SettingsRow
+import com.rovenskyi.radiozavr.core.models.permission.PermissionStatus
+import com.rovenskyi.radiozavr.core.theme.LocalDimensions
+import com.rovenskyi.radiozavr.core.theme.LocalIsTv
 import com.rovenskyi.radiozavr.viewmodel.AboutViewModel
 
 @OptIn(ExperimentalMaterial3Api::class)

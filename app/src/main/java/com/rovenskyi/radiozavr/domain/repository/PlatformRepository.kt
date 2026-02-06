@@ -1,6 +1,6 @@
 package com.rovenskyi.radiozavr.domain.repository
 
-import com.rovenskyi.radiolux.core.models.platform.DeviceType
+import com.rovenskyi.radiozavr.core.models.platform.DeviceType
 
 /**
  * Repository for platform-related information.

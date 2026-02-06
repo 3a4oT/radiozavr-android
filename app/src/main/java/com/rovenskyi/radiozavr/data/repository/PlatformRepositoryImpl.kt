@@ -3,7 +3,7 @@ package com.rovenskyi.radiozavr.data.repository
 import android.content.Context
 import android.content.pm.PackageManager
 import android.os.Build
-import com.rovenskyi.radiolux.core.models.platform.DeviceType
+import com.rovenskyi.radiozavr.core.models.platform.DeviceType
 import com.rovenskyi.radiozavr.domain.repository.PlatformRepository
 import dagger.hilt.android.qualifiers.ApplicationContext
 import javax.inject.Inject

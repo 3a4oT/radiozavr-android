@@ -1,7 +1,7 @@
 package com.rovenskyi.radiozavr.viewmodel
 
 import androidx.lifecycle.ViewModel
-import com.rovenskyi.radiolux.core.models.language.LanguageMode
+import com.rovenskyi.radiozavr.core.models.language.LanguageMode
 import com.rovenskyi.radiozavr.domain.analytics.AnalyticsTracker
 import com.rovenskyi.radiozavr.domain.analytics.event.ScreenEvent
 import com.rovenskyi.radiozavr.domain.analytics.event.SettingsEvent

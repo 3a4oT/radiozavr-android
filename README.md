@@ -55,4 +55,4 @@ bundle exec fastlane test           # Tests
 
 ## Ліцензія
 
-MIT
+[PolyForm Noncommercial 1.0.0](LICENSE) — безкоштовно для особистого використання.

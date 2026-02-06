@@ -1,402 +1,1957 @@
 [
-  {"question": "Яка друга форма дієслова «go»?", "answer": "Went", "emoji": "🚶"},
-  {"question": "Яка третя форма дієслова «go»?", "answer": "Gone", "emoji": "🚶"},
-  {"question": "Яка друга форма дієслова «see»?", "answer": "Saw", "emoji": "👀"},
-  {"question": "Яка третя форма дієслова «see»?", "answer": "Seen", "emoji": "👀"},
-  {"question": "Яка друга форма дієслова «do»?", "answer": "Did", "emoji": "✅"},
-  {"question": "Яка третя форма дієслова «do»?", "answer": "Done", "emoji": "✅"},
-  {"question": "Яка друга форма дієслова «have»?", "answer": "Had", "emoji": "🤲"},
-  {"question": "Яка друга форма дієслова «make»?", "answer": "Made", "emoji": "🛠️"},
-  {"question": "Яка друга форма дієслова «take»?", "answer": "Took", "emoji": "🫴"},
-  {"question": "Яка третя форма дієслова «take»?", "answer": "Taken", "emoji": "🫴"},
-  {"question": "Яка друга форма дієслова «get»?", "answer": "Got", "emoji": "📥"},
-  {"question": "Яка третя форма дієслова «get»?", "answer": "Got / Gotten", "emoji": "📥"},
-  {"question": "Яка друга форма дієслова «come»?", "answer": "Came", "emoji": "🏃"},
-  {"question": "Яка третя форма дієслова «come»?", "answer": "Come", "emoji": "🏃"},
-  {"question": "Яка друга форма дієслова «give»?", "answer": "Gave", "emoji": "🎁"},
-  {"question": "Яка третя форма дієслова «give»?", "answer": "Given", "emoji": "🎁"},
-  {"question": "Яка друга форма дієслова «know»?", "answer": "Knew", "emoji": "🧠"},
-  {"question": "Яка третя форма дієслова «know»?", "answer": "Known", "emoji": "🧠"},
-  {"question": "Яка друга форма дієслова «think»?", "answer": "Thought", "emoji": "💭"},
-  {"question": "Яка друга форма дієслова «buy»?", "answer": "Bought", "emoji": "🛒"},
-  {"question": "Яка друга форма дієслова «bring»?", "answer": "Brought", "emoji": "📦"},
-  {"question": "Яка друга форма дієслова «teach»?", "answer": "Taught", "emoji": "👨‍🏫"},
-  {"question": "Яка друга форма дієслова «catch»?", "answer": "Caught", "emoji": "🎣"},
-  {"question": "Яка друга форма дієслова «feel»?", "answer": "Felt", "emoji": "💓"},
-  {"question": "Яка друга форма дієслова «keep»?", "answer": "Kept", "emoji": "🔐"},
-  {"question": "Яка друга форма дієслова «sleep»?", "answer": "Slept", "emoji": "😴"},
-  {"question": "Яка друга форма дієслова «leave»?", "answer": "Left", "emoji": "👋"},
-  {"question": "Яка друга форма дієслова «meet»?", "answer": "Met", "emoji": "🤝"},
-  {"question": "Яка друга форма дієслова «send»?", "answer": "Sent", "emoji": "📨"},
-  {"question": "Яка друга форма дієслова «spend»?", "answer": "Spent", "emoji": "💸"},
-  {"question": "Яка друга форма дієслова «build»?", "answer": "Built", "emoji": "🏗️"},
-  {"question": "Яка друга форма дієслова «lose»?", "answer": "Lost", "emoji": "🔍"},
-  {"question": "Яка друга форма дієслова «find»?", "answer": "Found", "emoji": "🔎"},
-  {"question": "Яка друга форма дієслова «tell»?", "answer": "Told", "emoji": "🗣️"},
-  {"question": "Яка друга форма дієслова «sell»?", "answer": "Sold", "emoji": "🏷️"},
-  {"question": "Яка друга форма дієслова «stand»?", "answer": "Stood", "emoji": "🧍"},
-  {"question": "Яка друга форма дієслова «understand»?", "answer": "Understood", "emoji": "💡"},
-  {"question": "Яка друга форма дієслова «sit»?", "answer": "Sat", "emoji": "🪑"},
-  {"question": "Яка друга форма дієслова «write»?", "answer": "Wrote", "emoji": "✍️"},
-  {"question": "Яка третя форма дієслова «write»?", "answer": "Written", "emoji": "✍️"},
-  {"question": "Яка друга форма дієслова «read»?", "answer": "Read (вимова: ред)", "emoji": "📖"},
-  {"question": "Яка друга форма дієслова «eat»?", "answer": "Ate", "emoji": "🍽️"},
-  {"question": "Яка третя форма дієслова «eat»?", "answer": "Eaten", "emoji": "🍽️"},
-  {"question": "Яка друга форма дієслова «drink»?", "answer": "Drank", "emoji": "🥤"},
-  {"question": "Яка третя форма дієслова «drink»?", "answer": "Drunk", "emoji": "🥤"},
-  {"question": "Яка друга форма дієслова «swim»?", "answer": "Swam", "emoji": "🏊"},
-  {"question": "Яка третя форма дієслова «swim»?", "answer": "Swum", "emoji": "🏊"},
-  {"question": "Яка друга форма дієслова «run»?", "answer": "Ran", "emoji": "🏃"},
-  {"question": "Яка третя форма дієслова «run»?", "answer": "Run", "emoji": "🏃"},
-  {"question": "Яка друга форма дієслова «begin»?", "answer": "Began", "emoji": "▶️"},
-  {"question": "Яка третя форма дієслова «begin»?", "answer": "Begun", "emoji": "▶️"},
-  {"question": "Яка друга форма дієслова «sing»?", "answer": "Sang", "emoji": "🎤"},
-  {"question": "Яка третя форма дієслова «sing»?", "answer": "Sung", "emoji": "🎤"},
-  {"question": "Яка друга форма дієслова «ring»?", "answer": "Rang", "emoji": "🔔"},
-  {"question": "Яка друга форма дієслова «speak»?", "answer": "Spoke", "emoji": "💬"},
-  {"question": "Яка третя форма дієслова «speak»?", "answer": "Spoken", "emoji": "💬"},
-  {"question": "Яка друга форма дієслова «break»?", "answer": "Broke", "emoji": "💔"},
-  {"question": "Яка третя форма дієслова «break»?", "answer": "Broken", "emoji": "💔"},
-  {"question": "Яка друга форма дієслова «choose»?", "answer": "Chose", "emoji": "👆"},
-  {"question": "Яка третя форма дієслова «choose»?", "answer": "Chosen", "emoji": "👆"},
-  {"question": "Яка друга форма дієслова «wake»?", "answer": "Woke", "emoji": "⏰"},
-  {"question": "Яка друга форма дієслова «wear»?", "answer": "Wore", "emoji": "👕"},
-  {"question": "Яка третя форма дієслова «wear»?", "answer": "Worn", "emoji": "👕"},
-  {"question": "Яка друга форма дієслова «draw»?", "answer": "Drew", "emoji": "🎨"},
-  {"question": "Яка третя форма дієслова «draw»?", "answer": "Drawn", "emoji": "🎨"},
-  {"question": "Яка друга форма дієслова «fly»?", "answer": "Flew", "emoji": "✈️"},
-  {"question": "Яка третя форма дієслова «fly»?", "answer": "Flown", "emoji": "✈️"},
-  {"question": "Яка друга форма дієслова «grow»?", "answer": "Grew", "emoji": "🌱"},
-  {"question": "Яка третя форма дієслова «grow»?", "answer": "Grown", "emoji": "🌱"},
-  {"question": "Яка друга форма дієслова «throw»?", "answer": "Threw", "emoji": "🤾"},
-  {"question": "Яка третя форма дієслова «throw»?", "answer": "Thrown", "emoji": "🤾"},
-  {"question": "Яка друга форма дієслова «win»?", "answer": "Won", "emoji": "🏆"},
-  {"question": "Яка друга форма дієслова «become»?", "answer": "Became", "emoji": "🔄"},
-  {"question": "Яка третя форма дієслова «become»?", "answer": "Become", "emoji": "🔄"},
-  {"question": "Яка друга форма дієслова «forget»?", "answer": "Forgot", "emoji": "🤔"},
-  {"question": "Яка третя форма дієслова «forget»?", "answer": "Forgotten", "emoji": "🤔"},
-  {"question": "Яка друга форма дієслова «fall»?", "answer": "Fell", "emoji": "🍂"},
-  {"question": "Яка третя форма дієслова «fall»?", "answer": "Fallen", "emoji": "🍂"},
-  {"question": "Яка друга форма дієслова «hide»?", "answer": "Hid", "emoji": "🙈"},
-  {"question": "Яка третя форма дієслова «hide»?", "answer": "Hidden", "emoji": "🙈"},
-  {"question": "Яка друга форма дієслова «drive»?", "answer": "Drove", "emoji": "🚗"},
-  {"question": "Яка третя форма дієслова «drive»?", "answer": "Driven", "emoji": "🚗"},
-  {"question": "Яка друга форма дієслова «ride»?", "answer": "Rode", "emoji": "🚴"},
-  {"question": "Яка третя форма дієслова «ride»?", "answer": "Ridden", "emoji": "🚴"},
-  {"question": "Яка друга форма дієслова «rise»?", "answer": "Rose", "emoji": "🌅"},
-  {"question": "Яка третя форма дієслова «rise»?", "answer": "Risen", "emoji": "🌅"},
-  {"question": "Яка друга форма дієслова «bite»?", "answer": "Bit", "emoji": "🦷"},
-  {"question": "Яка третя форма дієслова «bite»?", "answer": "Bitten", "emoji": "🦷"},
-  {"question": "Яка друга форма дієслова «shake»?", "answer": "Shook", "emoji": "🤝"},
-  {"question": "Яка третя форма дієслова «shake»?", "answer": "Shaken", "emoji": "🤝"},
-  {"question": "Яка друга форма дієслова «steal»?", "answer": "Stole", "emoji": "🦹"},
-  {"question": "Яка третя форма дієслова «steal»?", "answer": "Stolen", "emoji": "🦹"},
-
-  {"question": "Який артикль: ___ apple?", "answer": "An (перед голосним)", "emoji": "🍎"},
-  {"question": "Який артикль: ___ banana?", "answer": "A (перед приголосним)", "emoji": "🍌"},
-  {"question": "Який артикль: ___ hour?", "answer": "An (h не вимовляється)", "emoji": "⏰"},
-  {"question": "Який артикль: ___ university?", "answer": "A (звук [ju])", "emoji": "🎓"},
-  {"question": "Який артикль: ___ umbrella?", "answer": "An (голосний звук)", "emoji": "☂️"},
-  {"question": "Який артикль: ___ European country?", "answer": "A (звук [ju])", "emoji": "🇪🇺"},
-  {"question": "Який артикль: ___ honest person?", "answer": "An (h не вимовляється)", "emoji": "🤝"},
-  {"question": "Коли вживаємо «the»?", "answer": "Про щось конкретне (the book on the table)", "emoji": "👆"},
-  {"question": "Коли вживаємо «a/an»?", "answer": "Про щось вперше (I saw a cat)", "emoji": "1️⃣"},
-  {"question": "Чи потрібен артикль: I like ___ music?", "answer": "Ні (загальне поняття)", "emoji": "🎵"},
-  {"question": "Чи потрібен артикль: ___ water is cold?", "answer": "The (конкретна вода)", "emoji": "💧"},
-  {"question": "Чи потрібен артикль: I drink ___ water every day?", "answer": "Ні (загальне поняття)", "emoji": "💧"},
-  {"question": "Який артикль: ___ Sun?", "answer": "The (унікальний об'єкт)", "emoji": "☀️"},
-  {"question": "Який артикль: ___ Moon?", "answer": "The (унікальний об'єкт)", "emoji": "🌙"},
-  {"question": "Який артикль: ___ Earth?", "answer": "The (унікальний об'єкт)", "emoji": "🌍"},
-  {"question": "Який артикль: ___ USA?", "answer": "The (країни з означенням)", "emoji": "🇺🇸"},
-  {"question": "Який артикль: ___ Ukraine?", "answer": "Без артикля", "emoji": "🇺🇦"},
-  {"question": "Який артикль: ___ United Kingdom?", "answer": "The (країни з означенням)", "emoji": "🇬🇧"},
-
-  {"question": "Який прийменник: ___ Monday?", "answer": "On (дні тижня)", "emoji": "📅"},
-  {"question": "Який прийменник: ___ January?", "answer": "In (місяці)", "emoji": "📆"},
-  {"question": "Який прийменник: ___ 2024?", "answer": "In (роки)", "emoji": "📆"},
-  {"question": "Який прийменник: ___ 5 o'clock?", "answer": "At (точний час)", "emoji": "🕐"},
-  {"question": "Який прийменник: ___ the morning?", "answer": "In (частини дня)", "emoji": "🌅"},
-  {"question": "Який прийменник: ___ night?", "answer": "At (виняток!)", "emoji": "🌙"},
-  {"question": "Який прийменник: ___ the weekend?", "answer": "At / On (обидва правильні)", "emoji": "🎉"},
-  {"question": "Який прийменник: ___ summer?", "answer": "In (пори року)", "emoji": "☀️"},
-  {"question": "Який прийменник: ___ my birthday?", "answer": "On (конкретний день)", "emoji": "🎂"},
-  {"question": "Який прийменник: ___ Christmas?", "answer": "At (свята)", "emoji": "🎄"},
-  {"question": "Який прийменник: I live ___ Kyiv?", "answer": "In (місто)", "emoji": "🏙️"},
-  {"question": "Який прийменник: I live ___ Ukraine?", "answer": "In (країна)", "emoji": "🇺🇦"},
-  {"question": "Який прийменник: I am ___ home?", "answer": "At (місце)", "emoji": "🏠"},
-  {"question": "Який прийменник: I am ___ school?", "answer": "At (заклад)", "emoji": "🏫"},
-  {"question": "Який прийменник: The book is ___ the table?", "answer": "On (на поверхні)", "emoji": "📚"},
-  {"question": "Який прийменник: The cat is ___ the box?", "answer": "In (всередині)", "emoji": "📦"},
-  {"question": "Який прийменник: I am ___ the bus stop?", "answer": "At (в точці)", "emoji": "🚏"},
-  {"question": "Який прийменник: I am ___ the bus?", "answer": "On (в транспорті)", "emoji": "🚌"},
-  {"question": "Який прийменник: I am ___ the car?", "answer": "In (в автомобілі)", "emoji": "🚗"},
-
-  {"question": "Що означає «It's raining cats and dogs»?", "answer": "Дуже сильний дощ", "emoji": "🌧️"},
-  {"question": "Що означає «Break a leg»?", "answer": "Успіхів! (побажання)", "emoji": "🎭"},
-  {"question": "Що означає «Piece of cake»?", "answer": "Дуже легко", "emoji": "🍰"},
-  {"question": "Що означає «Once in a blue moon»?", "answer": "Дуже рідко", "emoji": "🌙"},
-  {"question": "Що означає «Hit the books»?", "answer": "Сісти за навчання", "emoji": "📚"},
-  {"question": "Що означає «Under the weather»?", "answer": "Погано себе почувати", "emoji": "🤒"},
-  {"question": "Що означає «Cost an arm and a leg»?", "answer": "Дуже дорого", "emoji": "💰"},
-  {"question": "Що означає «Let the cat out of the bag»?", "answer": "Випадково розкрити секрет", "emoji": "🐱"},
-  {"question": "Що означає «Kill two birds with one stone»?", "answer": "Зробити дві справи одразу", "emoji": "🎯"},
-  {"question": "Що означає «When pigs fly»?", "answer": "Ніколи (неможливо)", "emoji": "🐷"},
-  {"question": "Що означає «The ball is in your court»?", "answer": "Твоя черга діяти", "emoji": "🎾"},
-  {"question": "Що означає «Bite the bullet»?", "answer": "Змиритися з неприємним", "emoji": "😤"},
-  {"question": "Що означає «A penny for your thoughts»?", "answer": "Про що думаєш?", "emoji": "🤔"},
-  {"question": "Що означає «Burn the midnight oil»?", "answer": "Працювати допізна", "emoji": "🕯️"},
-  {"question": "Що означає «Better late than never»?", "answer": "Краще пізно, ніж ніколи", "emoji": "⏰"},
-  {"question": "Що означає «Actions speak louder than words»?", "answer": "Вчинки важливіші за слова", "emoji": "💪"},
-  {"question": "Що означає «Easy come, easy go»?", "answer": "Легко прийшло, легко пішло", "emoji": "💨"},
-  {"question": "Що означає «Every cloud has a silver lining»?", "answer": "Немає лиха без добра", "emoji": "☁️"},
-  {"question": "Що означає «Time flies»?", "answer": "Час летить", "emoji": "⏳"},
-  {"question": "Що означає «No pain, no gain»?", "answer": "Без труда нема плода", "emoji": "💪"},
-  {"question": "Що означає «Practice makes perfect»?", "answer": "Практика веде до досконалості", "emoji": "🎯"},
-  {"question": "Що означає «Keep your chin up»?", "answer": "Не падай духом", "emoji": "😊"},
-  {"question": "Що означає «Fingers crossed»?", "answer": "Тримаю кулачки", "emoji": "🤞"},
-  {"question": "Що означає «Sleep on it»?", "answer": "Обдумай до завтра", "emoji": "😴"},
-  {"question": "Що означає «To be on cloud nine»?", "answer": "Бути дуже щасливим", "emoji": "☁️"},
-
-  {"question": "She ___ (go) to school yesterday.", "answer": "went", "emoji": "🏫"},
-  {"question": "I ___ (see) a movie last night.", "answer": "saw", "emoji": "🎬"},
-  {"question": "They ___ (eat) pizza for dinner.", "answer": "ate", "emoji": "🍕"},
-  {"question": "He ___ (buy) a new phone.", "answer": "bought", "emoji": "📱"},
-  {"question": "We ___ (have) fun at the party.", "answer": "had", "emoji": "🎉"},
-  {"question": "I ___ already ___ (do) my homework.", "answer": "have done", "emoji": "📝"},
-  {"question": "She ___ never ___ (be) to Paris.", "answer": "has been", "emoji": "🗼"},
-  {"question": "They ___ just ___ (arrive).", "answer": "have arrived", "emoji": "🛬"},
-  {"question": "Як утворити питання: You like pizza?", "answer": "Do you like pizza?", "emoji": "❓"},
-  {"question": "Як утворити питання: She works here?", "answer": "Does she work here?", "emoji": "❓"},
-  {"question": "Як утворити заперечення: I like coffee?", "answer": "I don't like coffee", "emoji": "☕"},
-  {"question": "Як утворити заперечення: He speaks English?", "answer": "He doesn't speak English", "emoji": "🗣️"},
-  {"question": "I ___ (be) tired now.", "answer": "am", "emoji": "😫"},
-  {"question": "She ___ (be) my friend.", "answer": "is", "emoji": "👫"},
-  {"question": "They ___ (be) at home.", "answer": "are", "emoji": "🏠"},
-  {"question": "There ___ (be) a book on the table.", "answer": "is", "emoji": "📖"},
-  {"question": "There ___ (be) many students in class.", "answer": "are", "emoji": "👨‍🎓"},
-  {"question": "I ___ (have got) a dog.", "answer": "have got", "emoji": "🐕"},
-  {"question": "She ___ (have got) blue eyes.", "answer": "has got", "emoji": "👀"},
-  {"question": "___ you got a pen?", "answer": "Have", "emoji": "🖊️"},
-  {"question": "___ she got a sister?", "answer": "Has", "emoji": "👧"},
-  {"question": "I ___ (can) swim.", "answer": "can", "emoji": "🏊"},
-  {"question": "She ___ (can not) drive.", "answer": "can't / cannot", "emoji": "🚗"},
-  {"question": "___ I help you?", "answer": "Can / May", "emoji": "🤝"},
-  {"question": "You ___ (must) do your homework.", "answer": "must", "emoji": "📚"},
-  {"question": "You ___ (must not) be late.", "answer": "mustn't", "emoji": "⏰"},
-
-  {"question": "Як правильно: He is more tall / taller?", "answer": "Taller (короткі прикметники)", "emoji": "📏"},
-  {"question": "Як правильно: She is beautifuler / more beautiful?", "answer": "More beautiful (довгі прикметники)", "emoji": "🌸"},
-  {"question": "Як правильно: This is the goodest / best?", "answer": "Best (винятки)", "emoji": "🏆"},
-  {"question": "Як правильно: It's badder / worse?", "answer": "Worse (винятки)", "emoji": "👎"},
-  {"question": "Ступені порівняння: good — better — ?", "answer": "Best", "emoji": "👍"},
-  {"question": "Ступені порівняння: bad — worse — ?", "answer": "Worst", "emoji": "👎"},
-  {"question": "Ступені порівняння: far — farther — ?", "answer": "Farthest", "emoji": "📍"},
-  {"question": "Ступені порівняння: little — less — ?", "answer": "Least", "emoji": "🤏"},
-  {"question": "Як правильно: much / many books?", "answer": "Many (злічувані)", "emoji": "📚"},
-  {"question": "Як правильно: much / many water?", "answer": "Much (незлічувані)", "emoji": "💧"},
-  {"question": "Як правильно: a few / a little friends?", "answer": "A few (злічувані)", "emoji": "👫"},
-  {"question": "Як правильно: a few / a little time?", "answer": "A little (незлічувані)", "emoji": "⏰"},
-
-  {"question": "Як правильно: I and my friend / My friend and I?", "answer": "My friend and I (ввічливість)", "emoji": "👫"},
-  {"question": "Як правильно: Me and him went / He and I went?", "answer": "He and I went", "emoji": "🚶"},
-  {"question": "Як правильно: between you and I / between you and me?", "answer": "Between you and me", "emoji": "🤝"},
-  {"question": "Як правильно: I feel good / I feel well?", "answer": "I feel good (про стан)", "emoji": "😊"},
-  {"question": "Як правильно: I'm doing good / I'm doing well?", "answer": "I'm doing well", "emoji": "👍"},
-
-  {"question": "Present Simple вживаємо для...?", "answer": "Регулярних дій (I work every day)", "emoji": "🔄"},
-  {"question": "Present Continuous вживаємо для...?", "answer": "Дії зараз (I am working now)", "emoji": "▶️"},
-  {"question": "Яка різниця: I work / I am working?", "answer": "I work — завжди, I am working — зараз", "emoji": "💼"},
-  {"question": "Яка різниця: I live in Kyiv / I am living in Kyiv?", "answer": "I live — постійно, I am living — тимчасово", "emoji": "🏠"},
-  {"question": "Як утворити Present Continuous?", "answer": "am/is/are + дієслово-ing", "emoji": "📝"},
-  {"question": "She ___ (work) every day. Який час?", "answer": "works (Present Simple)", "emoji": "📅"},
-  {"question": "She ___ (work) right now. Який час?", "answer": "is working (Present Continuous)", "emoji": "⏰"},
-  {"question": "I usually ___ (drink) coffee.", "answer": "drink (Present Simple — звичка)", "emoji": "☕"},
-  {"question": "I ___ (drink) tea now.", "answer": "am drinking (Present Continuous — зараз)", "emoji": "🍵"},
-  {"question": "Слова-маркери Present Simple?", "answer": "always, usually, often, never, every day", "emoji": "🔑"},
-  {"question": "Слова-маркери Present Continuous?", "answer": "now, right now, at the moment", "emoji": "🔑"},
-  {"question": "Look! The baby ___ (sleep).", "answer": "is sleeping (дія зараз)", "emoji": "👶"},
-  {"question": "Water ___ (boil) at 100°C.", "answer": "boils (факт, Present Simple)", "emoji": "💧"},
-  {"question": "The train ___ (leave) at 9:00.", "answer": "leaves (розклад, Present Simple)", "emoji": "🚂"},
-
-  {"question": "Past Simple вживаємо для...?", "answer": "Завершеної дії (I visited Paris last year)", "emoji": "⏮️"},
-  {"question": "Present Perfect вживаємо для...?", "answer": "Що вже робив у житті (I have visited Paris)", "emoji": "✅"},
-  {"question": "Яка різниця: I lost my keys / I have lost my keys?", "answer": "I lost — факт; I have lost — і зараз не можу знайти", "emoji": "🔑"},
-  {"question": "Яка різниця: I saw this film / I have seen this film?", "answer": "I saw — вчора/минулого тижня; I have seen — колись у житті", "emoji": "🎬"},
-  {"question": "Як утворити Present Perfect?", "answer": "have/has + третя форма (V3)", "emoji": "📝"},
-  {"question": "I ___ (visit) Paris last year.", "answer": "visited (Past Simple — точний час)", "emoji": "🗼"},
-  {"question": "I ___ (visit) Paris. It's beautiful!", "answer": "have visited (досвід, без точного часу)", "emoji": "🗼"},
-  {"question": "Слова-маркери Past Simple?", "answer": "yesterday, last week, ago, in 2020", "emoji": "🔑"},
-  {"question": "Слова-маркери Present Perfect?", "answer": "already, yet, ever, never, just", "emoji": "🔑"},
-  {"question": "She ___ already ___ (finish) her homework.", "answer": "has finished", "emoji": "📚"},
-  {"question": "___ you ever ___ (be) to London?", "answer": "Have been", "emoji": "🇬🇧"},
-  {"question": "I ___ (not see) him yet.", "answer": "haven't seen", "emoji": "👀"},
-  {"question": "They ___ just ___ (arrive).", "answer": "have arrived", "emoji": "🛬"},
-  {"question": "When ___ you ___ (buy) this phone?", "answer": "did buy (питання про конкретний час)", "emoji": "📱"},
-
-  {"question": "Past Continuous вживаємо для...?", "answer": "Що тривало, коли щось сталося (I was reading when he called)", "emoji": "⏳"},
-  {"question": "Як утворити Past Continuous?", "answer": "was/were + дієслово-ing", "emoji": "📝"},
-  {"question": "I ___ (watch) TV when you called.", "answer": "was watching (фонова дія)", "emoji": "📺"},
-  {"question": "They ___ (play) football at 5 PM yesterday.", "answer": "were playing", "emoji": "⚽"},
-  {"question": "While I ___ (sleep), someone knocked.", "answer": "was sleeping", "emoji": "😴"},
-  {"question": "Яка різниця: I watched / I was watching?", "answer": "I watched — подивився; I was watching — ще дивився, коли щось сталося", "emoji": "📺"},
-
-  {"question": "Past Perfect вживаємо для...?", "answer": "Що сталося РАНІШЕ (Я поснідав до школи = I had eaten)", "emoji": "⏮️⏮️"},
-  {"question": "Як утворити Past Perfect?", "answer": "had + третя форма (V3)", "emoji": "📝"},
-  {"question": "When I arrived, they ___ already ___ (leave).", "answer": "had left (раніше за arrived)", "emoji": "🚪"},
-  {"question": "I ___ (eat) before I went to school.", "answer": "had eaten", "emoji": "🍽️"},
-  {"question": "She was tired because she ___ (work) all day.", "answer": "had worked", "emoji": "😫"},
-  {"question": "Яка різниця: When I came, he left / he had left?", "answer": "he left — одночасно; he had left — до мого приходу", "emoji": "🚶"},
-
-  {"question": "Future Simple (will) вживаємо для...?", "answer": "Рішення зараз (I'll help you!)", "emoji": "🔮"},
-  {"question": "Going to вживаємо для...?", "answer": "Плану (I'm going to visit grandma)", "emoji": "📋"},
-  {"question": "Яка різниця: I will help / I am going to help?", "answer": "will — вирішив зараз; going to — планував", "emoji": "🤝"},
-  {"question": "The phone is ringing. — I ___ answer it.", "answer": "will (спонтанне рішення)", "emoji": "📞"},
-  {"question": "I ___ visit grandma tomorrow. I bought tickets.", "answer": "am going to (план)", "emoji": "👵"},
-  {"question": "Look at the clouds! It ___ rain.", "answer": "is going to (очевидно)", "emoji": "🌧️"},
-  {"question": "I think she ___ win.", "answer": "will (передбачення)", "emoji": "🏆"},
-  {"question": "I promise I ___ help you.", "answer": "will (обіцянка)", "emoji": "🤞"},
-  {"question": "What ___ you ___ (do) this weekend?", "answer": "are going to do (план)", "emoji": "📅"},
-
-  {"question": "Some вживаємо в...?", "answer": "Стверджувальних реченнях, пропозиціях", "emoji": "✅"},
-  {"question": "Any вживаємо в...?", "answer": "Питаннях та запереченнях", "emoji": "❓"},
-  {"question": "I have ___ apples.", "answer": "some", "emoji": "🍎"},
-  {"question": "Do you have ___ apples?", "answer": "any", "emoji": "🍎"},
-  {"question": "I don't have ___ money.", "answer": "any", "emoji": "💰"},
-  {"question": "Would you like ___ tea?", "answer": "some (пропозиція)", "emoji": "🍵"},
-  {"question": "Can I have ___ water?", "answer": "some (ввічливе прохання)", "emoji": "💧"},
-  {"question": "There isn't ___ milk in the fridge.", "answer": "any", "emoji": "🥛"},
-  {"question": "Is there ___ sugar?", "answer": "any", "emoji": "🍬"},
-  {"question": "There are ___ books on the table.", "answer": "some", "emoji": "📚"},
-  {"question": "Яка різниця: no / not any?", "answer": "Однакове значення: no milk = not any milk", "emoji": "🚫"},
-  {"question": "I have ___ idea. (жодної)", "answer": "no", "emoji": "🤷"},
-  {"question": "There is ___ water left.", "answer": "no (немає зовсім)", "emoji": "💧"},
-  {"question": "Somebody чи anybody: ___ called you.", "answer": "Somebody (стверджувальне)", "emoji": "📞"},
-  {"question": "Somebody чи anybody: Did ___ call?", "answer": "anybody (питання)", "emoji": "❓"},
-  {"question": "Something чи anything: I don't want ___.", "answer": "anything (заперечення)", "emoji": "🚫"},
-  {"question": "Somewhere чи anywhere: I can't find it ___.", "answer": "anywhere (заперечення)", "emoji": "🔍"},
-  {"question": "Nobody / anybody: ___ knows the answer.", "answer": "Nobody (ніхто)", "emoji": "🤐"},
-  {"question": "Nothing / anything: There is ___ in the box.", "answer": "nothing (нічого)", "emoji": "📦"},
-
-  {"question": "First Conditional вживаємо для...?", "answer": "Реальної можливості (If it rains, I will stay)", "emoji": "🔮"},
-  {"question": "Формула First Conditional?", "answer": "If + Present, will + V (If you study, you will pass)", "emoji": "📝"},
-  {"question": "If it rains, I ___ (stay) home.", "answer": "will stay", "emoji": "🌧️"},
-  {"question": "If you ___ (study), you will pass.", "answer": "study (Present Simple після if)", "emoji": "📚"},
-  {"question": "If she ___ (not hurry), she will miss the bus.", "answer": "doesn't hurry", "emoji": "🚌"},
-  {"question": "I will call you if I ___ (have) time.", "answer": "have", "emoji": "📞"},
-  {"question": "Second Conditional вживаємо для...?", "answer": "Нереальної ситуації (If I were rich, I would travel)", "emoji": "💭"},
-  {"question": "Формула Second Conditional?", "answer": "If + Past Simple, would + V1 (If I had time, I would help)", "emoji": "📝"},
-  {"question": "If I ___ (be) rich, I would travel.", "answer": "were (для всіх осіб)", "emoji": "💰"},
-  {"question": "If I were you, I ___ (tell) the truth.", "answer": "would tell", "emoji": "🤔"},
-  {"question": "If she ___ (have) more time, she would learn guitar.", "answer": "had", "emoji": "🎸"},
-  {"question": "What would you do if you ___ (win) the lottery?", "answer": "won", "emoji": "🎰"},
-  {"question": "Чому «If I were» а не «If I was»?", "answer": "У Second Conditional were для всіх осіб", "emoji": "📖"},
-  {"question": "Third Conditional вживаємо для...?", "answer": "Нереальної ситуації в минулому (If I had studied, I would have passed)", "emoji": "⏮️"},
-  {"question": "Формула Third Conditional?", "answer": "If + Past Perfect, would have + V3 (If she had called, I would have answered)", "emoji": "📝"},
-  {"question": "If I had known, I ___ (help).", "answer": "would have helped", "emoji": "🤝"},
-  {"question": "If she ___ (study) harder, she would have passed.", "answer": "had studied", "emoji": "📚"},
-  {"question": "I would have called if I ___ (have) your number.", "answer": "had had", "emoji": "📱"},
-
-  {"question": "Passive Voice утворюємо як?", "answer": "to be + V3 (The book is written)", "emoji": "📝"},
-  {"question": "Active: They make cars. → Passive?", "answer": "Cars are made", "emoji": "🚗"},
-  {"question": "Active: She wrote a letter. → Passive?", "answer": "A letter was written", "emoji": "✉️"},
-  {"question": "Active: They will build a house. → Passive?", "answer": "A house will be built", "emoji": "🏠"},
-  {"question": "The book ___ (write) by Shevchenko.", "answer": "was written", "emoji": "📖"},
-  {"question": "English ___ (speak) in many countries.", "answer": "is spoken", "emoji": "🌍"},
-  {"question": "The letter ___ (send) yesterday.", "answer": "was sent", "emoji": "📨"},
-  {"question": "The cake ___ (make) by my mom.", "answer": "was made", "emoji": "🎂"},
-  {"question": "This song ___ (sing) by millions.", "answer": "is sung", "emoji": "🎵"},
-  {"question": "The window ___ (break) by the ball.", "answer": "was broken", "emoji": "🪟"},
-  {"question": "Коли вживаємо Passive Voice?", "answer": "Коли дія важливіша за виконавця (The window was broken)", "emoji": "🎯"},
-  {"question": "The homework must ___ (do) today.", "answer": "be done", "emoji": "📝"},
-  {"question": "The room is being ___ (clean) now.", "answer": "cleaned (Present Continuous Passive)", "emoji": "🧹"},
-
-  {"question": "Як вимовляється «clothes»?", "answer": "клоузз (не «клозес»)", "emoji": "👕"},
-  {"question": "Як вимовляється «vegetable»?", "answer": "веджтебл (3 склади)", "emoji": "🥕"},
-  {"question": "Як вимовляється «comfortable»?", "answer": "камфтебл (3 склади)", "emoji": "🛋️"},
-  {"question": "Як вимовляється «Wednesday»?", "answer": "венздей (d не читається)", "emoji": "📅"},
-  {"question": "Як вимовляється «February»?", "answer": "фебруері або феб'юері", "emoji": "📅"},
-  {"question": "Як вимовляється «often»?", "answer": "офн або офтен (обидва правильні)", "emoji": "🔄"},
-  {"question": "Як вимовляється «listen»?", "answer": "лісн (t не читається)", "emoji": "👂"},
-  {"question": "Як вимовляється «castle»?", "answer": "касл (t не читається)", "emoji": "🏰"},
-  {"question": "Як вимовляється «island»?", "answer": "айленд (s не читається)", "emoji": "🏝️"},
-  {"question": "Як вимовляється «knight»?", "answer": "найт (k не читається)", "emoji": "⚔️"},
-  {"question": "Як вимовляється «know»?", "answer": "ноу (k не читається)", "emoji": "🧠"},
-  {"question": "Як вимовляється «write»?", "answer": "райт (w не читається)", "emoji": "✍️"},
-  {"question": "Як вимовляється «knife»?", "answer": "найф (k не читається)", "emoji": "🔪"},
-  {"question": "Як вимовляється «daughter»?", "answer": "дотер (gh не читається)", "emoji": "👧"},
-  {"question": "Як вимовляється «through»?", "answer": "сру (th=с, gh не читається)", "emoji": "➡️"},
-  {"question": "Як вимовляється «thought»?", "answer": "сот (th=с, gh не читається)", "emoji": "💭"},
-  {"question": "Як вимовляється «enough»?", "answer": "інаф (gh=ф)", "emoji": "✅"},
-  {"question": "Як вимовляється «cough»?", "answer": "коф (gh=ф)", "emoji": "🤧"},
-  {"question": "Як вимовляється «laugh»?", "answer": "лаф (gh=ф)", "emoji": "😂"},
-  {"question": "Як вимовляється «rough»?", "answer": "раф (gh=ф)", "emoji": "🪨"},
-  {"question": "Як вимовляється «tough»?", "answer": "таф (gh=ф)", "emoji": "💪"},
-  {"question": "Як вимовляється «receipt»?", "answer": "рісіт (p не читається)", "emoji": "🧾"},
-  {"question": "Як вимовляється «psychology»?", "answer": "сайколеджі (p не читається)", "emoji": "🧠"},
-  {"question": "Як вимовляється «cupboard»?", "answer": "кабед (p не читається)", "emoji": "🗄️"},
-  {"question": "Як вимовляється «salmon»?", "answer": "семен (l не читається)", "emoji": "🐟"},
-  {"question": "Як вимовляється «half»?", "answer": "хаф (l не читається)", "emoji": "½"},
-  {"question": "Як вимовляється «walk»?", "answer": "вок (l не читається)", "emoji": "🚶"},
-  {"question": "Як вимовляється «talk»?", "answer": "ток (l не читається)", "emoji": "🗣️"},
-  {"question": "Як вимовляється «calm»?", "answer": "кам (l не читається)", "emoji": "😌"},
-  {"question": "Як вимовляється «muscle»?", "answer": "масл (c не читається)", "emoji": "💪"},
-  {"question": "Як вимовляється «science»?", "answer": "саєнс", "emoji": "🔬"},
-  {"question": "Як вимовляється «scissors»?", "answer": "сізез (c не читається)", "emoji": "✂️"},
-  {"question": "Як вимовляється «answer»?", "answer": "ансер (w не читається)", "emoji": "💬"},
-  {"question": "Як вимовляється «two»?", "answer": "ту (w не читається)", "emoji": "2️⃣"},
-  {"question": "Як вимовляється «sword»?", "answer": "сорд (w не читається)", "emoji": "⚔️"},
-  {"question": "Як вимовляється «whole»?", "answer": "хоул (w не читається)", "emoji": "⭕"},
-  {"question": "Як вимовляється «hour»?", "answer": "ауер (h не читається)", "emoji": "⏰"},
-  {"question": "Як вимовляється «honest»?", "answer": "онест (h не читається)", "emoji": "🤝"},
-  {"question": "Як вимовляється «heir»?", "answer": "еер (h не читається)", "emoji": "👑"},
-  {"question": "Як вимовляється «queue»?", "answer": "к'ю", "emoji": "🚶‍♂️🚶‍♀️"},
-  {"question": "Як вимовляється «colonel»?", "answer": "кьорнел (дивне слово!)", "emoji": "🎖️"},
-  {"question": "Як вимовляється «choir»?", "answer": "квайер", "emoji": "🎤"},
-  {"question": "Як вимовляється «genre»?", "answer": "жанра (французьке слово)", "emoji": "🎭"},
-  {"question": "Як вимовляється «recipe»?", "answer": "ресіпі", "emoji": "📋"},
-  {"question": "Як вимовляється «debris»?", "answer": "дебрі (французьке слово)", "emoji": "🧱"},
-  {"question": "Як вимовляється «doubt»?", "answer": "даут (b не читається)", "emoji": "🤔"},
-  {"question": "Як вимовляється «debt»?", "answer": "дет (b не читається)", "emoji": "💳"},
-  {"question": "Як вимовляється «subtle»?", "answer": "сатл (b не читається)", "emoji": "🤫"},
-  {"question": "Як вимовляється «climb»?", "answer": "клайм (b не читається)", "emoji": "🧗"},
-  {"question": "Як вимовляється «comb»?", "answer": "коум (b не читається)", "emoji": "💇"},
-  {"question": "Як вимовляється «lamb»?", "answer": "лем (b не читається)", "emoji": "🐑"},
-  {"question": "Як вимовляється «bomb»?", "answer": "бом (b не читається)", "emoji": "💣"},
-  {"question": "Як вимовляється «thumb»?", "answer": "сам (b не читається, th=с)", "emoji": "👍"},
-  {"question": "Як вимовляється «numb»?", "answer": "нам (b не читається)", "emoji": "🥶"},
-  {"question": "Як вимовляється «plumber»?", "answer": "пламер (b не читається)", "emoji": "🔧"},
-  {"question": "Як вимовляється «autumn»?", "answer": "отем (n не читається)", "emoji": "🍂"},
-  {"question": "Як вимовляється «column»?", "answer": "колем (n не читається)", "emoji": "🏛️"},
-  {"question": "Як вимовляється «foreign»?", "answer": "форен (g не читається)", "emoji": "🌍"},
-  {"question": "Як вимовляється «sign»?", "answer": "сайн (g не читається)", "emoji": "🪧"},
-  {"question": "Як вимовляється «design»?", "answer": "дізайн (g не читається)", "emoji": "🎨"},
-  {"question": "Як вимовляється «align»?", "answer": "елайн (g не читається)", "emoji": "📐"},
-  {"question": "Як вимовляється «gnome»?", "answer": "ноум (g не читається)", "emoji": "🧙"},
-  {"question": "Як вимовляється «champagne»?", "answer": "шемпейн (французьке)", "emoji": "🍾"},
-  {"question": "Як вимовляється «croissant»?", "answer": "круасан (французьке)", "emoji": "🥐"},
-  {"question": "Як вимовляється «entrepreneur»?", "answer": "антрепренёр", "emoji": "💼"},
-  {"question": "Як вимовляється «chaos»?", "answer": "кейос", "emoji": "🌀"},
-  {"question": "Як вимовляється «character»?", "answer": "керектер", "emoji": "🎭"},
-  {"question": "Як вимовляється «stomach»?", "answer": "стамек", "emoji": "🫃"},
-  {"question": "Як вимовляється «ache»?", "answer": "ейк", "emoji": "🤕"},
-  {"question": "Як вимовляється «headache»?", "answer": "хедейк", "emoji": "🤕"},
-  {"question": "Як вимовляється «heart»?", "answer": "харт", "emoji": "❤️"},
-  {"question": "Як вимовляється «heard»?", "answer": "херд", "emoji": "👂"},
-  {"question": "Як вимовляється «beard»?", "answer": "бірд", "emoji": "🧔"},
-  {"question": "Як вимовляється «bear»?", "answer": "беер", "emoji": "🐻"},
-  {"question": "Як вимовляється «pear»?", "answer": "пеер", "emoji": "🍐"},
-  {"question": "Як вимовляється «wear»?", "answer": "веер", "emoji": "👕"},
-  {"question": "Як вимовляється «dear»?", "answer": "дір", "emoji": "💕"},
-  {"question": "Як вимовляється «fear»?", "answer": "фір", "emoji": "😨"},
-  {"question": "Як вимовляється «near»?", "answer": "нір", "emoji": "📍"},
-  {"question": "Як вимовляється «year»?", "answer": "йір", "emoji": "📅"},
-  {"question": "Як вимовляється «ear»?", "answer": "ір", "emoji": "👂"},
-  {"question": "Яка різниця у вимові: live (жити) / live (наживо)?", "answer": "лів / лайв", "emoji": "🎤"},
-  {"question": "Яка різниця у вимові: read (теперішній) / read (минулий)?", "answer": "рід / ред", "emoji": "📖"},
-  {"question": "Яка різниця у вимові: lead (вести) / lead (свинець)?", "answer": "лід / лед", "emoji": "🔋"},
-  {"question": "Яка різниця у вимові: wind (вітер) / wind (накручувати)?", "answer": "вінд / вайнд", "emoji": "🌬️"},
-  {"question": "Яка різниця у вимові: bow (поклін) / bow (бант)?", "answer": "бау / боу", "emoji": "🎀"},
-  {"question": "Яка різниця у вимові: row (ряд) / row (сварка)?", "answer": "роу / рау", "emoji": "🚣"},
-  {"question": "Яка різниця у вимові: tear (сльоза) / tear (рвати)?", "answer": "тір / теер", "emoji": "😢"},
-  {"question": "Яка різниця у вимові: bass (бас) / bass (окунь)?", "answer": "бейс / бес", "emoji": "🎸"}
+  {
+    "question": "Яка друга форма дієслова «go»?",
+    "answer": "Went",
+    "emoji": "🚶"
+  },
+  {
+    "question": "Яка третя форма дієслова «go»?",
+    "answer": "Gone",
+    "emoji": "🚶"
+  },
+  {
+    "question": "Яка друга форма дієслова «see»?",
+    "answer": "Saw",
+    "emoji": "👀"
+  },
+  {
+    "question": "Яка третя форма дієслова «see»?",
+    "answer": "Seen",
+    "emoji": "👀"
+  },
+  {
+    "question": "Яка друга форма дієслова «do»?",
+    "answer": "Did",
+    "emoji": "✅"
+  },
+  {
+    "question": "Яка третя форма дієслова «do»?",
+    "answer": "Done",
+    "emoji": "✅"
+  },
+  {
+    "question": "Яка друга форма дієслова «have»?",
+    "answer": "Had",
+    "emoji": "🤲"
+  },
+  {
+    "question": "Яка друга форма дієслова «make»?",
+    "answer": "Made",
+    "emoji": "🛠️"
+  },
+  {
+    "question": "Яка друга форма дієслова «take»?",
+    "answer": "Took",
+    "emoji": "🫴"
+  },
+  {
+    "question": "Яка третя форма дієслова «take»?",
+    "answer": "Taken",
+    "emoji": "🫴"
+  },
+  {
+    "question": "Яка друга форма дієслова «get»?",
+    "answer": "Got",
+    "emoji": "📥"
+  },
+  {
+    "question": "Яка третя форма дієслова «get»?",
+    "answer": "Got / Gotten",
+    "emoji": "📥"
+  },
+  {
+    "question": "Яка друга форма дієслова «come»?",
+    "answer": "Came",
+    "emoji": "🏃"
+  },
+  {
+    "question": "Яка третя форма дієслова «come»?",
+    "answer": "Come",
+    "emoji": "🏃"
+  },
+  {
+    "question": "Яка друга форма дієслова «give»?",
+    "answer": "Gave",
+    "emoji": "🎁"
+  },
+  {
+    "question": "Яка третя форма дієслова «give»?",
+    "answer": "Given",
+    "emoji": "🎁"
+  },
+  {
+    "question": "Яка друга форма дієслова «know»?",
+    "answer": "Knew",
+    "emoji": "🧠"
+  },
+  {
+    "question": "Яка третя форма дієслова «know»?",
+    "answer": "Known",
+    "emoji": "🧠"
+  },
+  {
+    "question": "Яка друга форма дієслова «think»?",
+    "answer": "Thought",
+    "emoji": "💭"
+  },
+  {
+    "question": "Яка друга форма дієслова «buy»?",
+    "answer": "Bought",
+    "emoji": "🛒"
+  },
+  {
+    "question": "Яка друга форма дієслова «bring»?",
+    "answer": "Brought",
+    "emoji": "📦"
+  },
+  {
+    "question": "Яка друга форма дієслова «teach»?",
+    "answer": "Taught",
+    "emoji": "👨‍🏫"
+  },
+  {
+    "question": "Яка друга форма дієслова «catch»?",
+    "answer": "Caught",
+    "emoji": "🎣"
+  },
+  {
+    "question": "Яка друга форма дієслова «feel»?",
+    "answer": "Felt",
+    "emoji": "💓"
+  },
+  {
+    "question": "Яка друга форма дієслова «keep»?",
+    "answer": "Kept",
+    "emoji": "🔐"
+  },
+  {
+    "question": "Яка друга форма дієслова «sleep»?",
+    "answer": "Slept",
+    "emoji": "😴"
+  },
+  {
+    "question": "Яка друга форма дієслова «leave»?",
+    "answer": "Left",
+    "emoji": "👋"
+  },
+  {
+    "question": "Яка друга форма дієслова «meet»?",
+    "answer": "Met",
+    "emoji": "🤝"
+  },
+  {
+    "question": "Яка друга форма дієслова «send»?",
+    "answer": "Sent",
+    "emoji": "📨"
+  },
+  {
+    "question": "Яка друга форма дієслова «spend»?",
+    "answer": "Spent",
+    "emoji": "💸"
+  },
+  {
+    "question": "Яка друга форма дієслова «build»?",
+    "answer": "Built",
+    "emoji": "🏗️"
+  },
+  {
+    "question": "Яка друга форма дієслова «lose»?",
+    "answer": "Lost",
+    "emoji": "🔍"
+  },
+  {
+    "question": "Яка друга форма дієслова «find»?",
+    "answer": "Found",
+    "emoji": "🔎"
+  },
+  {
+    "question": "Яка друга форма дієслова «tell»?",
+    "answer": "Told",
+    "emoji": "🗣️"
+  },
+  {
+    "question": "Яка друга форма дієслова «sell»?",
+    "answer": "Sold",
+    "emoji": "🏷️"
+  },
+  {
+    "question": "Яка друга форма дієслова «stand»?",
+    "answer": "Stood",
+    "emoji": "🧍"
+  },
+  {
+    "question": "Яка друга форма дієслова «understand»?",
+    "answer": "Understood",
+    "emoji": "💡"
+  },
+  {
+    "question": "Яка друга форма дієслова «sit»?",
+    "answer": "Sat",
+    "emoji": "🪑"
+  },
+  {
+    "question": "Яка друга форма дієслова «write»?",
+    "answer": "Wrote",
+    "emoji": "✍️"
+  },
+  {
+    "question": "Яка третя форма дієслова «write»?",
+    "answer": "Written",
+    "emoji": "✍️"
+  },
+  {
+    "question": "Яка друга форма дієслова «read»?",
+    "answer": "Read",
+    "emoji": "📖"
+  },
+  {
+    "question": "Яка друга форма дієслова «eat»?",
+    "answer": "Ate",
+    "emoji": "🍽️"
+  },
+  {
+    "question": "Яка третя форма дієслова «eat»?",
+    "answer": "Eaten",
+    "emoji": "🍽️"
+  },
+  {
+    "question": "Яка друга форма дієслова «drink»?",
+    "answer": "Drank",
+    "emoji": "🥤"
+  },
+  {
+    "question": "Яка третя форма дієслова «drink»?",
+    "answer": "Drunk",
+    "emoji": "🥤"
+  },
+  {
+    "question": "Яка друга форма дієслова «swim»?",
+    "answer": "Swam",
+    "emoji": "🏊"
+  },
+  {
+    "question": "Яка третя форма дієслова «swim»?",
+    "answer": "Swum",
+    "emoji": "🏊"
+  },
+  {
+    "question": "Яка друга форма дієслова «run»?",
+    "answer": "Ran",
+    "emoji": "🏃"
+  },
+  {
+    "question": "Яка третя форма дієслова «run»?",
+    "answer": "Run",
+    "emoji": "🏃"
+  },
+  {
+    "question": "Яка друга форма дієслова «begin»?",
+    "answer": "Began",
+    "emoji": "▶️"
+  },
+  {
+    "question": "Яка третя форма дієслова «begin»?",
+    "answer": "Begun",
+    "emoji": "▶️"
+  },
+  {
+    "question": "Яка друга форма дієслова «sing»?",
+    "answer": "Sang",
+    "emoji": "🎤"
+  },
+  {
+    "question": "Яка третя форма дієслова «sing»?",
+    "answer": "Sung",
+    "emoji": "🎤"
+  },
+  {
+    "question": "Яка друга форма дієслова «ring»?",
+    "answer": "Rang",
+    "emoji": "🔔"
+  },
+  {
+    "question": "Яка друга форма дієслова «speak»?",
+    "answer": "Spoke",
+    "emoji": "💬"
+  },
+  {
+    "question": "Яка третя форма дієслова «speak»?",
+    "answer": "Spoken",
+    "emoji": "💬"
+  },
+  {
+    "question": "Яка друга форма дієслова «break»?",
+    "answer": "Broke",
+    "emoji": "💔"
+  },
+  {
+    "question": "Яка третя форма дієслова «break»?",
+    "answer": "Broken",
+    "emoji": "💔"
+  },
+  {
+    "question": "Яка друга форма дієслова «choose»?",
+    "answer": "Chose",
+    "emoji": "👆"
+  },
+  {
+    "question": "Яка третя форма дієслова «choose»?",
+    "answer": "Chosen",
+    "emoji": "👆"
+  },
+  {
+    "question": "Яка друга форма дієслова «wake»?",
+    "answer": "Woke",
+    "emoji": "⏰"
+  },
+  {
+    "question": "Яка друга форма дієслова «wear»?",
+    "answer": "Wore",
+    "emoji": "👕"
+  },
+  {
+    "question": "Яка третя форма дієслова «wear»?",
+    "answer": "Worn",
+    "emoji": "👕"
+  },
+  {
+    "question": "Яка друга форма дієслова «draw»?",
+    "answer": "Drew",
+    "emoji": "🎨"
+  },
+  {
+    "question": "Яка третя форма дієслова «draw»?",
+    "answer": "Drawn",
+    "emoji": "🎨"
+  },
+  {
+    "question": "Яка друга форма дієслова «fly»?",
+    "answer": "Flew",
+    "emoji": "✈️"
+  },
+  {
+    "question": "Яка третя форма дієслова «fly»?",
+    "answer": "Flown",
+    "emoji": "✈️"
+  },
+  {
+    "question": "Яка друга форма дієслова «grow»?",
+    "answer": "Grew",
+    "emoji": "🌱"
+  },
+  {
+    "question": "Яка третя форма дієслова «grow»?",
+    "answer": "Grown",
+    "emoji": "🌱"
+  },
+  {
+    "question": "Яка друга форма дієслова «throw»?",
+    "answer": "Threw",
+    "emoji": "🤾"
+  },
+  {
+    "question": "Яка третя форма дієслова «throw»?",
+    "answer": "Thrown",
+    "emoji": "🤾"
+  },
+  {
+    "question": "Яка друга форма дієслова «win»?",
+    "answer": "Won",
+    "emoji": "🏆"
+  },
+  {
+    "question": "Яка друга форма дієслова «become»?",
+    "answer": "Became",
+    "emoji": "🔄"
+  },
+  {
+    "question": "Яка третя форма дієслова «become»?",
+    "answer": "Become",
+    "emoji": "🔄"
+  },
+  {
+    "question": "Яка друга форма дієслова «forget»?",
+    "answer": "Forgot",
+    "emoji": "🤔"
+  },
+  {
+    "question": "Яка третя форма дієслова «forget»?",
+    "answer": "Forgotten",
+    "emoji": "🤔"
+  },
+  {
+    "question": "Яка друга форма дієслова «fall»?",
+    "answer": "Fell",
+    "emoji": "🍂"
+  },
+  {
+    "question": "Яка третя форма дієслова «fall»?",
+    "answer": "Fallen",
+    "emoji": "🍂"
+  },
+  {
+    "question": "Яка друга форма дієслова «hide»?",
+    "answer": "Hid",
+    "emoji": "🙈"
+  },
+  {
+    "question": "Яка третя форма дієслова «hide»?",
+    "answer": "Hidden",
+    "emoji": "🙈"
+  },
+  {
+    "question": "Яка друга форма дієслова «drive»?",
+    "answer": "Drove",
+    "emoji": "🚗"
+  },
+  {
+    "question": "Яка третя форма дієслова «drive»?",
+    "answer": "Driven",
+    "emoji": "🚗"
+  },
+  {
+    "question": "Яка друга форма дієслова «ride»?",
+    "answer": "Rode",
+    "emoji": "🚴"
+  },
+  {
+    "question": "Яка третя форма дієслова «ride»?",
+    "answer": "Ridden",
+    "emoji": "🚴"
+  },
+  {
+    "question": "Яка друга форма дієслова «rise»?",
+    "answer": "Rose",
+    "emoji": "🌅"
+  },
+  {
+    "question": "Яка третя форма дієслова «rise»?",
+    "answer": "Risen",
+    "emoji": "🌅"
+  },
+  {
+    "question": "Яка друга форма дієслова «bite»?",
+    "answer": "Bit",
+    "emoji": "🦷"
+  },
+  {
+    "question": "Яка третя форма дієслова «bite»?",
+    "answer": "Bitten",
+    "emoji": "🦷"
+  },
+  {
+    "question": "Яка друга форма дієслова «shake»?",
+    "answer": "Shook",
+    "emoji": "🤝"
+  },
+  {
+    "question": "Яка третя форма дієслова «shake»?",
+    "answer": "Shaken",
+    "emoji": "🤝"
+  },
+  {
+    "question": "Яка друга форма дієслова «steal»?",
+    "answer": "Stole",
+    "emoji": "🦹"
+  },
+  {
+    "question": "Яка третя форма дієслова «steal»?",
+    "answer": "Stolen",
+    "emoji": "🦹"
+  },
+  {
+    "question": "Який артикль: ___ apple?",
+    "answer": "An (перед голосним)",
+    "emoji": "🍎"
+  },
+  {
+    "question": "Який артикль: ___ banana?",
+    "answer": "A (перед приголосним)",
+    "emoji": "🍌"
+  },
+  {
+    "question": "Який артикль: ___ hour?",
+    "answer": "An (h не вимовляється)",
+    "emoji": "⏰"
+  },
+  {
+    "question": "Який артикль: ___ university?",
+    "answer": "A (звук [ju])",
+    "emoji": "🎓"
+  },
+  {
+    "question": "Який артикль: ___ umbrella?",
+    "answer": "An (голосний звук)",
+    "emoji": "☂️"
+  },
+  {
+    "question": "Який артикль: ___ European country?",
+    "answer": "A (звук [ju])",
+    "emoji": "🇪🇺"
+  },
+  {
+    "question": "Який артикль: ___ honest person?",
+    "answer": "An (h не вимовляється)",
+    "emoji": "🤝"
+  },
+  {
+    "question": "Коли вживаємо «the»?",
+    "answer": "Про щось конкретне (the book on the table)",
+    "emoji": "👆"
+  },
+  {
+    "question": "Коли вживаємо «a/an»?",
+    "answer": "Про щось вперше (I saw a cat)",
+    "emoji": "1️⃣"
+  },
+  {
+    "question": "Чи потрібен артикль: I like ___ music?",
+    "answer": "Ні (загальне поняття)",
+    "emoji": "🎵"
+  },
+  {
+    "question": "Чи потрібен артикль: ___ water is cold?",
+    "answer": "The (конкретна вода)",
+    "emoji": "💧"
+  },
+  {
+    "question": "Чи потрібен артикль: I drink ___ water every day?",
+    "answer": "Ні (загальне поняття)",
+    "emoji": "💧"
+  },
+  {
+    "question": "Який артикль: ___ Sun?",
+    "answer": "The (унікальний об'єкт)",
+    "emoji": "☀️"
+  },
+  {
+    "question": "Який артикль: ___ Moon?",
+    "answer": "The (унікальний об'єкт)",
+    "emoji": "🌙"
+  },
+  {
+    "question": "Який артикль: ___ Earth?",
+    "answer": "The (унікальний об'єкт)",
+    "emoji": "🌍"
+  },
+  {
+    "question": "Який артикль: ___ USA?",
+    "answer": "The (країни з означенням)",
+    "emoji": "🇺🇸"
+  },
+  {
+    "question": "Який артикль: ___ Ukraine?",
+    "answer": "Без артикля",
+    "emoji": "🇺🇦"
+  },
+  {
+    "question": "Який артикль: ___ United Kingdom?",
+    "answer": "The (країни з означенням)",
+    "emoji": "🇬🇧"
+  },
+  {
+    "question": "Який прийменник: ___ Monday?",
+    "answer": "On (дні тижня)",
+    "emoji": "📅"
+  },
+  {
+    "question": "Який прийменник: ___ January?",
+    "answer": "In (місяці)",
+    "emoji": "📆"
+  },
+  {
+    "question": "Який прийменник: ___ 2024?",
+    "answer": "In (роки)",
+    "emoji": "📆"
+  },
+  {
+    "question": "Який прийменник: ___ 5 o'clock?",
+    "answer": "At (точний час)",
+    "emoji": "🕐"
+  },
+  {
+    "question": "Який прийменник: ___ the morning?",
+    "answer": "In (частини дня)",
+    "emoji": "🌅"
+  },
+  {
+    "question": "Який прийменник: ___ night?",
+    "answer": "At (виняток!)",
+    "emoji": "🌙"
+  },
+  {
+    "question": "Який прийменник: ___ the weekend?",
+    "answer": "At / On (обидва правильні)",
+    "emoji": "🎉"
+  },
+  {
+    "question": "Який прийменник: ___ summer?",
+    "answer": "In (пори року)",
+    "emoji": "☀️"
+  },
+  {
+    "question": "Який прийменник: ___ my birthday?",
+    "answer": "On (конкретний день)",
+    "emoji": "🎂"
+  },
+  {
+    "question": "Який прийменник: ___ Christmas?",
+    "answer": "At (свята)",
+    "emoji": "🎄"
+  },
+  {
+    "question": "Який прийменник: I live ___ Kyiv?",
+    "answer": "In (місто)",
+    "emoji": "🏙️"
+  },
+  {
+    "question": "Який прийменник: I live ___ Ukraine?",
+    "answer": "In (країна)",
+    "emoji": "🇺🇦"
+  },
+  {
+    "question": "Який прийменник: I am ___ home?",
+    "answer": "At (місце)",
+    "emoji": "🏠"
+  },
+  {
+    "question": "Який прийменник: I am ___ school?",
+    "answer": "At (заклад)",
+    "emoji": "🏫"
+  },
+  {
+    "question": "Який прийменник: The book is ___ the table?",
+    "answer": "On (на поверхні)",
+    "emoji": "📚"
+  },
+  {
+    "question": "Який прийменник: The cat is ___ the box?",
+    "answer": "In (всередині)",
+    "emoji": "📦"
+  },
+  {
+    "question": "Який прийменник: I am ___ the bus stop?",
+    "answer": "At (в точці)",
+    "emoji": "🚏"
+  },
+  {
+    "question": "Який прийменник: I am ___ the bus?",
+    "answer": "On (в транспорті)",
+    "emoji": "🚌"
+  },
+  {
+    "question": "Який прийменник: I am ___ the car?",
+    "answer": "In (в автомобілі)",
+    "emoji": "🚗"
+  },
+  {
+    "question": "Що означає «It's raining cats and dogs»?",
+    "answer": "Дуже сильний дощ",
+    "emoji": "🌧️"
+  },
+  {
+    "question": "Що означає «Break a leg»?",
+    "answer": "Успіхів! (побажання)",
+    "emoji": "🎭"
+  },
+  {
+    "question": "Що означає «Piece of cake»?",
+    "answer": "Дуже легко",
+    "emoji": "🍰"
+  },
+  {
+    "question": "Що означає «Once in a blue moon»?",
+    "answer": "Дуже рідко",
+    "emoji": "🌙"
+  },
+  {
+    "question": "Що означає «Hit the books»?",
+    "answer": "Сісти за навчання",
+    "emoji": "📚"
+  },
+  {
+    "question": "Що означає «Under the weather»?",
+    "answer": "Погано себе почувати",
+    "emoji": "🤒"
+  },
+  {
+    "question": "Що означає «Cost an arm and a leg»?",
+    "answer": "Дуже дорого",
+    "emoji": "💰"
+  },
+  {
+    "question": "Що означає «Let the cat out of the bag»?",
+    "answer": "Випадково розкрити секрет",
+    "emoji": "🐱"
+  },
+  {
+    "question": "Що означає «Kill two birds with one stone»?",
+    "answer": "Зробити дві справи одразу",
+    "emoji": "🎯"
+  },
+  {
+    "question": "Що означає «When pigs fly»?",
+    "answer": "Ніколи (неможливо)",
+    "emoji": "🐷"
+  },
+  {
+    "question": "Що означає «The ball is in your court»?",
+    "answer": "Твоя черга діяти",
+    "emoji": "🎾"
+  },
+  {
+    "question": "Що означає «Bite the bullet»?",
+    "answer": "Змиритися з неприємним",
+    "emoji": "😤"
+  },
+  {
+    "question": "Що означає «A penny for your thoughts»?",
+    "answer": "Про що думаєш?",
+    "emoji": "🤔"
+  },
+  {
+    "question": "Що означає «Burn the midnight oil»?",
+    "answer": "Працювати допізна",
+    "emoji": "🕯️"
+  },
+  {
+    "question": "Що означає «Better late than never»?",
+    "answer": "Краще пізно, ніж ніколи",
+    "emoji": "⏰"
+  },
+  {
+    "question": "Що означає «Actions speak louder than words»?",
+    "answer": "Вчинки важливіші за слова",
+    "emoji": "💪"
+  },
+  {
+    "question": "Що означає «Easy come, easy go»?",
+    "answer": "Легко прийшло, легко пішло",
+    "emoji": "💨"
+  },
+  {
+    "question": "Що означає «Every cloud has a silver lining»?",
+    "answer": "Немає лиха без добра",
+    "emoji": "☁️"
+  },
+  {
+    "question": "Що означає «Time flies»?",
+    "answer": "Час летить",
+    "emoji": "⏳"
+  },
+  {
+    "question": "Що означає «No pain, no gain»?",
+    "answer": "Без труда нема плода",
+    "emoji": "💪"
+  },
+  {
+    "question": "Що означає «Practice makes perfect»?",
+    "answer": "Практика веде до досконалості",
+    "emoji": "🎯"
+  },
+  {
+    "question": "Що означає «Keep your chin up»?",
+    "answer": "Не падай духом",
+    "emoji": "😊"
+  },
+  {
+    "question": "Що означає «Fingers crossed»?",
+    "answer": "Тримаю кулачки",
+    "emoji": "🤞"
+  },
+  {
+    "question": "Що означає «Sleep on it»?",
+    "answer": "Обдумай до завтра",
+    "emoji": "😴"
+  },
+  {
+    "question": "Що означає «To be on cloud nine»?",
+    "answer": "Бути дуже щасливим",
+    "emoji": "☁️"
+  },
+  {
+    "question": "She ___ (go) to school yesterday.",
+    "answer": "went",
+    "emoji": "🏫"
+  },
+  {
+    "question": "I ___ (see) a movie last night.",
+    "answer": "saw",
+    "emoji": "🎬"
+  },
+  {
+    "question": "They ___ (eat) pizza for dinner.",
+    "answer": "ate",
+    "emoji": "🍕"
+  },
+  {
+    "question": "He ___ (buy) a new phone.",
+    "answer": "bought",
+    "emoji": "📱"
+  },
+  {
+    "question": "We ___ (have) fun at the party.",
+    "answer": "had",
+    "emoji": "🎉"
+  },
+  {
+    "question": "I ___ already ___ (do) my homework.",
+    "answer": "have done",
+    "emoji": "📝"
+  },
+  {
+    "question": "She ___ never ___ (be) to Paris.",
+    "answer": "has been",
+    "emoji": "🗼"
+  },
+  {
+    "question": "They ___ just ___ (arrive).",
+    "answer": "have arrived",
+    "emoji": "🛬"
+  },
+  {
+    "question": "Як утворити питання: You like pizza?",
+    "answer": "Do you like pizza?",
+    "emoji": "❓"
+  },
+  {
+    "question": "Як утворити питання: She works here?",
+    "answer": "Does she work here?",
+    "emoji": "❓"
+  },
+  {
+    "question": "Як утворити заперечення: I like coffee?",
+    "answer": "I don't like coffee",
+    "emoji": "☕"
+  },
+  {
+    "question": "Як утворити заперечення: He speaks English?",
+    "answer": "He doesn't speak English",
+    "emoji": "🗣️"
+  },
+  {
+    "question": "I ___ (be) tired now.",
+    "answer": "am",
+    "emoji": "😫"
+  },
+  {
+    "question": "She ___ (be) my friend.",
+    "answer": "is",
+    "emoji": "👫"
+  },
+  {
+    "question": "They ___ (be) at home.",
+    "answer": "are",
+    "emoji": "🏠"
+  },
+  {
+    "question": "There ___ (be) a book on the table.",
+    "answer": "is",
+    "emoji": "📖"
+  },
+  {
+    "question": "There ___ (be) many students in class.",
+    "answer": "are",
+    "emoji": "👨‍🎓"
+  },
+  {
+    "question": "I ___ (have got) a dog.",
+    "answer": "have got",
+    "emoji": "🐕"
+  },
+  {
+    "question": "She ___ (have got) blue eyes.",
+    "answer": "has got",
+    "emoji": "👀"
+  },
+  {
+    "question": "___ you got a pen?",
+    "answer": "Have",
+    "emoji": "🖊️"
+  },
+  {
+    "question": "___ she got a sister?",
+    "answer": "Has",
+    "emoji": "👧"
+  },
+  {
+    "question": "I ___ (can) swim.",
+    "answer": "can",
+    "emoji": "🏊"
+  },
+  {
+    "question": "She ___ (can not) drive.",
+    "answer": "can't / cannot",
+    "emoji": "🚗"
+  },
+  {
+    "question": "___ I help you?",
+    "answer": "Can / May",
+    "emoji": "🤝"
+  },
+  {
+    "question": "You ___ (must) do your homework.",
+    "answer": "must",
+    "emoji": "📚"
+  },
+  {
+    "question": "You ___ (must not) be late.",
+    "answer": "mustn't",
+    "emoji": "⏰"
+  },
+  {
+    "question": "Як правильно: He is more tall / taller?",
+    "answer": "Taller (короткі прикметники)",
+    "emoji": "📏"
+  },
+  {
+    "question": "Як правильно: She is beautifuler / more beautiful?",
+    "answer": "More beautiful (довгі прикметники)",
+    "emoji": "🌸"
+  },
+  {
+    "question": "Як правильно: This is the goodest / best?",
+    "answer": "Best (винятки)",
+    "emoji": "🏆"
+  },
+  {
+    "question": "Як правильно: It's badder / worse?",
+    "answer": "Worse (винятки)",
+    "emoji": "👎"
+  },
+  {
+    "question": "Ступені порівняння: good — better — ?",
+    "answer": "Best",
+    "emoji": "👍"
+  },
+  {
+    "question": "Ступені порівняння: bad — worse — ?",
+    "answer": "Worst",
+    "emoji": "👎"
+  },
+  {
+    "question": "Ступені порівняння: far — farther — ?",
+    "answer": "Farthest",
+    "emoji": "📍"
+  },
+  {
+    "question": "Ступені порівняння: little — less — ?",
+    "answer": "Least",
+    "emoji": "🤏"
+  },
+  {
+    "question": "Як правильно: much / many books?",
+    "answer": "Many (злічувані)",
+    "emoji": "📚"
+  },
+  {
+    "question": "Як правильно: much / many water?",
+    "answer": "Much (незлічувані)",
+    "emoji": "💧"
+  },
+  {
+    "question": "Як правильно: a few / a little friends?",
+    "answer": "A few (злічувані)",
+    "emoji": "👫"
+  },
+  {
+    "question": "Як правильно: a few / a little time?",
+    "answer": "A little (незлічувані)",
+    "emoji": "⏰"
+  },
+  {
+    "question": "Як правильно: I and my friend / My friend and I?",
+    "answer": "My friend and I (ввічливість)",
+    "emoji": "👫"
+  },
+  {
+    "question": "Як правильно: Me and him went / He and I went?",
+    "answer": "He and I went",
+    "emoji": "🚶"
+  },
+  {
+    "question": "Як правильно: between you and I / between you and me?",
+    "answer": "Between you and me",
+    "emoji": "🤝"
+  },
+  {
+    "question": "Як правильно: I feel good / I feel well?",
+    "answer": "I feel good (про стан)",
+    "emoji": "😊"
+  },
+  {
+    "question": "Як правильно: I'm doing good / I'm doing well?",
+    "answer": "I'm doing well",
+    "emoji": "👍"
+  },
+  {
+    "question": "Present Simple вживаємо для...?",
+    "answer": "Регулярних дій (I work every day)",
+    "emoji": "🔄"
+  },
+  {
+    "question": "Present Continuous вживаємо для...?",
+    "answer": "Дії зараз (I am working now)",
+    "emoji": "▶️"
+  },
+  {
+    "question": "Яка різниця: I work / I am working?",
+    "answer": "I work — завжди, I am working — зараз",
+    "emoji": "💼"
+  },
+  {
+    "question": "Яка різниця: I live in Kyiv / I am living in Kyiv?",
+    "answer": "I live — постійно, I am living — тимчасово",
+    "emoji": "🏠"
+  },
+  {
+    "question": "Як утворити Present Continuous?",
+    "answer": "am/is/are + дієслово-ing",
+    "emoji": "📝"
+  },
+  {
+    "question": "She ___ (work) every day. Який час?",
+    "answer": "works (Present Simple)",
+    "emoji": "📅"
+  },
+  {
+    "question": "She ___ (work) right now. Який час?",
+    "answer": "is working (Present Continuous)",
+    "emoji": "⏰"
+  },
+  {
+    "question": "I usually ___ (drink) coffee.",
+    "answer": "drink (Present Simple — звичка)",
+    "emoji": "☕"
+  },
+  {
+    "question": "I ___ (drink) tea now.",
+    "answer": "am drinking (Present Continuous — зараз)",
+    "emoji": "🍵"
+  },
+  {
+    "question": "Слова-маркери Present Simple?",
+    "answer": "always, usually, often, never, every day",
+    "emoji": "🔑"
+  },
+  {
+    "question": "Слова-маркери Present Continuous?",
+    "answer": "now, right now, at the moment",
+    "emoji": "🔑"
+  },
+  {
+    "question": "Look! The baby ___ (sleep).",
+    "answer": "is sleeping (дія зараз)",
+    "emoji": "👶"
+  },
+  {
+    "question": "Water ___ (boil) at 100°C.",
+    "answer": "boils (факт, Present Simple)",
+    "emoji": "💧"
+  },
+  {
+    "question": "The train ___ (leave) at 9:00.",
+    "answer": "leaves (розклад, Present Simple)",
+    "emoji": "🚂"
+  },
+  {
+    "question": "Past Simple вживаємо для...?",
+    "answer": "Завершеної дії (I visited Paris last year)",
+    "emoji": "⏮️"
+  },
+  {
+    "question": "Present Perfect вживаємо для...?",
+    "answer": "Що вже робив у житті (I have visited Paris)",
+    "emoji": "✅"
+  },
+  {
+    "question": "Яка різниця: I lost my keys / I have lost my keys?",
+    "answer": "I lost — факт; I have lost — і зараз не можу знайти",
+    "emoji": "🔑"
+  },
+  {
+    "question": "Яка різниця: I saw this film / I have seen this film?",
+    "answer": "I saw — вчора/минулого тижня; I have seen — колись у житті",
+    "emoji": "🎬"
+  },
+  {
+    "question": "Як утворити Present Perfect?",
+    "answer": "have/has + третя форма (V3)",
+    "emoji": "📝"
+  },
+  {
+    "question": "I ___ (visit) Paris last year.",
+    "answer": "visited (Past Simple — точний час)",
+    "emoji": "🗼"
+  },
+  {
+    "question": "I ___ (visit) Paris. It's beautiful!",
+    "answer": "have visited (досвід, без точного часу)",
+    "emoji": "🗼"
+  },
+  {
+    "question": "Слова-маркери Past Simple?",
+    "answer": "yesterday, last week, ago, in 2020",
+    "emoji": "🔑"
+  },
+  {
+    "question": "Слова-маркери Present Perfect?",
+    "answer": "already, yet, ever, never, just",
+    "emoji": "🔑"
+  },
+  {
+    "question": "She ___ already ___ (finish) her homework.",
+    "answer": "has finished",
+    "emoji": "📚"
+  },
+  {
+    "question": "___ you ever ___ (be) to London?",
+    "answer": "Have been",
+    "emoji": "🇬🇧"
+  },
+  {
+    "question": "I ___ (not see) him yet.",
+    "answer": "haven't seen",
+    "emoji": "👀"
+  },
+  {
+    "question": "When ___ you ___ (buy) this phone?",
+    "answer": "did buy (питання про конкретний час)",
+    "emoji": "📱"
+  },
+  {
+    "question": "Past Continuous вживаємо для...?",
+    "answer": "Що тривало, коли щось сталося (I was reading when he called)",
+    "emoji": "⏳"
+  },
+  {
+    "question": "Як утворити Past Continuous?",
+    "answer": "was/were + дієслово-ing",
+    "emoji": "📝"
+  },
+  {
+    "question": "I ___ (watch) TV when you called.",
+    "answer": "was watching (фонова дія)",
+    "emoji": "📺"
+  },
+  {
+    "question": "They ___ (play) football at 5 PM yesterday.",
+    "answer": "were playing",
+    "emoji": "⚽"
+  },
+  {
+    "question": "While I ___ (sleep), someone knocked.",
+    "answer": "was sleeping",
+    "emoji": "😴"
+  },
+  {
+    "question": "Яка різниця: I watched / I was watching?",
+    "answer": "I watched — подивився; I was watching — ще дивився, коли щось сталося",
+    "emoji": "📺"
+  },
+  {
+    "question": "Past Perfect вживаємо для...?",
+    "answer": "Що сталося РАНІШЕ (Я поснідав до школи = I had eaten)",
+    "emoji": "⏮️⏮️"
+  },
+  {
+    "question": "Як утворити Past Perfect?",
+    "answer": "had + третя форма (V3)",
+    "emoji": "📝"
+  },
+  {
+    "question": "When I arrived, they ___ already ___ (leave).",
+    "answer": "had left (раніше за arrived)",
+    "emoji": "🚪"
+  },
+  {
+    "question": "I ___ (eat) before I went to school.",
+    "answer": "had eaten",
+    "emoji": "🍽️"
+  },
+  {
+    "question": "She was tired because she ___ (work) all day.",
+    "answer": "had worked",
+    "emoji": "😫"
+  },
+  {
+    "question": "Яка різниця: When I came, he left / he had left?",
+    "answer": "he left — одночасно; he had left — до мого приходу",
+    "emoji": "🚶"
+  },
+  {
+    "question": "Future Simple (will) вживаємо для...?",
+    "answer": "Рішення зараз (I'll help you!)",
+    "emoji": "🔮"
+  },
+  {
+    "question": "Going to вживаємо для...?",
+    "answer": "Плану (I'm going to visit grandma)",
+    "emoji": "📋"
+  },
+  {
+    "question": "Яка різниця: I will help / I am going to help?",
+    "answer": "will — вирішив зараз; going to — планував",
+    "emoji": "🤝"
+  },
+  {
+    "question": "The phone is ringing. — I ___ answer it.",
+    "answer": "will (спонтанне рішення)",
+    "emoji": "📞"
+  },
+  {
+    "question": "I ___ visit grandma tomorrow. I bought tickets.",
+    "answer": "am going to (план)",
+    "emoji": "👵"
+  },
+  {
+    "question": "Look at the clouds! It ___ rain.",
+    "answer": "is going to (очевидно)",
+    "emoji": "🌧️"
+  },
+  {
+    "question": "I think she ___ win.",
+    "answer": "will (передбачення)",
+    "emoji": "🏆"
+  },
+  {
+    "question": "I promise I ___ help you.",
+    "answer": "will (обіцянка)",
+    "emoji": "🤞"
+  },
+  {
+    "question": "What ___ you ___ (do) this weekend?",
+    "answer": "are going to do (план)",
+    "emoji": "📅"
+  },
+  {
+    "question": "Some вживаємо в...?",
+    "answer": "Стверджувальних реченнях, пропозиціях",
+    "emoji": "✅"
+  },
+  {
+    "question": "Any вживаємо в...?",
+    "answer": "Питаннях та запереченнях",
+    "emoji": "❓"
+  },
+  {
+    "question": "I have ___ apples.",
+    "answer": "some",
+    "emoji": "🍎"
+  },
+  {
+    "question": "Do you have ___ apples?",
+    "answer": "any",
+    "emoji": "🍎"
+  },
+  {
+    "question": "I don't have ___ money.",
+    "answer": "any",
+    "emoji": "💰"
+  },
+  {
+    "question": "Would you like ___ tea?",
+    "answer": "some (пропозиція)",
+    "emoji": "🍵"
+  },
+  {
+    "question": "Can I have ___ water?",
+    "answer": "some (ввічливе прохання)",
+    "emoji": "💧"
+  },
+  {
+    "question": "There isn't ___ milk in the fridge.",
+    "answer": "any",
+    "emoji": "🥛"
+  },
+  {
+    "question": "Is there ___ sugar?",
+    "answer": "any",
+    "emoji": "🍬"
+  },
+  {
+    "question": "There are ___ books on the table.",
+    "answer": "some",
+    "emoji": "📚"
+  },
+  {
+    "question": "Яка різниця: no / not any?",
+    "answer": "Однакове значення: no milk = not any milk",
+    "emoji": "🚫"
+  },
+  {
+    "question": "I have ___ idea. (жодної)",
+    "answer": "no",
+    "emoji": "🤷"
+  },
+  {
+    "question": "There is ___ water left.",
+    "answer": "no (немає зовсім)",
+    "emoji": "💧"
+  },
+  {
+    "question": "Somebody чи anybody: ___ called you.",
+    "answer": "Somebody (стверджувальне)",
+    "emoji": "📞"
+  },
+  {
+    "question": "Somebody чи anybody: Did ___ call?",
+    "answer": "anybody (питання)",
+    "emoji": "❓"
+  },
+  {
+    "question": "Something чи anything: I don't want ___.",
+    "answer": "anything (заперечення)",
+    "emoji": "🚫"
+  },
+  {
+    "question": "Somewhere чи anywhere: I can't find it ___.",
+    "answer": "anywhere (заперечення)",
+    "emoji": "🔍"
+  },
+  {
+    "question": "Nobody / anybody: ___ knows the answer.",
+    "answer": "Nobody (ніхто)",
+    "emoji": "🤐"
+  },
+  {
+    "question": "Nothing / anything: There is ___ in the box.",
+    "answer": "nothing (нічого)",
+    "emoji": "📦"
+  },
+  {
+    "question": "First Conditional вживаємо для...?",
+    "answer": "Реальної можливості (If it rains, I will stay)",
+    "emoji": "🔮"
+  },
+  {
+    "question": "Формула First Conditional?",
+    "answer": "If + Present, will + V (If you study, you will pass)",
+    "emoji": "📝"
+  },
+  {
+    "question": "If it rains, I ___ (stay) home.",
+    "answer": "will stay",
+    "emoji": "🌧️"
+  },
+  {
+    "question": "If you ___ (study), you will pass.",
+    "answer": "study (Present Simple після if)",
+    "emoji": "📚"
+  },
+  {
+    "question": "If she ___ (not hurry), she will miss the bus.",
+    "answer": "doesn't hurry",
+    "emoji": "🚌"
+  },
+  {
+    "question": "I will call you if I ___ (have) time.",
+    "answer": "have",
+    "emoji": "📞"
+  },
+  {
+    "question": "Second Conditional вживаємо для...?",
+    "answer": "Нереальної ситуації (If I were rich, I would travel)",
+    "emoji": "💭"
+  },
+  {
+    "question": "Формула Second Conditional?",
+    "answer": "If + Past Simple, would + V1 (If I had time, I would help)",
+    "emoji": "📝"
+  },
+  {
+    "question": "If I ___ (be) rich, I would travel.",
+    "answer": "were (для всіх осіб)",
+    "emoji": "💰"
+  },
+  {
+    "question": "If I were you, I ___ (tell) the truth.",
+    "answer": "would tell",
+    "emoji": "🤔"
+  },
+  {
+    "question": "If she ___ (have) more time, she would learn guitar.",
+    "answer": "had",
+    "emoji": "🎸"
+  },
+  {
+    "question": "What would you do if you ___ (win) the lottery?",
+    "answer": "won",
+    "emoji": "🎰"
+  },
+  {
+    "question": "Чому «If I were» а не «If I was»?",
+    "answer": "У Second Conditional were для всіх осіб",
+    "emoji": "📖"
+  },
+  {
+    "question": "Third Conditional вживаємо для...?",
+    "answer": "Нереальної ситуації в минулому (If I had studied, I would have passed)",
+    "emoji": "⏮️"
+  },
+  {
+    "question": "Формула Third Conditional?",
+    "answer": "If + Past Perfect, would have + V3 (If she had called, I would have answered)",
+    "emoji": "📝"
+  },
+  {
+    "question": "If I had known, I ___ (help).",
+    "answer": "would have helped",
+    "emoji": "🤝"
+  },
+  {
+    "question": "If she ___ (study) harder, she would have passed.",
+    "answer": "had studied",
+    "emoji": "📚"
+  },
+  {
+    "question": "I would have called if I ___ (have) your number.",
+    "answer": "had had",
+    "emoji": "📱"
+  },
+  {
+    "question": "Passive Voice утворюємо як?",
+    "answer": "to be + V3 (The book is written)",
+    "emoji": "📝"
+  },
+  {
+    "question": "Active: They make cars. → Passive?",
+    "answer": "Cars are made",
+    "emoji": "🚗"
+  },
+  {
+    "question": "Active: She wrote a letter. → Passive?",
+    "answer": "A letter was written",
+    "emoji": "✉️"
+  },
+  {
+    "question": "Active: They will build a house. → Passive?",
+    "answer": "A house will be built",
+    "emoji": "🏠"
+  },
+  {
+    "question": "The book ___ (write) by Shevchenko.",
+    "answer": "was written",
+    "emoji": "📖"
+  },
+  {
+    "question": "English ___ (speak) in many countries.",
+    "answer": "is spoken",
+    "emoji": "🌍"
+  },
+  {
+    "question": "The letter ___ (send) yesterday.",
+    "answer": "was sent",
+    "emoji": "📨"
+  },
+  {
+    "question": "The cake ___ (make) by my mom.",
+    "answer": "was made",
+    "emoji": "🎂"
+  },
+  {
+    "question": "This song ___ (sing) by millions.",
+    "answer": "is sung",
+    "emoji": "🎵"
+  },
+  {
+    "question": "The window ___ (break) by the ball.",
+    "answer": "was broken",
+    "emoji": "🪟"
+  },
+  {
+    "question": "Коли вживаємо Passive Voice?",
+    "answer": "Коли дія важливіша за виконавця (The window was broken)",
+    "emoji": "🎯"
+  },
+  {
+    "question": "The homework must ___ (do) today.",
+    "answer": "be done",
+    "emoji": "📝"
+  },
+  {
+    "question": "The room is being ___ (clean) now.",
+    "answer": "cleaned (Present Continuous Passive)",
+    "emoji": "🧹"
+  },
+  {
+    "question": "Яка третя форма дієслова «have»?",
+    "answer": "Had",
+    "emoji": "🤲"
+  },
+  {
+    "question": "Яка третя форма дієслова «make»?",
+    "answer": "Made",
+    "emoji": "🛠️"
+  },
+  {
+    "question": "Яка третя форма дієслова «think»?",
+    "answer": "Thought",
+    "emoji": "💭"
+  },
+  {
+    "question": "Яка третя форма дієслова «buy»?",
+    "answer": "Bought",
+    "emoji": "🛒"
+  },
+  {
+    "question": "Яка третя форма дієслова «bring»?",
+    "answer": "Brought",
+    "emoji": "📦"
+  },
+  {
+    "question": "Яка третя форма дієслова «teach»?",
+    "answer": "Taught",
+    "emoji": "👨‍🏫"
+  },
+  {
+    "question": "Яка третя форма дієслова «catch»?",
+    "answer": "Caught",
+    "emoji": "🎣"
+  },
+  {
+    "question": "Яка третя форма дієслова «feel»?",
+    "answer": "Felt",
+    "emoji": "💓"
+  },
+  {
+    "question": "Яка третя форма дієслова «keep»?",
+    "answer": "Kept",
+    "emoji": "🔐"
+  },
+  {
+    "question": "Яка третя форма дієслова «sleep»?",
+    "answer": "Slept",
+    "emoji": "😴"
+  },
+  {
+    "question": "Яка третя форма дієслова «leave»?",
+    "answer": "Left",
+    "emoji": "👋"
+  },
+  {
+    "question": "Яка третя форма дієслова «meet»?",
+    "answer": "Met",
+    "emoji": "🤝"
+  },
+  {
+    "question": "Яка третя форма дієслова «send»?",
+    "answer": "Sent",
+    "emoji": "📨"
+  },
+  {
+    "question": "Яка третя форма дієслова «spend»?",
+    "answer": "Spent",
+    "emoji": "💸"
+  },
+  {
+    "question": "Яка третя форма дієслова «build»?",
+    "answer": "Built",
+    "emoji": "🏗️"
+  },
+  {
+    "question": "Яка третя форма дієслова «lose»?",
+    "answer": "Lost",
+    "emoji": "🔍"
+  },
+  {
+    "question": "Яка третя форма дієслова «find»?",
+    "answer": "Found",
+    "emoji": "🔎"
+  },
+  {
+    "question": "Яка третя форма дієслова «tell»?",
+    "answer": "Told",
+    "emoji": "🗣️"
+  },
+  {
+    "question": "Яка третя форма дієслова «sell»?",
+    "answer": "Sold",
+    "emoji": "🏷️"
+  },
+  {
+    "question": "Яка третя форма дієслова «stand»?",
+    "answer": "Stood",
+    "emoji": "🧍"
+  },
+  {
+    "question": "Яка третя форма дієслова «understand»?",
+    "answer": "Understood",
+    "emoji": "💡"
+  },
+  {
+    "question": "Яка третя форма дієслова «sit»?",
+    "answer": "Sat",
+    "emoji": "🪑"
+  },
+  {
+    "question": "Яка третя форма дієслова «read»?",
+    "answer": "Read",
+    "emoji": "📖"
+  },
+  {
+    "question": "Яка третя форма дієслова «ring»?",
+    "answer": "Rung",
+    "emoji": "🔔"
+  },
+  {
+    "question": "Яка третя форма дієслова «wake»?",
+    "answer": "Woken",
+    "emoji": "⏰"
+  },
+  {
+    "question": "Яка третя форма дієслова «win»?",
+    "answer": "Won",
+    "emoji": "🏆"
+  },
+  {
+    "question": "He ___ (play) football every Saturday.",
+    "answer": "plays",
+    "emoji": "⚽"
+  },
+  {
+    "question": "She ___ (not like) coffee.",
+    "answer": "doesn't like",
+    "emoji": "☕"
+  },
+  {
+    "question": "They ___ (live) in London.",
+    "answer": "live",
+    "emoji": "🏠"
+  },
+  {
+    "question": "___ he ___ (speak) English?",
+    "answer": "Does speak",
+    "emoji": "🗣️"
+  },
+  {
+    "question": "The sun ___ (rise) in the east.",
+    "answer": "rises",
+    "emoji": "🌅"
+  },
+  {
+    "question": "My mother ___ (cook) dinner every day.",
+    "answer": "cooks",
+    "emoji": "🍳"
+  },
+  {
+    "question": "I ___ never ___ (try) sushi.",
+    "answer": "have tried",
+    "emoji": "🍣"
+  },
+  {
+    "question": "She ___ (live) here for 5 years.",
+    "answer": "has lived",
+    "emoji": "🏠"
+  },
+  {
+    "question": "___ you ___ (finish) your homework?",
+    "answer": "Have finished",
+    "emoji": "📚"
+  },
+  {
+    "question": "They ___ (not see) this movie yet.",
+    "answer": "haven't seen",
+    "emoji": "🎬"
+  },
+  {
+    "question": "He ___ (break) his leg twice.",
+    "answer": "has broken",
+    "emoji": "🦵"
+  },
+  {
+    "question": "What ___ you ___ (do) at 8 PM yesterday?",
+    "answer": "were doing",
+    "emoji": "🕗"
+  },
+  {
+    "question": "She ___ (read) when I called.",
+    "answer": "was reading",
+    "emoji": "📖"
+  },
+  {
+    "question": "It ___ (rain) all day yesterday.",
+    "answer": "was raining",
+    "emoji": "🌧️"
+  },
+  {
+    "question": "Як утворити питання: They went home?",
+    "answer": "Did they go home?",
+    "emoji": "❓"
+  },
+  {
+    "question": "Як утворити питання: She is working?",
+    "answer": "Is she working?",
+    "emoji": "❓"
+  },
+  {
+    "question": "Як утворити питання: He can swim?",
+    "answer": "Can he swim?",
+    "emoji": "❓"
+  },
+  {
+    "question": "Як утворити питання: They have finished?",
+    "answer": "Have they finished?",
+    "emoji": "❓"
+  },
+  {
+    "question": "Заперечення: She works here.",
+    "answer": "She doesn't work here",
+    "emoji": "🚫"
+  },
+  {
+    "question": "Заперечення: They are playing.",
+    "answer": "They aren't playing",
+    "emoji": "🚫"
+  },
+  {
+    "question": "Заперечення: He can drive.",
+    "answer": "He can't drive",
+    "emoji": "🚫"
+  },
+  {
+    "question": "I enjoy ___ (swim).",
+    "answer": "swimming (після enjoy — gerund)",
+    "emoji": "🏊"
+  },
+  {
+    "question": "She wants ___ (go) home.",
+    "answer": "to go (після want — infinitive)",
+    "emoji": "🏠"
+  },
+  {
+    "question": "They avoid ___ (eat) fast food.",
+    "answer": "eating (після avoid — gerund)",
+    "emoji": "🍔"
+  },
+  {
+    "question": "I decided ___ (buy) a car.",
+    "answer": "to buy (після decide — infinitive)",
+    "emoji": "🚗"
+  },
+  {
+    "question": "He finished ___ (write) the report.",
+    "answer": "writing (після finish — gerund)",
+    "emoji": "📝"
+  },
+  {
+    "question": "I can't stand ___ (wait).",
+    "answer": "waiting (після can't stand — gerund)",
+    "emoji": "⏳"
+  },
+  {
+    "question": "She promised ___ (help) me.",
+    "answer": "to help (після promise — infinitive)",
+    "emoji": "🤝"
+  },
+  {
+    "question": "Stop ___ (talk)!",
+    "answer": "talking (після stop — gerund)",
+    "emoji": "🤫"
+  },
+  {
+    "question": "Direct: «I am tired.» → Reported?",
+    "answer": "She said she was tired",
+    "emoji": "💬"
+  },
+  {
+    "question": "Direct: «I will help.» → Reported?",
+    "answer": "He said he would help",
+    "emoji": "💬"
+  },
+  {
+    "question": "Direct: «I can swim.» → Reported?",
+    "answer": "She said she could swim",
+    "emoji": "💬"
+  },
+  {
+    "question": "Direct: «I have finished.» → Reported?",
+    "answer": "He said he had finished",
+    "emoji": "💬"
+  },
+  {
+    "question": "Як змінюється «am/is» в Reported Speech?",
+    "answer": "was",
+    "emoji": "📝"
+  },
+  {
+    "question": "Як змінюється «will» в Reported Speech?",
+    "answer": "would",
+    "emoji": "📝"
+  },
+  {
+    "question": "Як змінюється «can» в Reported Speech?",
+    "answer": "could",
+    "emoji": "📝"
+  },
+  {
+    "question": "The man ___ lives here is my uncle. (who/which)",
+    "answer": "who (для людей)",
+    "emoji": "👨"
+  },
+  {
+    "question": "The book ___ I read was great. (who/which/that)",
+    "answer": "which / that (для речей)",
+    "emoji": "📖"
+  },
+  {
+    "question": "The city ___ I was born is beautiful. (where/which)",
+    "answer": "where (для місць)",
+    "emoji": "🏙️"
+  },
+  {
+    "question": "The reason ___ I'm late is traffic. (why/which)",
+    "answer": "why (для причин)",
+    "emoji": "🤔"
+  },
+  {
+    "question": "The day ___ we met was sunny. (when/which)",
+    "answer": "when (для часу)",
+    "emoji": "📅"
+  },
+  {
+    "question": "Коли можна опустити who/which/that?",
+    "answer": "Коли є інший підмет (The book [that] I read)",
+    "emoji": "✂️"
+  },
+  {
+    "question": "I ___ (used to/play) football when I was young.",
+    "answer": "used to play",
+    "emoji": "⚽"
+  },
+  {
+    "question": "She ___ (not/used to/like) vegetables.",
+    "answer": "didn't use to like",
+    "emoji": "🥕"
+  },
+  {
+    "question": "___ you ___ (used to/live) in London?",
+    "answer": "Did use to live",
+    "emoji": "🏠"
+  },
+  {
+    "question": "Різниця: used to / be used to?",
+    "answer": "used to — раніше; be used to — звик",
+    "emoji": "🔄"
+  },
+  {
+    "question": "I am used to ___ (wake) up early.",
+    "answer": "waking (be used to + gerund)",
+    "emoji": "⏰"
+  },
+  {
+    "question": "You're coming, ___?",
+    "answer": "aren't you",
+    "emoji": "❓"
+  },
+  {
+    "question": "She doesn't like coffee, ___?",
+    "answer": "does she",
+    "emoji": "❓"
+  },
+  {
+    "question": "They went home, ___?",
+    "answer": "didn't they",
+    "emoji": "❓"
+  },
+  {
+    "question": "He can swim, ___?",
+    "answer": "can't he",
+    "emoji": "❓"
+  },
+  {
+    "question": "You won't forget, ___?",
+    "answer": "will you",
+    "emoji": "❓"
+  },
+  {
+    "question": "Let's go, ___?",
+    "answer": "shall we",
+    "emoji": "❓"
+  },
+  {
+    "question": "Правило question tags?",
+    "answer": "+ речення → − tag; − речення → + tag",
+    "emoji": "📝"
+  },
+  {
+    "question": "Що означає «turn on»?",
+    "answer": "Увімкнути",
+    "emoji": "💡"
+  },
+  {
+    "question": "Що означає «turn off»?",
+    "answer": "Вимкнути",
+    "emoji": "💡"
+  },
+  {
+    "question": "Що означає «give up»?",
+    "answer": "Здатися, кинути",
+    "emoji": "🏳️"
+  },
+  {
+    "question": "Що означає «look after»?",
+    "answer": "Доглядати",
+    "emoji": "👀"
+  },
+  {
+    "question": "Що означає «look for»?",
+    "answer": "Шукати",
+    "emoji": "🔍"
+  },
+  {
+    "question": "Що означає «get up»?",
+    "answer": "Вставати",
+    "emoji": "🛏️"
+  },
+  {
+    "question": "Що означає «put on»?",
+    "answer": "Одягати",
+    "emoji": "👕"
+  },
+  {
+    "question": "Що означає «take off»?",
+    "answer": "Знімати (одяг), злітати",
+    "emoji": "✈️"
+  },
+  {
+    "question": "Що означає «find out»?",
+    "answer": "Дізнатися",
+    "emoji": "💡"
+  },
+  {
+    "question": "Що означає «carry on»?",
+    "answer": "Продовжувати",
+    "emoji": "➡️"
+  },
+  {
+    "question": "Злічуване чи незлічуване: water?",
+    "answer": "Незлічуване (much water)",
+    "emoji": "💧"
+  },
+  {
+    "question": "Злічуване чи незлічуване: apple?",
+    "answer": "Злічуване (many apples)",
+    "emoji": "🍎"
+  },
+  {
+    "question": "Злічуване чи незлічуване: information?",
+    "answer": "Незлічуване (much information)",
+    "emoji": "ℹ️"
+  },
+  {
+    "question": "Злічуване чи незлічуване: advice?",
+    "answer": "Незлічуване (some advice, NOT advices)",
+    "emoji": "💡"
+  },
+  {
+    "question": "Злічуване чи незлічуване: furniture?",
+    "answer": "Незлічуване (some furniture)",
+    "emoji": "🪑"
+  },
+  {
+    "question": "Злічуване чи незлічуване: news?",
+    "answer": "Незлічуване (the news IS)",
+    "emoji": "📰"
+  }
 ]

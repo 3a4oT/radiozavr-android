@@ -21,10 +21,16 @@ import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBar
 import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableIntStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.saveable.rememberSaveable
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.focus.FocusRequester
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import androidx.hilt.lifecycle.viewmodel.compose.hiltViewModel
@@ -56,6 +62,14 @@ fun SettingsScreen(
 
     val themeMode by themeViewModel.themeMode.collectAsState()
 
+    // Focus restoration: track last clicked row and restore focus on return
+    var lastFocusedIndex by rememberSaveable { mutableIntStateOf(0) }
+    val focusRequesters = remember { List(SETTINGS_ROW_COUNT) { FocusRequester() } }
+
+    LaunchedEffect(Unit) {
+        focusRequesters.getOrNull(lastFocusedIndex)?.requestFocus()
+    }
+
     SettingsThemeProvider {
         Scaffold(
             topBar = {
@@ -82,18 +96,56 @@ fun SettingsScreen(
                     .padding(paddingValues)
                     .verticalScroll(rememberScrollState()),
             ) {
-                AppearanceGroup(themeMode = themeMode, onThemeClick = onThemeClick)
-                LanguageGroup(languageRepository = languageRepository, onLanguageClick = onLanguageClick)
-                PlaybackGroup(onPlaybackClick = onPlaybackClick)
-                WidgetsGroup(onWidgetsClick = onWidgetsClick)
-                AboutGroup(onAboutClick = onAboutClick)
+                AppearanceGroup(
+                    themeMode = themeMode,
+                    onThemeClick = {
+                        lastFocusedIndex = 0
+                        onThemeClick()
+                    },
+                    focusRequester = focusRequesters[0],
+                )
+                LanguageGroup(
+                    languageRepository = languageRepository,
+                    onLanguageClick = {
+                        lastFocusedIndex = 1
+                        onLanguageClick()
+                    },
+                    focusRequester = focusRequesters[1],
+                )
+                PlaybackGroup(
+                    onPlaybackClick = {
+                        lastFocusedIndex = 2
+                        onPlaybackClick()
+                    },
+                    focusRequester = focusRequesters[2],
+                )
+                WidgetsGroup(
+                    onWidgetsClick = {
+                        lastFocusedIndex = 3
+                        onWidgetsClick()
+                    },
+                    focusRequester = focusRequesters[3],
+                )
+                AboutGroup(
+                    onAboutClick = {
+                        lastFocusedIndex = 4
+                        onAboutClick()
+                    },
+                    focusRequester = focusRequesters[4],
+                )
             }
         }
     }
 }
 
+private const val SETTINGS_ROW_COUNT = 5
+
 @Composable
-private fun AppearanceGroup(themeMode: ThemeMode, onThemeClick: () -> Unit) {
+private fun AppearanceGroup(
+    themeMode: ThemeMode,
+    onThemeClick: () -> Unit,
+    focusRequester: FocusRequester? = null,
+) {
     val currentThemeLabel = when (themeMode) {
         ThemeMode.LIGHT -> stringResource(R.string.settings_theme_light)
         ThemeMode.DARK -> stringResource(R.string.settings_theme_dark)
@@ -106,6 +158,7 @@ private fun AppearanceGroup(themeMode: ThemeMode, onThemeClick: () -> Unit) {
             subtitle = stringResource(R.string.settings_theme_subtitle),
             onClick = onThemeClick,
             contentDescription = stringResource(R.string.settings_theme_content_description, currentThemeLabel),
+            focusRequester = focusRequester,
         ) {
             SettingsValueWithArrow(value = currentThemeLabel)
         }
@@ -113,7 +166,11 @@ private fun AppearanceGroup(themeMode: ThemeMode, onThemeClick: () -> Unit) {
 }
 
 @Composable
-private fun LanguageGroup(languageRepository: LanguageRepository, onLanguageClick: () -> Unit) {
+private fun LanguageGroup(
+    languageRepository: LanguageRepository,
+    onLanguageClick: () -> Unit,
+    focusRequester: FocusRequester? = null,
+) {
     val currentLanguageMode = languageRepository.getLanguageMode()
     val currentLanguageLabel = when (currentLanguageMode) {
         LanguageMode.SYSTEM -> stringResource(R.string.settings_language_system)
@@ -127,6 +184,7 @@ private fun LanguageGroup(languageRepository: LanguageRepository, onLanguageClic
             subtitle = stringResource(R.string.settings_language_subtitle),
             onClick = onLanguageClick,
             contentDescription = stringResource(R.string.settings_language_content_description, currentLanguageLabel),
+            focusRequester = focusRequester,
         ) {
             SettingsValueWithArrow(value = currentLanguageLabel)
         }
@@ -134,13 +192,17 @@ private fun LanguageGroup(languageRepository: LanguageRepository, onLanguageClic
 }
 
 @Composable
-private fun PlaybackGroup(onPlaybackClick: () -> Unit) {
+private fun PlaybackGroup(
+    onPlaybackClick: () -> Unit,
+    focusRequester: FocusRequester? = null,
+) {
     SettingsGroup(title = stringResource(R.string.settings_group_playback)) {
         SettingsRow(
             title = stringResource(R.string.settings_playback_title),
             subtitle = stringResource(R.string.settings_playback_subtitle),
             onClick = onPlaybackClick,
             contentDescription = stringResource(R.string.settings_playback_content_description),
+            focusRequester = focusRequester,
         ) {
             SettingsValueWithArrow()
         }
@@ -148,13 +210,17 @@ private fun PlaybackGroup(onPlaybackClick: () -> Unit) {
 }
 
 @Composable
-private fun WidgetsGroup(onWidgetsClick: () -> Unit) {
+private fun WidgetsGroup(
+    onWidgetsClick: () -> Unit,
+    focusRequester: FocusRequester? = null,
+) {
     SettingsGroup(title = stringResource(R.string.settings_widgets_title)) {
         SettingsRow(
             title = stringResource(R.string.settings_widgets_row_title),
             subtitle = stringResource(R.string.settings_widgets_subtitle),
             onClick = onWidgetsClick,
             contentDescription = stringResource(R.string.settings_widgets_content_description),
+            focusRequester = focusRequester,
         ) {
             SettingsValueWithArrow()
         }
@@ -162,7 +228,10 @@ private fun WidgetsGroup(onWidgetsClick: () -> Unit) {
 }
 
 @Composable
-private fun AboutGroup(onAboutClick: () -> Unit) {
+private fun AboutGroup(
+    onAboutClick: () -> Unit,
+    focusRequester: FocusRequester? = null,
+) {
     val buildTypeLabel = if (BuildConfig.DEBUG) {
         stringResource(R.string.about_build_debug)
     } else {
@@ -176,6 +245,7 @@ private fun AboutGroup(onAboutClick: () -> Unit) {
             subtitle = stringResource(R.string.about_subtitle),
             onClick = onAboutClick,
             contentDescription = stringResource(R.string.about_content_description),
+            focusRequester = focusRequester,
         ) {
             SettingsValueWithArrow(value = aboutValue)
         }

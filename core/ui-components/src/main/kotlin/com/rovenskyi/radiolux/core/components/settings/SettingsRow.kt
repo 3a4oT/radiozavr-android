@@ -24,6 +24,8 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.scale
+import androidx.compose.ui.focus.FocusRequester
+import androidx.compose.ui.focus.focusRequester
 import androidx.compose.ui.focus.onFocusChanged
 import androidx.compose.ui.semantics.contentDescription
 import androidx.compose.ui.semantics.semantics
@@ -42,6 +44,7 @@ import kotlinx.coroutines.launch
  * @param subtitle Optional secondary text
  * @param onClick Optional click handler
  * @param contentDescription Accessibility description
+ * @param focusRequester Optional FocusRequester for focus restoration (used with focusRestorer)
  * @param trailing Trailing content (toggle, value, icon, etc.)
  */
 @Composable
@@ -51,6 +54,7 @@ fun SettingsRow(
     subtitle: String? = null,
     onClick: (() -> Unit)? = null,
     contentDescription: String? = null,
+    focusRequester: FocusRequester? = null,
     trailing: @Composable (() -> Unit)? = null,
 ) {
     val dimensions = LocalDimensions.current
@@ -74,6 +78,13 @@ fun SettingsRow(
     Row(
         modifier = modifier
             .fillMaxWidth()
+            .then(
+                if (focusRequester != null) {
+                    Modifier.focusRequester(focusRequester)
+                } else {
+                    Modifier
+                },
+            )
             .bringIntoViewRequester(bringIntoViewRequester)
             .scale(scale)
             .onFocusChanged { focusState ->

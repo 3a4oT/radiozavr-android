@@ -19,8 +19,11 @@ import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBar
 import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.focus.FocusRequester
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import androidx.hilt.lifecycle.viewmodel.compose.hiltViewModel
@@ -38,6 +41,13 @@ fun WidgetsSettingsScreen(
 ) {
     // ViewModel instantiation triggers screen_view analytics in init{}
     hiltViewModel<WidgetsSettingsViewModel>()
+
+    // Focus restoration: request focus on first row when returning to screen
+    val focusRequester = remember { FocusRequester() }
+
+    LaunchedEffect(Unit) {
+        focusRequester.requestFocus()
+    }
 
     SettingsThemeProvider {
         Scaffold(
@@ -74,6 +84,7 @@ fun WidgetsSettingsScreen(
                         subtitle = stringResource(R.string.settings_riddle_widget_subtitle),
                         onClick = onRiddleClick,
                         contentDescription = stringResource(R.string.settings_riddle_widget_content_description),
+                        focusRequester = focusRequester,
                     ) {
                         WidgetValueWithArrow()
                     }

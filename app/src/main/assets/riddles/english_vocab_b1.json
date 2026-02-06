@@ -1,0 +1,2877 @@
+[
+  {
+    "question": "Як перекладається «apple»?",
+    "answer": "Яблуко",
+    "emoji": "🍎"
+  },
+  {
+    "question": "Як перекладається «grape»?",
+    "answer": "Виноград",
+    "emoji": "🍇"
+  },
+  {
+    "question": "Як перекладається «strawberry»?",
+    "answer": "Полуниця",
+    "emoji": "🍓"
+  },
+  {
+    "question": "Як перекладається «cherry»?",
+    "answer": "Вишня",
+    "emoji": "🍒"
+  },
+  {
+    "question": "Як англійською «яблуко»?",
+    "answer": "Apple",
+    "emoji": "🍎"
+  },
+  {
+    "question": "Як англійською «полуниця»?",
+    "answer": "Strawberry",
+    "emoji": "🍓"
+  },
+  {
+    "question": "Який фрукт жовтий і кислий?",
+    "answer": "Lemon — лимон",
+    "emoji": "🍋"
+  },
+  {
+    "question": "Як перекладається «carrot»?",
+    "answer": "Морква",
+    "emoji": "🥕"
+  },
+  {
+    "question": "Як перекладається «potato»?",
+    "answer": "Картопля",
+    "emoji": "🥔"
+  },
+  {
+    "question": "Як перекладається «cucumber»?",
+    "answer": "Огірок",
+    "emoji": "🥒"
+  },
+  {
+    "question": "Як перекладається «onion»?",
+    "answer": "Цибуля",
+    "emoji": "🧅"
+  },
+  {
+    "question": "Як англійською «картопля»?",
+    "answer": "Potato",
+    "emoji": "🥔"
+  },
+  {
+    "question": "Як англійською «помідор»?",
+    "answer": "Tomato",
+    "emoji": "🍅"
+  },
+  {
+    "question": "Який овоч помаранчевий і росте під землею?",
+    "answer": "Carrot — морква",
+    "emoji": "🥕"
+  },
+  {
+    "question": "Як перекладається «dog»?",
+    "answer": "Собака",
+    "emoji": "🐕"
+  },
+  {
+    "question": "Як перекладається «cat»?",
+    "answer": "Кіт",
+    "emoji": "🐱"
+  },
+  {
+    "question": "Як перекладається «bird»?",
+    "answer": "Птах",
+    "emoji": "🐦"
+  },
+  {
+    "question": "Як перекладається «fish»?",
+    "answer": "Риба",
+    "emoji": "🐟"
+  },
+  {
+    "question": "Як перекладається «horse»?",
+    "answer": "Кінь",
+    "emoji": "🐴"
+  },
+  {
+    "question": "Як перекладається «cow»?",
+    "answer": "Корова",
+    "emoji": "🐄"
+  },
+  {
+    "question": "Як перекладається «pig»?",
+    "answer": "Свиня",
+    "emoji": "🐷"
+  },
+  {
+    "question": "Як перекладається «rabbit»?",
+    "answer": "Кролик",
+    "emoji": "🐰"
+  },
+  {
+    "question": "Як перекладається «mouse»?",
+    "answer": "Миша",
+    "emoji": "🐭"
+  },
+  {
+    "question": "Як перекладається «bear»?",
+    "answer": "Ведмідь",
+    "emoji": "🐻"
+  },
+  {
+    "question": "Як перекладається «monkey»?",
+    "answer": "Мавпа",
+    "emoji": "🐵"
+  },
+  {
+    "question": "Як перекладається «frog»?",
+    "answer": "Жаба",
+    "emoji": "🐸"
+  },
+  {
+    "question": "Як англійською «собака»?",
+    "answer": "Dog",
+    "emoji": "🐕"
+  },
+  {
+    "question": "Як англійською «кіт»?",
+    "answer": "Cat",
+    "emoji": "🐱"
+  },
+  {
+    "question": "Як англійською «ведмідь»?",
+    "answer": "Bear",
+    "emoji": "🐻"
+  },
+  {
+    "question": "Яка тварина каже «мяу»?",
+    "answer": "Cat — кіт",
+    "emoji": "🐱"
+  },
+  {
+    "question": "Яка тварина каже «гав»?",
+    "answer": "Dog — собака",
+    "emoji": "🐕"
+  },
+  {
+    "question": "Яка тварина стрибає і має сумку?",
+    "answer": "Kangaroo — кенгуру",
+    "emoji": "🦘"
+  },
+  {
+    "question": "Скільки днів у тижні?",
+    "answer": "Seven — сім",
+    "emoji": "7️⃣"
+  },
+  {
+    "question": "Як перекладається «one»?",
+    "answer": "Один",
+    "emoji": "1️⃣"
+  },
+  {
+    "question": "Як перекладається «two»?",
+    "answer": "Два",
+    "emoji": "2️⃣"
+  },
+  {
+    "question": "Як перекладається «three»?",
+    "answer": "Три",
+    "emoji": "3️⃣"
+  },
+  {
+    "question": "Як перекладається «four»?",
+    "answer": "Чотири",
+    "emoji": "4️⃣"
+  },
+  {
+    "question": "Як перекладається «five»?",
+    "answer": "П'ять",
+    "emoji": "5️⃣"
+  },
+  {
+    "question": "Як перекладається «six»?",
+    "answer": "Шість",
+    "emoji": "6️⃣"
+  },
+  {
+    "question": "Як перекладається «seven»?",
+    "answer": "Сім",
+    "emoji": "7️⃣"
+  },
+  {
+    "question": "Як перекладається «eight»?",
+    "answer": "Вісім",
+    "emoji": "8️⃣"
+  },
+  {
+    "question": "Як перекладається «nine»?",
+    "answer": "Дев'ять",
+    "emoji": "9️⃣"
+  },
+  {
+    "question": "Як перекладається «ten»?",
+    "answer": "Десять",
+    "emoji": "🔟"
+  },
+  {
+    "question": "Як перекладається «eleven»?",
+    "answer": "Одинадцять",
+    "emoji": "🔢"
+  },
+  {
+    "question": "Як перекладається «twelve»?",
+    "answer": "Дванадцять",
+    "emoji": "🔢"
+  },
+  {
+    "question": "Як перекладається «thirteen»?",
+    "answer": "Тринадцять",
+    "emoji": "🔢"
+  },
+  {
+    "question": "Як перекладається «twenty»?",
+    "answer": "Двадцять",
+    "emoji": "🔢"
+  },
+  {
+    "question": "Як перекладається «thirty»?",
+    "answer": "Тридцять",
+    "emoji": "🔢"
+  },
+  {
+    "question": "Як англійською «п'ять»?",
+    "answer": "Five",
+    "emoji": "5️⃣"
+  },
+  {
+    "question": "Як англійською «десять»?",
+    "answer": "Ten",
+    "emoji": "🔟"
+  },
+  {
+    "question": "Скільки буде five + five?",
+    "answer": "Ten — десять",
+    "emoji": "🔟"
+  },
+  {
+    "question": "Скільки буде three + four?",
+    "answer": "Seven — сім",
+    "emoji": "7️⃣"
+  },
+  {
+    "question": "Скільки буде ten - three?",
+    "answer": "Seven — сім",
+    "emoji": "7️⃣"
+  },
+  {
+    "question": "Скільки буде two × three?",
+    "answer": "Six — шість",
+    "emoji": "6️⃣"
+  },
+  {
+    "question": "Як перекладається «red»?",
+    "answer": "Червоний",
+    "emoji": "🔴"
+  },
+  {
+    "question": "Як перекладається «green»?",
+    "answer": "Зелений",
+    "emoji": "🟢"
+  },
+  {
+    "question": "Як перекладається «yellow»?",
+    "answer": "Жовтий",
+    "emoji": "🟡"
+  },
+  {
+    "question": "Як перекладається «white»?",
+    "answer": "Білий",
+    "emoji": "⚪"
+  },
+  {
+    "question": "Як перекладається «black»?",
+    "answer": "Чорний",
+    "emoji": "⚫"
+  },
+  {
+    "question": "Як англійською «червоний»?",
+    "answer": "Red",
+    "emoji": "🔴"
+  },
+  {
+    "question": "Як англійською «зелений»?",
+    "answer": "Green",
+    "emoji": "🟢"
+  },
+  {
+    "question": "Якого кольору трава?",
+    "answer": "Green — зелений",
+    "emoji": "🌿"
+  },
+  {
+    "question": "Як перекладається «mother»?",
+    "answer": "Мама",
+    "emoji": "👩"
+  },
+  {
+    "question": "Як перекладається «father»?",
+    "answer": "Тато",
+    "emoji": "👨"
+  },
+  {
+    "question": "Як перекладається «brother»?",
+    "answer": "Брат",
+    "emoji": "👦"
+  },
+  {
+    "question": "Як перекладається «sister»?",
+    "answer": "Сестра",
+    "emoji": "👧"
+  },
+  {
+    "question": "Як перекладається «family»?",
+    "answer": "Сім'я",
+    "emoji": "👨‍👩‍👧"
+  },
+  {
+    "question": "Як перекладається «friend»?",
+    "answer": "Друг",
+    "emoji": "🤝"
+  },
+  {
+    "question": "Як перекладається «nephew»?",
+    "answer": "Племінник",
+    "emoji": "👦"
+  },
+  {
+    "question": "Як перекладається «niece»?",
+    "answer": "Племінниця",
+    "emoji": "👧"
+  },
+  {
+    "question": "Як англійською «мама»?",
+    "answer": "Mother / Mom",
+    "emoji": "👩"
+  },
+  {
+    "question": "Як англійською «тато»?",
+    "answer": "Father / Dad",
+    "emoji": "👨"
+  },
+  {
+    "question": "Як перекладається «head»?",
+    "answer": "Голова",
+    "emoji": "🗣️"
+  },
+  {
+    "question": "Як перекладається «eye»?",
+    "answer": "Око",
+    "emoji": "👁️"
+  },
+  {
+    "question": "Як перекладається «ear»?",
+    "answer": "Вухо",
+    "emoji": "👂"
+  },
+  {
+    "question": "Як перекладається «nose»?",
+    "answer": "Ніс",
+    "emoji": "👃"
+  },
+  {
+    "question": "Як перекладається «mouth»?",
+    "answer": "Рот",
+    "emoji": "👄"
+  },
+  {
+    "question": "Як перекладається «lip»?",
+    "answer": "Губа",
+    "emoji": "👄"
+  },
+  {
+    "question": "Як перекладається «elbow»?",
+    "answer": "Лікоть",
+    "emoji": "💪"
+  },
+  {
+    "question": "Як перекладається «back»?",
+    "answer": "Спина",
+    "emoji": "🔙"
+  },
+  {
+    "question": "Як англійською «око»?",
+    "answer": "Eye",
+    "emoji": "👁️"
+  },
+  {
+    "question": "Скільки пальців на руці?",
+    "answer": "Five — п'ять",
+    "emoji": "🖐️"
+  },
+  {
+    "question": "Як перекладається «jeans»?",
+    "answer": "Джинси",
+    "emoji": "👖"
+  },
+  {
+    "question": "Як перекладається «shorts»?",
+    "answer": "Шорти",
+    "emoji": "🩳"
+  },
+  {
+    "question": "Як перекладається «skirt»?",
+    "answer": "Спідниця",
+    "emoji": "👗"
+  },
+  {
+    "question": "Як перекладається «sneakers»?",
+    "answer": "Кросівки",
+    "emoji": "👟"
+  },
+  {
+    "question": "Як перекладається «boots»?",
+    "answer": "Чоботи",
+    "emoji": "👢"
+  },
+  {
+    "question": "Як перекладається «sandals»?",
+    "answer": "Сандалі",
+    "emoji": "🩴"
+  },
+  {
+    "question": "Як перекладається «scarf»?",
+    "answer": "Шарф",
+    "emoji": "🧣"
+  },
+  {
+    "question": "Як перекладається «umbrella»?",
+    "answer": "Парасолька",
+    "emoji": "☂️"
+  },
+  {
+    "question": "Як перекладається «glasses»?",
+    "answer": "Окуляри",
+    "emoji": "👓"
+  },
+  {
+    "question": "Як перекладається «watch»?",
+    "answer": "Наручний годинник",
+    "emoji": "⌚"
+  },
+  {
+    "question": "Як перекладається «table»?",
+    "answer": "Стіл",
+    "emoji": "🪑"
+  },
+  {
+    "question": "Як перекладається «bed»?",
+    "answer": "Ліжко",
+    "emoji": "🛏️"
+  },
+  {
+    "question": "Як перекладається «door»?",
+    "answer": "Двері",
+    "emoji": "🚪"
+  },
+  {
+    "question": "Як перекладається «ceiling»?",
+    "answer": "Стеля",
+    "emoji": "🏠"
+  },
+  {
+    "question": "Як перекладається «stairs»?",
+    "answer": "Сходи",
+    "emoji": "🪜"
+  },
+  {
+    "question": "Як перекладається «clock»?",
+    "answer": "Годинник",
+    "emoji": "🕐"
+  },
+  {
+    "question": "Як перекладається «mirror»?",
+    "answer": "Дзеркало",
+    "emoji": "🪞"
+  },
+  {
+    "question": "Як перекладається «fridge»?",
+    "answer": "Холодильник",
+    "emoji": "🧊"
+  },
+  {
+    "question": "Як перекладається «oven»?",
+    "answer": "Духовка",
+    "emoji": "🔥"
+  },
+  {
+    "question": "Як перекладається «sink»?",
+    "answer": "Раковина",
+    "emoji": "🚰"
+  },
+  {
+    "question": "Як перекладається «toilet»?",
+    "answer": "Туалет",
+    "emoji": "🚽"
+  },
+  {
+    "question": "Як перекладається «shower»?",
+    "answer": "Душ",
+    "emoji": "🚿"
+  },
+  {
+    "question": "Як перекладається «cup»?",
+    "answer": "Чашка",
+    "emoji": "☕"
+  },
+  {
+    "question": "Як перекладається «glass»?",
+    "answer": "Склянка",
+    "emoji": "🥛"
+  },
+  {
+    "question": "Як перекладається «fork»?",
+    "answer": "Виделка",
+    "emoji": "🍴"
+  },
+  {
+    "question": "Як перекладається «spoon»?",
+    "answer": "Ложка",
+    "emoji": "🥄"
+  },
+  {
+    "question": "Як англійською «стіл»?",
+    "answer": "Table",
+    "emoji": "🪑"
+  },
+  {
+    "question": "Як англійською «ліжко»?",
+    "answer": "Bed",
+    "emoji": "🛏️"
+  },
+  {
+    "question": "Як перекладається «pencil»?",
+    "answer": "Олівець",
+    "emoji": "✏️"
+  },
+  {
+    "question": "Як перекладається «pen»?",
+    "answer": "Ручка",
+    "emoji": "🖊️"
+  },
+  {
+    "question": "Як перекладається «book»?",
+    "answer": "Книга",
+    "emoji": "📖"
+  },
+  {
+    "question": "Як перекладається «notebook»?",
+    "answer": "Зошит",
+    "emoji": "📓"
+  },
+  {
+    "question": "Як перекладається «ruler»?",
+    "answer": "Лінійка",
+    "emoji": "📏"
+  },
+  {
+    "question": "Як перекладається «eraser»?",
+    "answer": "Гумка",
+    "emoji": "🧽"
+  },
+  {
+    "question": "Як перекладається «scissors»?",
+    "answer": "Ножиці",
+    "emoji": "✂️"
+  },
+  {
+    "question": "Як перекладається «glue»?",
+    "answer": "Клей",
+    "emoji": "🧴"
+  },
+  {
+    "question": "Як перекладається «backpack»?",
+    "answer": "Рюкзак",
+    "emoji": "🎒"
+  },
+  {
+    "question": "Як перекладається «desk»?",
+    "answer": "Парта",
+    "emoji": "🪑"
+  },
+  {
+    "question": "Як перекладається «grade»?",
+    "answer": "Оцінка",
+    "emoji": "📊"
+  },
+  {
+    "question": "Як перекладається «classroom»?",
+    "answer": "Клас",
+    "emoji": "🏫"
+  },
+  {
+    "question": "Як англійською «книга»?",
+    "answer": "Book",
+    "emoji": "📖"
+  },
+  {
+    "question": "Як англійською «зошит»?",
+    "answer": "Notebook",
+    "emoji": "📓"
+  },
+  {
+    "question": "Як англійською «ручка»?",
+    "answer": "Pen",
+    "emoji": "🖊️"
+  },
+  {
+    "question": "Як перекладається «jump»?",
+    "answer": "Стрибати",
+    "emoji": "🦘"
+  },
+  {
+    "question": "Як перекладається «wake up»?",
+    "answer": "Прокидатися",
+    "emoji": "⏰"
+  },
+  {
+    "question": "Як перекладається «get up»?",
+    "answer": "Вставати",
+    "emoji": "🛏️"
+  },
+  {
+    "question": "Як перекладається «read»?",
+    "answer": "Читати",
+    "emoji": "📖"
+  },
+  {
+    "question": "Як перекладається «write»?",
+    "answer": "Писати",
+    "emoji": "✍️"
+  },
+  {
+    "question": "Як перекладається «play»?",
+    "answer": "Грати",
+    "emoji": "🎮"
+  },
+  {
+    "question": "Як перекладається «draw»?",
+    "answer": "Малювати",
+    "emoji": "🎨"
+  },
+  {
+    "question": "Як перекладається «paint»?",
+    "answer": "Малювати фарбами",
+    "emoji": "🎨"
+  },
+  {
+    "question": "Як перекладається «clean»?",
+    "answer": "Прибирати",
+    "emoji": "🧹"
+  },
+  {
+    "question": "Як перекладається «wash»?",
+    "answer": "Мити",
+    "emoji": "🧼"
+  },
+  {
+    "question": "Як перекладається «open»?",
+    "answer": "Відкривати",
+    "emoji": "📂"
+  },
+  {
+    "question": "Як перекладається «close»?",
+    "answer": "Закривати",
+    "emoji": "📁"
+  },
+  {
+    "question": "Як перекладається «give»?",
+    "answer": "Давати",
+    "emoji": "🎁"
+  },
+  {
+    "question": "Як перекладається «take»?",
+    "answer": "Брати",
+    "emoji": "✋"
+  },
+  {
+    "question": "Як перекладається «put»?",
+    "answer": "Класти",
+    "emoji": "📦"
+  },
+  {
+    "question": "Як перекладається «speak»?",
+    "answer": "Говорити",
+    "emoji": "🗣️"
+  },
+  {
+    "question": "Як перекладається «talk»?",
+    "answer": "Розмовляти",
+    "emoji": "💬"
+  },
+  {
+    "question": "Як перекладається «say»?",
+    "answer": "Сказати",
+    "emoji": "💬"
+  },
+  {
+    "question": "Як перекладається «tell»?",
+    "answer": "Розповідати",
+    "emoji": "📢"
+  },
+  {
+    "question": "Як перекладається «think»?",
+    "answer": "Думати",
+    "emoji": "🤔"
+  },
+  {
+    "question": "Як перекладається «learn»?",
+    "answer": "Вчитися",
+    "emoji": "📚"
+  },
+  {
+    "question": "Як перекладається «study»?",
+    "answer": "Вивчати",
+    "emoji": "📚"
+  },
+  {
+    "question": "Як перекладається «teach»?",
+    "answer": "Навчати",
+    "emoji": "👩‍🏫"
+  },
+  {
+    "question": "Як перекладається «help»?",
+    "answer": "Допомагати",
+    "emoji": "🤝"
+  },
+  {
+    "question": "Як перекладається «love»?",
+    "answer": "Любити",
+    "emoji": "❤️"
+  },
+  {
+    "question": "Як перекладається «like»?",
+    "answer": "Подобатися",
+    "emoji": "👍"
+  },
+  {
+    "question": "Як перекладається «need»?",
+    "answer": "Потребувати",
+    "emoji": "❗"
+  },
+  {
+    "question": "Як перекладається «know»?",
+    "answer": "Знати",
+    "emoji": "🧠"
+  },
+  {
+    "question": "Як перекладається «remember»?",
+    "answer": "Пам'ятати",
+    "emoji": "🧠"
+  },
+  {
+    "question": "Як перекладається «forget»?",
+    "answer": "Забувати",
+    "emoji": "💭"
+  },
+  {
+    "question": "Як перекладається «try»?",
+    "answer": "Намагатися",
+    "emoji": "💪"
+  },
+  {
+    "question": "Як перекладається «start»?",
+    "answer": "Починати",
+    "emoji": "▶️"
+  },
+  {
+    "question": "Як перекладається «finish»?",
+    "answer": "Закінчувати",
+    "emoji": "🏁"
+  },
+  {
+    "question": "Як перекладається «stop»?",
+    "answer": "Зупинятися",
+    "emoji": "🛑"
+  },
+  {
+    "question": "Як перекладається «wait»?",
+    "answer": "Чекати",
+    "emoji": "⏳"
+  },
+  {
+    "question": "Як перекладається «lose»?",
+    "answer": "Губити",
+    "emoji": "😢"
+  },
+  {
+    "question": "Як перекладається «win»?",
+    "answer": "Перемагати",
+    "emoji": "🏆"
+  },
+  {
+    "question": "Як перекладається «fly»?",
+    "answer": "Літати",
+    "emoji": "🦅"
+  },
+  {
+    "question": "Як перекладається «fall»?",
+    "answer": "Падати",
+    "emoji": "🍂"
+  },
+  {
+    "question": "Як перекладається «sit»?",
+    "answer": "Сидіти",
+    "emoji": "🪑"
+  },
+  {
+    "question": "Як перекладається «lie»?",
+    "answer": "Лежати",
+    "emoji": "🛏️"
+  },
+  {
+    "question": "Як перекладається «go»?",
+    "answer": "Йти, їхати",
+    "emoji": "🚶"
+  },
+  {
+    "question": "Як перекладається «leave»?",
+    "answer": "Залишати, їхати",
+    "emoji": "👋"
+  },
+  {
+    "question": "Як перекладається «arrive»?",
+    "answer": "Прибувати",
+    "emoji": "✈️"
+  },
+  {
+    "question": "Як перекладається «make»?",
+    "answer": "Робити",
+    "emoji": "🛠️"
+  },
+  {
+    "question": "Як перекладається «do»?",
+    "answer": "Робити",
+    "emoji": "✅"
+  },
+  {
+    "question": "Як перекладається «buy»?",
+    "answer": "Купувати",
+    "emoji": "🛒"
+  },
+  {
+    "question": "Як перекладається «sell»?",
+    "answer": "Продавати",
+    "emoji": "💰"
+  },
+  {
+    "question": "Як перекладається «pay»?",
+    "answer": "Платити",
+    "emoji": "💳"
+  },
+  {
+    "question": "Як перекладається «spend»?",
+    "answer": "Витрачати",
+    "emoji": "💸"
+  },
+  {
+    "question": "Як перекладається «save»?",
+    "answer": "Зберігати, заощаджувати",
+    "emoji": "💰"
+  },
+  {
+    "question": "Як перекладається «send»?",
+    "answer": "Надсилати",
+    "emoji": "📤"
+  },
+  {
+    "question": "Як перекладається «receive»?",
+    "answer": "Отримувати",
+    "emoji": "📥"
+  },
+  {
+    "question": "Як перекладається «bring»?",
+    "answer": "Приносити",
+    "emoji": "🎁"
+  },
+  {
+    "question": "Як перекладається «carry»?",
+    "answer": "Нести",
+    "emoji": "📦"
+  },
+  {
+    "question": "Як перекладається «throw»?",
+    "answer": "Кидати",
+    "emoji": "🎯"
+  },
+  {
+    "question": "Як перекладається «catch»?",
+    "answer": "Ловити",
+    "emoji": "🤲"
+  },
+  {
+    "question": "Як перекладається «hold»?",
+    "answer": "Тримати",
+    "emoji": "✋"
+  },
+  {
+    "question": "Як перекладається «drop»?",
+    "answer": "Впускати",
+    "emoji": "⬇️"
+  },
+  {
+    "question": "Як перекладається «turn on»?",
+    "answer": "Вмикати",
+    "emoji": "💡"
+  },
+  {
+    "question": "Як перекладається «turn off»?",
+    "answer": "Вимикати",
+    "emoji": "🔌"
+  },
+  {
+    "question": "Як перекладається «pick up»?",
+    "answer": "Підбирати",
+    "emoji": "✋"
+  },
+  {
+    "question": "Як перекладається «put down»?",
+    "answer": "Класти",
+    "emoji": "⬇️"
+  },
+  {
+    "question": "Як перекладається «take off»?",
+    "answer": "Знімати одяг",
+    "emoji": "👕"
+  },
+  {
+    "question": "Як перекладається «put on»?",
+    "answer": "Одягати",
+    "emoji": "👕"
+  },
+  {
+    "question": "Як перекладається «give up»?",
+    "answer": "Здаватися",
+    "emoji": "🏳️"
+  },
+  {
+    "question": "Як перекладається «go on»?",
+    "answer": "Продовжувати",
+    "emoji": "▶️"
+  },
+  {
+    "question": "Як англійською «читати»?",
+    "answer": "Read",
+    "emoji": "📖"
+  },
+  {
+    "question": "Як англійською «писати»?",
+    "answer": "Write",
+    "emoji": "✍️"
+  },
+  {
+    "question": "Як англійською «грати»?",
+    "answer": "Play",
+    "emoji": "🎮"
+  },
+  {
+    "question": "Як перекладається «star»?",
+    "answer": "Зірка",
+    "emoji": "⭐"
+  },
+  {
+    "question": "Як перекладається «sky»?",
+    "answer": "Небо",
+    "emoji": "🌌"
+  },
+  {
+    "question": "Як перекладається «storm»?",
+    "answer": "Буря",
+    "emoji": "⛈️"
+  },
+  {
+    "question": "Як перекладається «thunder»?",
+    "answer": "Грім",
+    "emoji": "⚡"
+  },
+  {
+    "question": "Як перекладається «lightning»?",
+    "answer": "Блискавка",
+    "emoji": "🌩️"
+  },
+  {
+    "question": "Як перекладається «fog»?",
+    "answer": "Туман",
+    "emoji": "🌫️"
+  },
+  {
+    "question": "Як перекладається «ice»?",
+    "answer": "Лід",
+    "emoji": "🧊"
+  },
+  {
+    "question": "Як перекладається «tree»?",
+    "answer": "Дерево",
+    "emoji": "🌳"
+  },
+  {
+    "question": "Як перекладається «grass»?",
+    "answer": "Трава",
+    "emoji": "🌿"
+  },
+  {
+    "question": "Як перекладається «root»?",
+    "answer": "Корінь",
+    "emoji": "🌱"
+  },
+  {
+    "question": "Як перекладається «lake»?",
+    "answer": "Озеро",
+    "emoji": "🏞️"
+  },
+  {
+    "question": "Як перекладається «sea»?",
+    "answer": "Море",
+    "emoji": "🌊"
+  },
+  {
+    "question": "Як перекладається «ocean»?",
+    "answer": "Океан",
+    "emoji": "🌊"
+  },
+  {
+    "question": "Як перекладається «forest»?",
+    "answer": "Ліс",
+    "emoji": "🌲"
+  },
+  {
+    "question": "Як перекладається «island»?",
+    "answer": "Острів",
+    "emoji": "🏝️"
+  },
+  {
+    "question": "Як перекладається «desert»?",
+    "answer": "Пустеля",
+    "emoji": "🏜️"
+  },
+  {
+    "question": "Як перекладається «sad»?",
+    "answer": "Сумний",
+    "emoji": "😢"
+  },
+  {
+    "question": "Як перекладається «angry»?",
+    "answer": "Злий",
+    "emoji": "😠"
+  },
+  {
+    "question": "Як перекладається «scared»?",
+    "answer": "Наляканий",
+    "emoji": "😨"
+  },
+  {
+    "question": "Як перекладається «tired»?",
+    "answer": "Втомлений",
+    "emoji": "😴"
+  },
+  {
+    "question": "Як перекладається «hungry»?",
+    "answer": "Голодний",
+    "emoji": "🍽️"
+  },
+  {
+    "question": "Як перекладається «thirsty»?",
+    "answer": "Спраглий",
+    "emoji": "💧"
+  },
+  {
+    "question": "Як перекладається «excited»?",
+    "answer": "Схвильований",
+    "emoji": "🤩"
+  },
+  {
+    "question": "Як перекладається «surprised»?",
+    "answer": "Здивований",
+    "emoji": "😲"
+  },
+  {
+    "question": "Як перекладається «bored»?",
+    "answer": "Знуджений",
+    "emoji": "😑"
+  },
+  {
+    "question": "Як перекладається «worried»?",
+    "answer": "Стурбований",
+    "emoji": "😟"
+  },
+  {
+    "question": "Як перекладається «nervous»?",
+    "answer": "Нервовий",
+    "emoji": "😰"
+  },
+  {
+    "question": "Як перекладається «brave»?",
+    "answer": "Хоробрий",
+    "emoji": "🦸"
+  },
+  {
+    "question": "Як перекладається «shy»?",
+    "answer": "Сором'язливий",
+    "emoji": "😳"
+  },
+  {
+    "question": "Як перекладається «kind»?",
+    "answer": "Добрий",
+    "emoji": "💗"
+  },
+  {
+    "question": "Як перекладається «mean»?",
+    "answer": "Злий, підлий",
+    "emoji": "😤"
+  },
+  {
+    "question": "Як перекладається «funny»?",
+    "answer": "Смішний",
+    "emoji": "😂"
+  },
+  {
+    "question": "Як перекладається «serious»?",
+    "answer": "Серйозний",
+    "emoji": "😐"
+  },
+  {
+    "question": "Як перекладається «lazy»?",
+    "answer": "Лінивий",
+    "emoji": "🦥"
+  },
+  {
+    "question": "Як перекладається «free»?",
+    "answer": "Вільний",
+    "emoji": "🕊️"
+  },
+  {
+    "question": "Як перекладається «careful»?",
+    "answer": "Обережний",
+    "emoji": "⚠️"
+  },
+  {
+    "question": "Як перекладається «careless»?",
+    "answer": "Необережний",
+    "emoji": "😬"
+  },
+  {
+    "question": "Як перекладається «polite»?",
+    "answer": "Ввічливий",
+    "emoji": "🤝"
+  },
+  {
+    "question": "Як перекладається «rude»?",
+    "answer": "Грубий",
+    "emoji": "😤"
+  },
+  {
+    "question": "Як перекладається «honest»?",
+    "answer": "Чесний",
+    "emoji": "✅"
+  },
+  {
+    "question": "Як перекладається «cold»?",
+    "answer": "Холодний",
+    "emoji": "🥶"
+  },
+  {
+    "question": "Як перекладається «hot»?",
+    "answer": "Гарячий",
+    "emoji": "🥵"
+  },
+  {
+    "question": "Як перекладається «cool»?",
+    "answer": "Прохолодний",
+    "emoji": "😎"
+  },
+  {
+    "question": "Як перекладається «big»?",
+    "answer": "Великий",
+    "emoji": "🐘"
+  },
+  {
+    "question": "Як перекладається «small»?",
+    "answer": "Маленький",
+    "emoji": "🐜"
+  },
+  {
+    "question": "Як перекладається «large»?",
+    "answer": "Великий",
+    "emoji": "🐘"
+  },
+  {
+    "question": "Як перекладається «tiny»?",
+    "answer": "Крихітний",
+    "emoji": "🐜"
+  },
+  {
+    "question": "Як перекладається «huge»?",
+    "answer": "Величезний",
+    "emoji": "🦕"
+  },
+  {
+    "question": "Як перекладається «fast»?",
+    "answer": "Швидкий",
+    "emoji": "🚀"
+  },
+  {
+    "question": "Як перекладається «slow»?",
+    "answer": "Повільний",
+    "emoji": "🐢"
+  },
+  {
+    "question": "Як перекладається «quick»?",
+    "answer": "Швидкий",
+    "emoji": "⚡"
+  },
+  {
+    "question": "Як перекладається «new»?",
+    "answer": "Новий",
+    "emoji": "✨"
+  },
+  {
+    "question": "Як перекладається «old»?",
+    "answer": "Старий",
+    "emoji": "👴"
+  },
+  {
+    "question": "Як перекладається «young»?",
+    "answer": "Молодий",
+    "emoji": "👶"
+  },
+  {
+    "question": "Як перекладається «good»?",
+    "answer": "Хороший",
+    "emoji": "👍"
+  },
+  {
+    "question": "Як перекладається «bad»?",
+    "answer": "Поганий",
+    "emoji": "👎"
+  },
+  {
+    "question": "Як перекладається «terrible»?",
+    "answer": "Жахливий",
+    "emoji": "😱"
+  },
+  {
+    "question": "Як перекладається «beautiful»?",
+    "answer": "Красивий",
+    "emoji": "🌹"
+  },
+  {
+    "question": "Як перекладається «ugly»?",
+    "answer": "Потворний",
+    "emoji": "👹"
+  },
+  {
+    "question": "Як перекладається «pretty»?",
+    "answer": "Гарний",
+    "emoji": "🌸"
+  },
+  {
+    "question": "Як перекладається «handsome»?",
+    "answer": "Вродливий (про чоловіків)",
+    "emoji": "🤵"
+  },
+  {
+    "question": "Як перекладається «easy»?",
+    "answer": "Легкий",
+    "emoji": "✅"
+  },
+  {
+    "question": "Як перекладається «difficult»?",
+    "answer": "Складний",
+    "emoji": "🧩"
+  },
+  {
+    "question": "Як перекладається «hard»?",
+    "answer": "Важкий, твердий",
+    "emoji": "💪"
+  },
+  {
+    "question": "Як перекладається «soft»?",
+    "answer": "М'який",
+    "emoji": "🧸"
+  },
+  {
+    "question": "Як перекладається «heavy»?",
+    "answer": "Важкий",
+    "emoji": "🏋️"
+  },
+  {
+    "question": "Як перекладається «light»?",
+    "answer": "Легкий, світлий",
+    "emoji": "🪶"
+  },
+  {
+    "question": "Як перекладається «long»?",
+    "answer": "Довгий",
+    "emoji": "📏"
+  },
+  {
+    "question": "Як перекладається «short»?",
+    "answer": "Короткий",
+    "emoji": "📐"
+  },
+  {
+    "question": "Як перекладається «tall»?",
+    "answer": "Високий про людей",
+    "emoji": "🦒"
+  },
+  {
+    "question": "Як перекладається «high»?",
+    "answer": "Високий про предмети",
+    "emoji": "🏔️"
+  },
+  {
+    "question": "Як перекладається «low»?",
+    "answer": "Низький",
+    "emoji": "⬇️"
+  },
+  {
+    "question": "Як перекладається «deep»?",
+    "answer": "Глибокий",
+    "emoji": "🌊"
+  },
+  {
+    "question": "Як перекладається «shallow»?",
+    "answer": "Мілкий",
+    "emoji": "🏖️"
+  },
+  {
+    "question": "Як перекладається «wide»?",
+    "answer": "Широкий",
+    "emoji": "↔️"
+  },
+  {
+    "question": "Як перекладається «narrow»?",
+    "answer": "Вузький",
+    "emoji": "↕️"
+  },
+  {
+    "question": "Як перекладається «thick»?",
+    "answer": "Товстий",
+    "emoji": "📖"
+  },
+  {
+    "question": "Як перекладається «thin»?",
+    "answer": "Тонкий",
+    "emoji": "📄"
+  },
+  {
+    "question": "Як перекладається «dirty»?",
+    "answer": "Брудний",
+    "emoji": "🤢"
+  },
+  {
+    "question": "Як перекладається «wet»?",
+    "answer": "Мокрий",
+    "emoji": "💧"
+  },
+  {
+    "question": "Як перекладається «dry»?",
+    "answer": "Сухий",
+    "emoji": "🏜️"
+  },
+  {
+    "question": "Як перекладається «full»?",
+    "answer": "Повний",
+    "emoji": "🥛"
+  },
+  {
+    "question": "Як перекладається «strong»?",
+    "answer": "Сильний",
+    "emoji": "💪"
+  },
+  {
+    "question": "Як перекладається «weak»?",
+    "answer": "Слабкий",
+    "emoji": "😔"
+  },
+  {
+    "question": "Як перекладається «rich»?",
+    "answer": "Багатий",
+    "emoji": "💰"
+  },
+  {
+    "question": "Як перекладається «poor»?",
+    "answer": "Бідний",
+    "emoji": "😔"
+  },
+  {
+    "question": "Як перекладається «expensive»?",
+    "answer": "Дорогий",
+    "emoji": "💎"
+  },
+  {
+    "question": "Як перекладається «cheap»?",
+    "answer": "Дешевий",
+    "emoji": "💵"
+  },
+  {
+    "question": "Як перекладається «safe»?",
+    "answer": "Безпечний",
+    "emoji": "🛡️"
+  },
+  {
+    "question": "Як перекладається «dangerous»?",
+    "answer": "Небезпечний",
+    "emoji": "⚠️"
+  },
+  {
+    "question": "Як перекладається «same»?",
+    "answer": "Однаковий",
+    "emoji": "👯"
+  },
+  {
+    "question": "Як перекладається «different»?",
+    "answer": "Різний",
+    "emoji": "🎭"
+  },
+  {
+    "question": "Як перекладається «correct»?",
+    "answer": "Правильний",
+    "emoji": "✅"
+  },
+  {
+    "question": "Як перекладається «wrong»?",
+    "answer": "Неправильний",
+    "emoji": "❌"
+  },
+  {
+    "question": "Як перекладається «true»?",
+    "answer": "Правдивий",
+    "emoji": "✅"
+  },
+  {
+    "question": "Як перекладається «false»?",
+    "answer": "Хибний",
+    "emoji": "❌"
+  },
+  {
+    "question": "Протилежне до «big»?",
+    "answer": "Small — маленький",
+    "emoji": "🐜"
+  },
+  {
+    "question": "Протилежне до «hot»?",
+    "answer": "Cold — холодний",
+    "emoji": "🥶"
+  },
+  {
+    "question": "Протилежне до «happy»?",
+    "answer": "Sad — сумний",
+    "emoji": "😢"
+  },
+  {
+    "question": "Протилежне до «fast»?",
+    "answer": "Slow — повільний",
+    "emoji": "🐢"
+  },
+  {
+    "question": "Протилежне до «good»?",
+    "answer": "Bad — поганий",
+    "emoji": "👎"
+  },
+  {
+    "question": "Протилежне до «old»?",
+    "answer": "New / Young",
+    "emoji": "✨"
+  },
+  {
+    "question": "Протилежне до «open»?",
+    "answer": "Close — закривати",
+    "emoji": "📁"
+  },
+  {
+    "question": "Протилежне до «up»?",
+    "answer": "Down — вниз",
+    "emoji": "⬇️"
+  },
+  {
+    "question": "Протилежне до «left»?",
+    "answer": "Right — право",
+    "emoji": "➡️"
+  },
+  {
+    "question": "Протилежне до «start»?",
+    "answer": "Finish / Stop",
+    "emoji": "🏁"
+  },
+  {
+    "question": "Протилежне до «buy»?",
+    "answer": "Sell — продавати",
+    "emoji": "💰"
+  },
+  {
+    "question": "Протилежне до «yes»?",
+    "answer": "No — ні",
+    "emoji": "❌"
+  },
+  {
+    "question": "Протилежне до «rich»?",
+    "answer": "Poor — бідний",
+    "emoji": "😔"
+  },
+  {
+    "question": "Протилежне до «safe»?",
+    "answer": "Dangerous — небезпечний",
+    "emoji": "⚠️"
+  },
+  {
+    "question": "Протилежне до «easy»?",
+    "answer": "Difficult — складний",
+    "emoji": "🧩"
+  },
+  {
+    "question": "Протилежне до «true»?",
+    "answer": "False — хибний",
+    "emoji": "❌"
+  },
+  {
+    "question": "Як перекладається «house»?",
+    "answer": "Дім",
+    "emoji": "🏠"
+  },
+  {
+    "question": "Як перекладається «store»?",
+    "answer": "Магазин",
+    "emoji": "🏪"
+  },
+  {
+    "question": "Як перекладається «supermarket»?",
+    "answer": "Супермаркет",
+    "emoji": "🛒"
+  },
+  {
+    "question": "Як перекладається «library»?",
+    "answer": "Бібліотека",
+    "emoji": "📚"
+  },
+  {
+    "question": "Як перекладається «bank»?",
+    "answer": "Банк",
+    "emoji": "🏦"
+  },
+  {
+    "question": "Як перекладається «church»?",
+    "answer": "Церква",
+    "emoji": "⛪"
+  },
+  {
+    "question": "Як перекладається «stadium»?",
+    "answer": "Стадіон",
+    "emoji": "🏟️"
+  },
+  {
+    "question": "Як перекладається «post office»?",
+    "answer": "Пошта",
+    "emoji": "📮"
+  },
+  {
+    "question": "Як перекладається «police station»?",
+    "answer": "Поліцейська дільниця",
+    "emoji": "👮"
+  },
+  {
+    "question": "Як англійською «бібліотека»?",
+    "answer": "Library",
+    "emoji": "📚"
+  },
+  {
+    "question": "Як перекладається «car»?",
+    "answer": "Автомобіль",
+    "emoji": "🚗"
+  },
+  {
+    "question": "Як перекладається «bicycle»?",
+    "answer": "Велосипед",
+    "emoji": "🚲"
+  },
+  {
+    "question": "Як перекладається «motorcycle»?",
+    "answer": "Мотоцикл",
+    "emoji": "🏍️"
+  },
+  {
+    "question": "Як перекладається «ship»?",
+    "answer": "Корабель",
+    "emoji": "🚢"
+  },
+  {
+    "question": "Як перекладається «helicopter»?",
+    "answer": "Гелікоптер",
+    "emoji": "🚁"
+  },
+  {
+    "question": "Як перекладається «truck»?",
+    "answer": "Вантажівка",
+    "emoji": "🚚"
+  },
+  {
+    "question": "Як перекладається «ambulance»?",
+    "answer": "Швидка допомога",
+    "emoji": "🚑"
+  },
+  {
+    "question": "Як перекладається «fire truck»?",
+    "answer": "Пожежна машина",
+    "emoji": "🚒"
+  },
+  {
+    "question": "Як перекладається «tram»?",
+    "answer": "Трамвай",
+    "emoji": "🚃"
+  },
+  {
+    "question": "Як перекладається «subway»?",
+    "answer": "Метро",
+    "emoji": "🚇"
+  },
+  {
+    "question": "Як перекладається «scooter»?",
+    "answer": "Скутер",
+    "emoji": "🛴"
+  },
+  {
+    "question": "Як перекладається «bread»?",
+    "answer": "Хліб",
+    "emoji": "🍞"
+  },
+  {
+    "question": "Як перекладається «butter»?",
+    "answer": "Масло",
+    "emoji": "🧈"
+  },
+  {
+    "question": "Як перекладається «milk»?",
+    "answer": "Молоко",
+    "emoji": "🥛"
+  },
+  {
+    "question": "Як перекладається «egg»?",
+    "answer": "Яйце",
+    "emoji": "🥚"
+  },
+  {
+    "question": "Як перекладається «porridge»?",
+    "answer": "Каша",
+    "emoji": "🥣"
+  },
+  {
+    "question": "Як перекладається «pie»?",
+    "answer": "Пиріг",
+    "emoji": "🥧"
+  },
+  {
+    "question": "Як перекладається «ice cream»?",
+    "answer": "Морозиво",
+    "emoji": "🍦"
+  },
+  {
+    "question": "Як перекладається «candy»?",
+    "answer": "Цукерка",
+    "emoji": "🍬"
+  },
+  {
+    "question": "Як перекладається «sugar»?",
+    "answer": "Цукор",
+    "emoji": "🍬"
+  },
+  {
+    "question": "Як перекладається «salt»?",
+    "answer": "Сіль",
+    "emoji": "🧂"
+  },
+  {
+    "question": "Як перекладається «oil»?",
+    "answer": "Олія",
+    "emoji": "🫒"
+  },
+  {
+    "question": "Як англійською «хліб»?",
+    "answer": "Bread",
+    "emoji": "🍞"
+  },
+  {
+    "question": "Як англійською «молоко»?",
+    "answer": "Milk",
+    "emoji": "🥛"
+  },
+  {
+    "question": "Як англійською «морозиво»?",
+    "answer": "Ice cream",
+    "emoji": "🍦"
+  },
+  {
+    "question": "Як перекладається «police officer»?",
+    "answer": "Поліцейський",
+    "emoji": "👮"
+  },
+  {
+    "question": "Як перекладається «firefighter»?",
+    "answer": "Пожежник",
+    "emoji": "🧑‍🚒"
+  },
+  {
+    "question": "Як перекладається «chef»?",
+    "answer": "Шеф-кухар",
+    "emoji": "👨‍🍳"
+  },
+  {
+    "question": "Як перекладається «waiter»?",
+    "answer": "Офіціант",
+    "emoji": "🧑‍🍳"
+  },
+  {
+    "question": "Як перекладається «artist»?",
+    "answer": "Художник",
+    "emoji": "🎨"
+  },
+  {
+    "question": "Як перекладається «musician»?",
+    "answer": "Музикант",
+    "emoji": "🎵"
+  },
+  {
+    "question": "Як перекладається «scientist»?",
+    "answer": "Вчений",
+    "emoji": "🔬"
+  },
+  {
+    "question": "Як перекладається «engineer»?",
+    "answer": "Інженер",
+    "emoji": "👷"
+  },
+  {
+    "question": "Як перекладається «programmer»?",
+    "answer": "Програміст",
+    "emoji": "💻"
+  },
+  {
+    "question": "Як перекладається «actor»?",
+    "answer": "Актор",
+    "emoji": "🎭"
+  },
+  {
+    "question": "Як перекладається «writer»?",
+    "answer": "Письменник",
+    "emoji": "✍️"
+  },
+  {
+    "question": "Як перекладається «lawyer»?",
+    "answer": "Адвокат",
+    "emoji": "⚖️"
+  },
+  {
+    "question": "Як перекладається «vet»?",
+    "answer": "Ветеринар",
+    "emoji": "🐕"
+  },
+  {
+    "question": "Як англійською «пожежник»?",
+    "answer": "Firefighter",
+    "emoji": "🧑‍🚒"
+  },
+  {
+    "question": "Як англійською «пілот»?",
+    "answer": "Pilot",
+    "emoji": "👨‍✈️"
+  },
+  {
+    "question": "Як англійською «ветеринар»?",
+    "answer": "Vet",
+    "emoji": "🐕"
+  },
+  {
+    "question": "Як перекладається «hello»?",
+    "answer": "Привіт",
+    "emoji": "👋"
+  },
+  {
+    "question": "Як перекладається «goodbye»?",
+    "answer": "До побачення",
+    "emoji": "👋"
+  },
+  {
+    "question": "Як перекладається «please»?",
+    "answer": "Будь ласка",
+    "emoji": "🙏"
+  },
+  {
+    "question": "Як перекладається «thank you»?",
+    "answer": "Дякую",
+    "emoji": "🙏"
+  },
+  {
+    "question": "Як перекладається «yes»?",
+    "answer": "Так",
+    "emoji": "✅"
+  },
+  {
+    "question": "Як перекладається «no»?",
+    "answer": "Ні",
+    "emoji": "❌"
+  },
+  {
+    "question": "Як перекладається «sorry»?",
+    "answer": "Вибач",
+    "emoji": "😔"
+  },
+  {
+    "question": "Як перекладається «excuse me»?",
+    "answer": "Перепрошую",
+    "emoji": "🙋"
+  },
+  {
+    "question": "Як англійською «Доброго дня»?",
+    "answer": "Good afternoon",
+    "emoji": "☀️"
+  },
+  {
+    "question": "Як англійською «Як справи?»?",
+    "answer": "How are you?",
+    "emoji": "🤝"
+  },
+  {
+    "question": "Як англійською «Мене звати...»?",
+    "answer": "My name is...",
+    "emoji": "🏷️"
+  },
+  {
+    "question": "Як англійською «Приємно познайомитися»?",
+    "answer": "Nice to meet you",
+    "emoji": "🤝"
+  },
+  {
+    "question": "Як англійською «Говоріть повільніше»?",
+    "answer": "Speak slower, please",
+    "emoji": "🐢"
+  },
+  {
+    "question": "Як англійською «Скільки це коштує?»?",
+    "answer": "How much is this?",
+    "emoji": "💰"
+  },
+  {
+    "question": "Як англійською «Допоможіть!»?",
+    "answer": "Help!",
+    "emoji": "🆘"
+  },
+  {
+    "question": "Як англійською «Я голодний»?",
+    "answer": "I am hungry",
+    "emoji": "🍽️"
+  },
+  {
+    "question": "Як англійською «Я втомився»?",
+    "answer": "I am tired",
+    "emoji": "😴"
+  },
+  {
+    "question": "Як англійською «Скільки тобі років?»?",
+    "answer": "How old are you?",
+    "emoji": "🎂"
+  },
+  {
+    "question": "Як англійською «Звідки ти?»?",
+    "answer": "Where are you from?",
+    "emoji": "🌍"
+  },
+  {
+    "question": "Як англійською «Мені подобається»?",
+    "answer": "I like it",
+    "emoji": "👍"
+  },
+  {
+    "question": "Як англійською «Мені не подобається»?",
+    "answer": "I don't like it",
+    "emoji": "👎"
+  },
+  {
+    "question": "Як англійською «Не знаю»?",
+    "answer": "I don't know",
+    "emoji": "🤷"
+  },
+  {
+    "question": "Що означає «Let the cat out of the bag»?",
+    "answer": "Видати секрет",
+    "emoji": "🐱"
+  },
+  {
+    "question": "Що означає «Once in a blue moon»?",
+    "answer": "Дуже рідко",
+    "emoji": "🌙"
+  },
+  {
+    "question": "Що означає «Kill two birds with one stone»?",
+    "answer": "Вбити двох зайців",
+    "emoji": "🎯"
+  },
+  {
+    "question": "Що означає «Hit the books»?",
+    "answer": "Сісти за підручники",
+    "emoji": "📚"
+  },
+  {
+    "question": "Що означає «Time flies»?",
+    "answer": "Час летить",
+    "emoji": "⏰"
+  },
+  {
+    "question": "Що означає «Actions speak louder than words»?",
+    "answer": "Не словом, а ділом",
+    "emoji": "💪"
+  },
+  {
+    "question": "Що означає «Don't cry over spilled milk»?",
+    "answer": "Що впало, те пропало",
+    "emoji": "🥛"
+  },
+  {
+    "question": "Що означає «Practice makes perfect»?",
+    "answer": "Повторення — мати навчання",
+    "emoji": "🎯"
+  },
+  {
+    "question": "Що означає «Curiosity killed the cat»?",
+    "answer": "Цікавій Варварі носа відірвали",
+    "emoji": "🐱"
+  },
+  {
+    "question": "Що означає «Easy come, easy go»?",
+    "answer": "Легко прийшло, легко пішло",
+    "emoji": "💨"
+  },
+  {
+    "question": "Що означає «No pain, no gain»?",
+    "answer": "Без труда нема плода",
+    "emoji": "💪"
+  },
+  {
+    "question": "Що означає «Two heads are better than one»?",
+    "answer": "Одна голова добре, а дві краще",
+    "emoji": "🤝"
+  },
+  {
+    "question": "Що означає «A friend in need is a friend indeed»?",
+    "answer": "Друзі пізнаються в біді",
+    "emoji": "🤝"
+  },
+  {
+    "question": "Що означає «Keep your chin up»?",
+    "answer": "Не падай духом",
+    "emoji": "😊"
+  },
+  {
+    "question": "Що означає «Spill the beans»?",
+    "answer": "Проболтатися",
+    "emoji": "🫘"
+  },
+  {
+    "question": "Що означає «Hit the nail on the head»?",
+    "answer": "Влучити в саму точку",
+    "emoji": "🔨"
+  },
+  {
+    "question": "Як перекладається «where»?",
+    "answer": "Де / Куди",
+    "emoji": "📍"
+  },
+  {
+    "question": "Як перекладається «when»?",
+    "answer": "Коли",
+    "emoji": "🕐"
+  },
+  {
+    "question": "Як перекладається «why»?",
+    "answer": "Чому",
+    "emoji": "🤔"
+  },
+  {
+    "question": "Як перекладається «who»?",
+    "answer": "Хто",
+    "emoji": "👤"
+  },
+  {
+    "question": "Як перекладається «how»?",
+    "answer": "Як",
+    "emoji": "❓"
+  },
+  {
+    "question": "Як перекладається «which»?",
+    "answer": "Який / Котрий",
+    "emoji": "👆"
+  },
+  {
+    "question": "Як перекладається «whose»?",
+    "answer": "Чий",
+    "emoji": "👤"
+  },
+  {
+    "question": "Як англійською «де»?",
+    "answer": "Where",
+    "emoji": "📍"
+  },
+  {
+    "question": "Як англійською «коли»?",
+    "answer": "When",
+    "emoji": "🕐"
+  },
+  {
+    "question": "Як англійською «чому»?",
+    "answer": "Why",
+    "emoji": "🤔"
+  },
+  {
+    "question": "Як англійською «хто»?",
+    "answer": "Who",
+    "emoji": "👤"
+  },
+  {
+    "question": "Як англійською «як»?",
+    "answer": "How",
+    "emoji": "❓"
+  },
+  {
+    "question": "Як перекладається «how much»?",
+    "answer": "Скільки (незлічувані)",
+    "emoji": "💰"
+  },
+  {
+    "question": "Як перекладається «how old»?",
+    "answer": "Скільки років",
+    "emoji": "🎂"
+  },
+  {
+    "question": "Як перекладається «how long»?",
+    "answer": "Як довго",
+    "emoji": "📏"
+  },
+  {
+    "question": "Як перекладається «I»?",
+    "answer": "Я",
+    "emoji": "👤"
+  },
+  {
+    "question": "Як перекладається «you»?",
+    "answer": "Ти / Ви",
+    "emoji": "👤"
+  },
+  {
+    "question": "Як перекладається «he»?",
+    "answer": "Він",
+    "emoji": "👨"
+  },
+  {
+    "question": "Як перекладається «she»?",
+    "answer": "Вона",
+    "emoji": "👩"
+  },
+  {
+    "question": "Як перекладається «it»?",
+    "answer": "Воно / Це",
+    "emoji": "👆"
+  },
+  {
+    "question": "Як перекладається «we»?",
+    "answer": "Ми",
+    "emoji": "👥"
+  },
+  {
+    "question": "Як перекладається «they»?",
+    "answer": "Вони",
+    "emoji": "👥"
+  },
+  {
+    "question": "Як англійською «я»?",
+    "answer": "I",
+    "emoji": "👤"
+  },
+  {
+    "question": "Як англійською «ми»?",
+    "answer": "We",
+    "emoji": "👥"
+  },
+  {
+    "question": "Як англійською «вони»?",
+    "answer": "They",
+    "emoji": "👥"
+  },
+  {
+    "question": "Як перекладається «my»?",
+    "answer": "Мій",
+    "emoji": "👤"
+  },
+  {
+    "question": "Як перекладається «your»?",
+    "answer": "Твій / Ваш",
+    "emoji": "👤"
+  },
+  {
+    "question": "Як перекладається «his»?",
+    "answer": "Його",
+    "emoji": "👨"
+  },
+  {
+    "question": "Як перекладається «her»?",
+    "answer": "Її",
+    "emoji": "👩"
+  },
+  {
+    "question": "Як перекладається «our»?",
+    "answer": "Наш",
+    "emoji": "👥"
+  },
+  {
+    "question": "Як перекладається «their»?",
+    "answer": "Їхній",
+    "emoji": "👥"
+  },
+  {
+    "question": "Як перекладається «its»?",
+    "answer": "Його (для речей/тварин)",
+    "emoji": "📦"
+  },
+  {
+    "question": "Як англійською «мій»?",
+    "answer": "My",
+    "emoji": "👤"
+  },
+  {
+    "question": "Як англійською «наш»?",
+    "answer": "Our",
+    "emoji": "👥"
+  },
+  {
+    "question": "Як перекладається «me»?",
+    "answer": "Мене / Мені",
+    "emoji": "👤"
+  },
+  {
+    "question": "Як перекладається «him»?",
+    "answer": "Його / Йому",
+    "emoji": "👨"
+  },
+  {
+    "question": "Як перекладається «us»?",
+    "answer": "Нас / Нам",
+    "emoji": "👥"
+  },
+  {
+    "question": "Як перекладається «them»?",
+    "answer": "Їх / Їм",
+    "emoji": "👥"
+  },
+  {
+    "question": "Як перекладається «this»?",
+    "answer": "Це / Цей",
+    "emoji": "👆"
+  },
+  {
+    "question": "Як перекладається «these»?",
+    "answer": "Ці",
+    "emoji": "👆"
+  },
+  {
+    "question": "Як перекладається «those»?",
+    "answer": "Ті",
+    "emoji": "👉"
+  },
+  {
+    "question": "Як англійською «це»?",
+    "answer": "This",
+    "emoji": "👆"
+  },
+  {
+    "question": "Як перекладається «myself»?",
+    "answer": "Себе / Сам",
+    "emoji": "👤"
+  },
+  {
+    "question": "Як перекладається «yourself»?",
+    "answer": "Себе / Сам (ти)",
+    "emoji": "👤"
+  },
+  {
+    "question": "Як перекладається «himself»?",
+    "answer": "Себе / Сам (він)",
+    "emoji": "👨"
+  },
+  {
+    "question": "Як перекладається «herself»?",
+    "answer": "Себе / Сама (вона)",
+    "emoji": "👩"
+  },
+  {
+    "question": "Як перекладається «ourselves»?",
+    "answer": "Себе / Самі (ми)",
+    "emoji": "👥"
+  },
+  {
+    "question": "Як перекладається «themselves»?",
+    "answer": "Себе / Самі (вони)",
+    "emoji": "👥"
+  },
+  {
+    "question": "Як перекладається «in»?",
+    "answer": "В / У",
+    "emoji": "📦"
+  },
+  {
+    "question": "Як перекладається «on»?",
+    "answer": "На",
+    "emoji": "📦"
+  },
+  {
+    "question": "Як перекладається «at»?",
+    "answer": "При / Біля / О (час)",
+    "emoji": "📍"
+  },
+  {
+    "question": "Як перекладається «under»?",
+    "answer": "Під",
+    "emoji": "⬇️"
+  },
+  {
+    "question": "Як перекладається «over»?",
+    "answer": "Над / Через",
+    "emoji": "⬆️"
+  },
+  {
+    "question": "Як перекладається «behind»?",
+    "answer": "Позаду / За",
+    "emoji": "🔙"
+  },
+  {
+    "question": "Як перекладається «in front of»?",
+    "answer": "Перед / Попереду",
+    "emoji": "🔜"
+  },
+  {
+    "question": "Як перекладається «between»?",
+    "answer": "Між",
+    "emoji": "↔️"
+  },
+  {
+    "question": "Як перекладається «near»?",
+    "answer": "Близько / Біля",
+    "emoji": "📍"
+  },
+  {
+    "question": "Як перекладається «above»?",
+    "answer": "Вище / Над",
+    "emoji": "⬆️"
+  },
+  {
+    "question": "Як перекладається «below»?",
+    "answer": "Нижче / Під",
+    "emoji": "⬇️"
+  },
+  {
+    "question": "Як перекладається «inside»?",
+    "answer": "Всередині",
+    "emoji": "📦"
+  },
+  {
+    "question": "Як перекладається «outside»?",
+    "answer": "Зовні / Ззовні",
+    "emoji": "🌳"
+  },
+  {
+    "question": "Як перекладається «around»?",
+    "answer": "Навколо",
+    "emoji": "🔄"
+  },
+  {
+    "question": "Як перекладається «through»?",
+    "answer": "Через / Крізь",
+    "emoji": "➡️"
+  },
+  {
+    "question": "Як перекладається «across»?",
+    "answer": "Через / Поперек",
+    "emoji": "↔️"
+  },
+  {
+    "question": "Як перекладається «along»?",
+    "answer": "Вздовж",
+    "emoji": "➡️"
+  },
+  {
+    "question": "Як англійською «під»?",
+    "answer": "Under",
+    "emoji": "⬇️"
+  },
+  {
+    "question": "Як англійською «над»?",
+    "answer": "Over / Above",
+    "emoji": "⬆️"
+  },
+  {
+    "question": "Як англійською «між»?",
+    "answer": "Between",
+    "emoji": "↔️"
+  },
+  {
+    "question": "Як англійською «позаду»?",
+    "answer": "Behind",
+    "emoji": "🔙"
+  },
+  {
+    "question": "Як перекладається «to»?",
+    "answer": "До / В (напрямок)",
+    "emoji": "➡️"
+  },
+  {
+    "question": "Як перекладається «from»?",
+    "answer": "З / Від",
+    "emoji": "⬅️"
+  },
+  {
+    "question": "Як перекладається «into»?",
+    "answer": "В / Всередину",
+    "emoji": "📥"
+  },
+  {
+    "question": "Як перекладається «out of»?",
+    "answer": "З / Назовні",
+    "emoji": "📤"
+  },
+  {
+    "question": "Як перекладається «towards»?",
+    "answer": "До / В напрямку",
+    "emoji": "➡️"
+  },
+  {
+    "question": "Як перекладається «before»?",
+    "answer": "До / Перед (час)",
+    "emoji": "⏪"
+  },
+  {
+    "question": "Як перекладається «after»?",
+    "answer": "Після",
+    "emoji": "⏩"
+  },
+  {
+    "question": "Як перекладається «during»?",
+    "answer": "Під час / Протягом",
+    "emoji": "⏳"
+  },
+  {
+    "question": "Як перекладається «until»?",
+    "answer": "До (поки не)",
+    "emoji": "⏰"
+  },
+  {
+    "question": "Як перекладається «since»?",
+    "answer": "З (певного часу)",
+    "emoji": "📅"
+  },
+  {
+    "question": "Як перекладається «for»?",
+    "answer": "Для / Протягом",
+    "emoji": "🎁"
+  },
+  {
+    "question": "Як перекладається «by»?",
+    "answer": "Біля / До (дедлайн)",
+    "emoji": "📍"
+  },
+  {
+    "question": "Як перекладається «with»?",
+    "answer": "З (разом)",
+    "emoji": "🤝"
+  },
+  {
+    "question": "Як перекладається «without»?",
+    "answer": "Без",
+    "emoji": "🚫"
+  },
+  {
+    "question": "Як перекладається «about»?",
+    "answer": "Про / Приблизно",
+    "emoji": "💬"
+  },
+  {
+    "question": "Як перекладається «always»?",
+    "answer": "Завжди",
+    "emoji": "♾️"
+  },
+  {
+    "question": "Як перекладається «usually»?",
+    "answer": "Зазвичай",
+    "emoji": "📊"
+  },
+  {
+    "question": "Як перекладається «sometimes»?",
+    "answer": "Іноді",
+    "emoji": "🎲"
+  },
+  {
+    "question": "Як перекладається «rarely»?",
+    "answer": "Рідко",
+    "emoji": "🌙"
+  },
+  {
+    "question": "Як перекладається «never»?",
+    "answer": "Ніколи",
+    "emoji": "🚫"
+  },
+  {
+    "question": "Як перекладається «already»?",
+    "answer": "Вже",
+    "emoji": "✅"
+  },
+  {
+    "question": "Як перекладається «still»?",
+    "answer": "Ще / Досі",
+    "emoji": "⏳"
+  },
+  {
+    "question": "Як перекладається «just»?",
+    "answer": "Щойно / Тільки що",
+    "emoji": "⏰"
+  },
+  {
+    "question": "Як англійською «завжди»?",
+    "answer": "Always",
+    "emoji": "♾️"
+  },
+  {
+    "question": "Як англійською «ніколи»?",
+    "answer": "Never",
+    "emoji": "🚫"
+  },
+  {
+    "question": "Як англійською «іноді»?",
+    "answer": "Sometimes",
+    "emoji": "🎲"
+  },
+  {
+    "question": "Як перекладається «very»?",
+    "answer": "Дуже",
+    "emoji": "💯"
+  },
+  {
+    "question": "Як перекладається «really»?",
+    "answer": "Справді / Дійсно",
+    "emoji": "✅"
+  },
+  {
+    "question": "Як перекладається «quite»?",
+    "answer": "Досить / Цілком",
+    "emoji": "📊"
+  },
+  {
+    "question": "Як перекладається «too»?",
+    "answer": "Занадто / Також",
+    "emoji": "➕"
+  },
+  {
+    "question": "Як перекладається «enough»?",
+    "answer": "Достатньо",
+    "emoji": "✅"
+  },
+  {
+    "question": "Як перекладається «hour»?",
+    "answer": "Година",
+    "emoji": "🕐"
+  },
+  {
+    "question": "Як перекладається «o'clock»?",
+    "answer": "Година (рівно)",
+    "emoji": "🕐"
+  },
+  {
+    "question": "Як перекладається «half past»?",
+    "answer": "Пів на (30 хвилин)",
+    "emoji": "🕧"
+  },
+  {
+    "question": "Як перекладається «quarter past»?",
+    "answer": "Чверть після (15 хвилин)",
+    "emoji": "🕐"
+  },
+  {
+    "question": "Як перекладається «quarter to»?",
+    "answer": "За чверть (без 15)",
+    "emoji": "🕐"
+  },
+  {
+    "question": "Як перекладається «noon»?",
+    "answer": "Полудень",
+    "emoji": "☀️"
+  },
+  {
+    "question": "Як перекладається «afternoon»?",
+    "answer": "День (після полудня)",
+    "emoji": "☀️"
+  },
+  {
+    "question": "Як перекладається «now»?",
+    "answer": "Зараз",
+    "emoji": "⏰"
+  },
+  {
+    "question": "Як перекладається «soon»?",
+    "answer": "Скоро",
+    "emoji": "⏰"
+  },
+  {
+    "question": "Як перекладається «early»?",
+    "answer": "Рано",
+    "emoji": "🌅"
+  },
+  {
+    "question": "Як англійською «година»?",
+    "answer": "Hour",
+    "emoji": "🕐"
+  },
+  {
+    "question": "Як англійською «хвилина»?",
+    "answer": "Minute",
+    "emoji": "⏱️"
+  },
+  {
+    "question": "Як перекладається «math»?",
+    "answer": "Математика",
+    "emoji": "🔢"
+  },
+  {
+    "question": "Як перекладається «science»?",
+    "answer": "Природознавство / Наука",
+    "emoji": "🔬"
+  },
+  {
+    "question": "Як перекладається «geography»?",
+    "answer": "Географія",
+    "emoji": "🌍"
+  },
+  {
+    "question": "Як перекладається «biology»?",
+    "answer": "Біологія",
+    "emoji": "🧬"
+  },
+  {
+    "question": "Як перекладається «chemistry»?",
+    "answer": "Хімія",
+    "emoji": "🧪"
+  },
+  {
+    "question": "Як перекладається «physics»?",
+    "answer": "Фізика",
+    "emoji": "⚛️"
+  },
+  {
+    "question": "Як перекладається «literature»?",
+    "answer": "Література",
+    "emoji": "📚"
+  },
+  {
+    "question": "Як перекладається «PE» (Physical Education)?",
+    "answer": "Фізкультура",
+    "emoji": "🏃"
+  },
+  {
+    "question": "Як перекладається «English» (предмет)?",
+    "answer": "Англійська мова",
+    "emoji": "🇬🇧"
+  },
+  {
+    "question": "Як перекладається «computer science»?",
+    "answer": "Інформатика",
+    "emoji": "💻"
+  },
+  {
+    "question": "Як англійською «математика»?",
+    "answer": "Math / Mathematics",
+    "emoji": "🔢"
+  },
+  {
+    "question": "Як англійською «фізкультура»?",
+    "answer": "PE / Physical Education",
+    "emoji": "🏃"
+  },
+  {
+    "question": "Як перекладається «laptop»?",
+    "answer": "Ноутбук",
+    "emoji": "💻"
+  },
+  {
+    "question": "Як перекладається «tablet»?",
+    "answer": "Планшет",
+    "emoji": "📱"
+  },
+  {
+    "question": "Як перекладається «password»?",
+    "answer": "Пароль",
+    "emoji": "🔐"
+  },
+  {
+    "question": "Як перекладається «keyboard»?",
+    "answer": "Клавіатура",
+    "emoji": "⌨️"
+  },
+  {
+    "question": "Як перекладається «screen»?",
+    "answer": "Екран",
+    "emoji": "🖥️"
+  },
+  {
+    "question": "Як перекладається «printer»?",
+    "answer": "Принтер",
+    "emoji": "🖨️"
+  },
+  {
+    "question": "Як перекладається «headphones»?",
+    "answer": "Навушники",
+    "emoji": "🎧"
+  },
+  {
+    "question": "Як перекладається «charger»?",
+    "answer": "Зарядний пристрій",
+    "emoji": "🔌"
+  },
+  {
+    "question": "Як перекладається «battery»?",
+    "answer": "Батарея / Акумулятор",
+    "emoji": "🔋"
+  },
+  {
+    "question": "Як англійською «ноутбук»?",
+    "answer": "Laptop",
+    "emoji": "💻"
+  },
+  {
+    "question": "Як англійською «пароль»?",
+    "answer": "Password",
+    "emoji": "🔐"
+  },
+  {
+    "question": "Як англійською «навушники»?",
+    "answer": "Headphones",
+    "emoji": "🎧"
+  },
+  {
+    "question": "Як перекладається «hockey»?",
+    "answer": "Хокей",
+    "emoji": "🏒"
+  },
+  {
+    "question": "Як перекладається «boxing»?",
+    "answer": "Бокс",
+    "emoji": "🥊"
+  },
+  {
+    "question": "Як перекладається «gymnastics»?",
+    "answer": "Гімнастика",
+    "emoji": "🤸"
+  },
+  {
+    "question": "Як перекладається «skiing»?",
+    "answer": "Катання на лижах",
+    "emoji": "⛷️"
+  },
+  {
+    "question": "Як перекладається «skating»?",
+    "answer": "Катання на ковзанах",
+    "emoji": "⛸️"
+  },
+  {
+    "question": "Як перекладається «chess»?",
+    "answer": "Шахи",
+    "emoji": "♟️"
+  },
+  {
+    "question": "Як перекладається «team»?",
+    "answer": "Команда",
+    "emoji": "👥"
+  },
+  {
+    "question": "Як перекладається «player»?",
+    "answer": "Гравець",
+    "emoji": "🏃"
+  },
+  {
+    "question": "Як перекладається «coach»?",
+    "answer": "Тренер",
+    "emoji": "👨‍🏫"
+  },
+  {
+    "question": "Як перекладається «match»?",
+    "answer": "Матч",
+    "emoji": "🏆"
+  },
+  {
+    "question": "Як перекладається «score»?",
+    "answer": "Рахунок",
+    "emoji": "🔢"
+  },
+  {
+    "question": "Як перекладається «goal»?",
+    "answer": "Гол / Ворота",
+    "emoji": "🥅"
+  },
+  {
+    "question": "Як перекладається «ball»?",
+    "answer": "М'яч",
+    "emoji": "⚽"
+  },
+  {
+    "question": "Як англійською «баскетбол»?",
+    "answer": "Basketball",
+    "emoji": "🏀"
+  },
+  {
+    "question": "Як англійською «команда»?",
+    "answer": "Team",
+    "emoji": "👥"
+  },
+  {
+    "question": "Як перекладається «piano»?",
+    "answer": "Піаніно",
+    "emoji": "🎹"
+  },
+  {
+    "question": "Як перекладається «guitar»?",
+    "answer": "Гітара",
+    "emoji": "🎸"
+  },
+  {
+    "question": "Як перекладається «violin»?",
+    "answer": "Скрипка",
+    "emoji": "🎻"
+  },
+  {
+    "question": "Як перекладається «drums»?",
+    "answer": "Барабани",
+    "emoji": "🥁"
+  },
+  {
+    "question": "Як перекладається «flute»?",
+    "answer": "Флейта",
+    "emoji": "🎵"
+  },
+  {
+    "question": "Як перекладається «trumpet»?",
+    "answer": "Труба",
+    "emoji": "🎺"
+  },
+  {
+    "question": "Як перекладається «saxophone»?",
+    "answer": "Саксофон",
+    "emoji": "🎷"
+  },
+  {
+    "question": "Як перекладається «band»?",
+    "answer": "Гурт / Група",
+    "emoji": "🎸"
+  },
+  {
+    "question": "Як англійською «гітара»?",
+    "answer": "Guitar",
+    "emoji": "🎸"
+  },
+  {
+    "question": "Як англійською «піаніно»?",
+    "answer": "Piano",
+    "emoji": "🎹"
+  },
+  {
+    "question": "Як перекладається «circle»?",
+    "answer": "Коло",
+    "emoji": "⭕"
+  },
+  {
+    "question": "Як перекладається «square»?",
+    "answer": "Квадрат",
+    "emoji": "⬜"
+  },
+  {
+    "question": "Як перекладається «triangle»?",
+    "answer": "Трикутник",
+    "emoji": "🔺"
+  },
+  {
+    "question": "Як перекладається «rectangle»?",
+    "answer": "Прямокутник",
+    "emoji": "▬"
+  },
+  {
+    "question": "Як перекладається «line»?",
+    "answer": "Лінія",
+    "emoji": "➖"
+  },
+  {
+    "question": "Як перекладається «point»?",
+    "answer": "Точка",
+    "emoji": "•"
+  },
+  {
+    "question": "Як англійською «коло»?",
+    "answer": "Circle",
+    "emoji": "⭕"
+  },
+  {
+    "question": "Як англійською «квадрат»?",
+    "answer": "Square",
+    "emoji": "⬜"
+  },
+  {
+    "question": "Як англійською «трикутник»?",
+    "answer": "Triangle",
+    "emoji": "🔺"
+  },
+  {
+    "question": "Як перекладається «straight»?",
+    "answer": "Прямо",
+    "emoji": "⬆️"
+  },
+  {
+    "question": "Як перекладається «turn left»?",
+    "answer": "Поверніть ліворуч",
+    "emoji": "⬅️"
+  },
+  {
+    "question": "Як перекладається «turn right»?",
+    "answer": "Поверніть праворуч",
+    "emoji": "➡️"
+  },
+  {
+    "question": "Як перекладається «forward»?",
+    "answer": "Вперед",
+    "emoji": "⬆️"
+  },
+  {
+    "question": "Як перекладається «backward»?",
+    "answer": "Назад",
+    "emoji": "⬇️"
+  },
+  {
+    "question": "Як перекладається «crossroad»?",
+    "answer": "Перехрестя",
+    "emoji": "✖️"
+  },
+  {
+    "question": "Як англійською «прямо»?",
+    "answer": "Straight",
+    "emoji": "⬆️"
+  },
+  {
+    "question": "Як англійською «ліворуч»?",
+    "answer": "Left",
+    "emoji": "⬅️"
+  },
+  {
+    "question": "Як англійською «праворуч»?",
+    "answer": "Right",
+    "emoji": "➡️"
+  }
+]

@@ -1,0 +1,2052 @@
+[
+  {
+    "question": "Як перекладається «assumption»?",
+    "answer": "Припущення",
+    "emoji": "🤔"
+  },
+  {
+    "question": "Як перекладається «consequence»?",
+    "answer": "Наслідок",
+    "emoji": "➡️"
+  },
+  {
+    "question": "Як перекладається «influence»?",
+    "answer": "Вплив",
+    "emoji": "🎯"
+  },
+  {
+    "question": "Як перекладається «opportunity»?",
+    "answer": "Можливість",
+    "emoji": "🚪"
+  },
+  {
+    "question": "Як перекладається «circumstance»?",
+    "answer": "Обставина",
+    "emoji": "📍"
+  },
+  {
+    "question": "Як перекладається «evidence»?",
+    "answer": "Докази",
+    "emoji": "🔍"
+  },
+  {
+    "question": "Як перекладається «purpose»?",
+    "answer": "Мета, ціль",
+    "emoji": "🎯"
+  },
+  {
+    "question": "Як перекладається «approach»?",
+    "answer": "Підхід",
+    "emoji": "🛤️"
+  },
+  {
+    "question": "Як перекладається «benefit»?",
+    "answer": "Перевага, користь",
+    "emoji": "✅"
+  },
+  {
+    "question": "Як перекладається «challenge»?",
+    "answer": "Виклик, випробування",
+    "emoji": "💪"
+  },
+  {
+    "question": "Як перекладається «attempt»?",
+    "answer": "Спроба",
+    "emoji": "🎯"
+  },
+  {
+    "question": "Як перекладається «awareness»?",
+    "answer": "Обізнаність, усвідомлення",
+    "emoji": "💡"
+  },
+  {
+    "question": "Як перекладається «commitment»?",
+    "answer": "Зобов'язання, відданість",
+    "emoji": "🤝"
+  },
+  {
+    "question": "Як перекладається «contribution»?",
+    "answer": "Внесок",
+    "emoji": "🎁"
+  },
+  {
+    "question": "Як перекладається «diversity»?",
+    "answer": "Різноманітність",
+    "emoji": "🌈"
+  },
+  {
+    "question": "Як перекладається «estimate» (іменник)?",
+    "answer": "Оцінка, приблизний підрахунок",
+    "emoji": "📊"
+  },
+  {
+    "question": "Як перекладається «exception»?",
+    "answer": "Виняток",
+    "emoji": "⚠️"
+  },
+  {
+    "question": "Як перекладається «expectation»?",
+    "answer": "Очікування",
+    "emoji": "🔮"
+  },
+  {
+    "question": "Як перекладається «implement»?",
+    "answer": "Впроваджувати",
+    "emoji": "⚙️"
+  },
+  {
+    "question": "Як перекладається «involvement»?",
+    "answer": "Залучення, участь",
+    "emoji": "🤝"
+  },
+  {
+    "question": "Як перекладається «anxiety»?",
+    "answer": "Тривога",
+    "emoji": "😰"
+  },
+  {
+    "question": "Як перекладається «frustration»?",
+    "answer": "Розчарування, фрустрація",
+    "emoji": "😤"
+  },
+  {
+    "question": "Як перекладається «enthusiasm»?",
+    "answer": "Ентузіазм, захоплення",
+    "emoji": "🔥"
+  },
+  {
+    "question": "Як перекладається «curiosity»?",
+    "answer": "Цікавість, допитливість",
+    "emoji": "🧐"
+  },
+  {
+    "question": "Як перекладається «confusion»?",
+    "answer": "Плутанина, збентеження",
+    "emoji": "😕"
+  },
+  {
+    "question": "Як перекладається «satisfaction»?",
+    "answer": "Задоволення",
+    "emoji": "😊"
+  },
+  {
+    "question": "Як перекладається «relief»?",
+    "answer": "Полегшення",
+    "emoji": "😌"
+  },
+  {
+    "question": "Як перекладається «sympathy»?",
+    "answer": "Співчуття",
+    "emoji": "💕"
+  },
+  {
+    "question": "Як перекладається «irritation»?",
+    "answer": "Роздратування",
+    "emoji": "😠"
+  },
+  {
+    "question": "Як перекладається «admiration»?",
+    "answer": "Захоплення, повага",
+    "emoji": "🌟"
+  },
+  {
+    "question": "Як перекладається «negotiate»?",
+    "answer": "Вести переговори",
+    "emoji": "🤝"
+  },
+  {
+    "question": "Як перекладається «deadline»?",
+    "answer": "Крайній термін",
+    "emoji": "⏰"
+  },
+  {
+    "question": "Як перекладається «revenue»?",
+    "answer": "Дохід, виручка",
+    "emoji": "💰"
+  },
+  {
+    "question": "Як перекладається «profit»?",
+    "answer": "Прибуток",
+    "emoji": "📈"
+  },
+  {
+    "question": "Як перекладається «loan»?",
+    "answer": "Позика, кредит",
+    "emoji": "🏦"
+  },
+  {
+    "question": "Як перекладається «invoice»?",
+    "answer": "Рахунок-фактура",
+    "emoji": "📄"
+  },
+  {
+    "question": "Як перекладається «competitor»?",
+    "answer": "Конкурент",
+    "emoji": "🏃"
+  },
+  {
+    "question": "Як перекладається «employee»?",
+    "answer": "Працівник",
+    "emoji": "👨‍💼"
+  },
+  {
+    "question": "Як перекладається «employer»?",
+    "answer": "Роботодавець",
+    "emoji": "🏢"
+  },
+  {
+    "question": "Як перекладається «resign»?",
+    "answer": "Звільнитися (за власним)",
+    "emoji": "👋"
+  },
+  {
+    "question": "Як перекладається «promote»?",
+    "answer": "Підвищувати (на посаді)",
+    "emoji": "📈"
+  },
+  {
+    "question": "Як перекладається «dismiss»?",
+    "answer": "Звільняти (когось)",
+    "emoji": "🚪"
+  },
+  {
+    "question": "Як перекладається «recruit»?",
+    "answer": "Наймати, набирати",
+    "emoji": "🔍"
+  },
+  {
+    "question": "Як перекладається «headquarters»?",
+    "answer": "Штаб-квартира",
+    "emoji": "🏢"
+  },
+  {
+    "question": "Як перекладається «branch»?",
+    "answer": "Філія, відділення",
+    "emoji": "🌿"
+  },
+  {
+    "question": "Як перекладається «research»?",
+    "answer": "Дослідження",
+    "emoji": "🔬"
+  },
+  {
+    "question": "Як перекладається «hypothesis»?",
+    "answer": "Гіпотеза",
+    "emoji": "💭"
+  },
+  {
+    "question": "Як перекладається «conclusion»?",
+    "answer": "Висновок",
+    "emoji": "✅"
+  },
+  {
+    "question": "Як перекладається «analyze»?",
+    "answer": "Аналізувати",
+    "emoji": "📊"
+  },
+  {
+    "question": "Як перекладається «evaluate»?",
+    "answer": "Оцінювати",
+    "emoji": "⚖️"
+  },
+  {
+    "question": "Як перекладається «significant»?",
+    "answer": "Значний, важливий",
+    "emoji": "❗"
+  },
+  {
+    "question": "Як перекладається «relevant»?",
+    "answer": "Доречний, актуальний",
+    "emoji": "🎯"
+  },
+  {
+    "question": "Як перекладається «source»?",
+    "answer": "Джерело",
+    "emoji": "📚"
+  },
+  {
+    "question": "Як перекладається «reference»?",
+    "answer": "Посилання, довідка",
+    "emoji": "📖"
+  },
+  {
+    "question": "Як перекладається «survey»?",
+    "answer": "Опитування, огляд",
+    "emoji": "📋"
+  },
+  {
+    "question": "Як перекладається «outcome»?",
+    "answer": "Результат, підсумок",
+    "emoji": "🏁"
+  },
+  {
+    "question": "Як перекладається «criteria»?",
+    "answer": "Критерії",
+    "emoji": "📝"
+  },
+  {
+    "question": "Як перекладається «feedback»?",
+    "answer": "Зворотний зв'язок",
+    "emoji": "💬"
+  },
+  {
+    "question": "Як перекладається «achieve»?",
+    "answer": "Досягати",
+    "emoji": "🏆"
+  },
+  {
+    "question": "Як перекладається «accomplish»?",
+    "answer": "Виконувати, здійснювати",
+    "emoji": "✅"
+  },
+  {
+    "question": "Як перекладається «acquire»?",
+    "answer": "Набувати, здобувати",
+    "emoji": "🎁"
+  },
+  {
+    "question": "Як перекладається «adapt»?",
+    "answer": "Адаптуватися, пристосовуватися",
+    "emoji": "🔄"
+  },
+  {
+    "question": "Як перекладається «adjust»?",
+    "answer": "Налаштовувати, коригувати",
+    "emoji": "🔧"
+  },
+  {
+    "question": "Як перекладається «admit»?",
+    "answer": "Визнавати, допускати",
+    "emoji": "🙋"
+  },
+  {
+    "question": "Як перекладається «afford»?",
+    "answer": "Дозволити собі (фінансово)",
+    "emoji": "💰"
+  },
+  {
+    "question": "Як перекладається «announce»?",
+    "answer": "Оголошувати",
+    "emoji": "📢"
+  },
+  {
+    "question": "Як перекладається «apologize»?",
+    "answer": "Вибачатися",
+    "emoji": "🙏"
+  },
+  {
+    "question": "Як перекладається «approve»?",
+    "answer": "Схвалювати",
+    "emoji": "👍"
+  },
+  {
+    "question": "Як перекладається «argue»?",
+    "answer": "Сперечатися, аргументувати",
+    "emoji": "🗣️"
+  },
+  {
+    "question": "Як перекладається «assume»?",
+    "answer": "Припускати",
+    "emoji": "🤔"
+  },
+  {
+    "question": "Як перекладається «attach»?",
+    "answer": "Прикріплювати, додавати",
+    "emoji": "📎"
+  },
+  {
+    "question": "Як перекладається «avoid»?",
+    "answer": "Уникати",
+    "emoji": "🚫"
+  },
+  {
+    "question": "Як перекладається «blame»?",
+    "answer": "Звинувачувати",
+    "emoji": "👆"
+  },
+  {
+    "question": "Як перекладається «borrow»?",
+    "answer": "Позичати (у когось)",
+    "emoji": "🤲"
+  },
+  {
+    "question": "Як перекладається «lend»?",
+    "answer": "Позичати (комусь)",
+    "emoji": "🫴"
+  },
+  {
+    "question": "Різниця між «borrow» і «lend»?",
+    "answer": "Borrow — брати, lend — давати",
+    "emoji": "🔄"
+  },
+  {
+    "question": "Як перекладається «broadcast»?",
+    "answer": "Транслювати",
+    "emoji": "📡"
+  },
+  {
+    "question": "Як перекладається «calculate»?",
+    "answer": "Обчислювати",
+    "emoji": "🔢"
+  },
+  {
+    "question": "Як перекладається «cancel»?",
+    "answer": "Скасовувати",
+    "emoji": "❌"
+  },
+  {
+    "question": "Як перекладається «complain»?",
+    "answer": "Скаржитися",
+    "emoji": "😤"
+  },
+  {
+    "question": "Як перекладається «confirm»?",
+    "answer": "Підтверджувати",
+    "emoji": "✅"
+  },
+  {
+    "question": "Як перекладається «connect»?",
+    "answer": "З'єднувати",
+    "emoji": "🔗"
+  },
+  {
+    "question": "Як перекладається «consider»?",
+    "answer": "Розглядати, вважати",
+    "emoji": "🤔"
+  },
+  {
+    "question": "Як перекладається «convince»?",
+    "answer": "Переконувати",
+    "emoji": "💪"
+  },
+  {
+    "question": "Як перекладається «decrease»?",
+    "answer": "Зменшувати(ся)",
+    "emoji": "📉"
+  },
+  {
+    "question": "Як перекладається «increase»?",
+    "answer": "Збільшувати(ся)",
+    "emoji": "📈"
+  },
+  {
+    "question": "Як перекладається «delay»?",
+    "answer": "Затримувати, відкладати",
+    "emoji": "⏳"
+  },
+  {
+    "question": "Як перекладається «deliver»?",
+    "answer": "Доставляти",
+    "emoji": "📦"
+  },
+  {
+    "question": "Як перекладається «demand»?",
+    "answer": "Вимагати",
+    "emoji": "❗"
+  },
+  {
+    "question": "Як перекладається «deny»?",
+    "answer": "Заперечувати, відмовляти",
+    "emoji": "🚫"
+  },
+  {
+    "question": "Як перекладається «deserve»?",
+    "answer": "Заслуговувати",
+    "emoji": "🏆"
+  },
+  {
+    "question": "Як перекладається «destroy»?",
+    "answer": "Знищувати",
+    "emoji": "💥"
+  },
+  {
+    "question": "Як перекладається «detect»?",
+    "answer": "Виявляти",
+    "emoji": "🔍"
+  },
+  {
+    "question": "Як перекладається «develop»?",
+    "answer": "Розвивати(ся)",
+    "emoji": "🌱"
+  },
+  {
+    "question": "Як перекладається «disappear»?",
+    "answer": "Зникати",
+    "emoji": "👻"
+  },
+  {
+    "question": "Як перекладається «discover»?",
+    "answer": "Відкривати (нове)",
+    "emoji": "🔭"
+  },
+  {
+    "question": "Як перекладається «doubt»?",
+    "answer": "Сумніватися",
+    "emoji": "🤨"
+  },
+  {
+    "question": "Як перекладається «encourage»?",
+    "answer": "Заохочувати, підбадьорювати",
+    "emoji": "💪"
+  },
+  {
+    "question": "Як перекладається «ensure»?",
+    "answer": "Забезпечувати, гарантувати",
+    "emoji": "🛡️"
+  },
+  {
+    "question": "Як перекладається «establish»?",
+    "answer": "Засновувати, встановлювати",
+    "emoji": "🏛️"
+  },
+  {
+    "question": "Як перекладається «exist»?",
+    "answer": "Існувати",
+    "emoji": "🌍"
+  },
+  {
+    "question": "Як перекладається «expand»?",
+    "answer": "Розширювати(ся)",
+    "emoji": "↔️"
+  },
+  {
+    "question": "Як перекладається «expect»?",
+    "answer": "Очікувати",
+    "emoji": "🔮"
+  },
+  {
+    "question": "Як перекладається «explore»?",
+    "answer": "Досліджувати",
+    "emoji": "🧭"
+  },
+  {
+    "question": "Як перекладається «express»?",
+    "answer": "Виражати",
+    "emoji": "💬"
+  },
+  {
+    "question": "Як перекладається «fail»?",
+    "answer": "Провалюватися, не вдаватися",
+    "emoji": "❌"
+  },
+  {
+    "question": "Як перекладається «gain»?",
+    "answer": "Здобувати, набирати",
+    "emoji": "📈"
+  },
+  {
+    "question": "Як перекладається «generate»?",
+    "answer": "Генерувати, створювати",
+    "emoji": "⚡"
+  },
+  {
+    "question": "Як перекладається «guarantee»?",
+    "answer": "Гарантувати",
+    "emoji": "🛡️"
+  },
+  {
+    "question": "Як перекладається «ignore»?",
+    "answer": "Ігнорувати",
+    "emoji": "🙈"
+  },
+  {
+    "question": "Як перекладається «imply»?",
+    "answer": "Мати на увазі, натякати",
+    "emoji": "💭"
+  },
+  {
+    "question": "Як перекладається «impress»?",
+    "answer": "Вражати",
+    "emoji": "🌟"
+  },
+  {
+    "question": "Як перекладається «improve»?",
+    "answer": "Покращувати",
+    "emoji": "📈"
+  },
+  {
+    "question": "Як перекладається «include»?",
+    "answer": "Включати",
+    "emoji": "📦"
+  },
+  {
+    "question": "Як перекладається «indicate»?",
+    "answer": "Вказувати",
+    "emoji": "👉"
+  },
+  {
+    "question": "Як перекладається «insist»?",
+    "answer": "Наполягати",
+    "emoji": "💪"
+  },
+  {
+    "question": "Як перекладається «inspire»?",
+    "answer": "Надихати",
+    "emoji": "✨"
+  },
+  {
+    "question": "Як перекладається «intend»?",
+    "answer": "Мати намір",
+    "emoji": "🎯"
+  },
+  {
+    "question": "Як перекладається «introduce»?",
+    "answer": "Представляти, знайомити",
+    "emoji": "🤝"
+  },
+  {
+    "question": "Як перекладається «investigate»?",
+    "answer": "Розслідувати",
+    "emoji": "🔍"
+  },
+  {
+    "question": "Як перекладається «involve»?",
+    "answer": "Залучати, включати",
+    "emoji": "🤝"
+  },
+  {
+    "question": "Як перекладається «lack»?",
+    "answer": "Не вистачати, бракувати",
+    "emoji": "⬇️"
+  },
+  {
+    "question": "Як перекладається «launch»?",
+    "answer": "Запускати",
+    "emoji": "🚀"
+  },
+  {
+    "question": "Як перекладається «maintain»?",
+    "answer": "Підтримувати, зберігати",
+    "emoji": "🔧"
+  },
+  {
+    "question": "Як перекладається «manage»?",
+    "answer": "Керувати, справлятися",
+    "emoji": "👨‍💼"
+  },
+  {
+    "question": "Як перекладається «measure»?",
+    "answer": "Вимірювати",
+    "emoji": "📏"
+  },
+  {
+    "question": "Як перекладається «mention»?",
+    "answer": "Згадувати",
+    "emoji": "💬"
+  },
+  {
+    "question": "Як перекладається «obtain»?",
+    "answer": "Отримувати, здобувати",
+    "emoji": "🎁"
+  },
+  {
+    "question": "Як перекладається «occur»?",
+    "answer": "Відбуватися, траплятися",
+    "emoji": "⚡"
+  },
+  {
+    "question": "Як перекладається «operate»?",
+    "answer": "Працювати, керувати",
+    "emoji": "⚙️"
+  },
+  {
+    "question": "Як перекладається «overcome»?",
+    "answer": "Долати, перемагати",
+    "emoji": "💪"
+  },
+  {
+    "question": "Як перекладається «participate»?",
+    "answer": "Брати участь",
+    "emoji": "🙋"
+  },
+  {
+    "question": "Як перекладається «perceive»?",
+    "answer": "Сприймати",
+    "emoji": "👁️"
+  },
+  {
+    "question": "Як перекладається «perform»?",
+    "answer": "Виконувати, виступати",
+    "emoji": "🎭"
+  },
+  {
+    "question": "Як перекладається «permit» (дієслово)?",
+    "answer": "Дозволяти",
+    "emoji": "✅"
+  },
+  {
+    "question": "Як перекладається «possess»?",
+    "answer": "Володіти",
+    "emoji": "🏠"
+  },
+  {
+    "question": "Як перекладається «predict»?",
+    "answer": "Передбачати",
+    "emoji": "🔮"
+  },
+  {
+    "question": "Як перекладається «prefer»?",
+    "answer": "Надавати перевагу",
+    "emoji": "👍"
+  },
+  {
+    "question": "Як перекладається «prepare»?",
+    "answer": "Готувати(ся)",
+    "emoji": "📝"
+  },
+  {
+    "question": "Як перекладається «prevent»?",
+    "answer": "Запобігати",
+    "emoji": "🛑"
+  },
+  {
+    "question": "Як перекладається «prove»?",
+    "answer": "Доводити",
+    "emoji": "✅"
+  },
+  {
+    "question": "Як перекладається «provide»?",
+    "answer": "Надавати, забезпечувати",
+    "emoji": "🎁"
+  },
+  {
+    "question": "Як перекладається «publish»?",
+    "answer": "Публікувати",
+    "emoji": "📰"
+  },
+  {
+    "question": "Як перекладається «pursue»?",
+    "answer": "Переслідувати, прагнути",
+    "emoji": "🎯"
+  },
+  {
+    "question": "Як перекладається «react»?",
+    "answer": "Реагувати",
+    "emoji": "⚡"
+  },
+  {
+    "question": "Як перекладається «realize»?",
+    "answer": "Усвідомлювати, розуміти",
+    "emoji": "💡"
+  },
+  {
+    "question": "Як перекладається «recognize»?",
+    "answer": "Впізнавати, визнавати",
+    "emoji": "👀"
+  },
+  {
+    "question": "Як перекладається «recommend»?",
+    "answer": "Рекомендувати",
+    "emoji": "👍"
+  },
+  {
+    "question": "Як перекладається «recover»?",
+    "answer": "Одужувати, відновлюватися",
+    "emoji": "💪"
+  },
+  {
+    "question": "Як перекладається «reduce»?",
+    "answer": "Зменшувати",
+    "emoji": "📉"
+  },
+  {
+    "question": "Як перекладається «refer»?",
+    "answer": "Посилатися, звертатися",
+    "emoji": "👉"
+  },
+  {
+    "question": "Як перекладається «reflect»?",
+    "answer": "Відображати, роздумувати",
+    "emoji": "🪞"
+  },
+  {
+    "question": "Як перекладається «refuse»?",
+    "answer": "Відмовлятися",
+    "emoji": "🚫"
+  },
+  {
+    "question": "Як перекладається «reject»?",
+    "answer": "Відхиляти, відкидати",
+    "emoji": "❌"
+  },
+  {
+    "question": "Як перекладається «relate»?",
+    "answer": "Пов'язувати, стосуватися",
+    "emoji": "🔗"
+  },
+  {
+    "question": "Як перекладається «release»?",
+    "answer": "Випускати, звільняти",
+    "emoji": "🚀"
+  },
+  {
+    "question": "Як перекладається «rely»?",
+    "answer": "Покладатися",
+    "emoji": "🤝"
+  },
+  {
+    "question": "Як перекладається «remain»?",
+    "answer": "Залишатися",
+    "emoji": "📍"
+  },
+  {
+    "question": "Як перекладається «remove»?",
+    "answer": "Видаляти, прибирати",
+    "emoji": "🗑️"
+  },
+  {
+    "question": "Як перекладається «replace»?",
+    "answer": "Замінювати",
+    "emoji": "🔄"
+  },
+  {
+    "question": "Як перекладається «represent»?",
+    "answer": "Представляти",
+    "emoji": "🎭"
+  },
+  {
+    "question": "Як перекладається «request»?",
+    "answer": "Просити, запитувати",
+    "emoji": "🙏"
+  },
+  {
+    "question": "Як перекладається «require»?",
+    "answer": "Вимагати, потребувати",
+    "emoji": "❗"
+  },
+  {
+    "question": "Як перекладається «respond»?",
+    "answer": "Відповідати, реагувати",
+    "emoji": "💬"
+  },
+  {
+    "question": "Як перекладається «restore»?",
+    "answer": "Відновлювати",
+    "emoji": "🔧"
+  },
+  {
+    "question": "Як перекладається «reveal»?",
+    "answer": "Розкривати",
+    "emoji": "👀"
+  },
+  {
+    "question": "Як перекладається «review»?",
+    "answer": "Переглядати, рецензувати",
+    "emoji": "📋"
+  },
+  {
+    "question": "Як перекладається «satisfy»?",
+    "answer": "Задовольняти",
+    "emoji": "😊"
+  },
+  {
+    "question": "Як перекладається «seek»?",
+    "answer": "Шукати, прагнути",
+    "emoji": "🔍"
+  },
+  {
+    "question": "Як перекладається «select»?",
+    "answer": "Обирати, відбирати",
+    "emoji": "👆"
+  },
+  {
+    "question": "Як перекладається «settle»?",
+    "answer": "Оселятися, вирішувати",
+    "emoji": "🏠"
+  },
+  {
+    "question": "Як перекладається «solve»?",
+    "answer": "Вирішувати (проблему)",
+    "emoji": "💡"
+  },
+  {
+    "question": "Як перекладається «spread»?",
+    "answer": "Поширювати(ся)",
+    "emoji": "📢"
+  },
+  {
+    "question": "Як перекладається «struggle»?",
+    "answer": "Боротися, намагатися",
+    "emoji": "💪"
+  },
+  {
+    "question": "Як перекладається «succeed»?",
+    "answer": "Досягати успіху",
+    "emoji": "🏆"
+  },
+  {
+    "question": "Як перекладається «suffer»?",
+    "answer": "Страждати",
+    "emoji": "😔"
+  },
+  {
+    "question": "Як перекладається «suggest»?",
+    "answer": "Пропонувати",
+    "emoji": "💡"
+  },
+  {
+    "question": "Як перекладається «supply»?",
+    "answer": "Постачати",
+    "emoji": "📦"
+  },
+  {
+    "question": "Як перекладається «support»?",
+    "answer": "Підтримувати",
+    "emoji": "🤝"
+  },
+  {
+    "question": "Як перекладається «suppose»?",
+    "answer": "Припускати, гадати",
+    "emoji": "🤔"
+  },
+  {
+    "question": "Як перекладається «surround»?",
+    "answer": "Оточувати",
+    "emoji": "⭕"
+  },
+  {
+    "question": "Як перекладається «survive»?",
+    "answer": "Вижити",
+    "emoji": "💪"
+  },
+  {
+    "question": "Як перекладається «tend»?",
+    "answer": "Мати тенденцію",
+    "emoji": "📈"
+  },
+  {
+    "question": "Як перекладається «threaten»?",
+    "answer": "Погрожувати",
+    "emoji": "⚠️"
+  },
+  {
+    "question": "Як перекладається «track»?",
+    "answer": "Відстежувати",
+    "emoji": "📍"
+  },
+  {
+    "question": "Як перекладається «transfer»?",
+    "answer": "Переносити, переказувати",
+    "emoji": "➡️"
+  },
+  {
+    "question": "Як перекладається «transform»?",
+    "answer": "Перетворювати",
+    "emoji": "🔄"
+  },
+  {
+    "question": "Як перекладається «treat»?",
+    "answer": "Ставитися, лікувати",
+    "emoji": "💊"
+  },
+  {
+    "question": "Як перекладається «trust»?",
+    "answer": "Довіряти",
+    "emoji": "🤝"
+  },
+  {
+    "question": "Як перекладається «vary»?",
+    "answer": "Варіюватися, відрізнятися",
+    "emoji": "🔀"
+  },
+  {
+    "question": "Як перекладається «warn»?",
+    "answer": "Попереджати",
+    "emoji": "⚠️"
+  },
+  {
+    "question": "Як перекладається «wonder»?",
+    "answer": "Дивуватися, цікавитися",
+    "emoji": "🤔"
+  },
+  {
+    "question": "Як перекладається «wrap»?",
+    "answer": "Загортати",
+    "emoji": "🎁"
+  },
+  {
+    "question": "Як перекладається «appropriate»?",
+    "answer": "Доречний, відповідний",
+    "emoji": "✅"
+  },
+  {
+    "question": "Як перекладається «aware»?",
+    "answer": "Обізнаний, свідомий",
+    "emoji": "💡"
+  },
+  {
+    "question": "Як перекладається «capable»?",
+    "answer": "Здатний",
+    "emoji": "💪"
+  },
+  {
+    "question": "Як перекладається «confident»?",
+    "answer": "Впевнений",
+    "emoji": "😎"
+  },
+  {
+    "question": "Як перекладається «conscious»?",
+    "answer": "Свідомий, притомний",
+    "emoji": "🧠"
+  },
+  {
+    "question": "Як перекладається «constant»?",
+    "answer": "Постійний",
+    "emoji": "🔄"
+  },
+  {
+    "question": "Як перекладається «crucial»?",
+    "answer": "Вирішальний, критичний",
+    "emoji": "❗"
+  },
+  {
+    "question": "Як перекладається «curious»?",
+    "answer": "Цікавий, допитливий",
+    "emoji": "🧐"
+  },
+  {
+    "question": "Як перекладається «current»?",
+    "answer": "Поточний, сучасний",
+    "emoji": "📅"
+  },
+  {
+    "question": "Як перекладається «desperate»?",
+    "answer": "Відчайдушний",
+    "emoji": "😰"
+  },
+  {
+    "question": "Як перекладається «efficient»?",
+    "answer": "Ефективний",
+    "emoji": "⚡"
+  },
+  {
+    "question": "Як перекладається «enormous»?",
+    "answer": "Величезний",
+    "emoji": "🐘"
+  },
+  {
+    "question": "Як перекладається «entire»?",
+    "answer": "Цілий, весь",
+    "emoji": "⭕"
+  },
+  {
+    "question": "Як перекладається «essential»?",
+    "answer": "Необхідний, суттєвий",
+    "emoji": "❗"
+  },
+  {
+    "question": "Як перекладається «exact»?",
+    "answer": "Точний",
+    "emoji": "🎯"
+  },
+  {
+    "question": "Як перекладається «familiar»?",
+    "answer": "Знайомий",
+    "emoji": "👋"
+  },
+  {
+    "question": "Як перекладається «former»?",
+    "answer": "Колишній",
+    "emoji": "⏮️"
+  },
+  {
+    "question": "Як перекладається «latter»?",
+    "answer": "Останній (з двох)",
+    "emoji": "⏭️"
+  },
+  {
+    "question": "Різниця між «former» і «latter»?",
+    "answer": "Former — перший, latter — другий (з двох)",
+    "emoji": "🔄"
+  },
+  {
+    "question": "Як перекладається «frequent»?",
+    "answer": "Частий",
+    "emoji": "🔄"
+  },
+  {
+    "question": "Як перекладається «genuine»?",
+    "answer": "Справжній, щирий",
+    "emoji": "💎"
+  },
+  {
+    "question": "Як перекладається «grateful»?",
+    "answer": "Вдячний",
+    "emoji": "🙏"
+  },
+  {
+    "question": "Як перекладається «guilty»?",
+    "answer": "Винний",
+    "emoji": "😔"
+  },
+  {
+    "question": "Як перекладається «innocent»?",
+    "answer": "Невинний",
+    "emoji": "😇"
+  },
+  {
+    "question": "Як перекладається «obvious»?",
+    "answer": "Очевидний",
+    "emoji": "👀"
+  },
+  {
+    "question": "Як перекладається «pleasant»?",
+    "answer": "Приємний",
+    "emoji": "😊"
+  },
+  {
+    "question": "Як перекладається «previous»?",
+    "answer": "Попередній",
+    "emoji": "⏮️"
+  },
+  {
+    "question": "Як перекладається «proud»?",
+    "answer": "Гордий",
+    "emoji": "🦁"
+  },
+  {
+    "question": "Як перекладається «rare»?",
+    "answer": "Рідкісний",
+    "emoji": "💎"
+  },
+  {
+    "question": "Як перекладається «reliable»?",
+    "answer": "Надійний",
+    "emoji": "🛡️"
+  },
+  {
+    "question": "Як перекладається «responsible»?",
+    "answer": "Відповідальний",
+    "emoji": "👨‍💼"
+  },
+  {
+    "question": "Як перекладається «rough»?",
+    "answer": "Грубий, приблизний",
+    "emoji": "🪨"
+  },
+  {
+    "question": "Як перекладається «sensitive»?",
+    "answer": "Чутливий",
+    "emoji": "💕"
+  },
+  {
+    "question": "Як перекладається «severe»?",
+    "answer": "Суворий, серйозний",
+    "emoji": "😠"
+  },
+  {
+    "question": "Як перекладається «sharp»?",
+    "answer": "Гострий",
+    "emoji": "🔪"
+  },
+  {
+    "question": "Як перекладається «slight»?",
+    "answer": "Незначний, легкий",
+    "emoji": "🪶"
+  },
+  {
+    "question": "Як перекладається «smooth»?",
+    "answer": "Гладкий, плавний",
+    "emoji": "✨"
+  },
+  {
+    "question": "Як перекладається «steady»?",
+    "answer": "Стійкий, рівномірний",
+    "emoji": "📊"
+  },
+  {
+    "question": "Як перекладається «strict»?",
+    "answer": "Суворий, строгий",
+    "emoji": "👨‍🏫"
+  },
+  {
+    "question": "Як перекладається «suitable»?",
+    "answer": "Підходящий",
+    "emoji": "✅"
+  },
+  {
+    "question": "Як перекладається «temporary»?",
+    "answer": "Тимчасовий",
+    "emoji": "⏳"
+  },
+  {
+    "question": "Як перекладається «permanent»?",
+    "answer": "Постійний",
+    "emoji": "🔒"
+  },
+  {
+    "question": "Різниця між «temporary» і «permanent»?",
+    "answer": "Temporary — тимчасовий, permanent — постійний",
+    "emoji": "🔄"
+  },
+  {
+    "question": "Як перекладається «thorough»?",
+    "answer": "Ретельний, ґрунтовний",
+    "emoji": "🔍"
+  },
+  {
+    "question": "Як перекладається «tight»?",
+    "answer": "Тісний, щільний",
+    "emoji": "🤏"
+  },
+  {
+    "question": "Як перекладається «tough»?",
+    "answer": "Жорсткий, важкий",
+    "emoji": "💪"
+  },
+  {
+    "question": "Як перекладається «typical»?",
+    "answer": "Типовий",
+    "emoji": "📊"
+  },
+  {
+    "question": "Як перекладається «unique»?",
+    "answer": "Унікальний",
+    "emoji": "⭐"
+  },
+  {
+    "question": "Як перекладається «urgent»?",
+    "answer": "Терміновий",
+    "emoji": "🚨"
+  },
+  {
+    "question": "Як перекладається «valid»?",
+    "answer": "Дійсний, обґрунтований",
+    "emoji": "✅"
+  },
+  {
+    "question": "Як перекладається «valuable»?",
+    "answer": "Цінний",
+    "emoji": "💎"
+  },
+  {
+    "question": "Як перекладається «vast»?",
+    "answer": "Величезний, обширний",
+    "emoji": "🌊"
+  },
+  {
+    "question": "Як перекладається «visible»?",
+    "answer": "Видимий",
+    "emoji": "👁️"
+  },
+  {
+    "question": "Як перекладається «willing»?",
+    "answer": "Готовий, бажаючий",
+    "emoji": "🙋"
+  },
+  {
+    "question": "Як перекладається «worth»?",
+    "answer": "Вартий",
+    "emoji": "💰"
+  },
+  {
+    "question": "Як перекладається «access»?",
+    "answer": "Доступ",
+    "emoji": "🔓"
+  },
+  {
+    "question": "Як перекладається «account» (іменник)?",
+    "answer": "Рахунок, обліковий запис",
+    "emoji": "💳"
+  },
+  {
+    "question": "Як перекладається «achievement»?",
+    "answer": "Досягнення",
+    "emoji": "🏆"
+  },
+  {
+    "question": "Як перекладається «advantage»?",
+    "answer": "Перевага",
+    "emoji": "✅"
+  },
+  {
+    "question": "Як перекладається «disadvantage»?",
+    "answer": "Недолік",
+    "emoji": "❌"
+  },
+  {
+    "question": "Як перекладається «advertisement»?",
+    "answer": "Реклама",
+    "emoji": "📢"
+  },
+  {
+    "question": "Як перекладається «agreement»?",
+    "answer": "Угода",
+    "emoji": "🤝"
+  },
+  {
+    "question": "Як перекладається «application»?",
+    "answer": "Заявка, застосунок",
+    "emoji": "📱"
+  },
+  {
+    "question": "Як перекладається «appointment»?",
+    "answer": "Зустріч, призначення",
+    "emoji": "📅"
+  },
+  {
+    "question": "Як перекладається «attitude»?",
+    "answer": "Ставлення, позиція",
+    "emoji": "🤔"
+  },
+  {
+    "question": "Як перекладається «authority»?",
+    "answer": "Влада, авторитет",
+    "emoji": "👔"
+  },
+  {
+    "question": "Як перекладається «background»?",
+    "answer": "Фон, походження",
+    "emoji": "🖼️"
+  },
+  {
+    "question": "Як перекладається «behavior»?",
+    "answer": "Поведінка",
+    "emoji": "🎭"
+  },
+  {
+    "question": "Як перекладається «boundary»?",
+    "answer": "Межа, кордон",
+    "emoji": "🚧"
+  },
+  {
+    "question": "Як перекладається «career»?",
+    "answer": "Кар'єра",
+    "emoji": "📈"
+  },
+  {
+    "question": "Як перекладається «claim»?",
+    "answer": "Заява, претензія",
+    "emoji": "📝"
+  },
+  {
+    "question": "Як перекладається «colleague»?",
+    "answer": "Колега",
+    "emoji": "👨‍💼"
+  },
+  {
+    "question": "Як перекладається «complaint»?",
+    "answer": "Скарга",
+    "emoji": "😤"
+  },
+  {
+    "question": "Як перекладається «conflict»?",
+    "answer": "Конфлікт",
+    "emoji": "⚔️"
+  },
+  {
+    "question": "Як перекладається «connection»?",
+    "answer": "Зв'язок",
+    "emoji": "🔗"
+  },
+  {
+    "question": "Як перекладається «content» (іменник)?",
+    "answer": "Зміст, контент",
+    "emoji": "📄"
+  },
+  {
+    "question": "Як перекладається «contrast»?",
+    "answer": "Контраст",
+    "emoji": "⚫⚪"
+  },
+  {
+    "question": "Як перекладається «debate»?",
+    "answer": "Дебати, дискусія",
+    "emoji": "🗣️"
+  },
+  {
+    "question": "Як перекладається «device»?",
+    "answer": "Пристрій",
+    "emoji": "📱"
+  },
+  {
+    "question": "Як перекладається «disease»?",
+    "answer": "Хвороба",
+    "emoji": "🦠"
+  },
+  {
+    "question": "Як перекладається «duty»?",
+    "answer": "Обов'язок",
+    "emoji": "📋"
+  },
+  {
+    "question": "Як перекладається «effort»?",
+    "answer": "Зусилля",
+    "emoji": "💪"
+  },
+  {
+    "question": "Як перекладається «election»?",
+    "answer": "Вибори",
+    "emoji": "🗳️"
+  },
+  {
+    "question": "Як перекладається «emergency»?",
+    "answer": "Надзвичайна ситуація",
+    "emoji": "🚨"
+  },
+  {
+    "question": "Як перекладається «environment»?",
+    "answer": "Середовище, довкілля",
+    "emoji": "🌍"
+  },
+  {
+    "question": "Як перекладається «equipment»?",
+    "answer": "Обладнання",
+    "emoji": "🔧"
+  },
+  {
+    "question": "Як перекладається «experiment»?",
+    "answer": "Експеримент",
+    "emoji": "🧪"
+  },
+  {
+    "question": "Як перекладається «failure»?",
+    "answer": "Невдача, провал",
+    "emoji": "❌"
+  },
+  {
+    "question": "Як перекладається «feature»?",
+    "answer": "Особливість, функція",
+    "emoji": "⭐"
+  },
+  {
+    "question": "Як перекладається «figure» (іменник)?",
+    "answer": "Фігура, цифра, постать",
+    "emoji": "👤"
+  },
+  {
+    "question": "Як перекладається «fortune»?",
+    "answer": "Доля, багатство",
+    "emoji": "🍀"
+  },
+  {
+    "question": "Як перекладається «freedom»?",
+    "answer": "Свобода",
+    "emoji": "🕊️"
+  },
+  {
+    "question": "Як перекладається «generation»?",
+    "answer": "Покоління",
+    "emoji": "👨‍👩‍👧"
+  },
+  {
+    "question": "Як перекладається «goal»?",
+    "answer": "Мета, гол",
+    "emoji": "🎯"
+  },
+  {
+    "question": "Як перекладається «growth»?",
+    "answer": "Зростання",
+    "emoji": "📈"
+  },
+  {
+    "question": "Як перекладається «habit»?",
+    "answer": "Звичка",
+    "emoji": "🔄"
+  },
+  {
+    "question": "Як перекладається «identity»?",
+    "answer": "Особистість, ідентичність",
+    "emoji": "🪪"
+  },
+  {
+    "question": "Як перекладається «impact»?",
+    "answer": "Вплив, удар",
+    "emoji": "💥"
+  },
+  {
+    "question": "Як перекладається «income»?",
+    "answer": "Дохід",
+    "emoji": "💰"
+  },
+  {
+    "question": "Як перекладається «insurance»?",
+    "answer": "Страхування",
+    "emoji": "🛡️"
+  },
+  {
+    "question": "Як перекладається «issue» (іменник)?",
+    "answer": "Питання, проблема, випуск",
+    "emoji": "❓"
+  },
+  {
+    "question": "Як перекладається «item»?",
+    "answer": "Предмет, пункт",
+    "emoji": "📦"
+  },
+  {
+    "question": "Як перекладається «lack»?",
+    "answer": "Нестача, брак",
+    "emoji": "⬇️"
+  },
+  {
+    "question": "Як перекладається «layer»?",
+    "answer": "Шар",
+    "emoji": "📚"
+  },
+  {
+    "question": "Як перекладається «leadership»?",
+    "answer": "Лідерство",
+    "emoji": "👑"
+  },
+  {
+    "question": "Як перекладається «limit»?",
+    "answer": "Межа, ліміт",
+    "emoji": "🚧"
+  },
+  {
+    "question": "Як перекладається «link»?",
+    "answer": "Посилання, зв'язок",
+    "emoji": "🔗"
+  },
+  {
+    "question": "Як перекладається «loss»?",
+    "answer": "Втрата",
+    "emoji": "📉"
+  },
+  {
+    "question": "Як перекладається «manner»?",
+    "answer": "Спосіб, манера",
+    "emoji": "🎭"
+  },
+  {
+    "question": "Як перекладається «memory»?",
+    "answer": "Пам'ять, спогад",
+    "emoji": "🧠"
+  },
+  {
+    "question": "Як перекладається «network»?",
+    "answer": "Мережа",
+    "emoji": "🌐"
+  },
+  {
+    "question": "Як перекладається «option»?",
+    "answer": "Варіант, опція",
+    "emoji": "🔘"
+  },
+  {
+    "question": "Як перекладається «pattern»?",
+    "answer": "Модель, візерунок",
+    "emoji": "🔲"
+  },
+  {
+    "question": "Як перекладається «performance»?",
+    "answer": "Продуктивність, виступ",
+    "emoji": "📊"
+  },
+  {
+    "question": "Як перекладається «permission»?",
+    "answer": "Дозвіл",
+    "emoji": "✅"
+  },
+  {
+    "question": "Як перекладається «perspective»?",
+    "answer": "Перспектива, точка зору",
+    "emoji": "👁️"
+  },
+  {
+    "question": "Як перекладається «phenomenon»?",
+    "answer": "Явище, феномен",
+    "emoji": "✨"
+  },
+  {
+    "question": "Як перекладається «policy»?",
+    "answer": "Політика, правила",
+    "emoji": "📋"
+  },
+  {
+    "question": "Як перекладається «poverty»?",
+    "answer": "Бідність",
+    "emoji": "💔"
+  },
+  {
+    "question": "Як перекладається «wealth»?",
+    "answer": "Багатство",
+    "emoji": "💰"
+  },
+  {
+    "question": "Як перекладається «pressure»?",
+    "answer": "Тиск",
+    "emoji": "⬇️"
+  },
+  {
+    "question": "Як перекладається «principle»?",
+    "answer": "Принцип",
+    "emoji": "📝"
+  },
+  {
+    "question": "Як перекладається «priority»?",
+    "answer": "Пріоритет",
+    "emoji": "1️⃣"
+  },
+  {
+    "question": "Як перекладається «procedure»?",
+    "answer": "Процедура",
+    "emoji": "📋"
+  },
+  {
+    "question": "Як перекладається «profit»?",
+    "answer": "Прибуток",
+    "emoji": "📈"
+  },
+  {
+    "question": "Як перекладається «progress»?",
+    "answer": "Прогрес",
+    "emoji": "📈"
+  },
+  {
+    "question": "Як перекладається «property»?",
+    "answer": "Власність, майно",
+    "emoji": "🏠"
+  },
+  {
+    "question": "Як перекладається «prospect»?",
+    "answer": "Перспектива",
+    "emoji": "🔮"
+  },
+  {
+    "question": "Як перекладається «range»?",
+    "answer": "Діапазон, асортимент",
+    "emoji": "↔️"
+  },
+  {
+    "question": "Як перекладається «rate»?",
+    "answer": "Ставка, швидкість",
+    "emoji": "📊"
+  },
+  {
+    "question": "Як перекладається «reality»?",
+    "answer": "Реальність",
+    "emoji": "🌍"
+  },
+  {
+    "question": "Як перекладається «region»?",
+    "answer": "Регіон, область",
+    "emoji": "🗺️"
+  },
+  {
+    "question": "Як перекладається «relationship»?",
+    "answer": "Стосунки",
+    "emoji": "💕"
+  },
+  {
+    "question": "Як перекладається «reputation»?",
+    "answer": "Репутація",
+    "emoji": "⭐"
+  },
+  {
+    "question": "Як перекладається «resource»?",
+    "answer": "Ресурс",
+    "emoji": "📦"
+  },
+  {
+    "question": "Як перекладається «response»?",
+    "answer": "Відповідь, реакція",
+    "emoji": "💬"
+  },
+  {
+    "question": "Як перекладається «responsibility»?",
+    "answer": "Відповідальність",
+    "emoji": "👨‍💼"
+  },
+  {
+    "question": "Як перекладається «reward»?",
+    "answer": "Нагорода",
+    "emoji": "🏆"
+  },
+  {
+    "question": "Як перекладається «risk»?",
+    "answer": "Ризик",
+    "emoji": "⚠️"
+  },
+  {
+    "question": "Як перекладається «role»?",
+    "answer": "Роль",
+    "emoji": "🎭"
+  },
+  {
+    "question": "Як перекладається «schedule»?",
+    "answer": "Розклад",
+    "emoji": "📅"
+  },
+  {
+    "question": "Як перекладається «scheme»?",
+    "answer": "Схема, план",
+    "emoji": "📝"
+  },
+  {
+    "question": "Як перекладається «scope»?",
+    "answer": "Обсяг, сфера",
+    "emoji": "🔭"
+  },
+  {
+    "question": "Як перекладається «security»?",
+    "answer": "Безпека",
+    "emoji": "🔒"
+  },
+  {
+    "question": "Як перекладається «sequence»?",
+    "answer": "Послідовність",
+    "emoji": "1️⃣2️⃣3️⃣"
+  },
+  {
+    "question": "Як перекладається «shortage»?",
+    "answer": "Нестача, дефіцит",
+    "emoji": "⬇️"
+  },
+  {
+    "question": "Як перекладається «sight»?",
+    "answer": "Вид, зір",
+    "emoji": "👁️"
+  },
+  {
+    "question": "Як перекладається «solution»?",
+    "answer": "Рішення",
+    "emoji": "💡"
+  },
+  {
+    "question": "Як перекладається «species»?",
+    "answer": "Вид (біологія)",
+    "emoji": "🦎"
+  },
+  {
+    "question": "Як перекладається «stage»?",
+    "answer": "Етап, сцена",
+    "emoji": "🎭"
+  },
+  {
+    "question": "Як перекладається «strategy»?",
+    "answer": "Стратегія",
+    "emoji": "♟️"
+  },
+  {
+    "question": "Як перекладається «strength»?",
+    "answer": "Сила, перевага",
+    "emoji": "💪"
+  },
+  {
+    "question": "Як перекладається «weakness»?",
+    "answer": "Слабкість, недолік",
+    "emoji": "📉"
+  },
+  {
+    "question": "Як перекладається «structure»?",
+    "answer": "Структура",
+    "emoji": "🏗️"
+  },
+  {
+    "question": "Як перекладається «stuff»?",
+    "answer": "Речі, матеріал",
+    "emoji": "📦"
+  },
+  {
+    "question": "Як перекладається «surface»?",
+    "answer": "Поверхня",
+    "emoji": "🔲"
+  },
+  {
+    "question": "Як перекладається «survey»?",
+    "answer": "Опитування, огляд",
+    "emoji": "📋"
+  },
+  {
+    "question": "Як перекладається «target»?",
+    "answer": "Ціль, мішень",
+    "emoji": "🎯"
+  },
+  {
+    "question": "Як перекладається «task»?",
+    "answer": "Завдання",
+    "emoji": "📋"
+  },
+  {
+    "question": "Як перекладається «technique»?",
+    "answer": "Техніка, методика",
+    "emoji": "🔧"
+  },
+  {
+    "question": "Як перекладається «term»?",
+    "answer": "Термін, умова",
+    "emoji": "📝"
+  },
+  {
+    "question": "Як перекладається «theory»?",
+    "answer": "Теорія",
+    "emoji": "📚"
+  },
+  {
+    "question": "Як перекладається «threat»?",
+    "answer": "Загроза",
+    "emoji": "⚠️"
+  },
+  {
+    "question": "Як перекладається «tool»?",
+    "answer": "Інструмент",
+    "emoji": "🔧"
+  },
+  {
+    "question": "Як перекладається «trend»?",
+    "answer": "Тенденція",
+    "emoji": "📈"
+  },
+  {
+    "question": "Як перекладається «value»?",
+    "answer": "Цінність, вартість",
+    "emoji": "💎"
+  },
+  {
+    "question": "Як перекладається «variety»?",
+    "answer": "Різноманітність",
+    "emoji": "🌈"
+  },
+  {
+    "question": "Як перекладається «version»?",
+    "answer": "Версія",
+    "emoji": "🔄"
+  },
+  {
+    "question": "Як перекладається «victim»?",
+    "answer": "Жертва",
+    "emoji": "😢"
+  },
+  {
+    "question": "Як перекладається «violence»?",
+    "answer": "Насильство",
+    "emoji": "💥"
+  },
+  {
+    "question": "Як перекладається «vision»?",
+    "answer": "Бачення, зір",
+    "emoji": "👁️"
+  },
+  {
+    "question": "Як перекладається «volume» (іменник)?",
+    "answer": "Обсяг, том, гучність",
+    "emoji": "📊"
+  },
+  {
+    "question": "Як перекладається «apparently»?",
+    "answer": "Очевидно, мабуть",
+    "emoji": "👀"
+  },
+  {
+    "question": "Як перекладається «approximately»?",
+    "answer": "Приблизно",
+    "emoji": "≈"
+  },
+  {
+    "question": "Як перекладається «barely»?",
+    "answer": "Ледве",
+    "emoji": "🤏"
+  },
+  {
+    "question": "Як перекладається «constantly»?",
+    "answer": "Постійно",
+    "emoji": "🔄"
+  },
+  {
+    "question": "Як перекладається «deliberately»?",
+    "answer": "Навмисно",
+    "emoji": "🎯"
+  },
+  {
+    "question": "Як перекладається «eventually»?",
+    "answer": "Врешті-решт",
+    "emoji": "⏰"
+  },
+  {
+    "question": "Як перекладається «frequently»?",
+    "answer": "Часто",
+    "emoji": "🔄"
+  },
+  {
+    "question": "Як перекладається «gradually»?",
+    "answer": "Поступово",
+    "emoji": "📈"
+  },
+  {
+    "question": "Як перекладається «hardly»?",
+    "answer": "Ледве, майже не",
+    "emoji": "🤏"
+  },
+  {
+    "question": "Як перекладається «immediately»?",
+    "answer": "Негайно",
+    "emoji": "⚡"
+  },
+  {
+    "question": "Як перекладається «merely»?",
+    "answer": "Лише, просто",
+    "emoji": "👆"
+  },
+  {
+    "question": "Як перекладається «obviously»?",
+    "answer": "Очевидно",
+    "emoji": "👀"
+  },
+  {
+    "question": "Як перекладається «particularly»?",
+    "answer": "Особливо",
+    "emoji": "⭐"
+  },
+  {
+    "question": "Як перекладається «previously»?",
+    "answer": "Раніше",
+    "emoji": "⏮️"
+  },
+  {
+    "question": "Як перекладається «properly»?",
+    "answer": "Належним чином",
+    "emoji": "✅"
+  },
+  {
+    "question": "Як перекладається «rarely»?",
+    "answer": "Рідко",
+    "emoji": "💎"
+  },
+  {
+    "question": "Як перекладається «recently»?",
+    "answer": "Нещодавно",
+    "emoji": "🕐"
+  },
+  {
+    "question": "Як перекладається «relatively»?",
+    "answer": "Відносно",
+    "emoji": "⚖️"
+  },
+  {
+    "question": "Як перекладається «significantly»?",
+    "answer": "Значно",
+    "emoji": "📈"
+  },
+  {
+    "question": "Як перекладається «slightly»?",
+    "answer": "Трохи, злегка",
+    "emoji": "🤏"
+  },
+  {
+    "question": "Як перекладається «somewhat»?",
+    "answer": "Дещо, до певної міри",
+    "emoji": "🤏"
+  },
+  {
+    "question": "Як перекладається «therefore»?",
+    "answer": "Тому, отже",
+    "emoji": "➡️"
+  },
+  {
+    "question": "Як перекладається «thoroughly»?",
+    "answer": "Ретельно",
+    "emoji": "🔍"
+  },
+  {
+    "question": "Як перекладається «ultimately»?",
+    "answer": "Врешті-решт, зрештою",
+    "emoji": "🏁"
+  },
+  {
+    "question": "Як перекладається «widely»?",
+    "answer": "Широко",
+    "emoji": "↔️"
+  },
+  {
+    "question": "Що означає «take into account»?",
+    "answer": "Враховувати",
+    "emoji": "🤔"
+  },
+  {
+    "question": "Що означає «make sense»?",
+    "answer": "Мати сенс",
+    "emoji": "💡"
+  },
+  {
+    "question": "Що означає «in terms of»?",
+    "answer": "З точки зору, щодо",
+    "emoji": "📊"
+  },
+  {
+    "question": "Що означає «on behalf of»?",
+    "answer": "Від імені",
+    "emoji": "🤝"
+  },
+  {
+    "question": "Що означає «in advance»?",
+    "answer": "Заздалегідь",
+    "emoji": "⏰"
+  },
+  {
+    "question": "Що означає «at least»?",
+    "answer": "Принаймні",
+    "emoji": "1️⃣"
+  },
+  {
+    "question": "Що означає «at most»?",
+    "answer": "Щонайбільше",
+    "emoji": "🔝"
+  },
+  {
+    "question": "Що означає «by accident»?",
+    "answer": "Випадково",
+    "emoji": "🎲"
+  },
+  {
+    "question": "Що означає «on purpose»?",
+    "answer": "Навмисно",
+    "emoji": "🎯"
+  },
+  {
+    "question": "Що означає «for instance»?",
+    "answer": "Наприклад",
+    "emoji": "👉"
+  },
+  {
+    "question": "Що означає «as a result»?",
+    "answer": "В результаті",
+    "emoji": "➡️"
+  },
+  {
+    "question": "Що означає «in contrast»?",
+    "answer": "На противагу, навпаки",
+    "emoji": "⚫⚪"
+  },
+  {
+    "question": "Що означає «in conclusion»?",
+    "answer": "На завершення",
+    "emoji": "🏁"
+  },
+  {
+    "question": "Що означає «to be honest»?",
+    "answer": "Чесно кажучи",
+    "emoji": "🤝"
+  },
+  {
+    "question": "Що означає «as far as I know»?",
+    "answer": "Наскільки я знаю",
+    "emoji": "🤔"
+  },
+  {
+    "question": "Що означає «sooner or later»?",
+    "answer": "Рано чи пізно",
+    "emoji": "⏰"
+  },
+  {
+    "question": "Що означає «more or less»?",
+    "answer": "Більш-менш",
+    "emoji": "≈"
+  },
+  {
+    "question": "Що означає «on the other hand»?",
+    "answer": "З іншого боку",
+    "emoji": "✋"
+  },
+  {
+    "question": "Що означає «in other words»?",
+    "answer": "Іншими словами",
+    "emoji": "💬"
+  },
+  {
+    "question": "Що означає «as well as»?",
+    "answer": "Так само як і, а також",
+    "emoji": "➕"
+  }
+]

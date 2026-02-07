@@ -67,6 +67,7 @@ android {
 dependencies {
     // Core modules
     implementation(project(":core:models"))
+    implementation(project(":core:widget-protocol"))
     implementation(project(":core:ui-theme"))
     implementation(project(":core:ui-components"))
 

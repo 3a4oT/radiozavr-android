@@ -31,14 +31,14 @@ import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import androidx.navigation.compose.rememberNavController
 import com.google.firebase.analytics.FirebaseAnalytics
 import com.rovenskyi.radiozavr.core.theme.RadiozavrTheme
-import com.rovenskyi.radiozavr.data.source.MediaControllerManager
+import com.rovenskyi.radiozavr.data.radio.MediaControllerManager
 import com.rovenskyi.radiozavr.domain.analytics.AnalyticsTracker
-import com.rovenskyi.radiozavr.domain.repository.AudioVisualizerRepository
-import com.rovenskyi.radiozavr.domain.repository.LanguageRepository
-import com.rovenskyi.radiozavr.domain.repository.PlatformRepository
+import com.rovenskyi.radiozavr.domain.audio.AudioVisualizerRepository
+import com.rovenskyi.radiozavr.domain.language.LanguageRepository
+import com.rovenskyi.radiozavr.domain.platform.PlatformRepository
 import com.rovenskyi.radiozavr.navigation.AppNavigation
 import com.rovenskyi.radiozavr.service.RadioService
-import com.rovenskyi.radiozavr.viewmodel.ThemeViewModel
+import com.rovenskyi.radiozavr.ui.settings.ThemeViewModel
 import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
 

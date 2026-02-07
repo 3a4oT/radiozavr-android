@@ -40,9 +40,9 @@ import com.rovenskyi.radiozavr.core.components.settings.SettingsGroup
 import com.rovenskyi.radiozavr.core.components.settings.SettingsRow
 import com.rovenskyi.radiozavr.core.models.language.LanguageMode
 import com.rovenskyi.radiozavr.core.models.theme.ThemeMode
-import com.rovenskyi.radiozavr.domain.repository.LanguageRepository
-import com.rovenskyi.radiozavr.viewmodel.SettingsViewModel
-import com.rovenskyi.radiozavr.viewmodel.ThemeViewModel
+import com.rovenskyi.radiozavr.domain.language.LanguageRepository
+import com.rovenskyi.radiozavr.ui.settings.SettingsViewModel
+import com.rovenskyi.radiozavr.ui.settings.ThemeViewModel
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable

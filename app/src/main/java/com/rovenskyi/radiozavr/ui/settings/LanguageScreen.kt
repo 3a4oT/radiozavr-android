@@ -23,7 +23,7 @@ import com.rovenskyi.radiozavr.R
 import com.rovenskyi.radiozavr.core.components.settings.SelectableRow
 import com.rovenskyi.radiozavr.core.components.settings.SettingsGroup
 import com.rovenskyi.radiozavr.core.models.language.LanguageMode
-import com.rovenskyi.radiozavr.viewmodel.LanguageViewModel
+import com.rovenskyi.radiozavr.ui.settings.LanguageViewModel
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable

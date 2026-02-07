@@ -1,6 +1,6 @@
 package com.rovenskyi.radiozavr.domain.usecase
 
-import com.rovenskyi.radiozavr.domain.repository.AudioVisualizerRepository
+import com.rovenskyi.radiozavr.domain.audio.AudioVisualizerRepository
 import javax.inject.Inject
 
 class StartVisualizerCaptureUseCase @Inject constructor(

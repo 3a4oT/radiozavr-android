@@ -5,7 +5,7 @@ import androidx.compose.ui.Modifier
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
-import com.rovenskyi.radiozavr.domain.repository.LanguageRepository
+import com.rovenskyi.radiozavr.domain.language.LanguageRepository
 import com.rovenskyi.radiozavr.ui.main.RadioPlayerScreen
 import com.rovenskyi.radiozavr.ui.settings.AboutScreen
 import com.rovenskyi.radiozavr.ui.settings.LanguageScreen

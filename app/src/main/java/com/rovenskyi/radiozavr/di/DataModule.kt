@@ -7,8 +7,8 @@ import com.rovenskyi.radiozavr.data.permission.PermissionRepositoryImpl
 import com.rovenskyi.radiozavr.data.platform.PlatformRepositoryImpl
 import com.rovenskyi.radiozavr.data.playback.PlaybackSettingsRepositoryImpl
 import com.rovenskyi.radiozavr.data.radio.RadioRepositoryImpl
-import com.rovenskyi.radiozavr.data.riddle.RiddleRepositoryImpl
 import com.rovenskyi.radiozavr.data.theme.ThemeRepositoryImpl
+import com.rovenskyi.radiozavr.data.widget.riddle.RiddleRepositoryImpl
 import com.rovenskyi.radiozavr.domain.audio.AudioVisualizerRepository
 import com.rovenskyi.radiozavr.domain.language.LanguageRepository
 import com.rovenskyi.radiozavr.domain.network.NetworkRepository
@@ -16,8 +16,8 @@ import com.rovenskyi.radiozavr.domain.permission.PermissionRepository
 import com.rovenskyi.radiozavr.domain.platform.PlatformRepository
 import com.rovenskyi.radiozavr.domain.playback.PlaybackSettingsRepository
 import com.rovenskyi.radiozavr.domain.radio.RadioRepository
-import com.rovenskyi.radiozavr.domain.riddle.RiddleRepository
 import com.rovenskyi.radiozavr.domain.theme.ThemeRepository
+import com.rovenskyi.radiozavr.domain.widget.riddle.RiddleRepository
 import dagger.Binds
 import dagger.Module
 import dagger.hilt.InstallIn

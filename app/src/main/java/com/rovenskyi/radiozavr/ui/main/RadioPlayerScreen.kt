@@ -37,6 +37,7 @@ import com.rovenskyi.radiozavr.core.theme.LocalIsTv
 import com.rovenskyi.radiozavr.domain.network.NetworkStatus
 import com.rovenskyi.radiozavr.domain.radio.PlayerState
 import com.rovenskyi.radiozavr.ui.main.error.NetworkErrorScreen
+import com.rovenskyi.radiozavr.ui.widget.riddle.RiddleWidget
 import kotlinx.coroutines.delay
 
 private const val AUDIO_PERMISSION_DELAY_MS = 3000L

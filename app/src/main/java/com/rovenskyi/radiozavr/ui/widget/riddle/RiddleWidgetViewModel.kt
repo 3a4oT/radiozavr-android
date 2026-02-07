@@ -1,4 +1,4 @@
-package com.rovenskyi.radiozavr.ui.main
+package com.rovenskyi.radiozavr.ui.widget.riddle
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope

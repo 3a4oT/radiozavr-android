@@ -6,7 +6,7 @@ import androidx.datastore.preferences.core.Preferences
 import androidx.datastore.preferences.core.edit
 import androidx.datastore.preferences.core.stringPreferencesKey
 import androidx.datastore.preferences.preferencesDataStore
-import com.rovenskyi.radiolux.core.models.theme.ThemeMode
+import com.rovenskyi.radiozavr.core.models.theme.ThemeMode
 import com.rovenskyi.radiozavr.domain.repository.ThemeRepository
 import dagger.hilt.android.qualifiers.ApplicationContext
 import kotlinx.coroutines.flow.Flow

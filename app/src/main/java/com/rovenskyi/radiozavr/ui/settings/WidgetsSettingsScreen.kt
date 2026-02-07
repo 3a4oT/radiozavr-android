@@ -27,9 +27,9 @@ import androidx.compose.ui.focus.FocusRequester
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import androidx.hilt.lifecycle.viewmodel.compose.hiltViewModel
-import com.rovenskyi.radiolux.core.components.settings.SettingsGroup
-import com.rovenskyi.radiolux.core.components.settings.SettingsRow
 import com.rovenskyi.radiozavr.R
+import com.rovenskyi.radiozavr.core.components.settings.SettingsGroup
+import com.rovenskyi.radiozavr.core.components.settings.SettingsRow
 import com.rovenskyi.radiozavr.viewmodel.WidgetsSettingsViewModel
 
 @OptIn(ExperimentalMaterial3Api::class)

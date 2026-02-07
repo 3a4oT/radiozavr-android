@@ -1,7 +1,7 @@
 package com.rovenskyi.radiozavr.service
 
-import com.rovenskyi.radiolux.core.models.riddle.RiddleInterval
-import com.rovenskyi.radiolux.core.models.riddle.RiddleRotationState
+import com.rovenskyi.radiozavr.core.models.riddle.RiddleInterval
+import com.rovenskyi.radiozavr.core.models.riddle.RiddleRotationState
 import com.rovenskyi.radiozavr.domain.repository.RiddleRepository
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers

@@ -1,18 +1,18 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
     <!-- Base application theme. -->
-    <style name="Theme.Radioluxfmstreamer" parent="Theme.AppCompat.DayNight.NoActionBar">
+    <style name="Theme.Radiozavr" parent="Theme.AppCompat.DayNight.NoActionBar">
         <!-- Primary brand color. -->
         <item name="colorPrimary">@color/purple_500</item>
         <!-- Customize your theme here. -->
     </style>
 
     <!-- Splash Screen theme -->
-    <style name="Theme.Radioluxfmstreamer.Splash" parent="Theme.SplashScreen">
+    <style name="Theme.Radiozavr.Splash" parent="Theme.SplashScreen">
         <!-- Deep navy background - neutral, works for both light/dark -->
         <item name="windowSplashScreenBackground">@color/splash_background</item>
         <!-- Splash icon with transparent background -->
         <item name="windowSplashScreenAnimatedIcon">@drawable/ic_splash</item>
         <!-- Post-splash theme -->
-        <item name="postSplashScreenTheme">@style/Theme.Radioluxfmstreamer</item>
+        <item name="postSplashScreenTheme">@style/Theme.Radiozavr</item>
     </style>
 </resources>

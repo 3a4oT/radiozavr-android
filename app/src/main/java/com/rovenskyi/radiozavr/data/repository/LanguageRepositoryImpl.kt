@@ -2,7 +2,7 @@ package com.rovenskyi.radiozavr.data.repository
 
 import androidx.appcompat.app.AppCompatDelegate
 import androidx.core.os.LocaleListCompat
-import com.rovenskyi.radiolux.core.models.language.LanguageMode
+import com.rovenskyi.radiozavr.core.models.language.LanguageMode
 import com.rovenskyi.radiozavr.domain.repository.LanguageRepository
 import javax.inject.Inject
 import javax.inject.Singleton

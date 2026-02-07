@@ -1,9 +1,9 @@
 package com.rovenskyi.radiozavr.domain.analytics.event
 
-import com.rovenskyi.radiolux.core.models.language.LanguageMode
-import com.rovenskyi.radiolux.core.models.riddle.RiddleAnswerMode
-import com.rovenskyi.radiolux.core.models.riddle.RiddleInterval
-import com.rovenskyi.radiolux.core.models.theme.ThemeMode
+import com.rovenskyi.radiozavr.core.models.language.LanguageMode
+import com.rovenskyi.radiozavr.core.models.riddle.RiddleAnswerMode
+import com.rovenskyi.radiozavr.core.models.riddle.RiddleInterval
+import com.rovenskyi.radiozavr.core.models.theme.ThemeMode
 
 sealed class SettingsEvent : AnalyticsEvent {
 

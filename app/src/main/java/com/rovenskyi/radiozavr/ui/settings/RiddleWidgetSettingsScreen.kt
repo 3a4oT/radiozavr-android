@@ -21,11 +21,11 @@ import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.hilt.lifecycle.viewmodel.compose.hiltViewModel
-import com.rovenskyi.radiolux.core.components.settings.SelectableRow
-import com.rovenskyi.radiolux.core.components.settings.SettingsGroup
-import com.rovenskyi.radiolux.core.models.riddle.RiddleAnswerMode
-import com.rovenskyi.radiolux.core.models.riddle.RiddleInterval
 import com.rovenskyi.radiozavr.R
+import com.rovenskyi.radiozavr.core.components.settings.SelectableRow
+import com.rovenskyi.radiozavr.core.components.settings.SettingsGroup
+import com.rovenskyi.radiozavr.core.models.riddle.RiddleAnswerMode
+import com.rovenskyi.radiozavr.core.models.riddle.RiddleInterval
 import com.rovenskyi.radiozavr.viewmodel.RiddleSettingsViewModel
 
 @OptIn(ExperimentalMaterial3Api::class)

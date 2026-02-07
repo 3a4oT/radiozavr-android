@@ -4,7 +4,7 @@ plugins {
 }
 
 android {
-    namespace = "com.rovenskyi.radiolux.core.theme"
+    namespace = "com.rovenskyi.radiozavr.core.theme"
     compileSdk = 36
 
     defaultConfig {

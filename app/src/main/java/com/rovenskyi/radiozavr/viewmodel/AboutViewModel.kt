@@ -2,8 +2,8 @@ package com.rovenskyi.radiozavr.viewmodel
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.rovenskyi.radiolux.core.models.permission.PermissionStatus
 import com.rovenskyi.radiozavr.BuildConfig
+import com.rovenskyi.radiozavr.core.models.permission.PermissionStatus
 import com.rovenskyi.radiozavr.domain.analytics.AnalyticsTracker
 import com.rovenskyi.radiozavr.domain.analytics.event.ButtonEvent
 import com.rovenskyi.radiozavr.domain.analytics.event.ScreenEvent

@@ -2,8 +2,8 @@ package com.rovenskyi.radiozavr.ui.settings
 
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.Composable
-import com.rovenskyi.radiolux.core.theme.LocalIsTv
-import com.rovenskyi.radiolux.core.theme.TvCompactTypography
+import com.rovenskyi.radiozavr.core.theme.LocalIsTv
+import com.rovenskyi.radiozavr.core.theme.TvCompactTypography
 
 /**
  * Provides compact typography for Settings screens on TV.

@@ -1,6 +1,6 @@
 package com.rovenskyi.radiozavr.domain.repository
 
-import com.rovenskyi.radiolux.core.models.language.LanguageMode
+import com.rovenskyi.radiozavr.core.models.language.LanguageMode
 
 /**
  * Repository for managing app language settings.

@@ -8,8 +8,8 @@ import androidx.datastore.preferences.core.edit
 import androidx.datastore.preferences.core.intPreferencesKey
 import androidx.datastore.preferences.core.stringPreferencesKey
 import androidx.datastore.preferences.preferencesDataStore
-import com.rovenskyi.radiolux.core.models.riddle.RiddleAnswerMode
-import com.rovenskyi.radiolux.core.models.riddle.RiddleInterval
+import com.rovenskyi.radiozavr.core.models.riddle.RiddleAnswerMode
+import com.rovenskyi.radiozavr.core.models.riddle.RiddleInterval
 import com.rovenskyi.radiozavr.domain.repository.PlatformRepository
 import com.rovenskyi.radiozavr.domain.repository.PlaybackSettingsRepository
 import dagger.hilt.android.qualifiers.ApplicationContext

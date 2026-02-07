@@ -24,7 +24,6 @@ import com.rovenskyi.radiozavr.R
 import com.rovenskyi.radiozavr.core.components.settings.SelectableRow
 import com.rovenskyi.radiozavr.core.components.settings.SettingsGroup
 import com.rovenskyi.radiozavr.core.models.theme.ThemeMode
-import com.rovenskyi.radiozavr.viewmodel.ThemeViewModel
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable

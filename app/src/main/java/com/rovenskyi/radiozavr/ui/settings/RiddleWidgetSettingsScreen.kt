@@ -26,7 +26,6 @@ import com.rovenskyi.radiozavr.core.components.settings.SelectableRow
 import com.rovenskyi.radiozavr.core.components.settings.SettingsGroup
 import com.rovenskyi.radiozavr.core.models.riddle.RiddleAnswerMode
 import com.rovenskyi.radiozavr.core.models.riddle.RiddleInterval
-import com.rovenskyi.radiozavr.viewmodel.RiddleSettingsViewModel
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable

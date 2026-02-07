@@ -1,6 +1,6 @@
 package com.rovenskyi.radiozavr.domain.usecase
 
-import com.rovenskyi.radiozavr.domain.repository.AudioVisualizerRepository
+import com.rovenskyi.radiozavr.domain.audio.AudioVisualizerRepository
 import kotlinx.coroutines.flow.Flow
 import javax.inject.Inject
 

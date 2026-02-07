@@ -1,7 +1,7 @@
 package com.rovenskyi.radiozavr.domain.usecase
 
-import com.rovenskyi.radiozavr.domain.model.NetworkStatus
-import com.rovenskyi.radiozavr.domain.repository.NetworkRepository
+import com.rovenskyi.radiozavr.domain.network.NetworkRepository
+import com.rovenskyi.radiozavr.domain.network.NetworkStatus
 import kotlinx.coroutines.flow.Flow
 import javax.inject.Inject
 

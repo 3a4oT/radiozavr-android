@@ -40,14 +40,10 @@ import com.rovenskyi.radiozavr.core.components.settings.SettingsGroup
 import com.rovenskyi.radiozavr.core.components.settings.SettingsRow
 import com.rovenskyi.radiozavr.core.models.language.LanguageMode
 import com.rovenskyi.radiozavr.core.models.theme.ThemeMode
-import com.rovenskyi.radiozavr.domain.repository.LanguageRepository
-import com.rovenskyi.radiozavr.viewmodel.SettingsViewModel
-import com.rovenskyi.radiozavr.viewmodel.ThemeViewModel
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun SettingsScreen(
-    languageRepository: LanguageRepository,
     onBackClick: () -> Unit,
     onThemeClick: () -> Unit,
     onLanguageClick: () -> Unit,
@@ -55,12 +51,11 @@ fun SettingsScreen(
     onWidgetsClick: () -> Unit,
     onAboutClick: () -> Unit,
     modifier: Modifier = Modifier,
+    settingsViewModel: SettingsViewModel = hiltViewModel(),
     themeViewModel: ThemeViewModel = hiltViewModel(),
 ) {
-    // ViewModel instantiation triggers screen_view analytics in init{}
-    hiltViewModel<SettingsViewModel>()
-
     val themeMode by themeViewModel.themeMode.collectAsState()
+    val languageMode = settingsViewModel.languageMode
 
     // Focus restoration: track last clicked row and restore focus on return
     var lastFocusedIndex by rememberSaveable { mutableIntStateOf(0) }
@@ -105,7 +100,7 @@ fun SettingsScreen(
                     focusRequester = focusRequesters[0],
                 )
                 LanguageGroup(
-                    languageRepository = languageRepository,
+                    languageMode = languageMode,
                     onLanguageClick = {
                         lastFocusedIndex = 1
                         onLanguageClick()
@@ -167,12 +162,11 @@ private fun AppearanceGroup(
 
 @Composable
 private fun LanguageGroup(
-    languageRepository: LanguageRepository,
+    languageMode: LanguageMode,
     onLanguageClick: () -> Unit,
     focusRequester: FocusRequester? = null,
 ) {
-    val currentLanguageMode = languageRepository.getLanguageMode()
-    val currentLanguageLabel = when (currentLanguageMode) {
+    val currentLanguageLabel = when (languageMode) {
         LanguageMode.SYSTEM -> stringResource(R.string.settings_language_system)
         LanguageMode.UKRAINIAN -> stringResource(R.string.settings_language_ukrainian)
         LanguageMode.ENGLISH -> stringResource(R.string.settings_language_english)

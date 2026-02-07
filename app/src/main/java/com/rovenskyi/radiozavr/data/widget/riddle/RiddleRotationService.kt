@@ -1,8 +1,8 @@
-package com.rovenskyi.radiozavr.data.riddle
+package com.rovenskyi.radiozavr.data.widget.riddle
 
 import com.rovenskyi.radiozavr.core.models.riddle.RiddleInterval
 import com.rovenskyi.radiozavr.core.models.riddle.RiddleRotationState
-import com.rovenskyi.radiozavr.domain.riddle.RiddleRepository
+import com.rovenskyi.radiozavr.domain.widget.riddle.RiddleRepository
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Job

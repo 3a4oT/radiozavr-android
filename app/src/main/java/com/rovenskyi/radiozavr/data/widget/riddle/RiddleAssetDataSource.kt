@@ -1,4 +1,4 @@
-package com.rovenskyi.radiozavr.data.riddle
+package com.rovenskyi.radiozavr.data.widget.riddle
 
 import android.content.Context
 import com.rovenskyi.radiozavr.core.models.riddle.Riddle

@@ -5,7 +5,7 @@ import androidx.lifecycle.viewModelScope
 import com.rovenskyi.radiozavr.core.models.riddle.Riddle
 import com.rovenskyi.radiozavr.core.models.riddle.RiddleAnswerMode
 import com.rovenskyi.radiozavr.core.models.riddle.RiddleInterval
-import com.rovenskyi.radiozavr.data.riddle.RiddleRotationService
+import com.rovenskyi.radiozavr.data.widget.riddle.RiddleRotationService
 import com.rovenskyi.radiozavr.domain.analytics.AnalyticsTracker
 import com.rovenskyi.radiozavr.domain.analytics.event.RiddleEvent
 import com.rovenskyi.radiozavr.domain.playback.PlaybackSettingsRepository

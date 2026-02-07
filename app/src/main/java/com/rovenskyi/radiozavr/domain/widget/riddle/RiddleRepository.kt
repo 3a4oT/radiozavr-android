@@ -1,4 +1,4 @@
-package com.rovenskyi.radiozavr.domain.riddle
+package com.rovenskyi.radiozavr.domain.widget.riddle
 
 import com.rovenskyi.radiozavr.core.models.riddle.Riddle
 import com.rovenskyi.radiozavr.core.models.riddle.RiddleCategory

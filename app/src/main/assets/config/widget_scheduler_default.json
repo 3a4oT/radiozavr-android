@@ -1,0 +1,28 @@
+{
+  "schemaVersion": 1,
+  "minAppVersion": "0.6.0",
+  "primary": "RIDDLE",
+  "startDelaySec": 30,
+  "transitionMs": 500,
+  "schedule": [
+    {
+      "type": "GEOMAGNETIC",
+      "minAppVersion": "0.7.0",
+      "enabled": true,
+      "displayDurationSec": 25,
+      "minDisplaySec": 5,
+      "intervalMin": 60,
+      "cooldownMin": 15,
+      "priority": 3,
+      "networkMode": "CACHED",
+      "maxStalenessMin": 180,
+      "timeWindows": [
+        {
+          "days": [],
+          "startHour": 0,
+          "endHour": 24
+        }
+      ]
+    }
+  ]
+}

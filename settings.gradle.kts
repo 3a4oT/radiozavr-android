@@ -20,6 +20,7 @@ include(":app")
 
 // Core modules
 include(":core:models")
+include(":core:widget-protocol")
 include(":core:ui-theme")
 include(":core:ui-components")
 include(":core:network")

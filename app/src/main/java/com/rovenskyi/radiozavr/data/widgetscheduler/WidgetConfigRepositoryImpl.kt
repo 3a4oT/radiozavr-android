@@ -2,7 +2,6 @@ package com.rovenskyi.radiozavr.data.widgetscheduler
 
 import com.rovenskyi.radiozavr.BuildConfig
 import com.rovenskyi.radiozavr.core.widget.WidgetManagerConfig
-import com.rovenskyi.radiozavr.core.widget.WidgetType
 import com.rovenskyi.radiozavr.domain.widgetscheduler.WidgetConfigRepository
 import com.rovenskyi.radiozavr.domain.widgetscheduler.WidgetConfigSource
 import kotlinx.coroutines.flow.Flow
@@ -30,12 +29,12 @@ class WidgetConfigRepositoryImpl @Inject constructor(
 /**
  * Filters schedule entries that this app version can handle.
  *
- * Drops entries with:
- * - `minAppVersion` higher than current app
- * - Unknown `WidgetType` values (forward compatibility)
+ * Drops entries whose `minAppVersion` exceeds the running app.
+ * Unknown WidgetType values are already filtered during JSON parsing
+ * (see [LocalWidgetConfigSource]).
  *
- * If config's `schemaVersion` exceeds [SUPPORTED_SCHEMA_VERSION],
- * returns empty defaults — backend must bump schema only on breaking changes.
+ * If `schemaVersion` exceeds [SUPPORTED_SCHEMA_VERSION],
+ * returns empty defaults — backend bumps schema only on breaking changes.
  */
 internal fun WidgetManagerConfig.filterForCurrentApp(): WidgetManagerConfig {
     if (schemaVersion > SUPPORTED_SCHEMA_VERSION) return WidgetManagerConfig()
@@ -43,8 +42,7 @@ internal fun WidgetManagerConfig.filterForCurrentApp(): WidgetManagerConfig {
     val appVersion = BuildConfig.VERSION_NAME
     return copy(
         schedule = schedule.filter { entry ->
-            isVersionCompatible(appVersion, entry.minAppVersion) &&
-                entry.type in WidgetType.entries
+            isVersionCompatible(appVersion, entry.minAppVersion)
         },
     )
 }

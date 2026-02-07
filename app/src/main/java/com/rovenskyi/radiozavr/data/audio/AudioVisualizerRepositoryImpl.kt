@@ -1,6 +1,5 @@
 package com.rovenskyi.radiozavr.data.audio
 
-import com.rovenskyi.radiozavr.data.audio.AudioVisualizerCapture
 import com.rovenskyi.radiozavr.domain.audio.AudioVisualizerRepository
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers

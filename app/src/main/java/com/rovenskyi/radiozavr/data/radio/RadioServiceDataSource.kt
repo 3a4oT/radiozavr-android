@@ -1,7 +1,6 @@
 package com.rovenskyi.radiozavr.data.radio
 
 import com.rovenskyi.radiozavr.data.network.CheckNetworkService
-import com.rovenskyi.radiozavr.data.radio.PlayerEventReceiver
 import kotlinx.coroutines.flow.StateFlow
 import java.io.IOException
 import javax.inject.Inject

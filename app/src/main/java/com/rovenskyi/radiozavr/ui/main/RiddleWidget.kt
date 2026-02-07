@@ -48,7 +48,6 @@ import com.rovenskyi.radiozavr.core.models.riddle.RiddleInterval
 import com.rovenskyi.radiozavr.core.theme.LocalDimensions
 import com.rovenskyi.radiozavr.core.theme.LocalIsTv
 import com.rovenskyi.radiozavr.core.theme.LocalTvFocusColor
-import com.rovenskyi.radiozavr.ui.main.RiddleWidgetViewModel
 import kotlinx.coroutines.delay
 
 private const val TV_INDICATOR_SIZE_DP = 76

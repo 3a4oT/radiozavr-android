@@ -48,7 +48,6 @@ import com.rovenskyi.radiozavr.core.components.settings.SettingsRow
 import com.rovenskyi.radiozavr.core.models.permission.PermissionStatus
 import com.rovenskyi.radiozavr.core.theme.LocalDimensions
 import com.rovenskyi.radiozavr.core.theme.LocalIsTv
-import com.rovenskyi.radiozavr.ui.settings.AboutViewModel
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable

@@ -34,7 +34,6 @@ import com.rovenskyi.radiozavr.core.theme.RadiozavrTheme
 import com.rovenskyi.radiozavr.data.radio.MediaControllerManager
 import com.rovenskyi.radiozavr.domain.analytics.AnalyticsTracker
 import com.rovenskyi.radiozavr.domain.audio.AudioVisualizerRepository
-import com.rovenskyi.radiozavr.domain.language.LanguageRepository
 import com.rovenskyi.radiozavr.domain.platform.PlatformRepository
 import com.rovenskyi.radiozavr.navigation.AppNavigation
 import com.rovenskyi.radiozavr.service.RadioService
@@ -45,9 +44,6 @@ import javax.inject.Inject
 @AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
     private val themeViewModel: ThemeViewModel by viewModels()
-
-    @Inject
-    lateinit var languageRepository: LanguageRepository
 
     @Inject
     lateinit var platformRepository: PlatformRepository
@@ -106,7 +102,6 @@ class MainActivity : AppCompatActivity() {
                 Surface(modifier = Modifier.fillMaxSize()) {
                     AppNavigation(
                         navController = navController,
-                        languageRepository = languageRepository,
                         onRequestAudioPermission = {
                             if (!hasRequestedAudioPermission) {
                                 hasRequestedAudioPermission = true

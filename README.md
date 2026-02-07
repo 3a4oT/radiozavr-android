@@ -7,8 +7,7 @@
 
 *Фонова музика із саундбаром, demo-режим для телевізора, або цікаві факти, коли проходиш повз екран.*
 
-<!-- TODO: Replace with new screenshot after release -->
-![Radiozavr TV Interface](https://github.com/3a4oT/radiozavr-android/releases/download/0.1.1/tv-demo-radio-streamer.png)
+![Radiozavr TV Interface](https://github.com/3a4oT/radiozavr-android/releases/download/0.5.0/Screenshot_20260207_152607.png)
 
 ## Для Android TV
 

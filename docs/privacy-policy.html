@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Політика конфіденційності — Радіозавр Львів</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      background: #0f1923;
+      color: #e0e1dd;
+      line-height: 1.7;
+    }
+
+    .container {
+      max-width: 760px;
+      margin: 0 auto;
+      padding: 48px 24px 80px;
+    }
+
+    .lang-switch {
+      display: flex;
+      gap: 12px;
+      margin-bottom: 40px;
+    }
+
+    .lang-switch a {
+      color: #b0bec5;
+      text-decoration: none;
+      font-size: 14px;
+      padding: 6px 14px;
+      border: 1px solid #2a3a4a;
+      border-radius: 20px;
+      transition: all 0.2s;
+    }
+
+    .lang-switch a.active,
+    .lang-switch a:hover {
+      color: #e63946;
+      border-color: #e63946;
+    }
+
+    header {
+      margin-bottom: 40px;
+    }
+
+    .app-name {
+      font-size: 13px;
+      color: #e63946;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      margin-bottom: 12px;
+    }
+
+    h1 {
+      font-size: 32px;
+      font-weight: 700;
+      color: #ffffff;
+      margin-bottom: 8px;
+    }
+
+    .updated {
+      font-size: 13px;
+      color: #607d8b;
+    }
+
+    section {
+      margin-bottom: 36px;
+    }
+
+    h2 {
+      font-size: 18px;
+      font-weight: 600;
+      color: #ffffff;
+      margin-bottom: 12px;
+      padding-left: 12px;
+      border-left: 3px solid #e63946;
+    }
+
+    p {
+      color: #b0bec5;
+      margin-bottom: 10px;
+    }
+
+    ul {
+      list-style: none;
+      padding: 0;
+    }
+
+    ul li {
+      color: #b0bec5;
+      padding: 4px 0 4px 18px;
+      position: relative;
+    }
+
+    ul li::before {
+      content: "—";
+      position: absolute;
+      left: 0;
+      color: #e63946;
+    }
+
+    a {
+      color: #4dd0e1;
+      text-decoration: none;
+    }
+
+    a:hover {
+      text-decoration: underline;
+    }
+
+    .section-uk { display: block; }
+    .section-en { display: none; }
+
+    .highlight {
+      background: #1e2d3d;
+      border-radius: 8px;
+      padding: 16px 20px;
+      margin: 12px 0;
+    }
+
+    footer {
+      margin-top: 64px;
+      padding-top: 24px;
+      border-top: 1px solid #1e2d3d;
+      font-size: 13px;
+      color: #455a64;
+    }
+  </style>
+</head>
+<body>
+<div class="container">
+
+  <div class="lang-switch">
+    <a href="#" class="active" onclick="showLang('uk'); return false;">Українська</a>
+    <a href="#" onclick="showLang('en'); return false;">English</a>
+  </div>
+
+  <!-- UKRAINIAN -->
+  <div class="section-uk">
+    <header>
+      <div class="app-name">Радіозавр Львів</div>
+      <h1>Політика конфіденційності</h1>
+      <p class="updated">Остання зміна: 3 квітня 2026 р.</p>
+    </header>
+
+    <section>
+      <h2>Загальне</h2>
+      <p>
+        Радіозавр Львів — безплатний додаток для стримінгу радіо та інтерактивних загадок на смартфонах і Android TV.
+        Ми поважаємо вашу приватність і збираємо мінімум необхідних даних.
+      </p>
+    </section>
+
+    <section>
+      <h2>Які дані збираються</h2>
+      <div class="highlight">
+        <ul>
+          <li><strong>Аналітика використання</strong> — через Firebase Analytics: запуск додатку, відтворення/зупинка радіо, зміна теми, мови. Дані анонімні та не містять особистої інформації.</li>
+          <li><strong>Звіти про помилки</strong> — через Firebase Crashlytics: технічна інформація про збої (модель пристрою, версія Android, стек виклику). Допомагає покращувати стабільність.</li>
+          <li><strong>Мікрофон (RECORD_AUDIO)</strong> — використовується виключно локально для аналізу аудіопотоку з метою відображення візуалізатора. Аудіо <strong>не записується</strong> і <strong>не передається</strong> на сервери.</li>
+        </ul>
+      </div>
+    </section>
+
+    <section>
+      <h2>Що НЕ збирається</h2>
+      <ul>
+        <li>Ім'я, email або будь-які особисті дані</li>
+        <li>Геолокація</li>
+        <li>Контакти або файли</li>
+        <li>Дані для продажу або реклами</li>
+      </ul>
+    </section>
+
+    <section>
+      <h2>Сторонні сервіси</h2>
+      <p>Додаток використовує сервіси Google:</p>
+      <ul>
+        <li><a href="https://firebase.google.com/support/privacy" target="_blank">Firebase Analytics — політика конфіденційності</a></li>
+        <li><a href="https://firebase.google.com/support/privacy" target="_blank">Firebase Crashlytics — політика конфіденційності</a></li>
+      </ul>
+    </section>
+
+    <section>
+      <h2>Діти</h2>
+      <p>Додаток не орієнтований на дітей до 13 років і свідомо не збирає їхніх даних.</p>
+    </section>
+
+    <section>
+      <h2>Зміни до політики</h2>
+      <p>Якщо політика зміниться — оновлена версія з'явиться на цій сторінці. Продовжуючи використовувати додаток після змін, ви погоджуєтесь з оновленою політикою.</p>
+    </section>
+
+    <section>
+      <h2>Контакт</h2>
+      <p>Питання щодо конфіденційності: <a href="https://github.com/3a4oT/radiozavr-android/issues" target="_blank">GitHub Issues</a></p>
+    </section>
+  </div>
+
+  <!-- ENGLISH -->
+  <div class="section-en" style="display:none">
+    <header>
+      <div class="app-name">Radiozavr Lviv</div>
+      <h1>Privacy Policy</h1>
+      <p class="updated">Last updated: April 3, 2026</p>
+    </header>
+
+    <section>
+      <h2>Overview</h2>
+      <p>
+        Radiozavr Lviv is a free app for radio streaming and interactive quiz cards on smartphones and Android TV.
+        We respect your privacy and collect only the minimum data necessary to operate the app.
+      </p>
+    </section>
+
+    <section>
+      <h2>Data We Collect</h2>
+      <div class="highlight">
+        <ul>
+          <li><strong>Usage analytics</strong> — via Firebase Analytics: app launch, radio play/stop, theme and language changes. Data is anonymous and contains no personal information.</li>
+          <li><strong>Crash reports</strong> — via Firebase Crashlytics: technical information about crashes (device model, Android version, stack trace). Used solely to improve app stability.</li>
+          <li><strong>Microphone (RECORD_AUDIO)</strong> — used locally only to analyze the audio stream for the audio visualizer display. Audio is <strong>never recorded</strong> or <strong>transmitted</strong> to any server.</li>
+        </ul>
+      </div>
+    </section>
+
+    <section>
+      <h2>Data We Do NOT Collect</h2>
+      <ul>
+        <li>Name, email, or any personal identifiers</li>
+        <li>Location data</li>
+        <li>Contacts or files</li>
+        <li>Data for advertising or sale</li>
+      </ul>
+    </section>
+
+    <section>
+      <h2>Third-Party Services</h2>
+      <p>The app uses Google services:</p>
+      <ul>
+        <li><a href="https://firebase.google.com/support/privacy" target="_blank">Firebase Analytics — Privacy Policy</a></li>
+        <li><a href="https://firebase.google.com/support/privacy" target="_blank">Firebase Crashlytics — Privacy Policy</a></li>
+      </ul>
+    </section>
+
+    <section>
+      <h2>Children</h2>
+      <p>This app is not directed at children under 13 and does not knowingly collect their data.</p>
+    </section>
+
+    <section>
+      <h2>Changes</h2>
+      <p>If this policy changes, the updated version will appear on this page. Continued use of the app after changes constitutes acceptance of the updated policy.</p>
+    </section>
+
+    <section>
+      <h2>Contact</h2>
+      <p>Privacy questions: <a href="https://github.com/3a4oT/radiozavr-android/issues" target="_blank">GitHub Issues</a></p>
+    </section>
+  </div>
+
+  <footer>
+    © 2026 Радіозавр Львів · <a href="https://github.com/3a4oT/radiozavr-android">GitHub</a>
+  </footer>
+
+</div>
+
+<script>
+  function showLang(lang) {
+    document.querySelector('.section-uk').style.display = lang === 'uk' ? 'block' : 'none';
+    document.querySelector('.section-en').style.display = lang === 'en' ? 'block' : 'none';
+    document.querySelectorAll('.lang-switch a').forEach((a, i) => {
+      a.classList.toggle('active', (i === 0 && lang === 'uk') || (i === 1 && lang === 'en'));
+    });
+  }
+</script>
+</body>
+</html>

@@ -90,7 +90,6 @@ jobs:
   play-store:
     needs: build
     runs-on: ubuntu-latest
-    if: ${{ secrets.PLAY_STORE_CREDENTIALS != '' }}
 
     steps:
       - name: Checkout code

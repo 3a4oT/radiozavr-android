@@ -72,6 +72,7 @@ platform :android do
       track: "internal",
       aab: aab,
       mapping: mapping,
+      release_status: "draft",
       skip_upload_images: true,
       skip_upload_screenshots: true
     )

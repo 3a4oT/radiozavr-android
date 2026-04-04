@@ -1,3 +1,5 @@
+import java.util.Properties
+
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.ksp)
@@ -8,9 +10,29 @@ plugins {
     id("com.google.dagger.hilt.android")
 }
 
+val signingProps = Properties().apply {
+    val localProps = rootProject.file("local.properties")
+    if (localProps.exists()) load(localProps.inputStream())
+}
+
 android {
     namespace = "com.rovenskyi.radiozavr"
     compileSdk = 36
+
+    signingConfigs {
+        create("release") {
+            storeFile = rootProject.file(
+                signingProps.getProperty("signing.storeFile", "signing/release-key.jks")
+            )
+            storePassword = signingProps.getProperty("signing.storePassword")
+                ?: System.getenv("KEYSTORE_PASSWORD")
+            keyAlias = signingProps.getProperty("signing.keyAlias")
+                ?: System.getenv("KEY_ALIAS")
+                ?: "release-key-alias"
+            keyPassword = signingProps.getProperty("signing.keyPassword")
+                ?: System.getenv("KEY_PASSWORD")
+        }
+    }
 
     defaultConfig {
         applicationId = "com.rovenskyi.radiozavr"
@@ -30,6 +52,7 @@ android {
 
     buildTypes {
         release {
+            signingConfig = signingConfigs.getByName("release")
             isMinifyEnabled = true
             isShrinkResources = true
             proguardFiles(

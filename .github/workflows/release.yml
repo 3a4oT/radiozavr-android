@@ -25,51 +25,91 @@ jobs:
       - name: Setup Gradle
         uses: gradle/actions/setup-gradle@v4
 
-      - name: Set up Android SDK
-        uses: android-actions/setup-android@v3
-        with:
-          api-level: 36
-          build-tools: 36.0.0
-
-      - name: Add build-tools to PATH
-        run: echo "$ANDROID_HOME/build-tools/36.0.0" >> $GITHUB_PATH
-
       - name: Decode google-services.json
         env:
           GOOGLE_SERVICES_JSON: ${{ secrets.GOOGLE_SERVICES_JSON }}
         run: echo "$GOOGLE_SERVICES_JSON" | base64 --decode > app/google-services.json
 
-      - name: Decode and save keystore
+      - name: Decode keystore
         env:
           BASE64_KEYSTORE: ${{ secrets.BASE64_KEYSTORE }}
-        run: echo "$BASE64_KEYSTORE" | base64 --decode > my-release-key.jks
+        run: |
+          mkdir -p signing
+          echo "$BASE64_KEYSTORE" | base64 --decode > signing/release-key.jks
 
-      - name: Build APK and AAB
+      - name: Build signed APK and AAB
+        env:
+          KEYSTORE_PASSWORD: ${{ secrets.KEYSTORE_PASSWORD }}
+          KEY_ALIAS: ${{ secrets.KEY_ALIAS }}
+          KEY_PASSWORD: ${{ secrets.KEY_PASSWORD }}
         run: ./gradlew :app:assembleRelease :app:bundleRelease
 
       - name: Rename artifacts
         run: |
-          mv app/build/outputs/apk/release/app-release-unsigned.apk app/build/outputs/apk/release/radiozavr-${{ env.VERSION }}.apk
-          mv app/build/outputs/bundle/release/app-release.aab app/build/outputs/bundle/release/radiozavr-${{ env.VERSION }}.aab
+          mv app/build/outputs/apk/release/app-release.apk \
+             app/build/outputs/apk/release/radiozavr-${{ env.VERSION }}.apk
+          mv app/build/outputs/bundle/release/app-release.aab \
+             app/build/outputs/bundle/release/radiozavr-${{ env.VERSION }}.aab
 
-      - name: Align APK
-        run: zipalign -v 4 app/build/outputs/apk/release/radiozavr-${{ env.VERSION }}.apk app/build/outputs/apk/release/radiozavr-${{ env.VERSION }}-aligned.apk
+      - name: Upload artifacts for next jobs
+        uses: actions/upload-artifact@v4
+        with:
+          name: release-artifacts
+          path: |
+            app/build/outputs/apk/release/radiozavr-${{ env.VERSION }}.apk
+            app/build/outputs/bundle/release/radiozavr-${{ env.VERSION }}.aab
+            app/build/outputs/mapping/release/mapping.txt
 
-      - name: Sign APK and AAB
-        env:
-          KEYSTORE_PASSWORD: ${{ secrets.KEYSTORE_PASSWORD }}
-          KEY_PASSWORD: ${{ secrets.KEY_PASSWORD }}
-          KEY_ALIAS: ${{ secrets.KEY_ALIAS }}
-        run: |
-          apksigner sign --ks my-release-key.jks --ks-key-alias $KEY_ALIAS --ks-pass pass:$KEYSTORE_PASSWORD --key-pass pass:$KEY_PASSWORD --v2-signing-enabled true app/build/outputs/apk/release/radiozavr-${{ env.VERSION }}-aligned.apk
-          jarsigner -verbose -sigalg SHA256withRSA -digestalg SHA-256 -keystore my-release-key.jks app/build/outputs/bundle/release/radiozavr-${{ env.VERSION }}.aab $KEY_ALIAS -storepass $KEYSTORE_PASSWORD -keypass $KEY_PASSWORD
+  github-release:
+    needs: build
+    runs-on: ubuntu-latest
 
-      - name: Create Release
+    steps:
+      - name: Download artifacts
+        uses: actions/download-artifact@v4
+        with:
+          name: release-artifacts
+          path: artifacts
+
+      - name: Create GitHub Release
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
           gh release create ${{ env.VERSION }} \
-            app/build/outputs/apk/release/radiozavr-${{ env.VERSION }}-aligned.apk \
-            app/build/outputs/bundle/release/radiozavr-${{ env.VERSION }}.aab \
+            artifacts/app/build/outputs/apk/release/radiozavr-${{ env.VERSION }}.apk \
+            artifacts/app/build/outputs/bundle/release/radiozavr-${{ env.VERSION }}.aab \
             --title "Release ${{ env.VERSION }}" \
             --generate-notes
+        working-directory: ${{ github.workspace }}
+
+  play-store:
+    needs: build
+    runs-on: ubuntu-latest
+    if: ${{ secrets.PLAY_STORE_CREDENTIALS != '' }}
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Download artifacts
+        uses: actions/download-artifact@v4
+        with:
+          name: release-artifacts
+          path: artifacts
+
+      - name: Set up Ruby
+        uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: '3.2'
+          bundler-cache: true
+
+      - name: Decode Play Store credentials
+        env:
+          PLAY_STORE_CREDENTIALS: ${{ secrets.PLAY_STORE_CREDENTIALS }}
+        run: echo "$PLAY_STORE_CREDENTIALS" | base64 --decode > fastlane/play-store-credentials.json
+
+      - name: Upload to Play Store Internal Track
+        env:
+          AAB_PATH: ${{ github.workspace }}/artifacts/app/build/outputs/bundle/release/radiozavr-${{ env.VERSION }}.aab
+          MAPPING_PATH: ${{ github.workspace }}/artifacts/app/build/outputs/mapping/release/mapping.txt
+        run: bundle exec fastlane upload_internal

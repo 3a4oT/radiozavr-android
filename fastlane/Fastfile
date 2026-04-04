@@ -52,16 +52,26 @@ platform :android do
     gradle(task: "detekt")
   end
 
-  desc "Deploy to Play Store Internal Testing track"
+  desc "Deploy to Play Store Internal Testing track (builds first)"
   lane :internal do
-    # Build signed AAB
     build_bundle
-
-    # Upload to internal testing track with mapping file for crash analysis
     upload_to_play_store(
       track: "internal",
       aab: lane_context[SharedValues::GRADLE_AAB_OUTPUT_PATH],
       mapping: "app/build/outputs/mapping/release/mapping.txt",
+      skip_upload_images: true,
+      skip_upload_screenshots: true
+    )
+  end
+
+  desc "Upload pre-built AAB to Play Store Internal track (CI use)"
+  lane :upload_internal do
+    aab = ENV["AAB_PATH"] or UI.user_error!("AAB_PATH env var is required")
+    mapping = ENV["MAPPING_PATH"]
+    upload_to_play_store(
+      track: "internal",
+      aab: aab,
+      mapping: mapping,
       skip_upload_images: true,
       skip_upload_screenshots: true
     )

@@ -50,7 +50,7 @@ bundle exec fastlane test           # Tests
 ./gradlew test                      # Tests
 ```
 
-[Підпис релізу](signing/README.md)
+[Підпис релізу](signing/README.MD)
 
 ## Ліцензія
 

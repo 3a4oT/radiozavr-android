@@ -52,6 +52,10 @@ bundle exec fastlane test           # Tests
 
 [Підпис релізу](signing/README.MD)
 
+## Політика конфіденційності
+
+[Privacy Policy](https://3a4ot.github.io/radiozavr-android/privacy-policy.html)
+
 ## Ліцензія
 
 [PolyForm Noncommercial 1.0.0](LICENSE) — безкоштовно для особистого використання.

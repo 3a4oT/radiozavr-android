@@ -51,12 +51,20 @@ class MediaControllerManager @Inject constructor(
     /**
      * Awaits controller connection with timeout.
      * Returns connected controller or null if timeout/failure.
+     *
+     * If the cached controller is disconnected (e.g. service was killed and restarted),
+     * releases the stale connection and reconnects before awaiting.
      */
     private suspend fun awaitController(): MediaController? {
         // If already connected, return immediately
         mediaController?.let { if (it.isConnected) return it }
 
-        // Ensure connect() was called
+        // Cached controller is disconnected — release and reconnect
+        if (mediaController != null) {
+            disconnect()
+            connect()
+        }
+
         val future = controllerFuture ?: return null
 
         return withTimeoutOrNull(CONNECTION_TIMEOUT_MS) {
@@ -99,6 +107,10 @@ class MediaControllerManager @Inject constructor(
      * Should be called when app is destroyed.
      */
     fun release() {
+        disconnect()
+    }
+
+    private fun disconnect() {
         controllerFuture?.let { MediaController.releaseFuture(it) }
         mediaController = null
         controllerFuture = null

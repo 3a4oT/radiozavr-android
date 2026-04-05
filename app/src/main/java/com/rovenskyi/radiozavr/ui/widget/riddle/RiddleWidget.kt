@@ -20,6 +20,7 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.DisposableEffect
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
@@ -73,6 +74,13 @@ fun RiddleWidget(
 ) {
     val uiState by viewModel.uiState.collectAsState()
     val isTv = LocalIsTv.current
+
+    // Pause riddle rotation when widget leaves the screen (e.g. user navigates to Settings)
+    // and resume from the same position when it returns.
+    DisposableEffect(Unit) {
+        viewModel.resumeRotation()
+        onDispose { viewModel.pauseRotation() }
+    }
 
     Box(
         modifier = modifier.fillMaxSize(),

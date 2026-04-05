@@ -45,10 +45,10 @@ class PlayerEventReceiver @Inject constructor() {
 
     fun clearPlayerErrorMessage() {
         _playerError.value = null
-        // Reset for retry - next play should show loading from clean state
+        // Do NOT touch _playerState/_playerIsLoading: they reflect actual ExoPlayer state
+        // and are already false after an error. Resetting them here would cause a STOPPED
+        // flash if called while ExoPlayer is playing (e.g. on ViewModel re-creation).
         hasPlayedSuccessfully = false
-        _playerState.value = false
-        _playerIsLoading.value = false
     }
 
     fun postAudioSessionId(sessionId: Int?) {

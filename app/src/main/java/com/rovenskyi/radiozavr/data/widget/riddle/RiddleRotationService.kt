@@ -40,6 +40,8 @@ class RiddleRotationService @Inject constructor(
 
     private var rotationJob: Job? = null
     private var currentInterval: RiddleInterval? = null
+    private var isPaused = false
+    private var pauseStartMs = 0L
 
     init {
         loadNextRiddle()
@@ -48,19 +50,74 @@ class RiddleRotationService @Inject constructor(
     /**
      * Starts or restarts riddle rotation with the given interval.
      * If interval changed, loads a new riddle immediately to sync animation.
+     * If currently paused, only updates the interval — rotation stays paused.
      */
     fun setInterval(interval: RiddleInterval) {
         val intervalChanged = currentInterval != interval
         currentInterval = interval
 
         rotationJob?.cancel()
+        rotationJob = null
 
         // Load new riddle immediately when interval changes (syncs animation with timer)
         if (intervalChanged) {
+            pauseStartMs = 0L
             loadNextRiddle()
         }
 
+        if (!isPaused) {
+            val initialDelay = if (intervalChanged) {
+                interval.milliseconds // new riddle just loaded — wait full interval
+            } else {
+                val elapsed = System.currentTimeMillis() - _rotationState.value.startTimeMillis
+                (interval.milliseconds - elapsed).coerceAtLeast(0L)
+            }
+            startRotationJob(interval, initialDelay)
+        }
+    }
+
+    /**
+     * Pauses riddle rotation and freezes the visual timer.
+     * Call when the widget leaves the screen.
+     */
+    fun pause() {
+        if (isPaused) return
+        isPaused = true
+        pauseStartMs = System.currentTimeMillis()
+        rotationJob?.cancel()
+        rotationJob = null
+    }
+
+    /**
+     * Resumes riddle rotation from where it was paused.
+     * Adjusts [RiddleRotationState.startTimeMillis] to compensate for the paused
+     * duration so the visual timer continues from the correct position.
+     */
+    fun resume() {
+        if (!isPaused) return
+        isPaused = false
+
+        // Capture once so both pausedFor and elapsed use the same reference point,
+        // avoiding timing drift between the two calculations.
+        val now = System.currentTimeMillis()
+        val pausedFor = now - pauseStartMs
+        pauseStartMs = 0L
+
+        // Shift startTimeMillis forward so elapsed time appears frozen during pause
+        if (pausedFor > 0) {
+            _rotationState.update { it.copy(startTimeMillis = it.startTimeMillis + pausedFor) }
+        }
+
+        val interval = currentInterval ?: return
+        val elapsed = now - _rotationState.value.startTimeMillis
+        val remaining = (interval.milliseconds - elapsed).coerceAtLeast(0L)
+        startRotationJob(interval, remaining)
+    }
+
+    private fun startRotationJob(interval: RiddleInterval, initialDelay: Long) {
         rotationJob = scope.launch {
+            delay(initialDelay)
+            loadNextRiddle()
             while (isActive) {
                 delay(interval.milliseconds)
                 loadNextRiddle()

@@ -71,6 +71,10 @@ class RiddleWidgetViewModel @Inject constructor(
             .launchIn(viewModelScope)
     }
 
+    fun pauseRotation() = riddleRotationService.pause()
+
+    fun resumeRotation() = riddleRotationService.resume()
+
     fun trackAnswerRevealed(isTv: Boolean, isAutomatic: Boolean) {
         analyticsTracker.track(RiddleEvent.AnswerRevealed(isTv, isAutomatic))
     }

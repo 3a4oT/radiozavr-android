@@ -28,9 +28,11 @@ import androidx.compose.ui.res.stringResource
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
+import androidx.lifecycle.lifecycleScope
 import androidx.navigation.compose.rememberNavController
 import com.google.firebase.analytics.FirebaseAnalytics
 import com.rovenskyi.radiozavr.core.theme.RadiozavrTheme
+import com.rovenskyi.radiozavr.data.permission.PermissionLaunchGate
 import com.rovenskyi.radiozavr.data.radio.MediaControllerManager
 import com.rovenskyi.radiozavr.domain.analytics.AnalyticsTracker
 import com.rovenskyi.radiozavr.domain.audio.AudioVisualizerRepository
@@ -39,6 +41,8 @@ import com.rovenskyi.radiozavr.navigation.AppNavigation
 import com.rovenskyi.radiozavr.service.RadioService
 import com.rovenskyi.radiozavr.ui.settings.ThemeViewModel
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.flow.first
+import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @AndroidEntryPoint
@@ -56,6 +60,12 @@ class MainActivity : AppCompatActivity() {
 
     @Inject
     lateinit var mediaControllerManager: MediaControllerManager
+
+    @Inject
+    lateinit var permissionLaunchGate: PermissionLaunchGate
+
+    private var isNotificationPermissionEligible = false
+    private var isAudioPermissionEligible = false
 
     private val requestPermissionLauncher = registerForActivityResult(
         ActivityResultContracts.RequestPermission(),
@@ -135,7 +145,16 @@ class MainActivity : AppCompatActivity() {
         // Connect to MediaSession for playback control and automatic notifications
         mediaControllerManager.connect()
 
-        requestNotificationPermissionIfNeeded()
+        lifecycleScope.launch {
+            if (savedInstanceState == null) {
+                permissionLaunchGate.recordAppLaunch()
+            }
+            isNotificationPermissionEligible = permissionLaunchGate.isNotificationPermissionEligible.first()
+            isAudioPermissionEligible = permissionLaunchGate.isAudioPermissionEligible.first()
+            if (savedInstanceState == null) {
+                requestNotificationPermissionIfNeeded()
+            }
+        }
         setupAnalytics()
     }
 
@@ -171,6 +190,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun requestNotificationPermissionIfNeeded() {
+        if (!isNotificationPermissionEligible) return
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
             if (ContextCompat.checkSelfPermission(
                     this,
@@ -184,18 +204,11 @@ class MainActivity : AppCompatActivity() {
 
     @RequiresApi(Build.VERSION_CODES.TIRAMISU)
     private fun requestNotificationPermission() {
-        if (ActivityCompat.shouldShowRequestPermissionRationale(
-                this,
-                Manifest.permission.POST_NOTIFICATIONS,
-            )
-        ) {
-            requestPermissionLauncher.launch(Manifest.permission.POST_NOTIFICATIONS)
-        } else {
-            requestPermissionLauncher.launch(Manifest.permission.POST_NOTIFICATIONS)
-        }
+        requestPermissionLauncher.launch(Manifest.permission.POST_NOTIFICATIONS)
     }
 
     private fun requestAudioPermissionIfNeeded() {
+        if (!isAudioPermissionEligible) return
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.P) {
             if (ContextCompat.checkSelfPermission(
                     this,

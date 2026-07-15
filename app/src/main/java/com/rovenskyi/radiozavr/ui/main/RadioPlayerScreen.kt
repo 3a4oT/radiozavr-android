@@ -8,6 +8,7 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.safeDrawingPadding
 import androidx.compose.foundation.layout.statusBarsPadding
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.PlayArrow
@@ -39,6 +40,7 @@ import com.rovenskyi.radiozavr.domain.network.NetworkStatus
 import com.rovenskyi.radiozavr.domain.radio.PlayerState
 import com.rovenskyi.radiozavr.ui.main.error.NetworkErrorScreen
 import com.rovenskyi.radiozavr.ui.widget.riddle.RiddleWidget
+import com.rovenskyi.radiozavr.ui.widget.weather.WeatherWidget
 import kotlinx.coroutines.delay
 
 private const val AUDIO_PERMISSION_DELAY_MS = 3000L
@@ -121,6 +123,7 @@ private fun RadioPlayerContent(
     Column(
         modifier = Modifier
             .fillMaxSize()
+            .safeDrawingPadding()
             .padding(dimensions.paddingMedium),
         verticalArrangement = Arrangement.SpaceBetween,
         horizontalAlignment = Alignment.CenterHorizontally,
@@ -165,7 +168,10 @@ private fun WidgetArea(modifier: Modifier = Modifier) {
             ClockWidget(style = MaterialTheme.typography.displaySmall)
         }
 
-        // Riddles - takes all remaining space between clock and PlayerBar
+        // Weather - small persistent chip above the riddles
+        WeatherWidget()
+
+        // Riddles - takes all remaining space between clock/weather and PlayerBar
         // RiddleWidget handles centering internally - no spacer needed
         RiddleWidget(
             modifier = Modifier.weight(1f),

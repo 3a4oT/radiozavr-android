@@ -93,6 +93,7 @@ dependencies {
     implementation(project(":core:widget-protocol"))
     implementation(project(":core:ui-theme"))
     implementation(project(":core:ui-components"))
+    implementation(project(":core:network"))
 
     // Firebase BOM - manages versions for all Firebase libraries
     implementation(platform(libs.firebase.bom))

@@ -84,6 +84,23 @@
     <string name="riddle_content_description_tv">Загадка: %1$s. Натисни OK щоб побачити відповідь</string>
     <string name="riddle_answer_content_description">Відповідь: %1$s</string>
 
+    <!-- Weather Widget -->
+    <string name="weather_loading">Завантаження погоди…</string>
+    <string name="weather_error">Погода недоступна</string>
+    <string name="weather_content_description">Погода у Львові: %1$s, %2$d°C, вологість %3$d%%</string>
+    <string name="weather_condition_clear">Ясно</string>
+    <string name="weather_condition_partly_cloudy">Мінлива хмарність</string>
+    <string name="weather_condition_cloudy">Хмарно</string>
+    <string name="weather_condition_fog">Туман</string>
+    <string name="weather_condition_drizzle">Мряка</string>
+    <string name="weather_condition_rain">Дощ</string>
+    <string name="weather_condition_snow">Сніг</string>
+    <string name="weather_condition_thunderstorm">Гроза</string>
+    <string name="weather_condition_unknown">Погода</string>
+    <string name="weather_now">Зараз</string>
+    <string name="weather_hour_offset">За %1$d год</string>
+    <string name="weather_forecast_content_description">Прогноз на %1$s: %2$s, %3$d°C</string>
+
     <!-- About -->
     <string name="about_title">Про застосунок</string>
     <string name="about_row_title">Деталі</string>

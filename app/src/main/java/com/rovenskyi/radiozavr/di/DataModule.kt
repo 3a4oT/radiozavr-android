@@ -9,6 +9,7 @@ import com.rovenskyi.radiozavr.data.playback.PlaybackSettingsRepositoryImpl
 import com.rovenskyi.radiozavr.data.radio.RadioRepositoryImpl
 import com.rovenskyi.radiozavr.data.theme.ThemeRepositoryImpl
 import com.rovenskyi.radiozavr.data.widget.riddle.RiddleRepositoryImpl
+import com.rovenskyi.radiozavr.data.widget.weather.WeatherRepositoryImpl
 import com.rovenskyi.radiozavr.data.widgetscheduler.LocalWidgetConfigSource
 import com.rovenskyi.radiozavr.data.widgetscheduler.WidgetConfigRepositoryImpl
 import com.rovenskyi.radiozavr.domain.audio.AudioVisualizerRepository
@@ -20,6 +21,7 @@ import com.rovenskyi.radiozavr.domain.playback.PlaybackSettingsRepository
 import com.rovenskyi.radiozavr.domain.radio.RadioRepository
 import com.rovenskyi.radiozavr.domain.theme.ThemeRepository
 import com.rovenskyi.radiozavr.domain.widget.riddle.RiddleRepository
+import com.rovenskyi.radiozavr.domain.widget.weather.WeatherRepository
 import com.rovenskyi.radiozavr.domain.widgetscheduler.WidgetConfigRepository
 import com.rovenskyi.radiozavr.domain.widgetscheduler.WidgetConfigSource
 import dagger.Binds
@@ -86,6 +88,12 @@ abstract class DataModule {
     abstract fun bindRiddleRepository(
         riddleRepositoryImpl: RiddleRepositoryImpl,
     ): RiddleRepository
+
+    @Binds
+    @Singleton
+    abstract fun bindWeatherRepository(
+        weatherRepositoryImpl: WeatherRepositoryImpl,
+    ): WeatherRepository
 
     @Binds
     @Singleton

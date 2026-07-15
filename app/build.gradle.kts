@@ -38,8 +38,8 @@ android {
         applicationId = "com.rovenskyi.radiozavr"
         minSdk = 26
         targetSdk = 36
-        versionCode = (findProperty("versionCode") as String?)?.toInt() ?: 12
-        versionName = findProperty("versionName") as String? ?: "0.7.0"
+        versionCode = (findProperty("versionCode") as String?)?.toInt() ?: 13
+        versionName = findProperty("versionName") as String? ?: "1.0.0"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
 

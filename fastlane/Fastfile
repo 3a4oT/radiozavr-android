@@ -102,6 +102,19 @@ platform :android do
     )
   end
 
+  desc "Promote internal to closed testing (alpha)"
+  lane :promote_to_alpha do
+    upload_to_play_store(
+      track: "internal",
+      track_promote_to: "alpha",
+      skip_upload_aab: true,
+      skip_upload_metadata: true,
+      skip_upload_images: true,
+      skip_upload_screenshots: true,
+      skip_upload_changelogs: true
+    )
+  end
+
   desc "Promote internal to beta"
   lane :promote_to_beta do
     upload_to_play_store(
@@ -110,7 +123,8 @@ platform :android do
       skip_upload_aab: true,
       skip_upload_metadata: true,
       skip_upload_images: true,
-      skip_upload_screenshots: true
+      skip_upload_screenshots: true,
+      skip_upload_changelogs: true
     )
   end
 
@@ -122,7 +136,8 @@ platform :android do
       skip_upload_aab: true,
       skip_upload_metadata: true,
       skip_upload_images: true,
-      skip_upload_screenshots: true
+      skip_upload_screenshots: true,
+      skip_upload_changelogs: true
     )
   end
 

@@ -8,7 +8,7 @@ plugins {
     alias(libs.plugins.compose.compiler) apply false
     alias(libs.plugins.google.services) apply false
     alias(libs.plugins.firebase.crashlytics.plugin) apply false
-    id("com.google.dagger.hilt.android") version "2.59" apply false
+    alias(libs.plugins.hilt.android) apply false
     id("io.gitlab.arturbosch.detekt") version "1.23.8"
 }
 

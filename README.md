@@ -22,7 +22,11 @@
 
 **Google Play** — *скоро*
 
-**APK** — [Releases](https://github.com/3a4oT/radiozavr-android/releases)
+**APK** — [остання версія](https://github.com/3a4oT/radiozavr-android/releases/latest) · [radiozavr-0.9.0.apk](https://github.com/3a4oT/radiozavr-android/releases/download/0.9.0/radiozavr-0.9.0.apk)
+
+**AAB** (для Play Console) — [radiozavr-0.9.0.aab](https://github.com/3a4oT/radiozavr-android/releases/download/0.9.0/radiozavr-0.9.0.aab)
+
+Усі збірки — на [сторінці релізів](https://github.com/3a4oT/radiozavr-android/releases).
 
 ---
 

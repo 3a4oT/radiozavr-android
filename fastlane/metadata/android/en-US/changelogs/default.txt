@@ -1,6 +1,5 @@
-• First release of Radiozavr
-• Live streaming of Lviv radio 104.7
-• Android TV support with remote control
-• Riddle mode for entertainment
-• Audio visualizer
-• Light, dark, and automatic themes
+• Fixed the stream error after a long pause - the radio now resumes straight away instead of cutting out after 20-30 seconds
+• Fixed the riddle answer hint being cut off on Android TV
+• Fixed remote focus jumping to the player button while listening
+• More compact weather widget on Android TV, leaving more room for riddles
+• Riddle text now scales to fit the screen instead of being truncated

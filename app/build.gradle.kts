@@ -38,8 +38,10 @@ android {
         applicationId = "com.rovenskyi.radiozavr"
         minSdk = 26
         targetSdk = 36
-        versionCode = (findProperty("versionCode") as String?)?.toInt() ?: 13
-        versionName = findProperty("versionName") as String? ?: "1.0.0"
+        // Fallbacks for local builds only; releases get both from CI (versionName from the tag,
+        // versionCode from the build date - see .github/workflows/release.yml).
+        versionCode = (findProperty("versionCode") as String?)?.toInt() ?: 26082916
+        versionName = findProperty("versionName") as String? ?: "0.9.0"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
 

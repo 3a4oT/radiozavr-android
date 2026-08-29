@@ -37,10 +37,13 @@ jobs:
           mkdir -p signing
           echo "$BASE64_KEYSTORE" | base64 --decode > signing/release-key.jks
 
-      - name: Compute versionCode from tag
-        run: |
-          IFS='.' read -r MAJOR MINOR PATCH <<< "${{ env.VERSION }}"
-          echo "VERSION_CODE=$((MAJOR * 10000 + MINOR * 100 + PATCH))" >> $GITHUB_ENV
+      # versionCode is derived from the build date (yyMMddHH), not from the tag. Play burns a
+      # version code permanently on first upload, so deriving it from the semantic version means
+      # the version name can never go down - renaming a release to a lower number produced a
+      # lower code and Play rejected it. A date is monotonic on its own, which frees the tag to
+      # be any label. Fits Play's 2100000000 ceiling until 2099; allows one release per hour.
+      - name: Compute versionCode from build date
+        run: echo "VERSION_CODE=$(date -u +%y%m%d%H)" >> $GITHUB_ENV
 
       - name: Build signed APK and AAB
         env:

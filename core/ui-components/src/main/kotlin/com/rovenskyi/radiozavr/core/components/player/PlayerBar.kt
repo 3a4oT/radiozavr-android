@@ -95,11 +95,15 @@ fun PlayerBar(
     requestInitialFocus: Boolean = true,
 ) {
     val focusRequester = remember { FocusRequester() }
+    var hasRequestedInitialFocus by remember { mutableStateOf(false) }
 
-    // Request focus on first composition and after state changes
-    // This ensures focus returns to play button after buffering
-    LaunchedEffect(state, requestInitialFocus) {
-        if (requestInitialFocus) {
+    // Request focus only once, on first composition. The button stays in the composition across
+    // every state, so it keeps focus on its own through buffering - re-requesting on each state
+    // change would yank focus away from whatever the user has selected (e.g. the riddle widget)
+    // every time the live stream rebuffers.
+    LaunchedEffect(requestInitialFocus) {
+        if (requestInitialFocus && !hasRequestedInitialFocus) {
+            hasRequestedInitialFocus = true
             focusRequester.requestFocus()
         }
     }

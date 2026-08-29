@@ -12,11 +12,14 @@ import androidx.compose.foundation.clickable
 import androidx.compose.foundation.focusable
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.ColumnScope
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.text.BasicText
+import androidx.compose.foundation.text.TextAutoSize
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -40,6 +43,8 @@ import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.em
+import androidx.compose.ui.unit.sp
 import androidx.hilt.lifecycle.viewmodel.compose.hiltViewModel
 import com.rovenskyi.radiozavr.R
 import com.rovenskyi.radiozavr.core.components.widgets.CircularCountdownIndicator
@@ -55,6 +60,14 @@ private const val TV_INDICATOR_SIZE_DP = 76
 private const val PHONE_INDICATOR_SIZE_DP = 60
 private const val TV_STROKE_WIDTH_DP = 4
 private const val PHONE_STROKE_WIDTH_DP = 3
+
+private const val TV_QUESTION_MIN_SP = 20
+private const val TV_QUESTION_MAX_SP = 26
+private const val PHONE_QUESTION_MIN_SP = 16
+private const val PHONE_QUESTION_MAX_SP = 22
+private const val QUESTION_STEP_SP = 1
+private const val QUESTION_MAX_LINES = 3
+private const val QUESTION_LINE_HEIGHT_EM = 1.3f
 
 private const val ANIMATION_DURATION_MS = 150
 private const val FOCUS_SCALE = 1.02f
@@ -210,7 +223,7 @@ private fun RiddleColumn(
             .then(borderModifier)
             .clickable(onClick = onToggleAnswer)
             .focusable()
-            .padding(horizontal = dimensions.paddingLarge, vertical = dimensions.paddingMedium)
+            .padding(horizontal = dimensions.paddingLarge, vertical = dimensions.paddingSmall)
             .semantics {
                 contentDescription = accessibilityDescription
                 role = Role.Button
@@ -228,10 +241,42 @@ private fun RiddleColumn(
             Text(text = riddle.emoji, style = MaterialTheme.typography.headlineLarge)
         }
         Spacer(modifier = Modifier.height(dimensions.spacingSmall))
-        Text(text = riddle.question, style = MaterialTheme.typography.titleLarge, textAlign = TextAlign.Center)
+        RiddleQuestion(question = riddle.question, isTv = isTv)
         Spacer(modifier = Modifier.height(dimensions.spacingSmall))
         RiddleAnswerHint(answer = riddle.answer, showAnswer = showAnswer, hintTextRes = hintTextRes)
     }
+}
+
+/**
+ * The question shrinks to fit instead of being truncated - a clipped riddle is an unanswerable
+ * riddle. [weight] with `fill = false` makes it the only child that gives up space when the
+ * column is height-constrained, so the answer/hint below can never be squeezed out; autoSize
+ * then keeps the text inside whatever height is left, down to a floor that stays readable from
+ * a couch.
+ */
+@Composable
+private fun ColumnScope.RiddleQuestion(question: String, isTv: Boolean) {
+    val autoSize = remember(isTv) {
+        TextAutoSize.StepBased(
+            minFontSize = if (isTv) TV_QUESTION_MIN_SP.sp else PHONE_QUESTION_MIN_SP.sp,
+            maxFontSize = if (isTv) TV_QUESTION_MAX_SP.sp else PHONE_QUESTION_MAX_SP.sp,
+            stepSize = QUESTION_STEP_SP.sp,
+        )
+    }
+
+    BasicText(
+        text = question,
+        style = MaterialTheme.typography.titleLarge.copy(
+            color = MaterialTheme.colorScheme.onSurface,
+            textAlign = TextAlign.Center,
+            // Relative line height so the leading shrinks together with the auto-sized font
+            // instead of leaving the theme's fixed 32sp gap between shrunken lines.
+            lineHeight = QUESTION_LINE_HEIGHT_EM.em,
+        ),
+        autoSize = autoSize,
+        maxLines = QUESTION_MAX_LINES,
+        modifier = Modifier.weight(1f, fill = false),
+    )
 }
 
 @Composable

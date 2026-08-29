@@ -5,11 +5,14 @@ import android.view.WindowManager
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.safeDrawingPadding
 import androidx.compose.foundation.layout.statusBarsPadding
+import androidx.compose.foundation.layout.width
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.PlayArrow
 import androidx.compose.material.icons.filled.Refresh
@@ -163,15 +166,20 @@ private fun WidgetArea(modifier: Modifier = Modifier) {
             .padding(top = if (isTv) dimensions.safeAreaVertical else 0.dp),
         horizontalAlignment = Alignment.CenterHorizontally,
     ) {
-        // Clock - only on TV (smaller font, fixed at top with safe area)
         if (isTv) {
-            ClockWidget(style = MaterialTheme.typography.displaySmall)
+            // TV: clock and weather share one status line. Stacking them costs the riddle the
+            // vertical space it needs for a full question, and two separate rotations in the
+            // centre column compete for attention.
+            Row(verticalAlignment = Alignment.CenterVertically) {
+                ClockWidget(style = MaterialTheme.typography.displaySmall)
+                Spacer(modifier = Modifier.width(dimensions.spacingLarge))
+                WeatherWidget(compact = true)
+            }
+        } else {
+            WeatherWidget()
         }
 
-        // Weather - small persistent chip above the riddles
-        WeatherWidget()
-
-        // Riddles - takes all remaining space between clock/weather and PlayerBar
+        // Riddles - takes all remaining space between the status line and PlayerBar
         // RiddleWidget handles centering internally - no spacer needed
         RiddleWidget(
             modifier = Modifier.weight(1f),

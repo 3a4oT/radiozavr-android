@@ -36,6 +36,7 @@ import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.semantics.contentDescription
 import androidx.compose.ui.semantics.semantics
+import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import androidx.hilt.lifecycle.viewmodel.compose.hiltViewModel
 import com.rovenskyi.radiozavr.R
@@ -64,6 +65,7 @@ private data class WeatherSlot(
 @Composable
 fun WeatherWidget(
     modifier: Modifier = Modifier,
+    compact: Boolean = false,
     viewModel: WeatherWidgetViewModel = hiltViewModel(),
 ) {
     val uiState by viewModel.uiState.collectAsState()
@@ -99,12 +101,12 @@ fun WeatherWidget(
         label = "weather_rotation",
         modifier = modifier,
     ) { slot ->
-        WeatherSlotContent(slot)
+        WeatherSlotContent(slot, compact = compact)
     }
 }
 
 @Composable
-private fun WeatherSlotContent(slot: WeatherSlot) {
+private fun WeatherSlotContent(slot: WeatherSlot, compact: Boolean) {
     val dimensions = LocalDimensions.current
     val conditionLabel = stringResource(slot.condition.labelRes())
     val temperature = slot.temperatureCelsius.roundToInt()
@@ -112,6 +114,24 @@ private fun WeatherSlotContent(slot: WeatherSlot) {
         stringResource(R.string.weather_content_description, conditionLabel, temperature, slot.humidityPercent)
     } else {
         stringResource(R.string.weather_forecast_content_description, slot.timeLabel, conditionLabel, temperature)
+    }
+
+    if (compact) {
+        // Single row: on TV the widget shares the status line with the clock, so vertical space
+        // it takes is space the riddle loses.
+        Row(
+            modifier = Modifier.semantics { contentDescription = description },
+            verticalAlignment = Alignment.CenterVertically,
+        ) {
+            Text(
+                text = slot.timeLabel,
+                style = MaterialTheme.typography.labelSmall,
+                color = MaterialTheme.colorScheme.onSurfaceVariant,
+            )
+            Spacer(modifier = Modifier.width(dimensions.spacingSmall))
+            WeatherReading(slot, temperature, dimensions.spacingSmall)
+        }
+        return
     }
 
     Column(
@@ -125,28 +145,33 @@ private fun WeatherSlotContent(slot: WeatherSlot) {
             style = MaterialTheme.typography.labelSmall,
             color = MaterialTheme.colorScheme.onSurfaceVariant,
         )
-        Row(verticalAlignment = Alignment.CenterVertically) {
+        WeatherReading(slot, temperature, dimensions.spacingSmall)
+    }
+}
+
+@Composable
+private fun WeatherReading(slot: WeatherSlot, temperature: Int, spacing: Dp) {
+    Row(verticalAlignment = Alignment.CenterVertically) {
+        Icon(
+            imageVector = slot.condition.icon(),
+            contentDescription = null,
+            modifier = Modifier.width(WEATHER_ICON_SIZE),
+        )
+        Spacer(modifier = Modifier.width(spacing))
+        Text(text = "$temperature°C", style = MaterialTheme.typography.titleLarge)
+        if (slot.humidityPercent != null) {
+            Spacer(modifier = Modifier.width(spacing))
             Icon(
-                imageVector = slot.condition.icon(),
+                imageVector = Icons.Filled.WaterDrop,
                 contentDescription = null,
-                modifier = Modifier.width(WEATHER_ICON_SIZE),
+                modifier = Modifier.width(HUMIDITY_ICON_SIZE),
+                tint = MaterialTheme.colorScheme.onSurfaceVariant,
             )
-            Spacer(modifier = Modifier.width(dimensions.spacingSmall))
-            Text(text = "$temperature°C", style = MaterialTheme.typography.titleLarge)
-            if (slot.humidityPercent != null) {
-                Spacer(modifier = Modifier.width(dimensions.spacingSmall))
-                Icon(
-                    imageVector = Icons.Filled.WaterDrop,
-                    contentDescription = null,
-                    modifier = Modifier.width(HUMIDITY_ICON_SIZE),
-                    tint = MaterialTheme.colorScheme.onSurfaceVariant,
-                )
-                Text(
-                    text = "${slot.humidityPercent}%",
-                    style = MaterialTheme.typography.bodySmall,
-                    color = MaterialTheme.colorScheme.onSurfaceVariant,
-                )
-            }
+            Text(
+                text = "${slot.humidityPercent}%",
+                style = MaterialTheme.typography.bodySmall,
+                color = MaterialTheme.colorScheme.onSurfaceVariant,
+            )
         }
     }
 }

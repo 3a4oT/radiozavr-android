@@ -13,6 +13,7 @@ import androidx.annotation.StringRes
 import androidx.appcompat.app.AppCompatDelegate
 import androidx.media3.common.AudioAttributes
 import androidx.media3.common.C
+import androidx.media3.common.ForwardingPlayer
 import androidx.media3.common.MediaItem
 import androidx.media3.common.MediaMetadata
 import androidx.media3.common.PlaybackException
@@ -138,7 +139,7 @@ class RadioService : MediaSessionService(), Player.Listener {
                 addListener(this@RadioService)
             }
 
-        mediaSession = MediaSession.Builder(this, exoPlayer)
+        mediaSession = MediaSession.Builder(this, LiveRadioPlayer(exoPlayer))
             .setCallback(MediaSessionCallback())
             .apply {
                 // On TV: don't set sessionActivity - system uses LEANBACK_LAUNCHER from manifest
@@ -274,6 +275,16 @@ class RadioService : MediaSessionService(), Player.Listener {
 
     override fun onPlayerError(error: PlaybackException) {
         super.onPlayerError(error)
+
+        // The buffered position fell out of the HLS live window (~10 s for this stream), e.g.
+        // after ExoPlayer auto-paused on audio focus loss. Rejoin the live edge instead of
+        // surfacing an error the user can only fix by pressing play again.
+        if (error.errorCode == PlaybackException.ERROR_CODE_BEHIND_LIVE_WINDOW) {
+            exoPlayer.seekToDefaultPosition()
+            exoPlayer.prepare()
+            return
+        }
+
         playerEventReceiver.postPlayerError(error.message)
 
         analyticsTracker.track(
@@ -323,6 +334,33 @@ class RadioService : MediaSessionService(), Player.Listener {
             setLocale(locale)
         }
         return createConfigurationContext(config).getString(resId)
+    }
+
+    /**
+     * Live radio has no meaningful resume point.
+     *
+     * While paused, ExoPlayer keeps the last buffered seconds, but the stream's HLS live window
+     * only holds a handful of segments. Resuming after a long pause therefore plays the stale
+     * buffer for a few seconds and then fails with a source error, because the segments that
+     * would follow are long gone from the playlist. Every play() rebuilds the stream from the
+     * live edge instead.
+     */
+    private class LiveRadioPlayer(private val exoPlayer: ExoPlayer) : ForwardingPlayer(exoPlayer) {
+
+        override fun play() {
+            restartFromLiveEdge()
+        }
+
+        override fun setPlayWhenReady(playWhenReady: Boolean) {
+            if (playWhenReady) restartFromLiveEdge() else super.setPlayWhenReady(false)
+        }
+
+        private fun restartFromLiveEdge() {
+            if (exoPlayer.playWhenReady) return
+            exoPlayer.stop()
+            exoPlayer.prepare()
+            exoPlayer.play()
+        }
     }
 
     /**

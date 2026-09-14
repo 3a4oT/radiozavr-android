@@ -1,0 +1,54 @@
+# Promotes a release between Play tracks by hand. A tag already promotes internal into the testers'
+# track on its own (release.yml); this is for doing it again.
+name: Promote Play Store Track
+
+on:
+  workflow_dispatch:
+    inputs:
+      lane:
+        description: "Which promotion to run"
+        type: choice
+        default: promote_to_testers
+        options:
+          - promote_to_testers     # internal -> the testers' closed track
+          - promote_to_beta        # internal -> open testing
+          - promote_to_production  # beta -> production
+      version_code:
+        description: "versionCode to promote. Needed only while the source release is a draft — supply otherwise filters by status == completed and reports 'Track x doesn't have any releases'. Read it from the release run's 'Compute versionCode from build minute' step."
+        required: false
+      release_status:
+        description: "Status of the release this creates in the target track."
+        type: choice
+        default: completed
+        options:
+          - completed
+          - draft
+
+jobs:
+  promote:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v6
+
+      - name: Set up Ruby
+        uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: '3.2'
+          bundler-cache: true
+
+      - name: Decode Play Store credentials
+        env:
+          PLAY_STORE_CREDENTIALS: ${{ secrets.PLAY_STORE_CREDENTIALS }}
+        run: echo "$PLAY_STORE_CREDENTIALS" | base64 --decode > fastlane/play-store-credentials.json
+
+      - name: Promote
+        env:
+          LANE: ${{ inputs.lane }}
+          VERSION_CODE: ${{ inputs.version_code }}
+          SUPPLY_TRACK_PROMOTE_RELEASE_STATUS: ${{ inputs.release_status }}
+        # Exported only when given: supply reads an empty SUPPLY_VERSION_CODE as a String and refuses
+        # the whole run, so an unset input has to be an absent variable, not an empty one.
+        run: |
+          if [ -n "$VERSION_CODE" ]; then export SUPPLY_VERSION_CODE="$VERSION_CODE"; fi
+          bundle exec fastlane "$LANE"

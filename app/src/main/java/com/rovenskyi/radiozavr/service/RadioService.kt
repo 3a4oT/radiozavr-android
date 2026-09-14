@@ -345,6 +345,7 @@ class RadioService : MediaSessionService(), Player.Listener {
      * would follow are long gone from the playlist. Every play() rebuilds the stream from the
      * live edge instead.
      */
+    @OptIn(UnstableApi::class)
     private class LiveRadioPlayer(private val exoPlayer: ExoPlayer) : ForwardingPlayer(exoPlayer) {
 
         override fun play() {

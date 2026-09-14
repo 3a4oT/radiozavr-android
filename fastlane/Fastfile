@@ -11,18 +11,17 @@ platform :android do
     )
   end
 
+  # Signing is the "release" signingConfig in app/build.gradle.kts, which reads signing.* from
+  # local.properties and falls back to KEYSTORE_PASSWORD/KEY_ALIAS/KEY_PASSWORD. Never pass
+  # android.injected.signing.* here: AGP takes them as a full replacement for that block rather than
+  # a fallback, and resolves a relative store file against the app module instead of the repo root.
+
   desc "Build release APK (signed)"
   lane :build_release do
     gradle(
       task: "assemble",
       build_type: "Release",
-      print_command: false,
-      properties: {
-        "android.injected.signing.store.file" => ENV["KEYSTORE_PATH"] || "signing/release-key.jks",
-        "android.injected.signing.store.password" => ENV["KEYSTORE_PASSWORD"],
-        "android.injected.signing.key.alias" => ENV["KEY_ALIAS"],
-        "android.injected.signing.key.password" => ENV["KEY_PASSWORD"]
-      }
+      print_command: false
     )
   end
 
@@ -31,13 +30,7 @@ platform :android do
     gradle(
       task: "bundle",
       build_type: "Release",
-      print_command: false,
-      properties: {
-        "android.injected.signing.store.file" => ENV["KEYSTORE_PATH"] || "signing/release-key.jks",
-        "android.injected.signing.store.password" => ENV["KEYSTORE_PASSWORD"],
-        "android.injected.signing.key.alias" => ENV["KEY_ALIAS"],
-        "android.injected.signing.key.password" => ENV["KEY_PASSWORD"]
-      }
+      print_command: false
     )
   end
 
@@ -72,9 +65,151 @@ platform :android do
       track: "internal",
       aab: aab,
       mapping: mapping,
-      release_status: "draft",
+      # Completed, not draft: a draft on internal reaches no tester, and promotion then has to name
+      # a version code to find it.
+      release_status: "completed",
       skip_upload_images: true,
       skip_upload_screenshots: true
+    )
+  end
+
+  # Play splits a track by form factor and names them apart in the API (`tv:internal` beside
+  # `internal`), and a closed test created in the console is a track of its own under whatever name
+  # it was given. This asks the edit rather than letting a guessed name reach a release workflow.
+  desc "Print every track name Play knows for this app, form-factor tracks included (diagnostic)"
+  lane :list_tracks do
+    require "supply"
+    require "supply/client"
+
+    # A lane runs with `fastlane/` as its working directory, and Appfile's `json_key_file` is
+    # resolved against that same directory, so the path is expanded here instead.
+    Supply.config = FastlaneCore::Configuration.create(
+      Supply::Options.available_options,
+      { json_key: File.expand_path("play-store-credentials.json") }
+    )
+    client = Supply::Client.make_from_config
+    client.begin_edit(package_name: Supply.config[:package_name])
+    client.tracks.each do |track|
+      releases = (track.releases || []).map do |release|
+        "#{release.status}(#{(release.version_codes || []).join(',')})"
+      end
+      UI.important("TRACK #{track.track} -> #{releases.empty? ? 'no releases' : releases.join(' ')}")
+    end
+    client.abort_current_edit
+  end
+
+  # There is no supply action for this: a release that was never wanted is removed by writing the
+  # track back with no releases. The track itself survives — only the console can delete one.
+  desc "Discard every release on one track, draft or otherwise (TRACK env var)"
+  lane :discard_track_releases do
+    require "supply"
+    require "supply/client"
+
+    track_name = ENV["TRACK"] or UI.user_error!("TRACK env var is required")
+    Supply.config = FastlaneCore::Configuration.create(
+      Supply::Options.available_options,
+      { json_key: File.expand_path("play-store-credentials.json") }
+    )
+    client = Supply::Client.make_from_config
+    client.begin_edit(package_name: Supply.config[:package_name])
+    track = client.tracks(track_name).first
+    UI.user_error!("Play knows no track named '#{track_name}'") if track.nil?
+
+    existing = (track.releases || []).map { |release| "#{release.status}(#{(release.version_codes || []).join(',')})" }
+    if existing.empty?
+      UI.important("Track '#{track_name}' already has no releases — nothing to discard.")
+      client.abort_current_edit
+      next
+    end
+
+    UI.important("Discarding on '#{track_name}': #{existing.join(' ')}")
+    track.releases = []
+    client.update_track(track_name, track)
+    client.commit_current_edit!
+    UI.success("Track '#{track_name}' now has no releases.")
+  end
+
+  # What the store listing actually shows, per language and per image slot. Android TV's Play Store
+  # draws the `tvScreenshots` slot and falls back to the phone ones when it is empty.
+  desc "Print every image on the store listing, per language and slot (diagnostic)"
+  lane :listing_images do
+    require "supply"
+    require "supply/client"
+
+    Supply.config = FastlaneCore::Configuration.create(
+      Supply::Options.available_options,
+      { json_key: File.expand_path("play-store-credentials.json") }
+    )
+    client = Supply::Client.make_from_config
+    client.begin_edit(package_name: Supply.config[:package_name])
+    client.listings.each do |listing|
+      (Supply::IMAGES_TYPES + Supply::SCREENSHOT_TYPES).each do |type|
+        images = client.fetch_images(image_type: type, language: listing.language)
+        UI.important("LISTING #{listing.language} #{type}: #{images.count}")
+        images.each { |image| UI.message("  #{image.url}=s0 sha256=#{image.sha256}") }
+      end
+    end
+    client.abort_current_edit
+  end
+
+  # Replaces the listing's screenshots and banners with `fastlane/store-listing/<language>/images`.
+  # A folder of its own rather than `metadata/android`: the release lanes upload metadata from that
+  # default path. Only slots with a local folder or file are touched. Play allows at most eight
+  # screenshots per slot per language.
+  desc "Upload store screenshots and banners from fastlane/store-listing"
+  lane :upload_listing_images do
+    require "supply"
+    require "supply/client"
+
+    # Straight to the client rather than through upload_to_play_store: supply only uploads images
+    # as a side of a release, and wants a track and a version code to hang them on.
+    Supply.config = FastlaneCore::Configuration.create(
+      Supply::Options.available_options,
+      { json_key: File.expand_path("play-store-credentials.json") }
+    )
+    client = Supply::Client.make_from_config
+    client.begin_edit(package_name: Supply.config[:package_name])
+    root = File.expand_path("store-listing")
+    Dir.children(root).sort.each do |language|
+      images = File.join(root, language, "images")
+      next unless File.directory?(images)
+
+      Supply::SCREENSHOT_TYPES.each do |type|
+        paths = Dir.glob(File.join(images, type, "*.png")).sort
+        next if paths.empty?
+
+        UI.important("#{language} #{type}: replacing with #{paths.count}")
+        client.clear_screenshots(image_type: type, language: language)
+        paths.each { |path| client.upload_image(image_path: path, image_type: type, language: language) }
+      end
+      Supply::IMAGES_TYPES.each do |type|
+        path = File.join(images, "#{type}.png")
+        next unless File.file?(path)
+
+        UI.important("#{language} #{type}: replacing")
+        client.upload_image(image_path: path, image_type: type, language: language)
+      end
+    end
+    client.commit_current_edit!
+  end
+
+  # The testers' closed track, as `list_tracks` prints it. A name given to a track in the console is
+  # its id in the API, so a rename there has to be followed here.
+  TESTERS_TRACK = "alpha"
+
+  # The release a tag just put on `internal`, carried into the testers' closed track. No version
+  # code: internal holds one completed release, which supply selects by status — and an empty
+  # SUPPLY_VERSION_CODE would be read as a String and refused.
+  desc "Promote internal into the testers' closed track"
+  lane :promote_to_testers do
+    upload_to_play_store(
+      track: "internal",
+      track_promote_to: TESTERS_TRACK,
+      skip_upload_aab: true,
+      skip_upload_metadata: true,
+      skip_upload_images: true,
+      skip_upload_screenshots: true,
+      skip_upload_changelogs: true
     )
   end
 

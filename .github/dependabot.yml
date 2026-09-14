@@ -1,0 +1,27 @@
+# The same shape as p-control-android's, and its lesson with it: CI on a Dependabot pull request reads
+# the *Dependabot* secret store, not the Actions one. verify-build.yml decodes GOOGLE_SERVICES_JSON,
+# so that secret has to exist in both stores or every one of these PRs fails before a line is built.
+# `gh secret list --app dependabot` is the evidence, not a green run.
+version: 2
+updates:
+  - package-ecosystem: "gradle"
+    directory: "/"
+    schedule:
+      interval: "weekly"
+    open-pull-requests-limit: 5
+    groups:
+      gradle-minor-patch:
+        update-types:
+          - "minor"
+          - "patch"
+
+  - package-ecosystem: "github-actions"
+    directory: "/"
+    schedule:
+      interval: "weekly"
+    open-pull-requests-limit: 5
+    groups:
+      actions-minor-patch:
+        update-types:
+          - "minor"
+          - "patch"

@@ -39,8 +39,9 @@ android {
         minSdk = 26
         targetSdk = 36
         // Fallbacks for local builds only; releases get both from CI (versionName from the tag,
-        // versionCode from the build date - see .github/workflows/release.yml).
-        versionCode = (findProperty("versionCode") as String?)?.toInt() ?: 26082916
+        // versionCode from the build minute - see .github/workflows/release.yml). Date-shaped on
+        // purpose, so a local number and a CI number are of one kind and neither outranks the other.
+        versionCode = (findProperty("versionCode") as String?)?.toInt() ?: 751432832
         versionName = findProperty("versionName") as String? ?: "0.9.0"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"

@@ -1,0 +1,42 @@
+# Reads, and on request replaces, the pictures on the Play store listing. Listing first and uploading
+# second is deliberate: a slot not in fastlane/store-listing is never touched, and the second listing
+# shows what the upload changed.
+name: Play store listing images
+
+on:
+  workflow_dispatch:
+    inputs:
+      upload:
+        description: "Upload fastlane/store-listing to the listing (replaces those slots)"
+        type: boolean
+        required: false
+        default: false
+
+jobs:
+  listing:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v6
+
+      - name: Set up Ruby
+        uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: '3.2'
+          bundler-cache: true
+
+      - name: Decode Play Store credentials
+        env:
+          PLAY_STORE_CREDENTIALS: ${{ secrets.PLAY_STORE_CREDENTIALS }}
+        run: echo "$PLAY_STORE_CREDENTIALS" | base64 --decode > fastlane/play-store-credentials.json
+
+      - name: List listing images
+        run: bundle exec fastlane listing_images
+
+      - name: Upload listing images
+        if: inputs.upload
+        run: bundle exec fastlane upload_listing_images
+
+      - name: List listing images again
+        if: inputs.upload
+        run: bundle exec fastlane listing_images

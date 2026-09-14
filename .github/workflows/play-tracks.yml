@@ -1,0 +1,43 @@
+# Asks Play which tracks this app actually has, form-factor and console-created closed tracks
+# included, and optionally empties one. A guessed track name in release.yml fails at upload time,
+# on a tag, after a full build; this runs the question on its own instead.
+name: List Play tracks
+
+on:
+  workflow_dispatch:
+    inputs:
+      discard_track:
+        description: "Optional: a track whose releases should all be discarded. Left empty, this workflow only lists."
+        required: false
+        default: ""
+
+jobs:
+  list-tracks:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v6
+
+      - name: Set up Ruby
+        uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: '3.2'
+          bundler-cache: true
+
+      - name: Decode Play Store credentials
+        env:
+          PLAY_STORE_CREDENTIALS: ${{ secrets.PLAY_STORE_CREDENTIALS }}
+        run: echo "$PLAY_STORE_CREDENTIALS" | base64 --decode > fastlane/play-store-credentials.json
+
+      - name: List tracks
+        run: bundle exec fastlane list_tracks
+
+      - name: Discard every release on one track
+        if: inputs.discard_track != ''
+        env:
+          TRACK: ${{ inputs.discard_track }}
+        run: bundle exec fastlane discard_track_releases
+
+      - name: List tracks again
+        if: inputs.discard_track != ''
+        run: bundle exec fastlane list_tracks

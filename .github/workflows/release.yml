@@ -37,13 +37,20 @@ jobs:
           mkdir -p signing
           echo "$BASE64_KEYSTORE" | base64 --decode > signing/release-key.jks
 
-      # versionCode is derived from the build date (yyMMddHH), not from the tag. Play burns a
-      # version code permanently on first upload, so deriving it from the semantic version means
-      # the version name can never go down - renaming a release to a lower number produced a
-      # lower code and Play rejected it. A date is monotonic on its own, which frees the tag to
-      # be any label. Fits Play's 2100000000 ceiling until 2099; allows one release per hour.
-      - name: Compute versionCode from build date
-        run: echo "VERSION_CODE=$(date -u +%y%m%d%H)" >> $GITHUB_ENV
+      # versionCode is the build minute, not the tag. Play burns a version code permanently on first
+      # upload, so deriving it from the semantic version means the version name can never go down.
+      # A clock is monotonic on its own, which frees the tag to be any label.
+      #
+      # `yyMMdd * 2880 + minuteOfDay * 2`, the same scheme p-control-android uses: `yyMMddHHmm` does
+      # not fit Play's 2100000000 ceiling, so the minute is packed as an offset inside the day. The
+      # stride is 2880 rather than 1440 so every minute owns an even code and the odd one beside it,
+      # which a TV bundle (phone code plus one) would need. Fits until the end of 2072; one release
+      # per minute. `date -u`, never local time, and `%-H`/`%-M` because `$(( 08 ))` is octal.
+      - name: Compute versionCode from build minute
+        run: |
+          day=$(date -u +%y%m%d)
+          minute_of_day=$(( $(date -u +%-H) * 60 + $(date -u +%-M) ))
+          echo "VERSION_CODE=$(( day * 2880 + minute_of_day * 2 ))" >> $GITHUB_ENV
 
       - name: Build signed APK and AAB
         env:
@@ -123,3 +130,12 @@ jobs:
           AAB_PATH: ${{ github.workspace }}/artifacts/bundle/release/radiozavr-${{ env.VERSION }}.aab
           MAPPING_PATH: ${{ github.workspace }}/artifacts/mapping/release/mapping.txt
         run: bundle exec fastlane upload_internal
+
+      # A tag reaches the testers without a second hand-run step: the release just put on internal
+      # is carried into their closed track, where Play reviews it.
+      - name: Promote to the testers' closed track
+        run: bundle exec fastlane promote_to_testers
+
+      - name: Remove decoded secrets from disk
+        if: always()
+        run: rm -f fastlane/play-store-credentials.json
